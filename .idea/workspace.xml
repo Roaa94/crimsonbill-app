@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/woman-working.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/firebase/firebase.utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/auth-page/auth-page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/dashboard-page/dashboard-page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/root-reducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/user/user.actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/user/user.reducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/user/user.selectors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/user/user.types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/auth/SignInForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/AppButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/AppTextField.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/PasswordTextField.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/auth-page/AuthPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth-page/auth-page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard-page/dashboard-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard-page/DashboardPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +57,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\roaa-\Documents\React\planner-app\src\components\sign-up-form" />
       <recent name="C:\Users\roaa-\Documents\React\planner-app\src\assets\images" />
     </key>
   </component>
@@ -84,7 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583052292089</updated>
-      <workItem from="1583052294284" duration="4990000" />
+      <workItem from="1583052294284" duration="18914000" />
     </task>
     <task id="LOCAL-00001" summary="project set up">
       <created>1583068216981</created>
@@ -93,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583068216981</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="basic routing, redux, and firebase authentication set up">
+      <created>1583069959300</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1583069959300</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,33 +124,50 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="project set up" />
-    <option name="LAST_COMMIT_MESSAGE" value="project set up" />
+    <MESSAGE value="basic routing, redux, and firebase authentication set up" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic routing, redux, and firebase authentication set up" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583067470728">
+    <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583083471012">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583067470728" />
-    <state x="1592" y="207" key="CommitChangelistDialog2" timestamp="1583068216077">
+    <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083471012" />
+    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583083703968">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583068216077" />
-    <state width="1120" height="375" key="GridCell.Tab.0.bottom" timestamp="1583068082480">
+    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083703968" />
+    <state x="1592" y="207" key="CommitChangelistDialog2" timestamp="1583069958522">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1120" height="375" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583068082480" />
-    <state width="1120" height="375" key="GridCell.Tab.0.center" timestamp="1583068082480">
+    <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583069958522" />
+    <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog" timestamp="1583083953371">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1120" height="375" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583068082480" />
-    <state width="1120" height="375" key="GridCell.Tab.0.left" timestamp="1583068082480">
+    <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083953371" />
+    <state width="1113" height="375" key="GridCell.Tab.0.bottom" timestamp="1583083929056">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1120" height="375" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583068082480" />
-    <state width="1120" height="375" key="GridCell.Tab.0.right" timestamp="1583068082480">
+    <state width="1113" height="375" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083929056" />
+    <state width="1113" height="375" key="GridCell.Tab.0.center" timestamp="1583083929056">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1120" height="375" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583068082480" />
+    <state width="1113" height="375" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083929056" />
+    <state width="1113" height="375" key="GridCell.Tab.0.left" timestamp="1583083929056">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1113" height="375" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083929056" />
+    <state width="1113" height="375" key="GridCell.Tab.0.right" timestamp="1583083929056">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1113" height="375" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083929056" />
+    <state x="1476" y="345" key="SettingsEditor" timestamp="1583074867110">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1476" y="345" key="SettingsEditor/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583074867110" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1583083087090">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083087090" />
     <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1583068223198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -150,5 +176,13 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1590" y="382" width="760" height="638" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583069355583" />
+    <state width="600" height="440" key="javadoc.popup" timestamp="1583078153354">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="600" height="440" key="javadoc.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583078153354" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1583082197981">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583082197981" />
   </component>
 </project>

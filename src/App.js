@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
-import DashboardPage from "./pages/dashboard-page/dashboard-page";
+import DashboardPage from "./pages/dashboard-page/DashboardPage";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {selectCurrentUser} from "./redux/user/user.selectors";
 import {setCurrentUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
-import AuthPage from "./pages/auth-page/auth-page";
+import AuthPage from "./pages/auth-page/AuthPage";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
@@ -39,7 +39,10 @@ class App extends React.Component {
                 <Route exact path='/' render={
                     () => this.props.currentUser ? (<Redirect to='/dashboard'/>) : <AuthPage/>
                 }/>
-                <Route exact path='/dashboard' component={DashboardPage} />
+                <Route exact path='/signup' render={
+                    () => this.props.currentUser ? (<Redirect to='/dashboard'/>) : <AuthPage toSignUp={true}/>
+                }/>
+                <Route exact path='/dashboard' component={DashboardPage}/>
             </Switch>
         );
     }

@@ -1,3 +1,15 @@
+:root {
+    --primary: #0E2549;
+    --secondary: #A1C5E2;
+    --accent: #E2474B;
+    --bg: #EBF4FE;
+    --bg-light: #FFFFFF;
+}
+
+h1{
+    color: var(--primary);
+}
+
 a{
     text-decoration: none;
     color: inherit;
@@ -5,4 +17,8 @@ a{
 
 * {
     box-sizing: border-box;
+}
+
+.MuiInputBase-root{
+    background-color: var(--bg-light);
 }
