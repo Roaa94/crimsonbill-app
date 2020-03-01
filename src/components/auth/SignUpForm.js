@@ -7,6 +7,7 @@ import AppButton from "../ui/AppButton";
 import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignUpForm extends Component {
+    _isMounted = false;
 
     constructor(props) {
         super(props);
@@ -19,36 +20,44 @@ class SignUpForm extends Component {
         };
     }
 
+    handleChange = event => {
+        const {name, value} = event.target;
+        this.setState({[name]: value});
+    };
+
     handleSubmit = async event => {
         event.preventDefault();
 
         const {displayName, email, password, confirmPassword} = this.state;
-        if(password !== confirmPassword) {
+        if (password !== confirmPassword) {
             alert('Passwords don\'t match!');
             return;
         }
 
         try {
-            console.log('displayName');
-            console.log(displayName);
             const {user} = await auth.createUserWithEmailAndPassword(email, password);
-            await createUserProfileDocument(user, displayName);
-            this.setState({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
-            }); // to clear the form
+            await createUserProfileDocument(user, {displayName});
+            if (this._isMounted) {
+                this.setState({
+                    displayName: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: ''
+                }); // to clear the form
+            }
         } catch (error) {
             alert(error.message);
             console.log('An error occurred', error.message);
         }
     };
 
-    handleChange = event => {
-        const {name, value} = event.target;
-        this.setState({[name]: value});
-    };
+    componentDidMount() {
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
     render() {
         const {displayName, email, password, confirmPassword} = this.state;
@@ -64,6 +73,7 @@ class SignUpForm extends Component {
                         name='displayName'
                         type='text'
                         onChange={this.handleChange}
+                        required
                     />
                     <AppTextField
                         label='Email'
@@ -71,6 +81,7 @@ class SignUpForm extends Component {
                         value={email}
                         type='text'
                         onChange={this.handleChange}
+                        required
                     />
                     <AppTextField
                         label='Password'
@@ -78,6 +89,7 @@ class SignUpForm extends Component {
                         value={password}
                         type='password'
                         onChange={this.handleChange}
+                        required
                     />
                     <AppTextField
                         label='Confirm Password'
@@ -85,6 +97,7 @@ class SignUpForm extends Component {
                         value={confirmPassword}
                         type='password'
                         onChange={this.handleChange}
+                        required
                     />
                     <Box mb={2}>
                         <Grid container justify='space-between' spacing={2}>
