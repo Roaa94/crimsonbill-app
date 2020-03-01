@@ -42,7 +42,9 @@ class App extends React.Component {
                 <Route exact path='/signup' render={
                     () => this.props.currentUser ? (<Redirect to='/dashboard'/>) : <AuthPage toSignUp={true}/>
                 }/>
-                <Route exact path='/dashboard' component={DashboardPage}/>
+                <Route exact path='/dashboard' render={
+                    () => this.props.currentUser ? <DashboardPage/> : <AuthPage/>
+                }/>
             </Switch>
         );
     }

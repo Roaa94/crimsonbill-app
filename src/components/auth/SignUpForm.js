@@ -4,6 +4,7 @@ import AppTextField from "../ui/AppTextField";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import AppButton from "../ui/AppButton";
+import {signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignUpForm extends React.Component {
     state = {
@@ -55,7 +56,7 @@ class SignUpForm extends React.Component {
                                 <AppButton>SIGN UP</AppButton>
                             </Grid>
                             <Grid item xs={12} md={8}>
-                                <AppButton color='secondary'>
+                                <AppButton color='secondary' onClick={signInWithGoogle}>
                                     SIGN IN WITH GOOGLE
                                 </AppButton>
                             </Grid>

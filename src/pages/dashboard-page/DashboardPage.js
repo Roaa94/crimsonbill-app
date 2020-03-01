@@ -1,9 +1,14 @@
 import React from 'react';
+import AppButton from "../../components/ui/AppButton";
+import {auth} from '../../firebase/firebase.utils';
 
 const DashboardPage = () => {
     return (
         <div>
-            This is the home page
+            <h1>This is the dashboard</h1>
+            <AppButton onClick={() => auth.signOut()}>
+                SIGN OUT
+            </AppButton>
         </div>
     );
 };
