@@ -12,6 +12,7 @@ class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
+        this._isMounted = true;
         const {setCurrentUser} = this.props;
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
@@ -20,8 +21,6 @@ class App extends React.Component {
                     setCurrentUser({
                         id: snapShot.id,
                         ...snapShot.data(),
-                    }, () => {
-                        console.log('current use from state', this.state.currentUser);
                     });
                 });
             }

@@ -4,9 +4,10 @@ import AppTextField from "../ui/AppTextField";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import AppButton from "../ui/AppButton";
-import {signInWithGoogle} from "../../firebase/firebase.utils";
+import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignUpForm extends React.Component {
+
     state = {
         displayName: '',
         email: '',
@@ -14,20 +15,46 @@ class SignUpForm extends React.Component {
         confirmPassword: '',
     };
 
+    handleSubmit = async event => {
+        event.preventDefault();
+
+        const {displayName, email, password, confirmPassword} = this.state;
+        if(password !== confirmPassword) {
+            alert('Passwords don\'t match!');
+            return;
+        }
+
+        try {
+            const {user} = await auth.createUserWithEmailAndPassword(email, password);
+            await createUserProfileDocument(user, displayName);
+            this.setState({
+                displayName: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+            }); // to clear the form
+        } catch (error) {
+            alert(error.message);
+            console.log('An error occurred', error.message);
+        }
+    };
+
     handleChange = event => {
         const {value, name} = event.target;
         this.setState({[name]: value});
-        console.log(this.state);
     };
 
     render() {
+        const {displayName, email, password, confirmPassword} = this.state;
+
         return (
             <div>
                 <h1>I Don't Have An Account</h1>
                 <p>Sign up with email and password</p>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <AppTextField
                         label='Display Name'
+                        value={displayName}
                         name='displayName'
                         type='text'
                         onChange={this.handleChange}
@@ -35,18 +62,21 @@ class SignUpForm extends React.Component {
                     <AppTextField
                         label='Email'
                         name='email'
+                        value={email}
                         type='text'
                         onChange={this.handleChange}
                     />
                     <AppTextField
                         label='Password'
                         name='password'
+                        value={password}
                         type='password'
                         onChange={this.handleChange}
                     />
                     <AppTextField
                         label='Confirm Password'
                         name='confirmPassword'
+                        value={confirmPassword}
                         type='password'
                         onChange={this.handleChange}
                     />

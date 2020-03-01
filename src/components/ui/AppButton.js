@@ -5,6 +5,7 @@ const AppButton = ({onClick, children, color}) => {
     return (
         <Button
             fullWidth={true}
+            type='submit'
             variant='contained'
             color={color ? color : 'primary'}
             onClick={onClick}
