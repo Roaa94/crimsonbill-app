@@ -1,14 +1,13 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
 
-const AppButton = ({onClick, children, color, ...otherProps}) => {
+const AppButton = ({children, color, fullWidth = true, ...otherProps}) => {
     return (
         <Button
-            fullWidth={true}
             variant='contained'
             color={color ? color : 'primary'}
-            onClick={onClick}
             disableElevation
+            fullWidth={!!fullWidth}
             {...otherProps}
         >
             {children}

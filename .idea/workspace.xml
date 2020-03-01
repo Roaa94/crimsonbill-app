@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/SignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignInForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/AppButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/AppButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/AppTextField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/AppTextField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/firebase.utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/firebase.utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/dashboard-page/DashboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard-page/DashboardPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +77,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583052292089</updated>
-      <workItem from="1583052294284" duration="24017000" />
+      <workItem from="1583052294284" duration="25526000" />
     </task>
     <task id="LOCAL-00001" summary="project set up">
       <created>1583068216981</created>
@@ -116,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583089931720</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="implemented sign in with email and password">
+      <created>1583092017000</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1583092017000</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,7 +147,8 @@
     <MESSAGE value="worked on authentication ui components" />
     <MESSAGE value="implemented google sign in functionality" />
     <MESSAGE value="implemented sign up with email and password" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented sign up with email and password" />
+    <MESSAGE value="implemented sign in with email and password" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented sign in with email and password" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583083471012">
@@ -153,10 +159,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083703968" />
-    <state x="1592" y="207" key="CommitChangelistDialog2" timestamp="1583091999422">
+    <state x="1592" y="207" key="CommitChangelistDialog2" timestamp="1583092016098">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583091999422" />
+    <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583092016098" />
     <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog" timestamp="1583092009353">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -197,9 +203,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="600" height="440" key="javadoc.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583078153354" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1583091518102">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1583093250676">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583091518102" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583093250676" />
   </component>
 </project>

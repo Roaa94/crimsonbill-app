@@ -6,9 +6,7 @@ const DashboardPage = () => {
     return (
         <div>
             <h1>This is the dashboard</h1>
-            <AppButton onClick={
-                () => auth.signOut().then()}
-            >
+            <AppButton onClick={() => auth.signOut()} fullWidth={false}>
                 SIGN OUT
             </AppButton>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import AppTextField from "../ui/AppTextField";
 import Box from "@material-ui/core/Box";
@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import AppButton from "../ui/AppButton";
 import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/firebase.utils";
 
-class SignUpForm extends React.Component {
+class SignUpForm extends Component {
 
     constructor(props) {
         super(props);
@@ -29,6 +29,8 @@ class SignUpForm extends React.Component {
         }
 
         try {
+            console.log('displayName');
+            console.log(displayName);
             const {user} = await auth.createUserWithEmailAndPassword(email, password);
             await createUserProfileDocument(user, displayName);
             this.setState({
@@ -44,7 +46,7 @@ class SignUpForm extends React.Component {
     };
 
     handleChange = event => {
-        const {value, name} = event.target;
+        const {name, value} = event.target;
         this.setState({[name]: value});
     };
 
