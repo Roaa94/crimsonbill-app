@@ -8,12 +8,16 @@ import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/
 
 class SignUpForm extends React.Component {
 
-    state = {
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            displayName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        };
+    }
 
     handleSubmit = async event => {
         event.preventDefault();
@@ -83,7 +87,7 @@ class SignUpForm extends React.Component {
                     <Box mb={2}>
                         <Grid container justify='space-between' spacing={2}>
                             <Grid item xs={12} md={4}>
-                                <AppButton>SIGN UP</AppButton>
+                                <AppButton type='submit'>SIGN UP</AppButton>
                             </Grid>
                             <Grid item xs={12} md={8}>
                                 <AppButton color='secondary' onClick={signInWithGoogle}>

@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/SignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignInForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/AppButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/AppButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/AppTextField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/AppTextField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/firebase.utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/firebase.utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard-page/DashboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard-page/DashboardPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583052292089</updated>
-      <workItem from="1583052294284" duration="22140000" />
+      <workItem from="1583052294284" duration="24017000" />
     </task>
     <task id="LOCAL-00001" summary="project set up">
       <created>1583068216981</created>
@@ -108,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583085049611</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implemented sign up with email and password">
+      <created>1583089931720</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1583089931720</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +141,8 @@
     <MESSAGE value="basic routing, redux, and firebase authentication set up" />
     <MESSAGE value="worked on authentication ui components" />
     <MESSAGE value="implemented google sign in functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented google sign in functionality" />
+    <MESSAGE value="implemented sign up with email and password" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented sign up with email and password" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583083471012">
@@ -144,14 +153,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083703968" />
-    <state x="1592" y="207" key="CommitChangelistDialog2" timestamp="1583085048368">
+    <state x="1592" y="207" key="CommitChangelistDialog2" timestamp="1583091999422">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583085048368" />
-    <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog" timestamp="1583083953371">
+    <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583091999422" />
+    <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog" timestamp="1583092009353">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083953371" />
+    <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583092009353" />
     <state width="1113" height="375" key="GridCell.Tab.0.bottom" timestamp="1583083929056">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -188,9 +197,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="600" height="440" key="javadoc.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583078153354" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1583084671819">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1583091518102">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583084671819" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583091518102" />
   </component>
 </project>

@@ -20,7 +20,10 @@ export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({prompt: 'select_account'});
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(provider).catch((error) => {
+    console.log(error.code);
+    console.log(error.message);
+});
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
@@ -39,7 +42,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         } catch (error) {
             console.log('error creating user', error.message);
         }
-        console.log('user created', email);
+        console.log('user created', displayName);
     }
     return userRef;
 };
