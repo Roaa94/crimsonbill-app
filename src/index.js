@@ -20,6 +20,12 @@ const theme = createMuiTheme({
         info: {
             main: '#A1C5E2'
         },
+        background: {
+            main: '#EBF4FE'
+        },
+        divider:{
+            main: '#EBF4FE'
+        },
     },
     typography: {
         fontFamily: 'Raleway',

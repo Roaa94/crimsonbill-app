@@ -18,7 +18,3 @@ a{
 * {
     box-sizing: border-box;
 }
-
-.MuiInputBase-root{
-    background-color: var(--bg-light);
-}
