@@ -1,4 +1,4 @@
-import {Box, TextField, withStyles, withTheme} from "@material-ui/core";
+import {Box, TextField, withStyles} from "@material-ui/core";
 import React from 'react';
 
 const CustomTextField = withStyles(theme => {
@@ -16,11 +16,9 @@ const CustomTextField = withStyles(theme => {
             },
             '& .MuiOutlinedInput-root': {
                 '& fieldset': {
-                    borderWidth: '1.2px',
                     borderColor: theme.palette.primary.main,
                 },
                 '&:hover fieldset': {
-                    borderWidth: '1.2px',
                     borderColor: theme.palette.secondary.main,
                 },
                 '&.Mui-focused fieldset': {
@@ -45,4 +43,4 @@ const AppTextField = (props) => {
     );
 };
 
-export default withTheme(AppTextField);
+export default AppTextField;
