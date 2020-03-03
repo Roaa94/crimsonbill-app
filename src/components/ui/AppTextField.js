@@ -1,33 +1,31 @@
 import {Box, TextField, withStyles} from "@material-ui/core";
 import React from 'react';
 
-const CustomTextField = withStyles(theme => {
-    return {
-        root: {
-            background: theme.palette.background.main,
-            '& label': {
-                color: theme.palette.primary.main,
+const CustomTextField = withStyles(theme => ({
+    root: {
+        background: theme.palette.background.main,
+        '& label': {
+            color: theme.palette.primary.main,
+        },
+        '& label.Mui-focused': {
+            color: theme.palette.secondary.main,
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: theme.palette.secondary.main,
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: theme.palette.primary.main,
             },
-            '& label.Mui-focused': {
-                color: theme.palette.secondary.main,
+            '&:hover fieldset': {
+                borderColor: theme.palette.secondary.main,
             },
-            '& .MuiInput-underline:after': {
-                borderBottomColor: theme.palette.secondary.main,
+            '&.Mui-focused fieldset': {
+                borderColor: theme.palette.secondary.main,
             },
-            '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                    borderColor: theme.palette.primary.main,
-                },
-                '&:hover fieldset': {
-                    borderColor: theme.palette.secondary.main,
-                },
-                '&.Mui-focused fieldset': {
-                    borderColor: theme.palette.secondary.main,
-                },
-            },
-        }
-    };
-})(TextField);
+        },
+    }
+}))(TextField);
 
 const AppTextField = (props) => {
     return (
