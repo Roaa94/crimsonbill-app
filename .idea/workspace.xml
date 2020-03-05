@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="changed gitignore">
+    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/AppButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/AppButton.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +39,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.XML" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -78,6 +77,9 @@
       <workItem from="1583138974490" duration="4659000" />
       <workItem from="1583166351771" duration="713000" />
       <workItem from="1583229858715" duration="1029000" />
+      <workItem from="1583332322417" duration="190000" />
+      <workItem from="1583332561292" duration="1769000" />
+      <workItem from="1583396808519" duration="636000" />
     </task>
     <task id="LOCAL-00001" summary="project set up">
       <created>1583068216981</created>
@@ -163,7 +165,21 @@
       <option name="project" value="LOCAL" />
       <updated>1583242468546</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="customized app button component">
+      <created>1583242483774</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1583242483774</updated>
+    </task>
+    <task id="LOCAL-00014" summary="minor code format change">
+      <created>1583242536969</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1583242536969</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,56 +212,66 @@
     <MESSAGE value="fixed sign up displayName not storing to firebase database error" />
     <MESSAGE value="worked on auth animation component" />
     <MESSAGE value="customized app text field with custom styles" />
-    <MESSAGE value="minor code format change" />
     <MESSAGE value="installed radium" />
-    <option name="LAST_COMMIT_MESSAGE" value="installed radium" />
+    <MESSAGE value="customized app button component" />
+    <MESSAGE value="minor code format change" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor code format change" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583083471012">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083471012" />
+    <state x="961" y="438" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1583332506750">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="961" y="438" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583332506750" />
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583083703968">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083703968" />
-    <state x="749" y="0" key="CommitChangelistDialog2" timestamp="1583242482580">
+    <state x="749" y="0" key="CommitChangelistDialog2" timestamp="1583242536155">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583242482580" />
+    <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583242536155" />
     <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583101668711" />
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog" timestamp="1583242422575">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
     <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583092009353" />
-    <state width="1478" height="185" key="GridCell.Tab.0.bottom" timestamp="1583242419927">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1583401638303">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="185" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583242419927" />
-    <state width="1121" height="375" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583101799678" />
-    <state width="1478" height="185" key="GridCell.Tab.0.center" timestamp="1583242419927">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583401638303" />
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1583401611200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="185" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583242419927" />
-    <state width="1121" height="375" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583101799678" />
-    <state width="1478" height="185" key="GridCell.Tab.0.left" timestamp="1583242419927">
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583401611200" />
+    <state width="2517" height="371" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583359464713" />
+    <state width="1493" height="184" key="GridCell.Tab.0.center" timestamp="1583401611200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="185" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583242419927" />
-    <state width="1121" height="375" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583101799677" />
-    <state width="1478" height="185" key="GridCell.Tab.0.right" timestamp="1583242419927">
+    <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583401611200" />
+    <state width="2517" height="371" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583359464713" />
+    <state width="1493" height="184" key="GridCell.Tab.0.left" timestamp="1583401611199">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="185" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583242419927" />
-    <state width="1121" height="375" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583101799678" />
+    <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583401611199" />
+    <state width="2517" height="371" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583359464713" />
+    <state width="1493" height="184" key="GridCell.Tab.0.right" timestamp="1583401611200">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583401611200" />
+    <state width="2517" height="371" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583359464713" />
     <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1583095314969">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583095314969" />
-    <state x="1476" y="345" key="SettingsEditor" timestamp="1583100357900">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="555" y="110" key="SettingsEditor" timestamp="1583396829530">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="555" y="110" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583396829530" />
     <state x="1476" y="345" key="SettingsEditor/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583100357900" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1583083087090">
       <screen x="0" y="0" width="2560" height="1400" />
