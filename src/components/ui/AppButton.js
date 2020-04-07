@@ -30,7 +30,7 @@ const AppButton = ({children, color, fullWidth = true, ...otherProps}) => {
             variant='contained'
             color={color ? color : 'primary'}
             disableElevation
-            fullWidth={!!fullWidth}
+            fullWidth={fullWidth}
             {...otherProps}
         >
             {children}

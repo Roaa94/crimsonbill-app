@@ -7,30 +7,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from "redux-persist/integration/react";
 import {store, persistor} from './redux/store';
 import {ThemeProvider} from '@material-ui/core/styles';
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#0E2549'
-        },
-        secondary: {
-            main: '#E2474B'
-        },
-        info: {
-            main: '#A1C5E2'
-        },
-        background: {
-            main: '#EBF4FE'
-        },
-        divider:{
-            main: '#EBF4FE'
-        },
-    },
-    typography: {
-        fontFamily: 'Raleway',
-    }
-});
+import {theme} from './styles/global';
 
 ReactDOM.render(
     <Provider store={store}>
