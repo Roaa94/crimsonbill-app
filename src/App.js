@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
-import DashboardPage from "./pages/dashboard-page/DashboardPage";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {selectCurrentUser} from "./redux/user/user.selectors";
 import {setCurrentUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
-import AuthPage from "./pages/auth-page/AuthPage";
+import AuthPage from "./pages/auth/AuthPage";
+import HomePage from "./pages/home/HomePage";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
@@ -32,16 +32,18 @@ class App extends React.Component {
     }
 
     render() {
+        let {currentUser} = this.props;
+
         return (
             <Switch>
                 <Route exact path='/' render={
-                    () => this.props.currentUser ? (<Redirect to='/dashboard'/>) : <AuthPage/>
+                    () => currentUser ? <Redirect to='/home'/> : <AuthPage/>
                 }/>
-                <Route exact path='/signup' render={
-                    () => this.props.currentUser ? (<Redirect to='/dashboard'/>) : <AuthPage toSignUp={true}/>
+                <Route exact path='/sign-up' render={
+                    () => currentUser ? <Redirect to='/home'/> : <AuthPage/>
                 }/>
-                <Route exact path='/dashboard' render={
-                    () => this.props.currentUser ? <DashboardPage/> : <AuthPage/>
+                <Route path='/home' render={
+                    () => currentUser ?  <HomePage path='/home'/> : <Redirect to='/'/>
                 }/>
             </Switch>
         );

@@ -69,7 +69,7 @@ class SignInForm extends React.Component {
                         </Grid>
                     </Box>
                 </form>
-                <Link to='/signup'>
+                <Link to='/sign-up'>
                     Don't have an account? Sign up
                 </Link>
             </div>
