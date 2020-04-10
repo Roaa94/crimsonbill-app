@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {ReactComponent as AuthArtwork} from '../../assets/images/woman-working.svg';
+import {ReactComponent as AuthArtwork} from '../../assets/svg/woman-working.svg';
 
 const AnimationWrapper = styled.div`
   .head{

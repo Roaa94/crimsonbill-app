@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReactComponent as LogoSVG} from '../../assets/images/logo.svg';
+import {ReactComponent as LogoSVG} from '../../assets/svg/logo.svg';
 import styled from 'styled-components';
 import {colors} from "../../styles/global";
 
