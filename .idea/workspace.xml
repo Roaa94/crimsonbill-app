@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/Logo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/app-title/AppTitle.component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/app-title/AppTitle.styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/avatar-placeholder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/drawer-avatar/DrawerAvatar.component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/drawer-avatar/DrawerAvatar.styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/Drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Drawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/link-list-item/LinkListItem.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/link-list-item/LinkListItem.styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +104,7 @@
       <workItem from="1586257730105" duration="6000" />
       <workItem from="1586257827458" duration="2132000" />
       <workItem from="1586415470600" duration="12000" />
-      <workItem from="1586531299762" duration="4054000" />
+      <workItem from="1586531299762" duration="6664000" />
     </task>
     <task id="LOCAL-00001" summary="project set up">
       <created>1583068216981</created>
@@ -240,7 +239,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586534440147</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="minor styling change on link list item component">
+      <created>1586536555158</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1586536555158</updated>
+    </task>
+    <task id="LOCAL-00021" summary="add app title component to drawer">
+      <created>1586536568248</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1586536568248</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,7 +297,9 @@
     <MESSAGE value="changed app title" />
     <MESSAGE value="worked on app drawer links and routing" />
     <MESSAGE value="component names changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="component names changes" />
+    <MESSAGE value="minor styling change on link list item component" />
+    <MESSAGE value="add app title component to drawer" />
+    <option name="LAST_COMMIT_MESSAGE" value="add app title component to drawer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586285511297">
@@ -299,11 +314,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083703968" />
-    <state x="1592" y="207" key="CommitChangelistDialog2" timestamp="1586536553996">
+    <state x="1592" y="207" key="CommitChangelistDialog2" timestamp="1586543215874">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586536553996" />
+    <state x="1592" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586543215874" />
     <state x="1489" y="101" width="971" height="1200" key="DiffContextDialog" timestamp="1586536533873">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -359,10 +374,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="600" height="440" key="javadoc.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583078153354" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1586277857732">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1586543063553">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586277857732" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586543063553" />
   </component>
 </project>

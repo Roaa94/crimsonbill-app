@@ -6,10 +6,11 @@ import {useHistory, useLocation} from 'react-router-dom';
 import LinkListItem from "./link-list-item/LinkListItem.component";
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import AppTitle from "./app-title/AppTitle.component";
+import DrawerAvatar from "./drawer-avatar/DrawerAvatar.component";
 
 const drawerWidth = 260;
 
-const useStyles = makeStyles((theme) => ({
+const drawerStyles = makeStyles((theme) => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
@@ -22,21 +23,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Drawer = ({links}) => {
-    const classes = useStyles();
+    const drawerClasses = drawerStyles();
     const history = useHistory();
     const location = useLocation();
 
     return (
         <MuiDrawer
-            className={classes.drawer}
+            className={drawerClasses.drawer}
             variant="permanent"
             classes={{
-                paper: classes.drawerPaper,
+                paper: drawerClasses.drawerPaper,
             }}
             anchor="left"
         >
             <AppTitle/>
             <div>
+                <DrawerAvatar/>
                 {
                     links.map(({id, url, ...otherProps}) => (
                         <LinkListItem
