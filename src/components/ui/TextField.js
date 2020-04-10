@@ -1,5 +1,7 @@
-import {Box, TextField, withStyles} from "@material-ui/core";
 import React from 'react';
+import MuiTextField from "@material-ui/core/TextField";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Box from "@material-ui/core/Box";
 
 const CustomTextField = withStyles(theme => ({
     root: {
@@ -25,9 +27,9 @@ const CustomTextField = withStyles(theme => ({
             },
         },
     }
-}))(TextField);
+}))(MuiTextField);
 
-const AppTextField = (props) => {
+const TextField = (props) => {
     return (
         <Box mb={2}>
             <CustomTextField
@@ -41,4 +43,4 @@ const AppTextField = (props) => {
     );
 };
 
-export default AppTextField;
+export default TextField;

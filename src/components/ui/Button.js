@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "@material-ui/core/Button";
+import MuiButton from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
@@ -22,10 +22,10 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const AppButton = ({children, color, fullWidth = true, ...otherProps}) => {
+const Button = ({children, color, fullWidth = true, ...otherProps}) => {
     const classes = useStyles();
     return (
-        <Button
+        <MuiButton
             className={color === 'secondary' ? classes.secondary : classes.primary}
             variant='contained'
             color={color ? color : 'primary'}
@@ -34,8 +34,8 @@ const AppButton = ({children, color, fullWidth = true, ...otherProps}) => {
             {...otherProps}
         >
             {children}
-        </Button>
+        </MuiButton>
     );
 };
 
-export default AppButton;
+export default Button;

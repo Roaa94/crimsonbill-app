@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import AppTextField from "../ui/AppTextField";
+import TextField from "../ui/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import AppButton from "../ui/AppButton";
+import Button from "../ui/Button";
 import {auth, signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignInForm extends React.Component {
@@ -40,7 +40,7 @@ class SignInForm extends React.Component {
                 <h1>I Already Have An Account</h1>
                 <p>Sign in with email and password</p>
                 <form onSubmit={this.handleSubmit}>
-                    <AppTextField
+                    <TextField
                         label='Email'
                         name='email'
                         value={email}
@@ -48,7 +48,7 @@ class SignInForm extends React.Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <AppTextField
+                    <TextField
                         label='Password'
                         name='password'
                         value={password}
@@ -59,12 +59,12 @@ class SignInForm extends React.Component {
                     <Box mb={2}>
                         <Grid container justify='space-between' spacing={2}>
                             <Grid item xs={12} md={4}>
-                                <AppButton type='submit'>SIGN IN</AppButton>
+                                <Button type='submit'>SIGN IN</Button>
                             </Grid>
                             <Grid item xs={12} md={8}>
-                                <AppButton color='secondary' onClick={signInWithGoogle}>
+                                <Button color='secondary' onClick={signInWithGoogle}>
                                     SIGN IN WITH GOOGLE
-                                </AppButton>
+                                </Button>
                             </Grid>
                         </Grid>
                     </Box>

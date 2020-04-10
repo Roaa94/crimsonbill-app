@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import AppTextField from "../ui/AppTextField";
+import TextField from "../ui/TextField";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import AppButton from "../ui/AppButton";
+import Button from "../ui/Button";
 import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignUpForm extends Component {
@@ -67,7 +67,7 @@ class SignUpForm extends Component {
                 <h1>I Don't Have An Account</h1>
                 <p>Sign up with email and password</p>
                 <form onSubmit={this.handleSubmit}>
-                    <AppTextField
+                    <TextField
                         label='Display Name'
                         value={displayName}
                         name='displayName'
@@ -75,7 +75,7 @@ class SignUpForm extends Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <AppTextField
+                    <TextField
                         label='Email'
                         name='email'
                         value={email}
@@ -83,7 +83,7 @@ class SignUpForm extends Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <AppTextField
+                    <TextField
                         label='Password'
                         name='password'
                         value={password}
@@ -91,7 +91,7 @@ class SignUpForm extends Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <AppTextField
+                    <TextField
                         label='Confirm Password'
                         name='confirmPassword'
                         value={confirmPassword}
@@ -102,12 +102,12 @@ class SignUpForm extends Component {
                     <Box mb={2}>
                         <Grid container justify='space-between' spacing={2}>
                             <Grid item xs={12} md={4}>
-                                <AppButton type='submit'>SIGN UP</AppButton>
+                                <Button type='submit'>SIGN UP</Button>
                             </Grid>
                             <Grid item xs={12} md={8}>
-                                <AppButton color='secondary' onClick={signInWithGoogle}>
+                                <Button color='secondary' onClick={signInWithGoogle}>
                                     SIGN IN WITH GOOGLE
-                                </AppButton>
+                                </Button>
                             </Grid>
                         </Grid>
                     </Box>
