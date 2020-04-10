@@ -6,8 +6,8 @@ const indicatorWidth = 6;
 const indicatorHeight = 70;
 
 export const LinkListItemContainer = styled.div`
-  padding: 10px;
-  margin: 10px ${itemMargin}px;
+  padding: 7px;
+  margin: 7px ${itemMargin}px;
   display: flex;
   align-items: center;
   border-radius: 15px;
