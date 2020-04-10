@@ -5,6 +5,7 @@ import {auth} from "../../firebase/firebase.utils";
 import {useHistory, useLocation} from 'react-router-dom';
 import LinkListItem from "./link-list-item/LinkListItem.component";
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import AppTitle from "./app-title/AppTitle.component";
 
 const drawerWidth = 260;
 
@@ -34,6 +35,7 @@ const Drawer = ({links}) => {
             }}
             anchor="left"
         >
+            <AppTitle/>
             <div>
                 {
                     links.map(({id, url, ...otherProps}) => (
