@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Container, Grid} from '@material-ui/core';
-import SignInForm from "../../components/auth/SignInForm";
-import SignUpForm from "../../components/auth/SignUpForm";
-import AuthAnimation from "../../components/auth/AuthAnimation";
+import SignInForm from "../components/auth/SignInForm";
+import SignUpForm from "../components/auth/SignUpForm";
+import AuthAnimation from "../components/auth/AuthAnimation";
 import {Route, Switch} from "react-router-dom";
 
 class AuthPage extends Component {
