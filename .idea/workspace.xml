@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="replaced auth artwork">
-      <change afterPath="$PROJECT_DIR$/src/assets/svg/add-account-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AddAccountForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AddAccountIcon.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/firebase/accounts.utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/AddAccountPage.js" afterDir="false" />
+    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/accounts/AddAccountView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Drawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/firebase.utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/firebase.utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddAccountForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/AddAccountForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddAccountIcon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/AddAccountIcon.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/PageWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/PageWrapper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AccountsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AccountsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AddAccountPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AddAccountPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/StatisticsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/StatisticsPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.types.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,11 +60,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\accounts" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\pages\dashboard" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\pages\home" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\assets\svg" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\assets" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -116,7 +109,7 @@
       <workItem from="1586257827458" duration="2132000" />
       <workItem from="1586415470600" duration="12000" />
       <workItem from="1586531299762" duration="25511000" />
-      <workItem from="1586597630832" duration="21205000" />
+      <workItem from="1586597630832" duration="22343000" />
     </task>
     <task id="LOCAL-00001" summary="project set up">
       <created>1583068216981</created>
@@ -328,7 +321,28 @@
       <option name="project" value="LOCAL" />
       <updated>1586608894226</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="removed unused parameter">
+      <created>1586630480515</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1586630480515</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added loading attribute to PersistGate component">
+      <created>1586630546879</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1586630546879</updated>
+    </task>
+    <task id="LOCAL-00033" summary="[Accounts CRUD - Create] worked on add user account functionality with redux and firestore implementation">
+      <created>1586630625242</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1586630625242</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,9 +368,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="implemented sign up with email and password" />
-    <MESSAGE value="implemented sign in with email and password" />
-    <MESSAGE value="ui components optimization" />
     <MESSAGE value="fixed sign up displayName not storing to firebase database error" />
     <MESSAGE value="worked on auth animation component" />
     <MESSAGE value="customized app text field with custom styles" />
@@ -379,7 +390,10 @@
     <MESSAGE value="replaced auth artwork" />
     <MESSAGE value="worked on transactions drawer" />
     <MESSAGE value="fixed authentication displayName problem and refactored createUserProfileDocument function" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed authentication displayName problem and refactored createUserProfileDocument function" />
+    <MESSAGE value="removed unused parameter" />
+    <MESSAGE value="added loading attribute to PersistGate component" />
+    <MESSAGE value="[Accounts CRUD - Create] worked on add user account functionality with redux and firestore implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Accounts CRUD - Create] worked on add user account functionality with redux and firestore implementation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586285511297">
@@ -394,11 +408,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083703968" />
-    <state x="1577" y="207" key="CommitChangelistDialog2" timestamp="1586630545971">
+    <state x="1577" y="207" key="CommitChangelistDialog2" timestamp="1586630624446">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="1577" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586630545971" />
+    <state x="1577" y="207" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586630624446" />
     <state x="908" y="101" width="971" height="1200" key="DiffContextDialog" timestamp="1586630529969">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -441,15 +455,15 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="498" height="446" key="SwitcherDM/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083087090" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1586566703294">
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1586630636525">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="722" y="254" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583401704491" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586566703294" />
-    <state x="1590" y="382" width="763" height="638" key="find.popup" timestamp="1586625553412">
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586630636525" />
+    <state x="1590" y="382" width="763" height="638" key="find.popup" timestamp="1586631083599">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1590" y="382" width="763" height="638" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586625553412" />
+    <state x="1590" y="382" width="763" height="638" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1586631083599" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1583078153354">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

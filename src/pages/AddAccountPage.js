@@ -1,6 +1,6 @@
 import React from 'react';
 import PageWrapper from "../components/ui/PageWrapper";
-import AddAccountForm from "../components/AddAccountForm";
+import AddAccountForm from "../components/accounts/AddAccountForm";
 
 const AddAccountPage = () => {
     return (

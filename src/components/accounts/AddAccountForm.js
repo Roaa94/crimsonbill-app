@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import TextField from "./ui/TextField";
-import Button from "./ui/Button";
-import {addUserAccountDocument} from "../firebase/accounts.utils";
-import {selectCurrentUser} from "../redux/user/user.selectors";
+import TextField from "../ui/TextField";
+import Button from "../ui/Button";
+import {addUserAccountDocument} from "../../firebase/accounts.utils";
+import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {updateUserAccounts} from "../redux/user/user.actions";
+import {updateUserAccounts} from "../../redux/user/user.actions";
 
 class AddAccountForm extends Component {
     state = {

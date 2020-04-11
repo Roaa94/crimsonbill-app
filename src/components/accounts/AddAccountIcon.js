@@ -1,7 +1,7 @@
 import React from 'react';
-import {ReactComponent as AddAccountSvgIcon} from '../assets/svg/add-account-icon.svg';
+import {ReactComponent as AddAccountSvgIcon} from '../../assets/svg/add-account-icon.svg';
 import styled from 'styled-components';
-import {colors} from "../styles/global";
+import {colors} from "../../styles/global";
 
 const AddAccountIconWrapper = styled(AddAccountSvgIcon)`
   width: 100px;

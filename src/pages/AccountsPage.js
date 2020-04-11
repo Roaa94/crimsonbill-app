@@ -1,12 +1,27 @@
 import React from 'react';
 import PageWrapper from "../components/ui/PageWrapper";
+import {selectCurrentUser} from "../redux/user/user.selectors";
+import {connect} from "react-redux";
+import AddAccountView from "../components/accounts/AddAccountView";
 
-const AccountsPage = () => {
-    return (
-        <PageWrapper>
-            <h1>Accounts</h1>
-        </PageWrapper>
-    );
-};
+class AccountsPage extends React.Component {
+    render() {
+        let {currentUser} = this.props;
 
-export default AccountsPage;
+        return (
+            <PageWrapper>
+                {
+                    currentUser.accounts && currentUser.accounts.length > 0
+                        ? <div>You have some accounts</div>
+                        : <AddAccountView/>
+                }
+            </PageWrapper>
+        );
+    }
+}
+
+const mapStateToProps = state => ({
+    currentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps)(AccountsPage);
