@@ -28,9 +28,60 @@ export const AvatarContainer = styled.div`
     border: 7px solid ${colors.infoLight};
     z-index: -1;
   }
+  
+  .edit-icon{
+    opacity: 0;
+    transition: opacity .3s;
+    position: absolute;
+    bottom: -12.5px;
+    right: 50px;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    color: ${colors.secondary};
+    background-color: #fff;
+    border: 2px solid ${colors.primary};
+    z-index: 10;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    svg{
+        width: 15px;
+        height: 15px;
+    }
+  }
+  
+  :hover {
+    .edit-icon{
+      opacity: 1;
+    }
+  }
 `;
 
 export const AvatarImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 100%;
+  cursor: pointer;
+  height: 100%;
+  
+  img{
+    object-fit: cover;
+    height: 100%;
+  }
+`;
+
+export const LoaderWrapper = styled.div`
+  border-radius: 100%;
+  background-color: ${colors.background};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  
+  svg{
+      width: 60%;
+      height: 60%;
+  }
 `;

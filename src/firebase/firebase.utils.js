@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import 'firebase/firestore';
 import 'firebase/auth';
+import 'firebase/storage';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCL3K6pPVEIHFNMHXxLX3fX5NIAf5Wy0xo",
@@ -16,6 +17,7 @@ firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storageRef = firebase.storage().ref();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({prompt: 'select_account'});
@@ -25,15 +27,15 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider).catch((erro
     console.log(error.message);
 });
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
-    if (!userAuth) return;
-    const userRef = firestore.doc(`users/${userAuth.uid}`);
+export const createUserProfileDocument = async (authUser, additionalData) => {
+    if (!authUser) return;
+    const userRef = firestore.doc(`users/${authUser.uid}`);
     const snapShot = await userRef.get();
     if (!snapShot.exists) {
         const createdAt = new Date();
         if (additionalData) { // sign up with email and password
             const {displayName} = additionalData;
-            const {email} = userAuth;
+            const {email} = authUser;
             try {
                 await userRef.set({
                     displayName,
@@ -45,12 +47,13 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
             }
             console.log('user created from email and password', displayName);
         } else { //sign up with google
-            const {displayName, email} = userAuth;
+            const {displayName, email, photoURL} = authUser;
             try {
                 await userRef.set({
                     displayName,
                     email,
                     createdAt,
+                    avatarUrl: photoURL,
                 });
             } catch (error) {
                 console.log('error creating user', error.message);
@@ -59,6 +62,17 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         }
     }
     return userRef;
+};
+
+export const updateUserDocumentAvatar = async (currentUser, avatarUrl) => {
+    const userRef = firestore.doc(`users/${currentUser.id}`);
+    try {
+        await userRef.update({
+            avatarUrl,
+        });
+    } catch (error) {
+        console.log('error updating avatar', error.message);
+    }
 };
 
 export default firebase;
