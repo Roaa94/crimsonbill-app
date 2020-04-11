@@ -1,6 +1,6 @@
 import {firestore} from "./firebase.utils";
 
-export const addUserAccountDocument = async (currentUser, {type, name, currency, details}) => {
+export const addUserAccountDocument = async (currentUser, accountData) => {
     const userAccountRef = firestore.doc(`users/${currentUser.id}`).collection('accounts').doc();
     const snapShot = await userAccountRef.get();
 
@@ -9,10 +9,7 @@ export const addUserAccountDocument = async (currentUser, {type, name, currency,
         try {
             await userAccountRef.set({
                 createdAt,
-                type,
-                name,
-                currency,
-                details,
+                ...accountData,
             });
         } catch (error) {
             console.log('error creating user reference', error.message);
