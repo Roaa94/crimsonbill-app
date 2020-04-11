@@ -1,7 +1,9 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-
+import {selectCurrentUser} from "../redux/user/user.selectors";
+import {connect} from "react-redux";
+import {ReactComponent as FolderCabinetSVG} from '../assets/svg/folder-cabinet.svg';
 export const transactionDrawerWidth = 320;
 
 const useStyles = makeStyles(() => ({
@@ -12,25 +14,40 @@ const useStyles = makeStyles(() => ({
     drawerPaper: {
         width: transactionDrawerWidth,
         padding: '30px 20px',
+        justifyContent: 'space-between',
     },
+    svgImage: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        width: '80%',
+    }
 }));
 
-const TransactionsDrawer = ({open}) => {
+const TransactionsDrawer = ({open, currentUser}) => {
     const classes = useStyles();
 
     return (
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="right"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
+        <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="right"
+            open={open}
+            classes={{
+                paper: classes.drawerPaper,
+            }}
+        >
+            <div>
                 <h3>Latest Transactions</h3>
-            </Drawer>
+                <p>No transactions to display</p>
+            </div>
+            <FolderCabinetSVG className={classes.svgImage}/>
+        </Drawer>
     );
 };
 
-export default TransactionsDrawer;
+const mapStateToProps = state => ({
+    currentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps)(TransactionsDrawer);
