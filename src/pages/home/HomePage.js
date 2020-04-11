@@ -1,29 +1,18 @@
 import React from 'react';
-import Drawer from "../components/ui/Drawer";
-import DashboardPage from "./DashboardPage";
+import Drawer from "../../components/ui/Drawer";
+import DashboardPage from "../DashboardPage";
 import {Route, Switch} from "react-router-dom";
-import {makeStyles} from "@material-ui/core/styles";
-import AccountsPage from "./AccountsPage";
+import AccountsPage from "../AccountsPage";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import DescriptionRoundedIcon from "@material-ui/icons/DescriptionRounded";
 import PieChartRoundedIcon from "@material-ui/icons/PieChartRounded";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
-import StatisticsPage from "./StatisticsPage";
-import SettingsPage from "./SettingsPage";
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-    },
-    content: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.default,
-    },
-}));
-
+import StatisticsPage from "../StatisticsPage";
+import SettingsPage from "../SettingsPage";
+import {PageContent, PageWrapper} from "./HomePage.styles";
 
 const HomePage = ({path}) => {
-    const classes = useStyles();
+
     const drawerLinks = [
         {
             id: 0,
@@ -56,9 +45,9 @@ const HomePage = ({path}) => {
     ];
 
     return (
-        <div className={classes.root}>
+        <PageWrapper>
             <Drawer links={drawerLinks}/>
-            <main className={classes.content}>
+            <PageContent>
                 <Switch>
                     {
                         drawerLinks.map(({id, url, component}) => (
@@ -66,8 +55,8 @@ const HomePage = ({path}) => {
                         ))
                     }
                 </Switch>
-            </main>
-        </div>
+            </PageContent>
+        </PageWrapper>
     );
 };
 

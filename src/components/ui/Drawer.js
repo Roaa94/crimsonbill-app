@@ -8,7 +8,7 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import AppTitle from "./app-title/AppTitle.component";
 import DrawerAvatar from "./drawer-avatar/DrawerAvatar.component";
 
-const drawerWidth = 260;
+export const drawerWidth = 260;
 
 const drawerStyles = makeStyles((theme) => ({
     drawer: {

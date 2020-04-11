@@ -44,7 +44,6 @@ class DrawerAvatar extends React.Component {
     render() {
         let {currentUser} = this.props;
         let {loadingAvatar} = this.state;
-        console.log(currentUser.avatarUrl);
 
         return (
             <AvatarWrapper>

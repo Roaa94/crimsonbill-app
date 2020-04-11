@@ -6,7 +6,7 @@ import {selectCurrentUser} from "./redux/user/user.selectors";
 import {setCurrentUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
 import AuthPage from "./pages/AuthPage";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/home/HomePage";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
