@@ -1,6 +1,6 @@
 import React from 'react';
 import Drawer from "../../components/ui/Drawer";
-import DashboardPage from "../DashboardPage";
+import DashboardPage from "../dashboard/DashboardPage";
 import {Route, Switch} from "react-router-dom";
 import AccountsPage from "../AccountsPage";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
