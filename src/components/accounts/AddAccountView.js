@@ -15,12 +15,12 @@ export const AddAccountViewWrapper = styled.div`
   justify-content: center;
 `;
 
-const AddAccountView = ({drawerOpen = false}) => {
+const AddAccountView = ({drawerOpen = false, path = 'home/account-form'}) => {
     const history = useHistory();
 
     return (
         <AddAccountViewWrapper drawerOpen={drawerOpen}>
-            <AddAccountIcon handleClick={() => history.push('home/account-form/add')}/>
+            <AddAccountIcon handleClick={() => history.push(path)}/>
             <p>Please add an account to get started</p>
         </AddAccountViewWrapper>
     );

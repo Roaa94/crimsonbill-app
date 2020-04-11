@@ -13,7 +13,7 @@ class StatisticsPage extends React.Component {
                 {
                     currentUser.accounts && currentUser.accounts.length > 0
                         ? <div>You have some accounts</div>
-                        : <AddAccountView/>
+                        : <AddAccountView path='account-form'/>
                 }
             </PageWrapper>
         );
