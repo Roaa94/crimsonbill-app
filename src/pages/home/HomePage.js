@@ -55,7 +55,7 @@ const HomePage = ({path}) => {
                             <Route exact path={url} component={component} key={id}/>
                         ))
                     }
-                    <Route exact path={`${path}/account-form`} component={AccountFormPage} />
+                    <Route path={`${path}/account-form/:accountId?`} component={AccountFormPage} />
                 </Switch>
             </PageContent>
         </PageWrapper>

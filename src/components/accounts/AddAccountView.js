@@ -20,7 +20,7 @@ const AddAccountView = ({drawerOpen = false}) => {
 
     return (
         <AddAccountViewWrapper drawerOpen={drawerOpen}>
-            <AddAccountIcon handleClick={() => history.push('home/account-form')}/>
+            <AddAccountIcon handleClick={() => history.push('home/account-form/add')}/>
             <p>Please add an account to get started</p>
         </AddAccountViewWrapper>
     );

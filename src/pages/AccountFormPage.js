@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import PageWrapper from "../components/ui/PageWrapper";
-import {addUserAccountDocument} from "../firebase/accounts.utils";
+import {addUserAccountDocument, updateUserAccountDocument} from "../firebase/accounts.utils";
 import TextField from "../components/ui/TextField";
 import Button from "../components/ui/Button";
 import {selectCurrentUser} from "../redux/user/user.selectors";
 import {updateUserAccounts} from "../redux/user/user.actions";
 import {connect} from "react-redux";
+import {firestore} from "../firebase/firebase.utils";
 
 class AccountFormPage extends Component {
     state = {
@@ -15,24 +16,48 @@ class AccountFormPage extends Component {
         details: '',
     };
 
+    componentDidMount() {
+        const {match, currentUser} = this.props;
+        const accountId = match.params.accountId;
+        if (accountId) {
+            const userAccountRef = firestore.doc(`users/${currentUser.id}/accounts/${accountId}`);
+            userAccountRef.onSnapshot(snapShot => {
+                let accountData = snapShot.data();
+                this.setState(accountData);
+            })
+        }
+    }
+
     handleFormSubmit = async event => {
         event.preventDefault();
-        let {currentUser, updateAccounts} = this.props;
+        let {currentUser, updateAccounts, history, match} = this.props;
+        const accountId = match.params.accountId;
         const accountData = this.state;
-        const accountRef = await addUserAccountDocument(currentUser, accountData);
-        if (accountRef) {
-            accountRef.onSnapshot(snapshot => {
-                let newAccount = snapshot.data();
-                let userAccounts = currentUser.accounts && currentUser.accounts.length > 0 ? [...currentUser.accounts, newAccount] : [newAccount];
-                updateAccounts(userAccounts);
+        if (accountId) {
+            const accountRef = await updateUserAccountDocument(currentUser.id, accountId, accountData);
+            if(accountRef) {
+                accountRef.onSnapshot(snapShot => {
+                    console.log('snapShot.data()');
+                    console.log(snapShot.data());
+                });
+            }
+        } else {
+            const accountRef = await addUserAccountDocument(currentUser.id, accountData);
+            if (accountRef) {
+                accountRef.onSnapshot(snapshot => {
+                    let newAccount = snapshot.data();
+                    let userAccounts = currentUser.accounts && currentUser.accounts.length > 0 ? [...currentUser.accounts, newAccount] : [newAccount];
+                    updateAccounts(userAccounts);
+                });
+            }
+            this.setState({
+                type: '',
+                name: '',
+                currency: '',
+                details: '',
             });
         }
-        this.setState({
-            type: '',
-            name: '',
-            currency: '',
-            details: '',
-        });
+        history.goBack();
     };
 
     handleTextFieldChange = event => {
@@ -42,6 +67,7 @@ class AccountFormPage extends Component {
 
     render() {
         const {type, name, currency, details} = this.state;
+        const accountId = this.props.match.params.accountId;
 
         return (
             <PageWrapper>
@@ -74,7 +100,7 @@ class AccountFormPage extends Component {
                         type='text'
                         onChange={this.handleTextFieldChange}
                     />
-                    <Button type='submit'>Add Account</Button>
+                    <Button type='submit'>{accountId ? 'Edit Account' : 'Add Account'}</Button>
                 </form>
             </PageWrapper>
         );
