@@ -12,7 +12,7 @@ import {theme} from './styles/global';
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <PersistGate persistor={persistor}>
+            <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider theme={theme}>
                     <App/>
                 </ThemeProvider>
