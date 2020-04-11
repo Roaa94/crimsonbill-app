@@ -3,22 +3,24 @@ import styled from 'styled-components';
 import {colors} from "../../styles/global";
 import {drawerWidth} from "../../components/ui/Drawer";
 
-const pagePadding = 10;
+const pageMargin = 10;
+const pagePadding = 40;
 
 const PageWrapperDiv = styled.div`
   position: relative;
-  padding: 20px 40px;
+  padding: ${pagePadding / 2}px ${pagePadding}px;
+  height: 100%;
   
   ::before{
     content: '';
     border-radius: 30px;
     background-color: ${colors.background};
     position: fixed;
-    width: calc(100% - ${pagePadding}px - ${drawerWidth}px);
-    height: calc(100% - ${pagePadding * 2}px);
-    top: ${pagePadding}px;
-    right: ${pagePadding}px;
-    bottom: ${pagePadding}px;
+    width: calc(100% - ${pageMargin}px - ${drawerWidth}px);
+    height: calc(100% - ${pageMargin * 2}px);
+    top: ${pageMargin}px;
+    right: ${pageMargin}px;
+    bottom: ${pageMargin}px;
     left: ${drawerWidth}px;
     z-index: -1;
 `;
