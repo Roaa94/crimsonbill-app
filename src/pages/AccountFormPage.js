@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import TextField from "../ui/TextField";
-import Button from "../ui/Button";
-import {addUserAccountDocument} from "../../firebase/accounts.utils";
-import {selectCurrentUser} from "../../redux/user/user.selectors";
+import PageWrapper from "../components/ui/PageWrapper";
+import {addUserAccountDocument} from "../firebase/accounts.utils";
+import TextField from "../components/ui/TextField";
+import Button from "../components/ui/Button";
+import {selectCurrentUser} from "../redux/user/user.selectors";
+import {updateUserAccounts} from "../redux/user/user.actions";
 import {connect} from "react-redux";
-import {updateUserAccounts} from "../../redux/user/user.actions";
 
-class AddAccountForm extends Component {
+class AccountFormPage extends Component {
     state = {
         type: '',
         name: '',
@@ -43,7 +44,7 @@ class AddAccountForm extends Component {
         const {type, name, currency, details} = this.state;
 
         return (
-            <div>
+            <PageWrapper>
                 <form onSubmit={this.handleFormSubmit}>
                     <TextField
                         label='Account Type'
@@ -75,7 +76,7 @@ class AddAccountForm extends Component {
                     />
                     <Button type='submit'>Add Account</Button>
                 </form>
-            </div>
+            </PageWrapper>
         );
     }
 }
@@ -88,4 +89,4 @@ const mapDispatchToProps = dispatch => ({
     updateAccounts: accounts => dispatch(updateUserAccounts(accounts)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddAccountForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountFormPage);
