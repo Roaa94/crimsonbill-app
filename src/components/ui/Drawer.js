@@ -10,7 +10,7 @@ import DrawerAvatar from "./drawer-avatar/DrawerAvatar.component";
 
 export const drawerWidth = 260;
 
-const drawerStyles = makeStyles((theme) => ({
+const drawerStyles = makeStyles(() => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
