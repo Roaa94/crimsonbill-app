@@ -43,3 +43,12 @@ export const updateUserAccountDocument = async (userId, accountId, updatedAccoun
     }
     return userAccountRef;
 };
+
+export const deleteUserAccountDocument = async (userId, accountId) => {
+    try {
+        await firestore.doc(`users/${userId}/accounts/${accountId}`).delete();
+        console.log('Document Deleted Successfully');
+    } catch (error) {
+        console.log(error.message);
+    }
+};

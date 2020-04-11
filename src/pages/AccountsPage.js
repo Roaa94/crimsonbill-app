@@ -4,7 +4,7 @@ import {selectCurrentUser} from "../redux/user/user.selectors";
 import {connect} from "react-redux";
 import AddAccountView from "../components/accounts/AddAccountView";
 import {firestore} from "../firebase/firebase.utils";
-import {convertAccountsCollectionToArray} from "../firebase/accounts.utils";
+import {convertAccountsCollectionToArray, deleteUserAccountDocument} from "../firebase/accounts.utils";
 import {updateUserAccounts} from "../redux/user/user.actions";
 import {ReactComponent as Loader} from '../assets/svg/loader.svg';
 
@@ -35,6 +35,12 @@ class AccountsPage extends React.Component {
         this._isMounted = false;
     }
 
+    deleteAccount = async (accountId) => {
+        let {currentUser} = this.props;
+        await deleteUserAccountDocument(currentUser.id, accountId);
+        console.log('deleted');
+    };
+
     render() {
         let {currentUser, history} = this.props;
         let {loadingAccounts} = this.state;
@@ -43,21 +49,27 @@ class AccountsPage extends React.Component {
             <PageWrapper>
                 {
                     loadingAccounts ?
-                        <Loader/> : (currentUser.accounts && currentUser.accounts.length > 0
-                        ? currentUser.accounts.map(({id, type, name, currency, details}) => (
-                            <div key={id}>
-                                <p>Type: {type}</p>
-                                <p>Name: {name}</p>
-                                <p>Currency: {currency}</p>
-                                <p>Details: {details}</p>
-                                <button onClick={() => history.push(`account-form/${id}`)}>Edit</button>
-                                <button>Delete</button>
-                                <hr/>
-                            </div>
-                        ))
-                        : <AddAccountView/>)
+                        <Loader/> : (
+                            currentUser.accounts && currentUser.accounts.length > 0
+                                ? <div>
+                                    {
+                                        currentUser.accounts.map(({id, type, name, currency, details}) => (
+                                            <div key={id}>
+                                                <p>Type: {type}</p>
+                                                <p>Name: {name}</p>
+                                                <p>Currency: {currency}</p>
+                                                <p>Details: {details}</p>
+                                                <button onClick={() => history.push(`account-form/${id}`)}>Edit</button>
+                                                <button onClick={() => this.deleteAccount(id)}>Delete</button>
+                                                <hr/>
+                                            </div>
+                                        ))
+                                    }
+                                    <button onClick={() => history.push('account-form')}>Add Account</button>
+                                </div>
+                                : <AddAccountView path='account-form'/>
+                        )
                 }
-                <button onClick={() => history.push('account-form')}>Add Account</button>
             </PageWrapper>
         );
     }
