@@ -33,33 +33,17 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
     const snapShot = await userRef.get();
     if (!snapShot.exists) {
         const createdAt = new Date();
-        if (additionalData) { // sign up with email and password
-            const {displayName} = additionalData;
-            const {email} = authUser;
             try {
                 await userRef.set({
-                    displayName,
-                    email,
+                    displayName: additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName,
+                    email: authUser.email,
+                    avatarUrl: authUser.photoURL ? authUser.photoURL : null,
                     createdAt,
                 });
             } catch (error) {
                 console.log('error creating user', error.message);
             }
-            console.log('user created from email and password', displayName);
-        } else { //sign up with google
-            const {displayName, email, photoURL} = authUser;
-            try {
-                await userRef.set({
-                    displayName,
-                    email,
-                    createdAt,
-                    avatarUrl: photoURL,
-                });
-            } catch (error) {
-                console.log('error creating user', error.message);
-            }
-            console.log('user created from google account', displayName);
-        }
+            console.log('user created, display name:', additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName);
     }
     return userRef;
 };
