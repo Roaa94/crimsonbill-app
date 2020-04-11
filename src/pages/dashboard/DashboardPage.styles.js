@@ -3,7 +3,7 @@ import {colors} from "../../styles/global";
 import {drawerWidth} from "../../components/ui/Drawer";
 import {transactionDrawerWidth} from '../../components/transactions-drawer';
 
-const pageBorder = 10;
+const pageMargin = 10;
 const pagePadding = 40;
 
 export const DashboardPageWrapper = styled.div`
@@ -16,11 +16,11 @@ export const DashboardPageWrapper = styled.div`
     border-radius: 30px;
     background-color: ${colors.background};
     position: fixed;
-    width: ${props => props.drawerOpen ? `calc(100% - ${drawerWidth + transactionDrawerWidth}px)` : `calc(100% - ${pageBorder + drawerWidth}px)`};
-    height: calc(100% - ${pageBorder * 2}px);
-    top: ${pageBorder}px;
-    right: ${props => props.drawerOpen ? `${transactionDrawerWidth}px` : `${pageBorder}px`};
-    bottom: ${pageBorder}px;
+    width: ${props => props.drawerOpen ? `calc(100% - ${drawerWidth + transactionDrawerWidth}px)` : `calc(100% - ${pageMargin + drawerWidth}px)`};
+    height: calc(100% - ${pageMargin * 2}px);
+    top: ${pageMargin}px;
+    right: ${props => props.drawerOpen ? `${transactionDrawerWidth}px` : `${pageMargin}px`};
+    bottom: ${pageMargin}px;
     left: ${drawerWidth}px;
     z-index: -1;
     transition: width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
@@ -42,7 +42,7 @@ export const DashboardPageWrapper = styled.div`
       align-items: center;
       justify-content: center;
       transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-      transform: translateX(${props => props.drawerOpen ? `-${transactionDrawerWidth - pageBorder}px` : 0});
+      transform: translateX(${props => props.drawerOpen ? `-${transactionDrawerWidth - pageMargin}px` : 0});
       
       svg {
         width: 30px;
@@ -53,15 +53,4 @@ export const DashboardPageWrapper = styled.div`
 
 export const DashboardPageContent = styled.div`
   height: calc(100% - ${pagePadding * 2}px);
-`;
-
-export const AddAccountView = styled.div`
-  width: ${props => props.drawerOpen ? `calc(100% - ${transactionDrawerWidth}px)` : '100%'};
-  transition: width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-  height: 100%;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
