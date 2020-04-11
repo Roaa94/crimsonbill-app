@@ -10,6 +10,7 @@ import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import StatisticsPage from "../StatisticsPage";
 import SettingsPage from "../SettingsPage";
 import {PageContent, PageWrapper} from "./HomePage.styles";
+import AddAccountPage from "../AddAccountPage";
 
 const HomePage = ({path}) => {
 
@@ -54,6 +55,7 @@ const HomePage = ({path}) => {
                             <Route exact path={url} component={component} key={id}/>
                         ))
                     }
+                    <Route exact path={`${path}/add-account`} component={AddAccountPage} />
                 </Switch>
             </PageContent>
         </PageWrapper>

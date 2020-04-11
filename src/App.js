@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
+import {auth, createUserProfileDocument, firestore} from "./firebase/firebase.utils";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {selectCurrentUser} from "./redux/user/user.selectors";
 import {setCurrentUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
+import {convertAccountsCollectionToArray} from "./firebase/accounts.utils";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
@@ -16,12 +17,18 @@ class App extends React.Component {
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
                 const userRef = await createUserProfileDocument(user);
-                userRef.onSnapshot(snapShot => {
-                    setCurrentUser({
-                        id: snapShot.id,
-                        ...snapShot.data(),
+                if (userRef) {
+                    userRef.onSnapshot(snapShot => {
+                        const accountsRef = firestore.collection(`users/${snapShot.id}/accounts`);
+                        accountsRef.onSnapshot(async accountsSnapshot => {
+                            setCurrentUser({
+                                id: snapShot.id,
+                                ...snapShot.data(),
+                                accounts: convertAccountsCollectionToArray(accountsSnapshot),
+                            });
+                        });
                     });
-                });
+                }
             }
             setCurrentUser(user);
         })
@@ -43,7 +50,7 @@ class App extends React.Component {
                     () => currentUser ? <Redirect to='/home'/> : <AuthPage/>
                 }/>
                 <Route path='/home' render={
-                    () => currentUser ?  <HomePage path='/home'/> : <Redirect to='/'/>
+                    () => currentUser ? <HomePage path='/home'/> : <Redirect to='/'/>
                 }/>
             </Switch>
         );

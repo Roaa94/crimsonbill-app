@@ -41,7 +41,8 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
                     createdAt,
                 });
             } catch (error) {
-                console.log('error creating user', error.message);
+                console.log('error creating user reference', error.message);
+                return;
             }
             console.log('user created, display name:', additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName);
     }

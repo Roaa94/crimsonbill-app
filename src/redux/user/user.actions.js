@@ -9,3 +9,8 @@ export const updateUserAvatar = avatarUrl => ({
     type: userActionTypes.UPDATE_USER_AVATAR,
     payload: avatarUrl,
 });
+
+export const updateUserAccounts = accounts => ({
+    type: userActionTypes.UPDATE_USER_ACCOUNTS,
+    payload: accounts,
+});

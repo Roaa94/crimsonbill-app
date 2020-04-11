@@ -1,10 +1,11 @@
 import React from 'react';
-import {DashboardPageWrapper} from "./DashboardPage.styles";
+import {AddAccountView, DashboardPageContent, DashboardPageWrapper} from "./DashboardPage.styles";
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
 import TransactionsDrawer from "../../components/transactions-drawer";
 import {selectCurrentUser} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
+import AddAccountIcon from "../../components/AddAccountIcon";
 
 class DashboardPage extends React.Component {
     state = {
@@ -17,7 +18,7 @@ class DashboardPage extends React.Component {
 
     render() {
         let {drawerOpen} = this.state;
-        let {currentUser} = this.props;
+        let {currentUser, history} = this.props;
 
         return (
             <DashboardPageWrapper drawerOpen={drawerOpen}>
@@ -27,9 +28,19 @@ class DashboardPage extends React.Component {
                     }
                 </div>
                 <TransactionsDrawer open={drawerOpen}/>
-                <div>
+                <DashboardPageContent>
                     <h1 className='light'>Welcome {currentUser.displayName}</h1>
-                </div>
+                    {
+                        currentUser.accounts && currentUser.accounts.length > 0
+                            ? <div>You have some accounts</div>
+                            : (
+                                <AddAccountView drawerOpen={drawerOpen}>
+                                    <AddAccountIcon handleClick={() => history.push('home/add-account')}/>
+                                    <p>Please add an account to get started</p>
+                                </AddAccountView>
+                            )
+                    }
+                </DashboardPageContent>
             </DashboardPageWrapper>
         );
     }
