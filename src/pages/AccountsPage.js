@@ -1,10 +1,11 @@
 import React from 'react';
+import PageWrapper from "../components/ui/PageWrapper";
 
 const AccountsPage = () => {
     return (
-        <div>
+        <PageWrapper>
             <h1>Accounts</h1>
-        </div>
+        </PageWrapper>
     );
 };
 

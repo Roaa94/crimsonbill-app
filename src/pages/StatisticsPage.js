@@ -1,10 +1,11 @@
 import React from 'react';
+import PageWrapper from "../components/ui/PageWrapper";
 
 const StatisticsPage = () => {
     return (
-        <div>
+        <PageWrapper>
             <h1>Statistics</h1>
-        </div>
+        </PageWrapper>
     );
 };
 
