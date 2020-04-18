@@ -39,7 +39,7 @@ const TransactionsDrawer = ({open, currentUser}) => {
         >
             <div>
                 <h3>Latest Transactions</h3>
-                <p>No transactions to display</p>
+                <p>No Transactions to Display</p>
             </div>
             <FolderCabinetSVG className={classes.svgImage}/>
         </Drawer>
