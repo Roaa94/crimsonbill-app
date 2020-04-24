@@ -2,7 +2,7 @@ import React from 'react';
 import Drawer from "../../components/ui/Drawer";
 import DashboardPage from "../dashboard/DashboardPage";
 import {Route, Switch} from "react-router-dom";
-import AccountsPage from "../AccountsPage";
+import AccountsPage from "../accounts/AccountsPage";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import DescriptionRoundedIcon from "@material-ui/icons/DescriptionRounded";
 import PieChartRoundedIcon from "@material-ui/icons/PieChartRounded";
@@ -10,7 +10,6 @@ import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import StatisticsPage from "../StatisticsPage";
 import SettingsPage from "../SettingsPage";
 import {PageContent, PageWrapper} from "./HomePage.styles";
-import AccountFormPage from "../AccountFormPage";
 
 const HomePage = ({path}) => {
 
@@ -55,7 +54,6 @@ const HomePage = ({path}) => {
                             <Route exact path={url} component={component} key={id}/>
                         ))
                     }
-                    <Route path={`${path}/account-form/:accountId?`} component={AccountFormPage} />
                 </Switch>
             </PageContent>
         </PageWrapper>
