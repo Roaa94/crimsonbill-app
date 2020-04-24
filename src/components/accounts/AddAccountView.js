@@ -2,7 +2,6 @@ import React from 'react';
 import styled from "styled-components";
 import {transactionDrawerWidth} from "../transactions-drawer";
 import AddAccountIcon from "./AddAccountIcon";
-import {useHistory} from 'react-router-dom';
 
 export const AddAccountViewWrapper = styled.div`
   width: ${props => props.drawerOpen ? `calc(100% - ${transactionDrawerWidth}px)` : '100%'};
@@ -15,12 +14,10 @@ export const AddAccountViewWrapper = styled.div`
   justify-content: center;
 `;
 
-const AddAccountView = ({drawerOpen = false, path = 'home/account-form'}) => {
-    const history = useHistory();
-
+const AddAccountView = ({drawerOpen = false}) => {
     return (
         <AddAccountViewWrapper drawerOpen={drawerOpen}>
-            <AddAccountIcon handleClick={() => history.push(path)}/>
+            <AddAccountIcon />
             <p>Please add an account to get started</p>
         </AddAccountViewWrapper>
     );

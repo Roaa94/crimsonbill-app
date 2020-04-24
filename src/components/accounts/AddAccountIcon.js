@@ -2,6 +2,8 @@ import React from 'react';
 import {ReactComponent as AddAccountSvgIcon} from '../../assets/svg/add-account-icon.svg';
 import styled from 'styled-components';
 import {colors} from "../../styles/global";
+import {toggleAccountForm} from "../../redux/account-form/account-form.actions";
+import {connect} from "react-redux";
 
 const AddAccountIconWrapper = styled(AddAccountSvgIcon)`
   width: 100px;
@@ -26,6 +28,10 @@ const AddAccountIconWrapper = styled(AddAccountSvgIcon)`
   }
 `;
 
-const AddAccountIcon = ({handleClick}) => <AddAccountIconWrapper onClick={handleClick}/>;
+const AddAccountIcon = ({toggleAccountForm}) => <AddAccountIconWrapper onClick={() => toggleAccountForm(true)}/>;
 
-export default AddAccountIcon;
+const mapDispatchToProps = dispatch => ({
+    toggleAccountForm: value => dispatch(toggleAccountForm(value)),
+});
+
+export default connect(null, mapDispatchToProps)(AddAccountIcon);
