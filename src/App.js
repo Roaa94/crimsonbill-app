@@ -21,14 +21,16 @@ class App extends React.Component {
                     userRef.onSnapshot(snapShot => {
                         const accountsRef = firestore.collection(`users/${snapShot.id}/accounts`);
                         accountsRef.onSnapshot(async accountsSnapshot => {
+                            let accountsArray = convertAccountsCollectionToArray(accountsSnapshot);
                             setCurrentUser({
                                 id: snapShot.id,
                                 ...snapShot.data(),
-                                accounts: convertAccountsCollectionToArray(accountsSnapshot),
+                                accounts: accountsArray,
                             });
                         });
                     });
                 }
+                return;
             }
             setCurrentUser(user);
         })
