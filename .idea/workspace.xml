@@ -19,20 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
+    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="minor fix">
       <change afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions-drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions-drawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/drawer-avatar/DrawerAvatar.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/drawer-avatar/DrawerAvatar.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/StatisticsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/StatisticsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/AddAccountView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/AddAccountView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions-drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TransactionsDrawer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,14 +131,7 @@
       <workItem from="1587204862989" duration="5789000" />
       <workItem from="1587290627779" duration="2878000" />
       <workItem from="1587465326150" duration="48000" />
-      <workItem from="1587738591324" duration="17890000" />
-    </task>
-    <task id="LOCAL-00012" summary="installed radium">
-      <created>1583242468546</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1583242468546</updated>
+      <workItem from="1587738591324" duration="18192000" />
     </task>
     <task id="LOCAL-00013" summary="customized app button component">
       <created>1583242483774</created>
@@ -484,7 +469,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587771728253</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="removed unnecessary nesting of currentUser inside user state and changed all currentUser occurrences to user">
+      <created>1587772450627</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1587772450627</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +501,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="page wrapper component styling changes" />
     <MESSAGE value="added content in transactions drawer for empty state" />
     <MESSAGE value="refactored addUserAccountDocument funciton" />
     <MESSAGE value="[Accounts CRUD - Read] worked on displaying user accounts in accounts page" />
@@ -534,7 +525,8 @@
     <MESSAGE value="changed account field from details to notes" />
     <MESSAGE value="created WithLoader HOC" />
     <MESSAGE value="minor fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fix" />
+    <MESSAGE value="removed unnecessary nesting of currentUser inside user state and changed all currentUser occurrences to user" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unnecessary nesting of currentUser inside user state and changed all currentUser occurrences to user" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587769723017">
@@ -549,11 +541,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583083703968" />
-    <state x="689" y="284" key="CommitChangelistDialog2" timestamp="1587771727413">
+    <state x="689" y="284" key="CommitChangelistDialog2" timestamp="1587772449631">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="689" y="284" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587771727413" />
+    <state x="689" y="284" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587772449631" />
     <state x="908" y="101" width="971" height="1200" key="DiffContextDialog" timestamp="1587771861779">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -605,10 +597,10 @@
     </state>
     <state x="722" y="254" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583401704491" />
     <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587205693305" />
-    <state x="1202" y="287" width="763" height="638" key="find.popup" timestamp="1587772013001">
+    <state x="1202" y="287" width="763" height="638" key="find.popup" timestamp="1587772407517">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1202" y="287" width="763" height="638" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587772013001" />
+    <state x="1202" y="287" width="763" height="638" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587772407517" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1583078153354">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

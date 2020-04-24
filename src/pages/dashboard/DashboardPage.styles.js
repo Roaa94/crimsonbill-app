@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {colors} from "../../styles/global";
 import {drawerWidth} from "../../components/ui/Drawer";
-import {transactionDrawerWidth} from '../../components/transactions-drawer';
+import {transactionDrawerWidth} from '../../components/TransactionsDrawer';
 
 const pageMargin = 10;
 const pagePadding = 40;

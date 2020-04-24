@@ -2,7 +2,7 @@ import React from 'react';
 import {DashboardPageContent, DashboardPageWrapper} from "./DashboardPage.styles";
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
-import TransactionsDrawer from "../../components/transactions-drawer";
+import TransactionsDrawer from "../../components/TransactionsDrawer";
 import {selectUser} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import AddAccountView from "../../components/accounts/AddAccountView";
