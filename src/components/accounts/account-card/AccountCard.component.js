@@ -13,7 +13,7 @@ class AccountCard extends React.Component {
     };
 
     render() {
-        let {id, type, name, currency, details} = this.props;
+        let {id, type, name, currency, notes} = this.props;
         console.log(`account id: ${id}`);
 
         return (
@@ -21,7 +21,7 @@ class AccountCard extends React.Component {
                 <p>Type: {type}</p>
                 <p>Name: {name}</p>
                 <p>Currency: {currency}</p>
-                <p>Details: {details}</p>
+                <p>Notes: {notes}</p>
                 <button onClick={() => this.deleteAccount(id)}>Delete</button>
                 <hr/>
             </div>

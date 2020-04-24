@@ -13,7 +13,7 @@ class AccountForm extends Component {
         type: '',
         name: '',
         currency: '',
-        details: '',
+        notes: '',
     };
 
     componentDidMount() {
@@ -41,10 +41,14 @@ class AccountForm extends Component {
             }
         } else {
             const accountRef = await addUserAccountDocument(currentUser.id, accountData);
+            let hasAccounts = currentUser.accounts && currentUser.accounts.length > 0;
             if (accountRef) {
                 accountRef.onSnapshot(snapshot => {
+                    console.log('snapshot.data()');
+                    console.log(snapshot.id);
+                    console.log(snapshot.data());
                     let newAccount = snapshot.data();
-                    let userAccounts = currentUser.accounts && currentUser.accounts.length > 0 ? [...currentUser.accounts, newAccount] : [newAccount];
+                    let userAccounts = hasAccounts ? [...currentUser.accounts, newAccount] : [newAccount];
                     updateAccounts(userAccounts);
                 });
             }
@@ -52,7 +56,7 @@ class AccountForm extends Component {
                 type: '',
                 name: '',
                 currency: '',
-                details: '',
+                notes: '',
             });
         }
         toggleAccountForm(false);
@@ -64,7 +68,7 @@ class AccountForm extends Component {
     };
 
     render() {
-        const {type, name, currency, details} = this.state;
+        const {type, name, currency, notes} = this.state;
         const {accountId, toggleAccountForm} = this.props;
 
         return (
@@ -91,9 +95,9 @@ class AccountForm extends Component {
                     onChange={this.handleTextFieldChange}
                 />
                 <TextField
-                    label='Details'
-                    value={details}
-                    name='details'
+                    label='Notes'
+                    value={notes}
+                    name='notes'
                     type='text'
                     onChange={this.handleTextFieldChange}
                 />
