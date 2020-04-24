@@ -58,10 +58,10 @@ class DrawerAvatar extends React.Component {
                     <AvatarImageWrapperWithLoader>
                         <img src={currentUser.avatarUrl ? currentUser.avatarUrl : AvatarPlaceholder}
                              alt=""/>
+                        <div className='edit-icon'>
+                            <EditRoundedIcon/>
+                        </div>
                     </AvatarImageWrapperWithLoader>
-                    <div className='edit-icon'>
-                        <EditRoundedIcon/>
-                    </div>
                 </AvatarContainer>
 
                 <input type="file" ref="fileUploader" onChange={this.fileSelectionHandler} style={{display: 'none'}}/>
