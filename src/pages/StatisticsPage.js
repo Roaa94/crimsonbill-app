@@ -1,17 +1,17 @@
 import React from 'react';
 import PageWrapper from "../components/ui/PageWrapper";
 import AddAccountView from "../components/accounts/AddAccountView";
-import {selectCurrentUser} from "../redux/user/user.selectors";
+import {selectUser} from "../redux/user/user.selectors";
 import {connect} from "react-redux";
 
 class StatisticsPage extends React.Component {
     render() {
-        let {currentUser} = this.props;
+        let {user} = this.props;
 
         return (
             <PageWrapper>
                 {
-                    currentUser.accounts && currentUser.accounts.length > 0
+                    user.accounts && user.accounts.length > 0
                         ? <div>You have some accounts</div>
                         : <AddAccountView path='account-form'/>
                 }
@@ -21,7 +21,7 @@ class StatisticsPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    currentUser: selectCurrentUser(state),
+    user: selectUser(state),
 });
 
 export default connect(mapStateToProps)(StatisticsPage);

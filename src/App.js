@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import {auth, createUserProfileDocument, firestore} from "./firebase/firebase.utils";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {selectCurrentUser} from "./redux/user/user.selectors";
-import {setCurrentUser} from "./redux/user/user.actions";
+import {selectUser} from "./redux/user/user.selectors";
+import {setUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
@@ -13,7 +13,7 @@ class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        const {setCurrentUser} = this.props;
+        const {setUser} = this.props;
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
                 const userRef = await createUserProfileDocument(user);
@@ -22,7 +22,7 @@ class App extends React.Component {
                         const accountsRef = firestore.collection(`users/${snapShot.id}/accounts`);
                         accountsRef.onSnapshot(async accountsSnapshot => {
                             let accountsArray = convertAccountsCollectionToArray(accountsSnapshot);
-                            setCurrentUser({
+                            setUser({
                                 id: snapShot.id,
                                 ...snapShot.data(),
                                 accounts: accountsArray,
@@ -32,7 +32,7 @@ class App extends React.Component {
                 }
                 return;
             }
-            setCurrentUser(user);
+            setUser(user);
         })
     }
 
@@ -41,18 +41,18 @@ class App extends React.Component {
     }
 
     render() {
-        let {currentUser} = this.props;
+        let {user} = this.props;
 
         return (
             <Switch>
                 <Route exact path='/' render={
-                    () => currentUser ? <Redirect to='/home'/> : <AuthPage/>
+                    () => user ? <Redirect to='/home'/> : <AuthPage/>
                 }/>
                 <Route exact path='/sign-up' render={
-                    () => currentUser ? <Redirect to='/home'/> : <AuthPage/>
+                    () => user ? <Redirect to='/home'/> : <AuthPage/>
                 }/>
                 <Route path='/home' render={
-                    () => currentUser ? <HomePage path='/home'/> : <Redirect to='/'/>
+                    () => user ? <HomePage path='/home'/> : <Redirect to='/'/>
                 }/>
             </Switch>
         );
@@ -60,11 +60,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    currentUser: selectCurrentUser(state),
+    user: selectUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-    setCurrentUser: user => dispatch(setCurrentUser(user))
+    setUser: user => dispatch(setUser(user))
 });
 
 export default connect(

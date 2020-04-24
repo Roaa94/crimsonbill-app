@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {addUserAccountDocument, updateUserAccountDocument} from "../../../firebase/accounts.utils";
 import TextField from "../../ui/TextField";
 import Button from "../../ui/Button";
-import {selectCurrentUser} from "../../../redux/user/user.selectors";
+import {selectUser} from "../../../redux/user/user.selectors";
 import {updateUserAccounts} from "../../../redux/user/user.actions";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
@@ -17,9 +17,9 @@ class AccountForm extends Component {
     };
 
     componentDidMount() {
-        const {currentUser, accountId} = this.props;
+        const {user, accountId} = this.props;
         if (accountId) {
-            const userAccountRef = firestore.doc(`users/${currentUser.id}/accounts/${accountId}`);
+            const userAccountRef = firestore.doc(`users/${user.id}/accounts/${accountId}`);
             userAccountRef.onSnapshot(snapShot => {
                 let accountData = snapShot.data();
                 this.setState(accountData);
@@ -29,10 +29,10 @@ class AccountForm extends Component {
 
     handleFormSubmit = async event => {
         event.preventDefault();
-        let {currentUser, updateAccounts, accountId, toggleAccountForm} = this.props;
+        let {user, updateAccounts, accountId, toggleAccountForm} = this.props;
         const accountData = this.state;
         if (accountId) {
-            const accountRef = await updateUserAccountDocument(currentUser.id, accountId, accountData);
+            const accountRef = await updateUserAccountDocument(user.id, accountId, accountData);
             if (accountRef) {
                 accountRef.onSnapshot(snapShot => {
                     console.log('snapShot.data()');
@@ -40,15 +40,15 @@ class AccountForm extends Component {
                 });
             }
         } else {
-            const accountRef = await addUserAccountDocument(currentUser.id, accountData);
-            let hasAccounts = currentUser.accounts && currentUser.accounts.length > 0;
+            const accountRef = await addUserAccountDocument(user.id, accountData);
+            let hasAccounts = user.accounts && user.accounts.length > 0;
             if (accountRef) {
                 accountRef.onSnapshot(snapshot => {
                     console.log('snapshot.data()');
                     console.log(snapshot.id);
                     console.log(snapshot.data());
                     let newAccount = snapshot.data();
-                    let userAccounts = hasAccounts ? [...currentUser.accounts, newAccount] : [newAccount];
+                    let userAccounts = hasAccounts ? [...user.accounts, newAccount] : [newAccount];
                     updateAccounts(userAccounts);
                 });
             }
@@ -109,7 +109,7 @@ class AccountForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    currentUser: selectCurrentUser(state),
+    user: selectUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({

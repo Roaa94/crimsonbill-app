@@ -1,15 +1,15 @@
 import React from 'react';
 import {deleteUserAccountDocument} from "../../../firebase/accounts.utils";
 import {createStructuredSelector} from "reselect";
-import {selectCurrentUser} from "../../../redux/user/user.selectors";
+import {selectUser} from "../../../redux/user/user.selectors";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
 
 class AccountCard extends React.Component {
 
     deleteAccount = async (accountId) => {
-        let {currentUser} = this.props;
-        await deleteUserAccountDocument(currentUser.id, accountId);
+        let {user} = this.props;
+        await deleteUserAccountDocument(user.id, accountId);
     };
 
     render() {
@@ -30,7 +30,7 @@ class AccountCard extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
+    user: selectUser,
     accountFormShow: selectAccountFormShow,
 });
 

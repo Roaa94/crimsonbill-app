@@ -1,6 +1,6 @@
 import React from 'react';
 import AvatarPlaceholder from '../../../assets/images/avatar-placeholder.png';
-import {selectCurrentUser} from "../../../redux/user/user.selectors";
+import {selectUser} from "../../../redux/user/user.selectors";
 import {connect} from 'react-redux';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import {storageRef, updateUserDocumentAvatar} from '../../../firebase/firebase.utils';
@@ -27,7 +27,7 @@ class DrawerAvatar extends React.Component {
 
         event.persist();
         let file = event.target.files[0];
-        let {currentUser} = this.props;
+        let {user} = this.props;
         console.log(file);
         if (file) {
             let fileName = event.target.files[0].name;
@@ -39,7 +39,7 @@ class DrawerAvatar extends React.Component {
                 avatarRef.getDownloadURL().then(url => {
 
                     updateUserAvatar(url);
-                    updateUserDocumentAvatar(currentUser, url).then(() => {
+                    updateUserDocumentAvatar(user, url).then(() => {
                     }).catch(error => console.log(error.message));
                     toggleLoading(false);
 
@@ -50,13 +50,13 @@ class DrawerAvatar extends React.Component {
     };
 
     render() {
-        let {currentUser} = this.props;
+        let {user} = this.props;
 
         return (
             <AvatarWrapper>
                 <AvatarContainer onClick={this.handleClick}>
                     <AvatarImageWrapperWithLoader>
-                        <img src={currentUser.avatarUrl ? currentUser.avatarUrl : AvatarPlaceholder}
+                        <img src={user.avatarUrl ? user.avatarUrl : AvatarPlaceholder}
                              alt=""/>
                         <div className='edit-icon'>
                             <EditRoundedIcon/>
@@ -65,14 +65,14 @@ class DrawerAvatar extends React.Component {
                 </AvatarContainer>
 
                 <input type="file" ref="fileUploader" onChange={this.fileSelectionHandler} style={{display: 'none'}}/>
-                <h2>{currentUser.displayName}</h2>
+                <h2>{user.displayName}</h2>
             </AvatarWrapper>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    currentUser: selectCurrentUser(state),
+    user: selectUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({

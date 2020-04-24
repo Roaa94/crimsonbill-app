@@ -49,8 +49,8 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
     return userRef;
 };
 
-export const updateUserDocumentAvatar = async (currentUser, avatarUrl) => {
-    const userRef = firestore.doc(`users/${currentUser.id}`);
+export const updateUserDocumentAvatar = async (user, avatarUrl) => {
+    const userRef = firestore.doc(`users/${user.id}`);
     try {
         await userRef.update({
             avatarUrl,
