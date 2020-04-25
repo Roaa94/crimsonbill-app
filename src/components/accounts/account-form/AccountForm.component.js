@@ -20,6 +20,7 @@ class AccountForm extends Component {
         name: '',
         currency: '',
         notes: '',
+        balance: 0.0,
     };
 
     componentDidMount() {
@@ -44,6 +45,7 @@ class AccountForm extends Component {
             name: '',
             currency: '',
             notes: '',
+            balance: 0.0,
         });
         toggleAccountForm(false);
     };
@@ -62,6 +64,7 @@ class AccountForm extends Component {
             <AccountFormExpansionPanel expanded={accountFormShow}>
                 <AccountFormExpansionPanelSummary/>
                 <AccountFormExpansionPanelContent>
+                    <h3>Add Account</h3>
                     <form onSubmit={this.handleFormSubmit}>
                         <TextField
                             label='Account Type'
