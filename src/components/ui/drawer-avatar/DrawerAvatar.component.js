@@ -29,7 +29,6 @@ class DrawerAvatar extends React.Component {
         event.persist();
         let file = event.target.files[0];
         let {user} = this.props;
-        console.log(file);
         if (file) {
             let fileName = event.target.files[0].name;
             let avatarRef = storageRef.child(fileName);
@@ -39,11 +38,10 @@ class DrawerAvatar extends React.Component {
 
                 avatarRef.getDownloadURL().then(async url => {
 
-                    await updateUserDocumentAvatar(user, url)
-
+                    await updateUserDocumentAvatar(user, url);
                     this.setState({loadingAvatar: false});
 
-                }).catch(error => console.log(error.message));
+                });
 
             }).catch(error => console.log(error.message));
         }
