@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import {storageRef, updateUserDocumentAvatar} from '../../../firebase/firebase.utils';
 import {updateUserAvatar} from "../../../redux/user/user.actions";
-import {toggleLoading} from "../../../redux/loading.reducer";
 import WithLoader from "../../HOC/WithLoader";
 import {
     AvatarWrapper,
@@ -18,12 +17,16 @@ const AvatarImageWrapperWithLoader = WithLoader(AvatarImageWrapper, LoaderWrappe
 
 class DrawerAvatar extends React.Component {
 
+    state = {
+        loadingAvatar: false,
+    };
+
     handleClick = () => {
         this.refs.fileUploader.click();
     };
 
     fileSelectionHandler = event => {
-        const {updateUserAvatar, toggleLoading} = this.props;
+        const {updateUserAvatar} = this.props;
 
         event.persist();
         let file = event.target.files[0];
@@ -33,7 +36,7 @@ class DrawerAvatar extends React.Component {
             let fileName = event.target.files[0].name;
             let avatarRef = storageRef.child(fileName);
 
-            toggleLoading(true);
+            this.setState({loadingAvatar: true});
             avatarRef.put(file).then(() => {
 
                 avatarRef.getDownloadURL().then(url => {
@@ -41,7 +44,7 @@ class DrawerAvatar extends React.Component {
                     updateUserAvatar(url);
                     updateUserDocumentAvatar(user, url).then(() => {
                     }).catch(error => console.log(error.message));
-                    toggleLoading(false);
+                    this.setState({loadingAvatar: false});
 
                 }).catch(error => console.log(error.message));
 
@@ -51,11 +54,12 @@ class DrawerAvatar extends React.Component {
 
     render() {
         let {user} = this.props;
+        let {loadingAvatar} = this.state;
 
         return (
             <AvatarWrapper>
                 <AvatarContainer onClick={this.handleClick}>
-                    <AvatarImageWrapperWithLoader>
+                    <AvatarImageWrapperWithLoader loading={loadingAvatar}>
                         <img src={user.avatarUrl ? user.avatarUrl : AvatarPlaceholder}
                              alt=""/>
                         <div className='edit-icon'>
@@ -77,7 +81,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     updateUserAvatar: avatarUrl => dispatch(updateUserAvatar(avatarUrl)),
-    toggleLoading: value => dispatch(toggleLoading(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerAvatar);
