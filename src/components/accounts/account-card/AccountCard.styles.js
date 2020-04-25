@@ -3,7 +3,7 @@ import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
 import styled from 'styled-components';
 import {colors} from "../../../styles/global";
 
-export const ExpansionPanel = withStyles({
+export const AccountCardExpansionPanel = withStyles({
     root: {
         margin: '30px 0',
         borderRadius: '15px !important',
@@ -23,7 +23,7 @@ export const ExpansionPanel = withStyles({
     expanded: {},
 })(MuiExpansionPanel);
 
-export const ExpansionPanelHeader = styled.div`
+export const AccountCardExpansionPanelHeader = styled.div`
   padding: 5px 0;
   width: 100%;
   display: flex;

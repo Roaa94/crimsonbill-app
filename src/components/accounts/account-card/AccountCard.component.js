@@ -4,7 +4,7 @@ import {createStructuredSelector} from "reselect";
 import {selectUser} from "../../../redux/user/user.selectors";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
-import {ExpansionPanel, ExpansionPanelHeader, ExpansionPanelContent} from './AccountCard.styles';
+import {AccountCardExpansionPanel, AccountCardExpansionPanelHeader, ExpansionPanelContent} from './AccountCard.styles';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
 
@@ -19,22 +19,22 @@ class AccountCard extends React.Component {
         let {id, type, name, currency, notes} = this.props;
 
         return (
-            <ExpansionPanel>
+            <AccountCardExpansionPanel>
                 <ExpansionPanelSummary>
-                    <ExpansionPanelHeader>
+                    <AccountCardExpansionPanelHeader>
                         <h3>{name}</h3>
                         <h3 className='account-currency'>{currency}</h3>
                         <div className='account-type'>
                             <AccountBalanceRoundedIcon/>
                             {type}
                         </div>
-                    </ExpansionPanelHeader>
+                    </AccountCardExpansionPanelHeader>
                 </ExpansionPanelSummary>
                 <ExpansionPanelContent>
                     {notes}
                     <button onClick={() => this.deleteAccount(id)}>Delete</button>
                 </ExpansionPanelContent>
-            </ExpansionPanel>
+            </AccountCardExpansionPanel>
         );
     }
 }
