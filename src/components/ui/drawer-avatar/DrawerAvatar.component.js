@@ -4,7 +4,6 @@ import {selectUser} from "../../../redux/user/user.selectors";
 import {connect} from 'react-redux';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import {storageRef, updateUserDocumentAvatar} from '../../../firebase/firebase.utils';
-import {updateUserAvatar} from "../../../redux/user/user.actions";
 import WithLoader from "../../HOC/WithLoader";
 import {
     AvatarWrapper,
@@ -26,7 +25,6 @@ class DrawerAvatar extends React.Component {
     };
 
     fileSelectionHandler = event => {
-        const {updateUserAvatar} = this.props;
 
         event.persist();
         let file = event.target.files[0];
@@ -39,11 +37,10 @@ class DrawerAvatar extends React.Component {
             this.setState({loadingAvatar: true});
             avatarRef.put(file).then(() => {
 
-                avatarRef.getDownloadURL().then(url => {
+                avatarRef.getDownloadURL().then(async url => {
 
-                    updateUserAvatar(url);
-                    updateUserDocumentAvatar(user, url).then(() => {
-                    }).catch(error => console.log(error.message));
+                    await updateUserDocumentAvatar(user, url)
+
                     this.setState({loadingAvatar: false});
 
                 }).catch(error => console.log(error.message));
@@ -79,8 +76,4 @@ const mapStateToProps = state => ({
     user: selectUser(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-    updateUserAvatar: avatarUrl => dispatch(updateUserAvatar(avatarUrl)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DrawerAvatar);
+export default connect(mapStateToProps)(DrawerAvatar);
