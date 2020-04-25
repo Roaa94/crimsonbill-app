@@ -14,6 +14,10 @@ h1.light{
     font-weight: 400;
 }
 
+h3{
+    margin: 0;
+}
+
 a{
     text-decoration: none;
     color: inherit;
