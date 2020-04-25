@@ -7,17 +7,14 @@ import AccountForm from "../../components/accounts/account-form/AccountForm.comp
 import {selectAccountFormShow} from "../../redux/account-form/account-form.selectors";
 import {createStructuredSelector} from "reselect";
 import {toggleAccountForm} from "../../redux/account-form/account-form.actions";
-import {AccountsCardsListWrapper, AccountsPageHeader} from "./AccountsPage.styles";
+import {AccountsPageHeader} from "./AccountsPage.styles";
 import AccountCard from "../../components/accounts/account-card/AccountCard.component";
 import {selectAccountLoading} from "../../redux/loaders/loaders.selectors";
-import WithLoader from "../../components/HOC/WithLoader";
-
-const AccountsCardsList = WithLoader(AccountsCardsListWrapper);
 
 class AccountsPage extends React.Component {
 
     render() {
-        let {user, accountFormShow, toggleAccountForm, accountLoading} = this.props;
+        let {user, accountFormShow, toggleAccountForm} = this.props;
         let hasAccounts = user.accounts && user.accounts.length > 0;
 
         return (
@@ -36,13 +33,11 @@ class AccountsPage extends React.Component {
                 {
                     hasAccounts
                         ? <div>
-                            <AccountsCardsList loading={accountLoading}>
                                 {
                                     user.accounts.map(({id, ...accountDetails}) => (
                                         <AccountCard id={id} {...accountDetails} key={id}/>
                                     ))
                                 }
-                            </AccountsCardsList>
                         </div>
                         : accountFormShow ? null : <AddAccountView/>
                 }
