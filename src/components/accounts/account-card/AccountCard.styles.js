@@ -40,7 +40,7 @@ export const AccountCardExpansionPanelHeader = styled.div`
   
   .account-type{
     color: ${colors.secondary};
-    font-weight: 400;
+    font-weight: 600;
     display: flex;
     align-items: center;
     
