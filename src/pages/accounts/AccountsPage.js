@@ -9,6 +9,7 @@ import {createStructuredSelector} from "reselect";
 import {toggleAccountForm} from "../../redux/account-form/account-form.actions";
 import {AccountsPageHeader} from "./AccountsPage.styles";
 import AccountCard from "../../components/accounts/account-card/AccountCard.component";
+import AddIconButton from "../../components/ui/AddIconButton";
 
 class AccountsPage extends React.Component {
 
@@ -22,21 +23,19 @@ class AccountsPage extends React.Component {
                     hasAccounts ?
                         <AccountsPageHeader>
                             <h3>Accounts</h3>
-                            <button onClick={() => toggleAccountForm(true)}>Add Account</button>
+                            <AddIconButton handleClick={() => toggleAccountForm(true)} disabled={accountFormShow} />
                         </AccountsPageHeader>
                         : null
                 }
-                {
-                    accountFormShow  ? <AccountForm/> : null
-                }
+                <AccountForm/>
                 {
                     hasAccounts
                         ? <div>
-                                {
-                                    user.accounts.map(({id, ...accountDetails}) => (
-                                        <AccountCard id={id} {...accountDetails} key={id}/>
-                                    ))
-                                }
+                            {
+                                user.accounts.map(({id, ...accountDetails}) => (
+                                    <AccountCard id={id} {...accountDetails} key={id}/>
+                                ))
+                            }
                         </div>
                         : accountFormShow ? null : <AddAccountView/>
                 }

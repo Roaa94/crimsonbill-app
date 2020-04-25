@@ -6,6 +6,13 @@ import {selectUser} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
 import {toggleAccountForm} from "../../../redux/account-form/account-form.actions";
+import {
+    AccountFormExpansionPanelSummary,
+    AccountFormExpansionPanel,
+    AccountFormExpansionPanelContent
+} from "./AccountForm.styles";
+import {createStructuredSelector} from "reselect";
+import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 
 class AccountForm extends Component {
     state = {
@@ -46,49 +53,56 @@ class AccountForm extends Component {
         this.setState({[name]: value});
     };
 
+
     render() {
         const {type, name, currency, notes} = this.state;
-        const {accountId, toggleAccountForm} = this.props;
+        const {accountId, toggleAccountForm, accountFormShow} = this.props;
 
         return (
-            <form onSubmit={this.handleFormSubmit}>
-                <TextField
-                    label='Account Type'
-                    value={type}
-                    name='type'
-                    type='text'
-                    onChange={this.handleTextFieldChange}
-                />
-                <TextField
-                    label='Account Name'
-                    value={name}
-                    name='name'
-                    type='text'
-                    onChange={this.handleTextFieldChange}
-                />
-                <TextField
-                    label='Account Currency'
-                    value={currency}
-                    name='currency'
-                    type='text'
-                    onChange={this.handleTextFieldChange}
-                />
-                <TextField
-                    label='Notes'
-                    value={notes}
-                    name='notes'
-                    type='text'
-                    onChange={this.handleTextFieldChange}
-                />
-                <Button type='submit'>{accountId ? 'Edit Account' : 'Add Account'}</Button>
-                <Button onClick={() => toggleAccountForm(false)}>Cancel</Button>
-            </form>
+            <AccountFormExpansionPanel expanded={accountFormShow}>
+                <AccountFormExpansionPanelSummary/>
+                <AccountFormExpansionPanelContent>
+                    <form onSubmit={this.handleFormSubmit}>
+                        <TextField
+                            label='Account Type'
+                            value={type}
+                            name='type'
+                            type='text'
+                            onChange={this.handleTextFieldChange}
+                        />
+                        <TextField
+                            label='Account Name'
+                            value={name}
+                            name='name'
+                            type='text'
+                            onChange={this.handleTextFieldChange}
+                        />
+                        <TextField
+                            label='Account Currency'
+                            value={currency}
+                            name='currency'
+                            type='text'
+                            onChange={this.handleTextFieldChange}
+                        />
+                        <TextField
+                            label='Notes'
+                            value={notes}
+                            name='notes'
+                            type='text'
+                            onChange={this.handleTextFieldChange}
+                        />
+                        <Button type='submit'>{accountId ? 'Edit Account' : 'Add Account'}</Button>
+                        <Button onClick={() => toggleAccountForm(false)}>Cancel</Button>
+                    </form>
+                </AccountFormExpansionPanelContent>
+            </AccountFormExpansionPanel>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    user: selectUser(state),
+const mapStateToProps = createStructuredSelector({
+    user: selectUser,
+    accountFormShow: selectAccountFormShow,
 });
 
 const mapDispatchToProps = dispatch => ({
