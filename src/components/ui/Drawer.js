@@ -54,7 +54,14 @@ const Drawer = ({links}) => {
             <LinkListItem
                 title='Log out'
                 icon={<ExitToAppRoundedIcon/>}
-                handleClick={() => auth.signOut()}
+                handleClick={
+                    () => auth.signOut().then(() => {
+                        console.log('Log out successful');
+                        // console.log(user);
+                    }).catch(function (error) {
+                        console.log('Log out failed', error.message);
+                    })
+                }
             />
         </MuiDrawer>
     );
