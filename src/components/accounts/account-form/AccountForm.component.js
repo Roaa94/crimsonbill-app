@@ -3,11 +3,9 @@ import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.utils";
 import TextField from "../../ui/TextField";
 import Button from "../../ui/Button";
 import {selectUser} from "../../../redux/user/user.selectors";
-import {updateUserAccounts} from "../../../redux/user/user.actions";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
 import {toggleAccountForm} from "../../../redux/account-form/account-form.actions";
-import {toggleAccountLoading} from "../../../redux/loaders/loaders.actions";
 
 class AccountForm extends Component {
     state = {
@@ -30,15 +28,9 @@ class AccountForm extends Component {
 
     handleFormSubmit = async event => {
         event.preventDefault();
-        let {user, updateAccounts, accountId, toggleAccountForm, toggleAccountLoading} = this.props;
+        let {user, accountId, toggleAccountForm} = this.props;
         const accountData = this.state;
-        toggleAccountLoading(true);
-        const newAccount = await addOrUpdateUserAccountDocument(user.id, accountId, accountData);
-        if (newAccount && newAccount.id) {
-            let userAccounts = [...user.accounts, newAccount];
-            updateAccounts(userAccounts);
-        }
-        toggleAccountLoading(false);
+        await addOrUpdateUserAccountDocument(user.id, accountId, accountData);
 
         this.setState({
             type: '',
@@ -100,9 +92,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateAccounts: accounts => dispatch(updateUserAccounts(accounts)),
     toggleAccountForm: value => dispatch(toggleAccountForm(value)),
-    toggleAccountLoading: value => dispatch(toggleAccountLoading(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountForm);
