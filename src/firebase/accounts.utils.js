@@ -1,22 +1,35 @@
 import {firestore} from "./firebase.utils";
 
-export const addUserAccountDocument = async (userId, accountData) => {
-    const userAccountsRef = firestore.doc(`users/${userId}`).collection('accounts').doc();
-    const snapShot = await userAccountsRef.get();
-
-    if (!snapShot.exists) {
+export const addOrUpdateUserAccountDocument = async (userId, accountId, accountData) => {
+    const userAccountRef = accountId ?
+            await firestore.doc(`users/${userId}/accounts/${accountId}`)
+            : await firestore.doc(`users/${userId}`).collection('accounts').doc();
+    const snapShot = await userAccountRef.get();
+    let newAccount = null;
+    if (!snapShot.exists && !accountId) {
         const createdAt = new Date();
+        newAccount = {
+            createdAt,
+            ...accountData,
+        };
         try {
-            await userAccountsRef.set({
-                createdAt,
-                ...accountData,
-            });
+            await userAccountRef.set(newAccount);
         } catch (error) {
-            console.log('error creating user reference', error.message);
+            console.log(error.message);
+            return;
+        }
+    } else {
+        try {
+            newAccount = accountData;
+            await userAccountRef.update(newAccount);
+            console.log('Document Updated Successfully');
+        } catch (error) {
+            console.log(error.message);
             return;
         }
     }
-    return userAccountsRef;
+
+    return newAccount;
 };
 
 export const convertAccountsCollectionToArray = (accountsSnapshot) => {
@@ -30,18 +43,6 @@ export const convertAccountsCollectionToArray = (accountsSnapshot) => {
         });
     });
     return accountsArray;
-};
-
-export const updateUserAccountDocument = async (userId, accountId, updatedAccountData) => {
-    const userAccountRef = await firestore.doc(`users/${userId}/accounts/${accountId}`);
-    try {
-        await userAccountRef.update(updatedAccountData);
-        console.log('Document Updated Successfully');
-    } catch (error) {
-        console.log(error.message);
-        return;
-    }
-    return userAccountRef;
 };
 
 export const deleteUserAccountDocument = async (userId, accountId) => {

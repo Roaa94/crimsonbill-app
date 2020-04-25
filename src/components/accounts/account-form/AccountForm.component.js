@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {addUserAccountDocument, updateUserAccountDocument} from "../../../firebase/accounts.utils";
+import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.utils";
 import TextField from "../../ui/TextField";
 import Button from "../../ui/Button";
 import {selectUser} from "../../../redux/user/user.selectors";
@@ -7,6 +7,7 @@ import {updateUserAccounts} from "../../../redux/user/user.actions";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
 import {toggleAccountForm} from "../../../redux/account-form/account-form.actions";
+import {toggleAccountLoading} from "../../../redux/loaders/loaders.actions";
 
 class AccountForm extends Component {
     state = {
@@ -29,36 +30,22 @@ class AccountForm extends Component {
 
     handleFormSubmit = async event => {
         event.preventDefault();
-        let {user, updateAccounts, accountId, toggleAccountForm} = this.props;
+        let {user, updateAccounts, accountId, toggleAccountForm, toggleAccountLoading} = this.props;
         const accountData = this.state;
-        if (accountId) {
-            const accountRef = await updateUserAccountDocument(user.id, accountId, accountData);
-            if (accountRef) {
-                accountRef.onSnapshot(snapShot => {
-                    console.log('snapShot.data()');
-                    console.log(snapShot.data());
-                });
-            }
-        } else {
-            const accountRef = await addUserAccountDocument(user.id, accountData);
-            let hasAccounts = user.accounts && user.accounts.length > 0;
-            if (accountRef) {
-                accountRef.onSnapshot(snapshot => {
-                    console.log('snapshot.data()');
-                    console.log(snapshot.id);
-                    console.log(snapshot.data());
-                    let newAccount = snapshot.data();
-                    let userAccounts = hasAccounts ? [...user.accounts, newAccount] : [newAccount];
-                    updateAccounts(userAccounts);
-                });
-            }
-            this.setState({
-                type: '',
-                name: '',
-                currency: '',
-                notes: '',
-            });
+        toggleAccountLoading(true);
+        const newAccount = await addOrUpdateUserAccountDocument(user.id, accountId, accountData);
+        if (newAccount && newAccount.id) {
+            let userAccounts = [...user.accounts, newAccount];
+            updateAccounts(userAccounts);
         }
+        toggleAccountLoading(false);
+
+        this.setState({
+            type: '',
+            name: '',
+            currency: '',
+            notes: '',
+        });
         toggleAccountForm(false);
     };
 
@@ -115,6 +102,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     updateAccounts: accounts => dispatch(updateUserAccounts(accounts)),
     toggleAccountForm: value => dispatch(toggleAccountForm(value)),
+    toggleAccountLoading: value => dispatch(toggleAccountLoading(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountForm);

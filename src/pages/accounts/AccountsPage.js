@@ -9,11 +9,12 @@ import {createStructuredSelector} from "reselect";
 import {toggleAccountForm} from "../../redux/account-form/account-form.actions";
 import {AccountsPageHeader} from "./AccountsPage.styles";
 import AccountCard from "../../components/accounts/account-card/AccountCard.component";
+import {selectAccountLoading} from "../../redux/loaders/loaders.selectors";
 
 class AccountsPage extends React.Component {
 
     render() {
-        let {user, accountFormShow, toggleAccountForm} = this.props;
+        let {user, accountFormShow, toggleAccountForm, accountLoading} = this.props;
         let hasAccounts = user.accounts && user.accounts.length > 0;
 
         return (
@@ -29,9 +30,11 @@ class AccountsPage extends React.Component {
                                 <button onClick={() => toggleAccountForm(true)}>Add Account</button>
                             </AccountsPageHeader>
                             {
-                                user.accounts.map(({id, ...accountDetails}) => (
-                                    <AccountCard id={id} {...accountDetails} key={id}/>
-                                ))
+                                accountLoading ? <div/> : (
+                                    user.accounts.map(({id, ...accountDetails}) => (
+                                        <AccountCard id={id} {...accountDetails} key={id}/>
+                                    ))
+                                )
                             }
                         </div>
                         : accountFormShow ? <div/> : <AddAccountView/>
@@ -44,6 +47,7 @@ class AccountsPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
     user: selectUser,
     accountFormShow: selectAccountFormShow,
+    accountLoading: selectAccountLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
