@@ -23,15 +23,19 @@ class AccountsPage extends React.Component {
         return (
             <PageWrapper>
                 {
+                    hasAccounts ?
+                        <AccountsPageHeader>
+                            <h3>Accounts</h3>
+                            <button onClick={() => toggleAccountForm(true)}>Add Account</button>
+                        </AccountsPageHeader>
+                        : null
+                }
+                {
+                    accountFormShow  ? <AccountForm/> : null
+                }
+                {
                     hasAccounts
                         ? <div>
-                            <AccountsPageHeader>
-                                <h3>Accounts</h3>
-                                <button onClick={() => toggleAccountForm(true)}>Add Account</button>
-                            </AccountsPageHeader>
-                            {
-                                accountFormShow ? <AccountForm/> : <div/>
-                            }
                             <AccountsCardsList loading={accountLoading}>
                                 {
                                     user.accounts.map(({id, ...accountDetails}) => (
@@ -40,7 +44,7 @@ class AccountsPage extends React.Component {
                                 }
                             </AccountsCardsList>
                         </div>
-                        : accountFormShow ? <div/> : <AddAccountView/>
+                        : accountFormShow ? null : <AddAccountView/>
                 }
             </PageWrapper>
         );

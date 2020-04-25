@@ -14,7 +14,6 @@ class AccountCard extends React.Component {
 
     render() {
         let {id, type, name, currency, notes} = this.props;
-        console.log(`account id: ${id}`);
 
         return (
             <div>

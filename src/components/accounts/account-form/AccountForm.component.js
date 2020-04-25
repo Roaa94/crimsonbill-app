@@ -89,7 +89,7 @@ class AccountForm extends Component {
                     onChange={this.handleTextFieldChange}
                 />
                 <Button type='submit'>{accountId ? 'Edit Account' : 'Add Account'}</Button>
-                <Button onClick={() => toggleAccountForm(false)}>'Cancel'</Button>
+                <Button onClick={() => toggleAccountForm(false)}>Cancel</Button>
             </form>
         );
     }
