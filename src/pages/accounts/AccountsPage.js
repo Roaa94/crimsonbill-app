@@ -7,9 +7,12 @@ import AccountForm from "../../components/accounts/account-form/AccountForm.comp
 import {selectAccountFormShow} from "../../redux/account-form/account-form.selectors";
 import {createStructuredSelector} from "reselect";
 import {toggleAccountForm} from "../../redux/account-form/account-form.actions";
-import {AccountsPageHeader} from "./AccountsPage.styles";
+import {AccountsCardsListWrapper, AccountsPageHeader} from "./AccountsPage.styles";
 import AccountCard from "../../components/accounts/account-card/AccountCard.component";
 import {selectAccountLoading} from "../../redux/loaders/loaders.selectors";
+import WithLoader from "../../components/HOC/WithLoader";
+
+const AccountsCardsList = WithLoader(AccountsCardsListWrapper);
 
 class AccountsPage extends React.Component {
 
@@ -20,9 +23,6 @@ class AccountsPage extends React.Component {
         return (
             <PageWrapper>
                 {
-                    accountFormShow ? <AccountForm/> : <div/>
-                }
-                {
                     hasAccounts
                         ? <div>
                             <AccountsPageHeader>
@@ -30,12 +30,15 @@ class AccountsPage extends React.Component {
                                 <button onClick={() => toggleAccountForm(true)}>Add Account</button>
                             </AccountsPageHeader>
                             {
-                                accountLoading ? <div/> : (
+                                accountFormShow ? <AccountForm/> : <div/>
+                            }
+                            <AccountsCardsList loading={accountLoading}>
+                                {
                                     user.accounts.map(({id, ...accountDetails}) => (
                                         <AccountCard id={id} {...accountDetails} key={id}/>
                                     ))
-                                )
-                            }
+                                }
+                            </AccountsCardsList>
                         </div>
                         : accountFormShow ? <div/> : <AddAccountView/>
                 }
