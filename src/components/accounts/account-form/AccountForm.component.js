@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.utils";
-import TextField from "../../ui/TextField";
+import TextFieldOutline from "../../ui/TextFieldOutline";
 import Button from "../../ui/Button";
 import {selectUser} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
@@ -66,28 +66,28 @@ class AccountForm extends Component {
                 <AccountFormExpansionPanelContent>
                     <h3>Add Account</h3>
                     <form onSubmit={this.handleFormSubmit}>
-                        <TextField
+                        <TextFieldOutline
                             label='Account Type'
                             value={type}
                             name='type'
                             type='text'
                             onChange={this.handleTextFieldChange}
                         />
-                        <TextField
+                        <TextFieldOutline
                             label='Account Name'
                             value={name}
                             name='name'
                             type='text'
                             onChange={this.handleTextFieldChange}
                         />
-                        <TextField
+                        <TextFieldOutline
                             label='Account Currency'
                             value={currency}
                             name='currency'
                             type='text'
                             onChange={this.handleTextFieldChange}
                         />
-                        <TextField
+                        <TextFieldOutline
                             label='Notes'
                             value={notes}
                             name='notes'

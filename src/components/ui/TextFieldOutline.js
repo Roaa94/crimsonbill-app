@@ -29,7 +29,7 @@ const CustomTextField = withStyles(theme => ({
     }
 }))(MuiTextField);
 
-const TextField = (props) => {
+const TextFieldOutline = (props) => {
     return (
         <Box mb={2}>
             <CustomTextField
@@ -43,4 +43,4 @@ const TextField = (props) => {
     );
 };
 
-export default TextField;
+export default TextFieldOutline;

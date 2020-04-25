@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import TextField from "../ui/TextField";
+import TextFieldOutline from "../ui/TextFieldOutline";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Button from "../ui/Button";
@@ -40,7 +40,7 @@ class SignInForm extends React.Component {
                 <h1>I Already Have An Account</h1>
                 <p>Sign in with email and password</p>
                 <form onSubmit={this.handleSubmit}>
-                    <TextField
+                    <TextFieldOutline
                         label='Email'
                         name='email'
                         value={email}
@@ -48,7 +48,7 @@ class SignInForm extends React.Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <TextField
+                    <TextFieldOutline
                         label='Password'
                         name='password'
                         value={password}
