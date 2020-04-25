@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {transactionDrawerWidth} from "../TransactionsDrawer";
+import {transactionDrawerWidth} from "../transactions/TransactionsDrawer";
 import AddAccountIcon from "./AddAccountIcon";
 
 export const AddAccountViewWrapper = styled.div`

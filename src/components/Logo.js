@@ -1,7 +1,7 @@
 import React from 'react';
-import {ReactComponent as LogoSVG} from '../../assets/svg/logo.svg';
+import {ReactComponent as LogoSVG} from '../assets/svg/logo.svg';
 import styled from 'styled-components';
-import {colors} from "../../styles/global";
+import {colors} from "../styles/global";
 
 const LogoWrapper = styled(LogoSVG)`
   width: 30px;

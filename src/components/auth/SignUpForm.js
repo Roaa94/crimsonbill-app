@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import TextFieldOutline from "../ui/TextFieldOutline";
+import TextFieldOutlined from "../ui/inputs/TextFieldOutlined";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Button from "../ui/Button";
+import Button from "../ui/buttons/Button";
 import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignUpForm extends Component {
@@ -67,7 +67,7 @@ class SignUpForm extends Component {
                 <h1>I Don't Have An Account</h1>
                 <p>Sign up with email and password</p>
                 <form onSubmit={this.handleSubmit}>
-                    <TextFieldOutline
+                    <TextFieldOutlined
                         label='Display Name'
                         value={displayName}
                         name='displayName'
@@ -75,7 +75,7 @@ class SignUpForm extends Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <TextFieldOutline
+                    <TextFieldOutlined
                         label='Email'
                         name='email'
                         value={email}
@@ -83,7 +83,7 @@ class SignUpForm extends Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <TextFieldOutline
+                    <TextFieldOutlined
                         label='Password'
                         name='password'
                         value={password}
@@ -91,7 +91,7 @@ class SignUpForm extends Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <TextFieldOutline
+                    <TextFieldOutlined
                         label='Confirm Password'
                         name='confirmPassword'
                         value={confirmPassword}

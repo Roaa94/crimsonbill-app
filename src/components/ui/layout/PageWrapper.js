@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {colors} from "../../styles/global";
-import {drawerWidth} from "./Drawer";
+import {colors} from "../../../styles/global";
+import {drawerWidth} from "../navigation/Drawer";
 
 const pageMargin = 10;
 const pagePadding = 40;

@@ -1,12 +1,12 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import MuiDrawer from '@material-ui/core/Drawer';
-import {auth} from "../../firebase/firebase.utils";
+import {auth} from "../../../firebase/firebase.utils";
 import {useHistory, useLocation} from 'react-router-dom';
-import LinkListItem from "./link-list-item/LinkListItem.component";
+import LinkListItem from "../link-list-item/LinkListItem.component";
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import AppTitle from "./app-title/AppTitle.component";
-import DrawerAvatar from "./drawer-avatar/DrawerAvatar.component";
+import AppTitle from "../../app-title/AppTitle.component";
+import DrawerAvatar from "../drawer-avatar/DrawerAvatar.component";
 
 export const drawerWidth = 260;
 

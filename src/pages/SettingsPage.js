@@ -1,5 +1,5 @@
 import React from 'react';
-import PageWrapper from "../components/ui/PageWrapper";
+import PageWrapper from "../components/ui/layout/PageWrapper";
 
 const SettingsPage = () => {
     return (

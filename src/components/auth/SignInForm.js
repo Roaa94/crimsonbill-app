@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import TextFieldOutline from "../ui/TextFieldOutline";
+import TextFieldOutlined from "../ui/inputs/TextFieldOutlined";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Button from "../ui/Button";
+import Button from "../ui/buttons/Button";
 import {auth, signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignInForm extends React.Component {
@@ -40,7 +40,7 @@ class SignInForm extends React.Component {
                 <h1>I Already Have An Account</h1>
                 <p>Sign in with email and password</p>
                 <form onSubmit={this.handleSubmit}>
-                    <TextFieldOutline
+                    <TextFieldOutlined
                         label='Email'
                         name='email'
                         value={email}
@@ -48,7 +48,7 @@ class SignInForm extends React.Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <TextFieldOutline
+                    <TextFieldOutlined
                         label='Password'
                         name='password'
                         value={password}

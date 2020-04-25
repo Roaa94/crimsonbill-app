@@ -3,7 +3,7 @@ import MuiTextField from "@material-ui/core/TextField";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Box from "@material-ui/core/Box";
 
-const CustomTextField = withStyles(theme => ({
+const CustomOutlinedTextField = withStyles(theme => ({
     root: {
         background: theme.palette.background.main,
         '& label': {
@@ -29,10 +29,10 @@ const CustomTextField = withStyles(theme => ({
     }
 }))(MuiTextField);
 
-const TextFieldOutline = (props) => {
+const TextFieldOutlined = (props) => {
     return (
         <Box mb={2}>
-            <CustomTextField
+            <CustomOutlinedTextField
                 variant='outlined'
                 fullWidth={true}
                 margin='dense'
@@ -43,4 +43,4 @@ const TextFieldOutline = (props) => {
     );
 };
 
-export default TextFieldOutline;
+export default TextFieldOutlined;

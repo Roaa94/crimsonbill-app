@@ -1,7 +1,7 @@
 import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import styled from 'styled-components';
-import {colors} from "../../styles/global";
+import {colors} from "../../../styles/global";
 
 const AddIconButtonContainer = styled.div`
   color: ${colors.primary};

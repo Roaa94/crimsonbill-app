@@ -1,5 +1,5 @@
 import React from 'react';
-import Drawer from "../../components/ui/Drawer";
+import Drawer from "../../components/ui/navigation/Drawer";
 import DashboardPage from "../dashboard/DashboardPage";
 import {Route, Switch} from "react-router-dom";
 import AccountsPage from "../accounts/AccountsPage";

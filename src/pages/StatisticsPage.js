@@ -1,5 +1,5 @@
 import React from 'react';
-import PageWrapper from "../components/ui/PageWrapper";
+import PageWrapper from "../components/ui/layout/PageWrapper";
 import AddAccountView from "../components/accounts/AddAccountView";
 import {selectUser} from "../redux/user/user.selectors";
 import {connect} from "react-redux";
