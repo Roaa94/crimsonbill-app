@@ -1,21 +1,34 @@
 import React from 'react';
 import MenuItem from "@material-ui/core/MenuItem";
-import {SelectFormControll, SelectWrapper} from "./Select.styles";
+import {CustomSelect, SelectFormControl, SelectWrapper, useStyles} from "./Select.styles";
 import InputLabel from '@material-ui/core/InputLabel';
-import MuiSelect from "@material-ui/core/Select";
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 
 const Select = ({label, value, menuItems, fullHeightButton = true, ...otherProps}) => {
-
+    const classes = useStyles();
+    const menuProps = {
+        getContentAnchorEl: null,
+        anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "center",
+        },
+        transformOrigin: {
+            vertical: "top",
+            horizontal: "center",
+        },
+        classes: {
+            paper: classes.menuPaper,
+        }
+    };
     return (
         <SelectWrapper fullHeightButton={fullHeightButton}>
-            <SelectFormControll fullWidth={true} variant='filled'>
+            <SelectFormControl fullWidth={true} variant='filled'>
                 <InputLabel id="dropdown-label">{label}</InputLabel>
-                <MuiSelect
-                    autoWidth
+                <CustomSelect
                     labelId="dropdown-label"
                     id="dropdown-select"
                     value={value}
+                    MenuProps={menuProps}
                     IconComponent={ExpandMoreRoundedIcon}
                     {...otherProps}
                 >
@@ -26,8 +39,8 @@ const Select = ({label, value, menuItems, fullHeightButton = true, ...otherProps
                             </MenuItem>
                         ))
                     }
-                </MuiSelect>
-            </SelectFormControll>
+                </CustomSelect>
+            </SelectFormControl>
         </SelectWrapper>
     );
 };

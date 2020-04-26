@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import FormControl from '@material-ui/core/FormControl';
 import withStyles from "@material-ui/core/styles/withStyles";
-import {colors} from "../../../../styles/global";
+import {boxShadows, colors} from "../../../../styles/global";
+import Select from "@material-ui/core/Select";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 export const SelectWrapper = styled.div`
   height: ${props => props.fullHeightButton ? '100%' : 'auto'};
   min-height: 56px;
 `;
 
-export const SelectFormControll = withStyles(theme => ({
+export const SelectFormControl = withStyles(theme => ({
     root: {
         '& label': {
             color: theme.palette.primary.main,
@@ -34,5 +36,25 @@ export const SelectFormControll = withStyles(theme => ({
         '& .MuiSelect-select:focus': {
             backgroundColor: 'transparent',
         },
-    }
+    },
 }))(FormControl);
+
+export const CustomSelect = withStyles({
+    selectMenu: {
+        borderRadius: '10px !important',
+        transition: 'box-shadow .3s',
+        '&:hover': {
+            boxShadow: boxShadows.main,
+        }
+    }
+})(Select);
+
+export const useStyles = makeStyles(() => ({
+    menuPaper: {
+        borderRadius: '10px !important',
+        boxShadow: boxShadows.main,
+        '& .MuiList-root': {
+            padding: 0,
+        }
+    },
+}));
