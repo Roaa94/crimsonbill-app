@@ -4,12 +4,19 @@ import {createStructuredSelector} from "reselect";
 import {selectUser} from "../../../redux/user/user.selectors";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
-import {AccountCardExpansionPanel, AccountCardExpansionPanelHeader, ExpansionPanelContent} from './AccountCard.styles';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import {
+    AccountCardExpansionPanel,
+    AccountCardExpansionPanelHeader,
+    AccountCardExpansionPanelSummary,
+    ExpansionPanelContent
+} from './AccountCard.styles';
 import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
 import FormattedNumber from "../../ui/FormattedNumber";
 import DropDown from "../../ui/navigation/drop-down/DropDown.component";
 import Grid from "@material-ui/core/Grid";
+import Button from "../../ui/buttons/button-filled/Button.component";
+import {colors} from "../../../styles/global";
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
 
 class AccountCard extends React.Component {
 
@@ -38,7 +45,7 @@ class AccountCard extends React.Component {
 
         return (
             <AccountCardExpansionPanel>
-                <ExpansionPanelSummary>
+                <AccountCardExpansionPanelSummary>
                     <AccountCardExpansionPanelHeader>
                         <Grid container alignItems='center'>
                             <Grid item xs={4}>
@@ -58,9 +65,24 @@ class AccountCard extends React.Component {
                             </Grid>
                         </Grid>
                     </AccountCardExpansionPanelHeader>
-                </ExpansionPanelSummary>
+                </AccountCardExpansionPanelSummary>
                 <ExpansionPanelContent>
                     {notes}
+                    <Button
+                        fullWidth={false}
+                        bgColor={colors.info}
+                        prefixIcon={<AddRoundedIcon/>}
+                        margin='0 20px 0 0'
+                    >
+                        Add Balance
+                    </Button>
+                    <Button
+                        fullWidth={false}
+                        bgColor={colors.info}
+                        prefixIcon={<AddRoundedIcon/>}
+                    >
+                        Add Transaction
+                    </Button>
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>
         );

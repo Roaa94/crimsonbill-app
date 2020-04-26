@@ -24,8 +24,6 @@ const Button = ({
             height={height}
             startIcon={prefixIcon}
             endIcon={suffixIcon}
-            justifycontent={justifyContent}
-            alignitems={alignItems}
             disableElevation
             margin={margin}
             {...otherProps}
