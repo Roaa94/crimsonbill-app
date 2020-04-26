@@ -12,6 +12,9 @@ const CustomOutlinedTextField = withStyles(theme => ({
         '& label.Mui-focused': {
             color: theme.palette.secondary.main,
         },
+        '& .MuiInputLabel-shrink': {
+            color: theme.palette.secondary.main,
+        },
         '& .MuiInput-underline:after': {
             borderBottomColor: theme.palette.secondary.main,
         },

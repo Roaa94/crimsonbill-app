@@ -9,6 +9,12 @@ const CustomFilledTextField = withStyles(theme => ({
             color: theme.palette.primary.main,
             fontSize: '0.9rem',
         },
+        '& label.Mui-focused': {
+            color: theme.palette.secondary.main,
+        },
+        '& .MuiInputLabel-shrink': {
+            color: theme.palette.secondary.main,
+        },
         '& .MuiFilledInput-underline:before': {
             display: 'none',
         },
