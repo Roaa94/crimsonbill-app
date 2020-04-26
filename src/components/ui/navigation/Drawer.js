@@ -8,7 +8,7 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import AppTitle from "../../app-title/AppTitle.component";
 import DrawerAvatar from "../drawer-avatar/DrawerAvatar.component";
 
-export const drawerWidth = 260;
+export const drawerWidth = 240;
 
 const drawerStyles = makeStyles(() => ({
     drawer: {
@@ -57,7 +57,6 @@ const Drawer = ({links}) => {
                 handleClick={
                     () => auth.signOut().then(() => {
                         console.log('Log out successful');
-                        // console.log(user);
                     }).catch(function (error) {
                         console.log('Log out failed', error.message);
                     })
