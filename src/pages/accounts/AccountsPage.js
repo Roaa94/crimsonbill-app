@@ -3,13 +3,13 @@ import PageWrapper from "../../components/ui/layout/PageWrapper";
 import {selectUser} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import AddAccountView from "../../components/accounts/AddAccountView";
-import AccountForm from "../../components/accounts/account-form/AccountForm.component";
 import {selectAccountFormShow} from "../../redux/account-form/account-form.selectors";
 import {createStructuredSelector} from "reselect";
 import {toggleAccountForm} from "../../redux/account-form/account-form.actions";
 import {AccountsPageHeader} from "./AccountsPage.styles";
 import AccountCard from "../../components/accounts/account-card/AccountCard.component";
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
+import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
 
 class AccountsPage extends React.Component {
 
@@ -27,7 +27,7 @@ class AccountsPage extends React.Component {
                         </AccountsPageHeader>
                         : null
                 }
-                <AccountForm/>
+                <AccountFormContainer/>
                 {
                     hasAccounts
                         ? <div>
