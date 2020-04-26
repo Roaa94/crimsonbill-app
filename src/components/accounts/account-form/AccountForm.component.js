@@ -36,7 +36,7 @@ class AccountForm extends Component {
 
     handleFormSubmit = async event => {
         event.preventDefault();
-        let {user, accountId, toggleAccountForm} = this.props;
+        let {user, accountId, handleFormCancel} = this.props;
         const accountData = this.state;
         await addOrUpdateUserAccountDocument(user.id, accountId, accountData);
 
@@ -47,7 +47,7 @@ class AccountForm extends Component {
             notes: '',
             totalBalance: 0.0,
         });
-        toggleAccountForm(false);
+        handleFormCancel();
     };
 
     handleFieldChange = event => {
