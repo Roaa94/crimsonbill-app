@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {colors} from "../../../styles/global";
+import {borderRadius, colors} from "../../../styles/global";
 import {drawerWidth} from "../navigation/Drawer";
 
 const pageMargin = 10;
@@ -13,7 +13,7 @@ const PageWrapperDiv = styled.div`
   
   ::before{
     content: '';
-    border-radius: 30px;
+    border-radius: ${borderRadius.xl};
     background-color: ${colors.background};
     position: fixed;
     width: calc(100% - ${pageMargin}px - ${drawerWidth}px);

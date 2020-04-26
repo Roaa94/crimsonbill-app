@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors} from "../../styles/global";
+import {borderRadius, colors} from "../../styles/global";
 import {drawerWidth} from "../../components/ui/navigation/Drawer";
 import {transactionDrawerWidth} from '../../components/transactions/TransactionsDrawer';
 
@@ -13,7 +13,7 @@ export const DashboardPageWrapper = styled.div`
   
   ::before{
     content: '';
-    border-radius: 30px;
+    border-radius: ${borderRadius.xl};
     background-color: ${colors.background};
     position: fixed;
     width: ${props => props.drawerOpen ? `calc(100% - ${drawerWidth + transactionDrawerWidth}px)` : `calc(100% - ${pageMargin + drawerWidth}px)`};

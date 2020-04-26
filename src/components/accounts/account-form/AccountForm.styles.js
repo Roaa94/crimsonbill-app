@@ -2,12 +2,12 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
 import MuiExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import styled from 'styled-components';
-import {boxShadows} from "../../../styles/global";
+import {borderRadius, boxShadows} from "../../../styles/global";
 
 export const AccountFormExpansionPanel = withStyles({
     root: {
         margin: '0',
-        borderRadius: '15px !important',
+        borderRadius: `${borderRadius.l} !important`,
         boxShadow: 'none',
         borderBottom: '0 !important',
         transition: 'all .3s',

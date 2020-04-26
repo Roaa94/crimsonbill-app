@@ -1,12 +1,12 @@
 import {withStyles} from "@material-ui/core/styles";
 import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
 import styled from 'styled-components';
-import {boxShadows, colors} from "../../../styles/global";
+import {borderRadius, boxShadows, colors} from "../../../styles/global";
 
 export const AccountCardExpansionPanel = withStyles({
     root: {
         margin: '30px 0',
-        borderRadius: '15px !important',
+        borderRadius: `${borderRadius.l} !important`,
         boxShadow: 'none',
         borderBottom: '0 !important',
         transition: 'box-shadow .3s',

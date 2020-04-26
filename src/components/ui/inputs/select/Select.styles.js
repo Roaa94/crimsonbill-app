@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import FormControl from '@material-ui/core/FormControl';
 import withStyles from "@material-ui/core/styles/withStyles";
-import {boxShadows, colors} from "../../../../styles/global";
+import {borderRadius, boxShadows, colors} from "../../../../styles/global";
 import Select from "@material-ui/core/Select";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
@@ -24,7 +24,7 @@ export const SelectFormControl = withStyles(theme => ({
         },
         '& .MuiFilledInput-root': {
             border: 'none',
-            borderRadius: '10px',
+            borderRadius: borderRadius.m,
             background: colors.background,
         },
         '& .MuiFilledInput-underline:before': {
@@ -41,7 +41,7 @@ export const SelectFormControl = withStyles(theme => ({
 
 export const CustomSelect = withStyles({
     selectMenu: {
-        borderRadius: '10px !important',
+        borderRadius: `${borderRadius.m} !important`,
         transition: 'box-shadow .3s',
         '&:hover': {
             boxShadow: boxShadows.main,
@@ -51,7 +51,7 @@ export const CustomSelect = withStyles({
 
 export const useStyles = makeStyles(() => ({
     menuPaper: {
-        borderRadius: '10px !important',
+        borderRadius: borderRadius.m,
         boxShadow: boxShadows.main,
         '& .MuiList-root': {
             padding: 0,

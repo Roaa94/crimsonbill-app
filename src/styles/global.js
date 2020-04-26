@@ -14,6 +14,13 @@ export const boxShadows = {
   main: '0 5px 10px rgba(0,0,0,0.1)',
 };
 
+export const borderRadius = {
+    s: '5px',
+    m: '10px',
+    l: '15px',
+    xl: '30px',
+}
+
 export const theme = createMuiTheme({
     palette: {
         primary: {

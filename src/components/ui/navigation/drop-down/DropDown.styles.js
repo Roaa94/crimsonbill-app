@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Menu from "@material-ui/core/Menu";
-import {boxShadows} from "../../../../styles/global";
+import {borderRadius, boxShadows} from "../../../../styles/global";
 
 export const DropDownWrapper = styled.div`
   //display: inline-block;
@@ -9,7 +9,7 @@ export const DropDownWrapper = styled.div`
 
 export const DropDownMenu = withStyles({
     paper: {
-        borderRadius: '10px',
+        borderRadius: borderRadius.m,
         boxShadow: boxShadows.main,
     }
 })(Menu);

@@ -1,7 +1,7 @@
 import React from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 import MuiTextField from "@material-ui/core/TextField";
-import {colors} from "../../../../styles/global";
+import {borderRadius, colors} from "../../../../styles/global";
 
 const CustomFilledTextField = withStyles(theme => ({
     root: {
@@ -23,7 +23,7 @@ const CustomFilledTextField = withStyles(theme => ({
         },
         '& .MuiFilledInput-root': {
             border: 'none',
-            borderRadius: '10px',
+            borderRadius: borderRadius.m,
             background: colors.background,
         },
     }

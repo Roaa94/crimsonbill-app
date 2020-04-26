@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors} from "../../../styles/global";
+import {borderRadius, colors} from "../../../styles/global";
 
 const itemMargin = 20;
 const indicatorWidth = 6;
@@ -10,7 +10,7 @@ export const LinkListItemContainer = styled.div`
   margin: 7px ${itemMargin}px;
   display: flex;
   align-items: center;
-  border-radius: 15px;
+  border-radius: ${borderRadius.l};
   cursor: pointer;
   position: relative;
   background-color: ${props => props.active ? props.color === 'secondary' ? colors.secondaryLight : colors.infoLight : 'transparent'};
@@ -19,7 +19,7 @@ export const LinkListItemContainer = styled.div`
   .icon-container{
       display: flex;
       align-items: center;
-      border-radius: 12px;
+      border-radius: ${borderRadius.m};
       padding: 10px;
       margin-right: 10px;
       color: ${props => props.color === 'secondary' ? colors.secondary : colors.primary};
