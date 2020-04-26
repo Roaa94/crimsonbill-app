@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.utils";
-import TextFieldFilled from "../../ui/inputs/TextFieldFilled";
+import TextFieldFilled from "../../ui/inputs/text-field/TextFieldFilled";
 import {selectUser} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
@@ -14,7 +14,7 @@ import {createStructuredSelector} from "reselect";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import Grid from '@material-ui/core/Grid';
 import Box from "@material-ui/core/Box";
-import DropDown from "../../ui/navigation/drop-down/DropDown.component";
+import Select from "../../ui/inputs/select/Select.component";
 import {currencies, types} from "../../../data";
 import Button from "../../ui/buttons/button-filled/Button.component";
 import {colors} from "../../../styles/global";
@@ -96,7 +96,7 @@ class AccountForm extends Component {
                                 />
                             </Grid>
                             <Grid item xs={12} md={3}>
-                                <DropDown
+                                <Select
                                     label='Type'
                                     name='type'
                                     value={type}
@@ -105,7 +105,7 @@ class AccountForm extends Component {
                                 />
                             </Grid>
                             <Grid item xs={12} md={3}>
-                                <DropDown
+                                <Select
                                     label='Currency'
                                     name='currency'
                                     value={currency}

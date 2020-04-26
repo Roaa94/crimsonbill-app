@@ -23,13 +23,17 @@ class AccountCard extends React.Component {
             <AccountCardExpansionPanel>
                 <ExpansionPanelSummary>
                     <AccountCardExpansionPanelHeader>
+
                         <h3>{name}</h3>
                         <h3 className='account-currency'>
                             <FormattedNumber number={balance} currency={currency}/>
                         </h3>
-                        <div className='account-type'>
-                            <AccountBalanceRoundedIcon/>
-                            {type}
+                        <div>
+                            <div className='account-type'>
+                                <AccountBalanceRoundedIcon/>
+                                {type}
+                            </div>
+
                         </div>
                     </AccountCardExpansionPanelHeader>
                 </ExpansionPanelSummary>

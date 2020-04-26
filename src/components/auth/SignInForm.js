@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import TextFieldOutlined from "../ui/inputs/TextFieldOutlined";
+import TextFieldOutlined from "../ui/inputs/text-field/TextFieldOutlined";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import ButtonOutlined from "../ui/buttons/button-outlined/ButtonOutlined.component";
