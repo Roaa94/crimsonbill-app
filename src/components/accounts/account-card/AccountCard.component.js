@@ -20,7 +20,7 @@ class AccountCard extends React.Component {
 
 
     render() {
-        let {id, type, name, currency, notes, balance} = this.props;
+        let {id, type, name, currency, notes, totalBalance} = this.props;
 
         const accountCardMenuItems = [
             {
@@ -46,7 +46,7 @@ class AccountCard extends React.Component {
                             </Grid>
                             <Grid item xs={4} align='center'>
                                 <h3 className='account-currency'>
-                                    <FormattedNumber number={balance} currency={currency}/>
+                                    <FormattedNumber number={totalBalance} currency={currency}/>
                                 </h3>
                             </Grid>
                             <Grid item xs={4} container justify='flex-end'>

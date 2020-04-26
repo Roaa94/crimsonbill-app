@@ -28,7 +28,8 @@ class AccountForm extends Component {
         name: '',
         currency: '',
         notes: '',
-        balance: 0.0,
+        totalBalance: 0.0,
+        balances: [],
     };
 
     componentDidMount() {
@@ -53,7 +54,7 @@ class AccountForm extends Component {
             name: '',
             currency: '',
             notes: '',
-            balance: 0.0,
+            totalBalance: 0.0,
         });
         toggleAccountForm(false);
     };
