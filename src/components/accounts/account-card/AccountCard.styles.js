@@ -24,15 +24,7 @@ export const AccountCardExpansionPanel = withStyles({
 })(MuiExpansionPanel);
 
 export const AccountCardExpansionPanelHeader = styled.div`
-  padding: 5px 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  
-  h3{
-    margin: 0 !important;
-  }
   
   .account-currency{
     color: ${colors.info};

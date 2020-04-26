@@ -1,39 +1,24 @@
 import React from 'react';
-import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import {DropDownWrapper} from "./DropDown.styles";
-import MoreVertIcon from '@material-ui/icons/MoreVertIcon';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from "@material-ui/core/IconButton";
+import {DropDownMenu, DropDownWrapper} from "./DropDown.styles";
 
-const DropDown = ({menuItems, fullHeightButton = true}) => {
+const DropDown = ({menuItems}) => {
     const [menuElement, setMenuElement] = React.useState(null);
 
-    const handleClick = (event) => {
+    const handleClick = event => {
+        event.stopPropagation();
         setMenuElement(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = event => {
+        event.stopPropagation();
         setMenuElement(null);
     };
 
-    //Class component equivalent
-    // state = {
-    //     menuElement: null,
-    // };
-    //
-    // let {buttonTitle} = this.props;
-    // let {menuElement} = this.state;
-    //
-    // const handleClick = (event) => {
-    //     this.setState({menuElement: event.currentTarget});
-    // };
-    //
-    // const handleClose = () => {
-    //     this.setState({menuElement: null});
-    // };
-
     return (
-        <DropDownWrapper fullHeightButton={fullHeightButton}>
+        <DropDownWrapper>
             <IconButton
                 aria-label="more"
                 aria-controls="long-menu"
@@ -42,7 +27,7 @@ const DropDown = ({menuItems, fullHeightButton = true}) => {
             >
                 <MoreVertIcon />
             </IconButton>
-            <Menu
+            <DropDownMenu
                 id="simple-menu"
                 anchorEl={menuElement}
                 keepMounted
@@ -65,7 +50,7 @@ const DropDown = ({menuItems, fullHeightButton = true}) => {
                         </MenuItem>
                     ))
                 }
-            </Menu>
+            </DropDownMenu>
         </DropDownWrapper>
     );
 };
