@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.utils";
 import TextFieldFilled from "../../ui/inputs/TextFieldFilled";
-import Button from "../../ui/buttons/Button";
 import {selectUser} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
@@ -17,6 +16,11 @@ import Grid from '@material-ui/core/Grid';
 import Box from "@material-ui/core/Box";
 import DropDown from "../../ui/navigation/drop-down/DropDown.component";
 import {currencies, types} from "../../../data";
+import Button from "../../ui/buttons/button-filled/Button.component";
+import {colors} from "../../../styles/global";
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
+import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
 
 class AccountForm extends Component {
     state = {
@@ -98,10 +102,23 @@ class AccountForm extends Component {
                                 />
                             </Grid>
                             <Grid item xs={6} lg={2}>
-                                {/* Add Balance Button */}
+                                <Button
+                                    bgColor={colors.info}
+                                    height='100%'
+                                    prefixIcon={<AddRoundedIcon/>}
+                                    margin='0 20px 0 0'
+                                >
+                                    Balance
+                                </Button>
                             </Grid>
                             <Grid item xs={6} lg={2}>
-                                {/*  Add Transaction Button  */}
+                                <Button
+                                    bgColor={colors.info}
+                                    height='100%'
+                                    prefixIcon={<AddRoundedIcon/>}
+                                >
+                                    Transaction
+                                </Button>
                             </Grid>
                             <Grid item xs={12}>
                                 <Box mb={2}>
@@ -110,13 +127,32 @@ class AccountForm extends Component {
                                         value={notes}
                                         name='notes'
                                         type='text'
+                                        multiline
+                                        rows={3}
                                         onChange={this.handleFieldChange}
                                     />
                                 </Box>
                             </Grid>
                         </Grid>
-                        <Button type='submit'>{accountId ? 'Edit Account' : 'Add Account'}</Button>
-                        <Button onClick={() => toggleAccountForm(false)}>Cancel</Button>
+                        <Grid container>
+                            <Button
+                                fullWidth={false}
+                                type='submit'
+                                bgColor={colors.info}
+                                prefixIcon={<CheckRoundedIcon/>}
+                                margin='0 20px 0 0'
+                            >
+                                {accountId ? 'Edit Account' : 'Add Account'}
+                            </Button>
+                            <Button
+                                bgColor={colors.secondary}
+                                fullWidth={false}
+                                onClick={() => toggleAccountForm(false)}
+                                prefixIcon={<ClearRoundedIcon/>}
+                            >
+                                Cancel
+                            </Button>
+                        </Grid>
                     </form>
                 </AccountFormExpansionPanelContent>
             </AccountFormExpansionPanel>

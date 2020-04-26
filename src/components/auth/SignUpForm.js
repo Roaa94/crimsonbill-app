@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import TextFieldOutlined from "../ui/inputs/TextFieldOutlined";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Button from "../ui/buttons/Button";
+import ButtonOutlined from "../ui/buttons/button-outlined/ButtonOutlined.component";
 import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignUpForm extends Component {
@@ -102,12 +102,12 @@ class SignUpForm extends Component {
                     <Box mb={2}>
                         <Grid container justify='space-between' spacing={2}>
                             <Grid item xs={12} md={4}>
-                                <Button type='submit'>SIGN UP</Button>
+                                <ButtonOutlined type='submit'>SIGN UP</ButtonOutlined>
                             </Grid>
                             <Grid item xs={12} md={8}>
-                                <Button color='secondary' onClick={signInWithGoogle}>
+                                <ButtonOutlined color='secondary' onClick={signInWithGoogle}>
                                     SIGN IN WITH GOOGLE
-                                </Button>
+                                </ButtonOutlined>
                             </Grid>
                         </Grid>
                     </Box>
