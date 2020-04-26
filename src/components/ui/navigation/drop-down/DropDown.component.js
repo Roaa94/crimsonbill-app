@@ -1,67 +1,33 @@
 import React from 'react';
-import IconButton from "../../buttons/IconButton";
-import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
-import {colors} from "../../../../styles/global";
-import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import {DropDownWrapper} from "./DropDown.styles";
+import {DropDownFormControl, DropDownWrapper} from "./DropDown.styles";
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from "@material-ui/core/Select";
+import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 
-const DropDown = ({buttonTitle, menuItems, fullHeightButton = true}) => {
-    const [menuElement, setMenuElement] = React.useState(null);
-
-    const handleClick = (event) => {
-        setMenuElement(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setMenuElement(null);
-    };
-
-    //Class component equivalent
-    // state = {
-    //     menuElement: null,
-    // };
-    //
-    // let {buttonTitle} = this.props;
-    // let {menuElement} = this.state;
-    //
-    // const handleClick = (event) => {
-    //     this.setState({menuElement: event.currentTarget});
-    // };
-    //
-    // const handleClose = () => {
-    //     this.setState({menuElement: null});
-    // };
+const DropDown = ({label, value, menuItems, fullHeightButton = true, ...otherProps}) => {
 
     return (
         <DropDownWrapper fullHeightButton={fullHeightButton}>
-            <IconButton suffixIcon={<ExpandMoreRoundedIcon/>} bgColor={colors.background} onClick={handleClick}>
-                {buttonTitle}
-            </IconButton>
-            <Menu
-                id="simple-menu"
-                anchorEl={menuElement}
-                keepMounted
-                getContentAnchorEl={null}
-                open={Boolean(menuElement)}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
-                onClose={handleClose}
-            >
-                {
-                    menuItems.map(({id, title, handleClick}) => (
-                        <MenuItem key={id} onClick={handleClick}>
-                            {title}
-                        </MenuItem>
-                    ))
-                }
-            </Menu>
+            <DropDownFormControl fullWidth={true} variant='filled'>
+                <InputLabel id="dropdown-label">{label}</InputLabel>
+                <Select
+                    autoWidth
+                    labelId="dropdown-label"
+                    id="dropdown-select"
+                    value={value}
+                    IconComponent={ExpandMoreRoundedIcon}
+                    {...otherProps}
+                >
+                    {
+                        menuItems.map(({id, title, value}) => (
+                            <MenuItem key={id} value={value}>
+                                {title}
+                            </MenuItem>
+                        ))
+                    }
+                </Select>
+            </DropDownFormControl>
         </DropDownWrapper>
     );
 };
