@@ -21,7 +21,6 @@ class AccountForm extends Component {
         currency: '',
         notes: '',
         totalBalance: 0.0,
-        balances: [],
     };
 
     componentDidMount() {

@@ -8,7 +8,8 @@ import loadingReducer from "./loaders/loaders.reducer";
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['accountForm', 'loaders'],
+    // Todo: uncomment this at the end
+    // blacklist: ['accountForm', 'loaders'],
 };
 
 const rootReducer = combineReducers({

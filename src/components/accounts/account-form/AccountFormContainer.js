@@ -4,8 +4,6 @@ import {
     AccountFormExpansionPanelContent,
     AccountFormExpansionPanelSummary
 } from "./AccountForm.styles";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
 import {createStructuredSelector} from "reselect";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
@@ -18,13 +16,9 @@ const AccountFormContainer = ({accountFormShow, toggleAccountForm}) => {
         <AccountFormExpansionPanel expanded={accountFormShow}>
             <AccountFormExpansionPanelSummary/>
             <AccountFormExpansionPanelContent>
-                <Box mb={2}>
-                    <Grid container justify='space-between' alignItems='center'>
-                        <h3>Add Account</h3>
-                    </Grid>
-                </Box>
-                <AccountForm handleFormCancel={() => toggleAccountForm(false)} />
-            </AccountFormExpansionPanelContent >
+                <h3>Add Account</h3>
+                <AccountForm handleFormCancel={() => toggleAccountForm(false)}/>
+            </AccountFormExpansionPanelContent>
         </AccountFormExpansionPanel>
     );
 };
