@@ -10,6 +10,10 @@ export const colors = {
     white: '#FFFFFF',
 };
 
+export const boxShadows = {
+  main: '0 5px 10px rgba(0,0,0,0.1)',
+};
+
 export const theme = createMuiTheme({
     palette: {
         primary: {

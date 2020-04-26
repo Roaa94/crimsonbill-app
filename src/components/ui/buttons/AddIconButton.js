@@ -1,7 +1,7 @@
 import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import styled from 'styled-components';
-import {colors} from "../../../styles/global";
+import {boxShadows, colors} from "../../../styles/global";
 
 const AddIconButtonContainer = styled.div`
   color: ${colors.primary};
@@ -19,7 +19,7 @@ const AddIconButtonContainer = styled.div`
   
   :hover{
     color: ${colors.info};
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: ${boxShadows.main};
   }
   
   svg {

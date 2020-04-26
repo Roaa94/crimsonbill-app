@@ -2,6 +2,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
 import MuiExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import styled from 'styled-components';
+import {boxShadows} from "../../../styles/global";
 
 export const AccountFormExpansionPanel = withStyles({
     root: {
@@ -17,7 +18,7 @@ export const AccountFormExpansionPanel = withStyles({
             margin: '20px 0 0 0 !important',
         },
         '&:hover': {
-            boxShadow: '0 0 15px rgba(0,0,0,0.1)',
+            boxShadow: boxShadows.main,
         }
     },
     expanded: {},
