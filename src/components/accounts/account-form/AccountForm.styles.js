@@ -33,7 +33,4 @@ export const AccountFormExpansionPanelSummary = withStyles({
 
 export const AccountFormExpansionPanelContent = styled.div`
   padding: 20px;
-  h3{
-    margin-bottom: 20px;
-  }
 `;

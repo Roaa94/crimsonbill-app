@@ -65,16 +65,28 @@ class AccountForm extends Component {
 
     render() {
         const {type, name, currency, notes} = this.state;
-        const {accountId, toggleAccountForm, accountFormShow} = this.props;
+        const {toggleAccountForm, accountFormShow} = this.props;
 
         return (
             <AccountFormExpansionPanel expanded={accountFormShow}>
                 <AccountFormExpansionPanelSummary/>
                 <AccountFormExpansionPanelContent>
-                    <h3>Add Account</h3>
+                    <Box mb={2}>
+                        <Grid container justify='space-between' alignItems='center'>
+                            <h3>Add Account</h3>
+                            <Button
+                                fullWidth={false}
+                                bgColor={colors.info}
+                                height='100%'
+                                prefixIcon={<AddRoundedIcon/>}
+                            >
+                                Balance
+                            </Button>
+                        </Grid>
+                    </Box>
                     <form onSubmit={this.handleFormSubmit}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} md={6} lg={4}>
+                            <Grid item xs={12} md={6}>
                                 <TextFieldFilled
                                     label='Account Name'
                                     value={name}
@@ -83,7 +95,7 @@ class AccountForm extends Component {
                                     onChange={this.handleFieldChange}
                                 />
                             </Grid>
-                            <Grid item xs={6} md={3} lg={2}>
+                            <Grid item xs={12} md={3}>
                                 <DropDown
                                     label='Type'
                                     name='type'
@@ -92,7 +104,7 @@ class AccountForm extends Component {
                                     onChange={this.handleFieldChange}
                                 />
                             </Grid>
-                            <Grid item xs={6} md={3} lg={2}>
+                            <Grid item xs={12} md={3}>
                                 <DropDown
                                     label='Currency'
                                     name='currency'
@@ -100,25 +112,6 @@ class AccountForm extends Component {
                                     menuItems={currencies}
                                     onChange={this.handleFieldChange}
                                 />
-                            </Grid>
-                            <Grid item xs={6} lg={2}>
-                                <Button
-                                    bgColor={colors.info}
-                                    height='100%'
-                                    prefixIcon={<AddRoundedIcon/>}
-                                    margin='0 20px 0 0'
-                                >
-                                    Balance
-                                </Button>
-                            </Grid>
-                            <Grid item xs={6} lg={2}>
-                                <Button
-                                    bgColor={colors.info}
-                                    height='100%'
-                                    prefixIcon={<AddRoundedIcon/>}
-                                >
-                                    Transaction
-                                </Button>
                             </Grid>
                             <Grid item xs={12}>
                                 <Box mb={2}>
@@ -142,7 +135,7 @@ class AccountForm extends Component {
                                 prefixIcon={<CheckRoundedIcon/>}
                                 margin='0 20px 0 0'
                             >
-                                {accountId ? 'Edit Account' : 'Add Account'}
+                                Submit
                             </Button>
                             <Button
                                 bgColor={colors.secondary}
