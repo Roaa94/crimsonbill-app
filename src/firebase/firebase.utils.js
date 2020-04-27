@@ -60,4 +60,17 @@ export const updateUserDocumentAvatar = async (user, avatarUrl) => {
     }
 };
 
+export const convertCollectionToArray = (snapshot) => {
+    const array = [];
+    snapshot.docs.forEach(doc => {
+        const {id} = doc;
+        const itemData = doc.data();
+        array.push({
+            id,
+            ...itemData,
+        });
+    });
+    return array;
+}
+
 export default firebase;

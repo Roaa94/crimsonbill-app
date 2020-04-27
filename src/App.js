@@ -2,12 +2,12 @@ import React from 'react';
 import './App.css';
 import {auth, createUserProfileDocument, firestore} from "./firebase/firebase.utils";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {selectUser} from "./redux/user/user.selectors";
 import {setUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
 import {convertAccountsCollectionToArray} from "./firebase/accounts.utils";
+import {selectUser} from "./redux/user/user.selectors";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
@@ -19,9 +19,10 @@ class App extends React.Component {
                 const userRef = await createUserProfileDocument(user);
                 if (userRef) {
                     userRef.onSnapshot(snapShot => {
-                        const accountsRef = firestore.collection(`users/${snapShot.id}/accounts`);
+                        const userId = snapShot.id;
+                        const accountsRef = firestore.collection(`users/${userId}/accounts`);
                         accountsRef.onSnapshot(async accountsSnapshot => {
-                            let accountsArray = convertAccountsCollectionToArray(accountsSnapshot);
+                            let accountsArray = convertAccountsCollectionToArray(accountsSnapshot, userId);
                             setUser({
                                 id: snapShot.id,
                                 ...snapShot.data(),

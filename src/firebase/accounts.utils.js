@@ -1,9 +1,9 @@
-import {firestore} from "./firebase.utils";
+import {convertCollectionToArray, firestore} from "./firebase.utils";
 
 export const addOrUpdateUserAccountDocument = async (userId, accountId, accountData) => {
     const userAccountRef = accountId ?
-            await firestore.doc(`users/${userId}/accounts/${accountId}`)
-            : await firestore.doc(`users/${userId}`).collection('accounts').doc();
+        await firestore.doc(`users/${userId}/accounts/${accountId}`)
+        : await firestore.doc(`users/${userId}`).collection('accounts').doc();
     const snapShot = await userAccountRef.get();
     let newAccount = null;
     if (!snapShot.exists && !accountId) {
@@ -32,14 +32,27 @@ export const addOrUpdateUserAccountDocument = async (userId, accountId, accountD
     return newAccount;
 };
 
-export const convertAccountsCollectionToArray = (accountsSnapshot) => {
-    const accountsArray = [];
+export const convertAccountsCollectionToArray = (accountsSnapshot, userId) => {
+    let accountsArray = [];
+    let balancesArray = [];
+    let transactionsArray = [];
     accountsSnapshot.docs.forEach(doc => {
         const {id} = doc;
         const accountData = doc.data();
-        accountsArray.push({
-            id,
-            ...accountData,
+        const balancesRef = firestore.collection(`users/${userId}/accounts/${id}/balances`);
+        const transactionsRef = firestore.collection(`users/${userId}/accounts/${id}/transactions`);
+
+        balancesRef.onSnapshot(balancesSnapshot => {
+            balancesArray = convertCollectionToArray(balancesSnapshot);
+            transactionsRef.onSnapshot(transactionsSnapshot => {
+                transactionsArray = convertCollectionToArray(transactionsSnapshot);
+                accountsArray.push({
+                    id,
+                    ...accountData,
+                    balances: balancesArray,
+                    transactions: transactionsArray,
+                });
+            });
         });
     });
     return accountsArray;

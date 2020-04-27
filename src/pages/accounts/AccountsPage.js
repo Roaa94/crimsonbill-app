@@ -1,6 +1,6 @@
 import React from 'react';
 import PageWrapper from "../../components/ui/layout/PageWrapper";
-import {selectUser} from "../../redux/user/user.selectors";
+import {selectUser, selectUserAccountsLoaded} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import AddAccountView from "../../components/accounts/AddAccountView";
 import {selectAccountFormShow} from "../../redux/account-form/account-form.selectors";
@@ -10,13 +10,17 @@ import {AccountsPageHeader} from "./AccountsPage.styles";
 import AccountCard from "../../components/accounts/account-card/AccountCard.component";
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
 import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
+import WithLoader from "../../components/HOC/WithLoader";
+
+const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
 
 class AccountsPage extends React.Component {
 
     render() {
-        let {user, accountFormShow, toggleAccountForm} = this.props;
+        let {user, accountFormShow, toggleAccountForm, accountsLoading} = this.props;
         let hasAccounts = user.accounts && user.accounts.length > 0;
-
+        console.log('accountsLoading');
+        console.log(accountsLoading);
         return (
             <PageWrapper>
                 {
@@ -30,13 +34,13 @@ class AccountsPage extends React.Component {
                 <AccountFormContainer/>
                 {
                     hasAccounts
-                        ? <div>
+                        ? <AccountsListWithLoader loading={accountsLoading}>
                             {
                                 user.accounts.map(({id, ...accountDetails}) => (
                                     <AccountCard id={id} {...accountDetails} key={id}/>
                                 ))
                             }
-                        </div>
+                        </AccountsListWithLoader>
                         : accountFormShow ? null : <AddAccountView/>
                 }
             </PageWrapper>
@@ -47,6 +51,7 @@ class AccountsPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
     user: selectUser,
     accountFormShow: selectAccountFormShow,
+    accountsLoading: state => !selectUserAccountsLoaded(state)
 });
 
 const mapDispatchToProps = dispatch => ({
