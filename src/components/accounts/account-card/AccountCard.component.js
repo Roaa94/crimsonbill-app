@@ -39,7 +39,14 @@ class AccountCard extends React.Component {
 
     handleExpansionPanelChange = () => {
         let {accountCardExpanded} = this.state;
-        this.setState({accountCardExpanded: !accountCardExpanded});
+        this.setState({
+            accountCardExpanded: !accountCardExpanded,
+        });
+        if (!accountCardExpanded) {
+            this.setState({
+                showAccountForm: false,
+            });
+        }
     }
 
     render() {
@@ -52,12 +59,10 @@ class AccountCard extends React.Component {
                 id: 0,
                 title: 'Edit Account',
                 handleClick: () => {
-                    if (!showAccountForm) {
-                        this.setState({
-                            showAccountForm: true,
-                            accountCardExpanded: true,
-                        });
-                    }
+                    this.setState({
+                        showAccountForm: true,
+                        accountCardExpanded: true,
+                    });
                 },
             },
             {
@@ -71,7 +76,11 @@ class AccountCard extends React.Component {
         ];
 
         return (
-            <AccountCardExpansionPanel TransitionProps={{ unmountOnExit: true }} expanded={accountCardExpanded} onChange={this.handleExpansionPanelChange}>
+            <AccountCardExpansionPanel
+                TransitionProps={{unmountOnExit: true}}
+                expanded={accountCardExpanded}
+                onChange={this.handleExpansionPanelChange}
+            >
                 <AccountCardExpansionPanelSummary>
                     <AccountCardExpansionPanelHeader>
                         <Grid container alignItems='center'>
