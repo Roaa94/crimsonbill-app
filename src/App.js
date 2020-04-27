@@ -1,39 +1,33 @@
 import React from 'react';
 import './App.css';
-import {auth, createUserProfileDocument, firestore} from "./firebase/firebase.utils";
+import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {setUser} from "./redux/user/user.actions";
+import {setUserAuthData} from "./redux/user/user.actions";
 import {connect} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
-import {convertAccountsCollectionToArray} from "./firebase/accounts.utils";
-import {selectUser} from "./redux/user/user.selectors";
+import {selectUserAuthData} from "./redux/user/user.selectors";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        const {setUser} = this.props;
+        const {setUserAuthData} = this.props;
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
                 const userRef = await createUserProfileDocument(user);
                 if (userRef) {
                     userRef.onSnapshot(snapShot => {
-                        const userId = snapShot.id;
-                        const accountsRef = firestore.collection(`users/${userId}/accounts`);
-                        accountsRef.onSnapshot(async accountsSnapshot => {
-                            let accountsArray = convertAccountsCollectionToArray(accountsSnapshot, userId);
-                            setUser({
-                                id: snapShot.id,
-                                ...snapShot.data(),
-                                accounts: accountsArray,
-                            });
+                        setUserAuthData({
+                            id: snapShot.id,
+                            ...snapShot.data(),
                         });
+
                     });
                 }
                 return;
             }
-            setUser(user);
+            setUserAuthData(user);
         })
     }
 
@@ -61,11 +55,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    user: selectUser(state),
+    user: selectUserAuthData(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-    setUser: user => dispatch(setUser(user))
+    setUserAuthData: user => dispatch(setUserAuthData(user))
 });
 
 export default connect(

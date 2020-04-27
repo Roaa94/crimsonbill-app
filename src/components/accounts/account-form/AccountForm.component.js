@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.utils";
 import TextFieldFilled from "../../ui/inputs/text-field/TextFieldFilled";
-import {selectUser} from "../../../redux/user/user.selectors";
+import {selectUserAuthData} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
 import {createStructuredSelector} from "reselect";
@@ -137,7 +137,7 @@ class AccountForm extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-    user: selectUser,
+    user: selectUserAuthData,
 });
 
 export default connect(mapStateToProps)(AccountForm);

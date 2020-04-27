@@ -1,7 +1,7 @@
 import React from 'react';
 import {deleteUserAccountDocument} from "../../../firebase/accounts.utils";
 import {createStructuredSelector} from "reselect";
-import {selectUser} from "../../../redux/user/user.selectors";
+import {selectUserAuthData} from "../../../redux/user/user.selectors";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
 import {
@@ -129,7 +129,7 @@ class AccountCard extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-    user: selectUser,
+    user: selectUserAuthData,
     accountFormShow: selectAccountFormShow,
 });
 

@@ -1,3 +1,4 @@
 export const userActionTypes = {
-    SET_CURRENT_USER: 'SET_CURRENT_USER',
+    SET_USER_AUTH_DATA: 'SET_USER_AUTH_DATA',
+    SET_USER_ACCOUNTS: 'SET_USER_ACCOUNTS',
 };

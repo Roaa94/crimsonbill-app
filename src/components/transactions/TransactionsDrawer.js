@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import {selectUser} from "../../redux/user/user.selectors";
+import {selectUserAuthData} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {ReactComponent as FolderCabinetSVG} from '../../assets/svg/folder-cabinet.svg';
 export const transactionDrawerWidth = 320;
@@ -47,7 +47,7 @@ const TransactionsDrawer = ({open, user}) => {
 };
 
 const mapStateToProps = state => ({
-    user: selectUser(state),
+    user: selectUserAuthData(state),
 });
 
 export default connect(mapStateToProps)(TransactionsDrawer);
