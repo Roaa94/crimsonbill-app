@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.utils";
+import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.firebase-utils";
 import TextFieldFilled from "../../ui/inputs/text-field/TextFieldFilled";
 import {selectUser} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";

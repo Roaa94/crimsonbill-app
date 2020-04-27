@@ -1,6 +1,5 @@
 import React from 'react';
-import {deleteUserAccountDocument} from "../../../firebase/accounts.utils";
-import {createStructuredSelector} from "reselect";
+import {deleteUserAccountDocument} from "../../../firebase/accounts.firebase-utils";
 import {selectUser} from "../../../redux/user/user.selectors";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
@@ -19,9 +18,14 @@ import {colors} from "../../../styles/global";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import AccountForm from "../account-form/AccountForm.component";
 import Box from "@material-ui/core/Box";
+import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions";
+import {selectAccountBalances} from "../../../redux/accounts/accounts.selectors";
 
 class AccountCard extends React.Component {
-
+    componentDidMount() {
+        let {id, user, fetchBalancesStartAsync} = this.props;
+        fetchBalancesStartAsync(user.id, id);
+    }
 
     state = {
         showAccountForm: false,
@@ -39,8 +43,10 @@ class AccountCard extends React.Component {
     }
 
     render() {
-        let {id, type, name, currency, notes, totalBalance} = this.props;
+        let {id, type, name, currency, notes, totalBalance, balances} = this.props;
         let {showAccountForm, accountCardExpanded} = this.state;
+        console.log('balances');
+        console.log(balances);
         const accountCardMenuItems = [
             {
                 id: 0,
@@ -65,7 +71,7 @@ class AccountCard extends React.Component {
         ];
 
         return (
-            <AccountCardExpansionPanel expanded={accountCardExpanded} onChange={this.handleExpansionPanelChange}>
+            <AccountCardExpansionPanel TransitionProps={{ unmountOnExit: true }} expanded={accountCardExpanded} onChange={this.handleExpansionPanelChange}>
                 <AccountCardExpansionPanelSummary>
                     <AccountCardExpansionPanelHeader>
                         <Grid container alignItems='center'>
@@ -128,9 +134,14 @@ class AccountCard extends React.Component {
     }
 }
 
-const mapStateToProps = createStructuredSelector({
-    user: selectUser,
-    accountFormShow: selectAccountFormShow,
+const mapStateToProps = (state, ownProps) => ({
+    user: selectUser(state),
+    accountFormShow: selectAccountFormShow(state),
+    balances: selectAccountBalances(ownProps.id)(state),
 });
 
-export default connect(mapStateToProps)(AccountCard);
+const mapDispatchToProps = dispatch => ({
+    fetchBalancesStartAsync: (userId, accountId) => dispatch(fetchBalancesStartAsync(userId, accountId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountCard);

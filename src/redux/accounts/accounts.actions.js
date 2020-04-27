@@ -26,3 +26,30 @@ export const fetchAccountsStartAsync = (userId) => {
         }, error => dispatch(fetchAccountsError(error.message)));
     }
 };
+
+export const fetchBalancesStart = () => ({
+    type: accountsActionTypes.FETCH_BALANCES_START,
+});
+
+export const fetchBalancesSuccess = (accountId, balancesArray) => ({
+    type: accountsActionTypes.FETCH_BALANCES_SUCCESS,
+    payload: {accountId, balancesArray},
+});
+
+export const fetchBalancesError = errorMessage => ({
+    type: accountsActionTypes.FETCH_BALANCES_SUCCESS,
+    payload: errorMessage,
+});
+
+export const fetchBalancesStartAsync = (userId, accountId) => {
+    return dispatch => {
+        dispatch(fetchBalancesStart());
+        const collectionPath = `users/${userId}/accounts/${accountId}/balances`;
+        const balancesRef = firestore.collection(collectionPath);
+
+        balancesRef.onSnapshot(async balancesSnapshot => {
+            const balancesArray = convertCollectionToArray(balancesSnapshot);
+            dispatch(fetchBalancesSuccess(accountId, balancesArray));
+        }, error => dispatch(fetchBalancesError(error.message)));
+    }
+};
