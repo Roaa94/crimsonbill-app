@@ -1,7 +1,7 @@
 import React from 'react';
 import PageWrapper from "../components/ui/layout/PageWrapper";
 import AddAccountView from "../components/accounts/AddAccountView";
-import {selectUserAuthData} from "../redux/user/user.selectors";
+import {selectUser} from "../redux/user/user.selectors";
 import {connect} from "react-redux";
 
 class StatisticsPage extends React.Component {
@@ -21,7 +21,7 @@ class StatisticsPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    user: selectUserAuthData(state),
+    user: selectUser(state),
 });
 
 export default connect(mapStateToProps)(StatisticsPage);

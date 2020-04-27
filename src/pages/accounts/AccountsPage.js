@@ -1,6 +1,5 @@
 import React from 'react';
 import PageWrapper from "../../components/ui/layout/PageWrapper";
-import {selectUserAccounts, selectUserAuthData} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import AddAccountView from "../../components/accounts/AddAccountView";
 import {selectAccountFormShow} from "../../redux/account-form/account-form.selectors";
@@ -10,26 +9,22 @@ import {AccountsPageHeader} from "./AccountsPage.styles";
 import AccountCard from "../../components/accounts/account-card/AccountCard.component";
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
 import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
-// import WithLoader from "../../components/HOC/WithLoader";
-import {setUserAccounts} from "../../redux/user/user.actions";
-import {convertAccountsCollectionToArray} from "../../firebase/accounts.utils";
-import {firestore} from "../../firebase/firebase.utils";
+import WithLoader from "../../components/HOC/WithLoader";
+import {selectUser} from "../../redux/user/user.selectors";
+import {selectAccountsArray, selectAccountsFetching} from "../../redux/accounts/accounts.selectors";
+import {fetchAccountsStartAsync} from "../../redux/accounts/accounts.actions";
 
-// const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
+const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
 
 class AccountsPage extends React.Component {
 
     componentDidMount() {
-        const {setUserAccounts, user} = this.props;
-        const accountsRef = firestore.collection(`users/${user.id}/accounts`);
-        accountsRef.onSnapshot(async accountsSnapshot => {
-            let accountsArray = convertAccountsCollectionToArray(accountsSnapshot, user.id);
-            setUserAccounts(accountsArray);
-        });
+        const {fetchAccountsStartAsync, user} = this.props;
+        fetchAccountsStartAsync(user.id);
     }
 
     render() {
-        let {accountFormShow, toggleAccountForm, accounts} = this.props;
+        let {accountFormShow, toggleAccountForm, accounts, isFetchingAccounts} = this.props;
         let hasAccounts = accounts && accounts.length > 0;
         console.log('accounts');
         console.log(accounts);
@@ -46,13 +41,13 @@ class AccountsPage extends React.Component {
                 <AccountFormContainer/>
                 {
                     hasAccounts
-                        ? <div>
+                        ? <AccountsListWithLoader loading={isFetchingAccounts}>
                             {
                                 accounts.map(({id, ...accountDetails}) => (
                                     <AccountCard id={id} {...accountDetails} key={id}/>
                                 ))
                             }
-                        </div>
+                        </AccountsListWithLoader>
                         : accountFormShow ? null : <AddAccountView/>
                 }
             </PageWrapper>
@@ -61,14 +56,15 @@ class AccountsPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-    user: selectUserAuthData,
-    accounts: selectUserAccounts,
+    user: selectUser,
+    accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
+    isFetchingAccounts: selectAccountsFetching,
 });
 
 const mapDispatchToProps = dispatch => ({
     toggleAccountForm: value => dispatch(toggleAccountForm(value)),
-    setUserAccounts: accountsArray => dispatch(setUserAccounts(accountsArray))
+    fetchAccountsStartAsync: userId => dispatch(fetchAccountsStartAsync(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountsPage);

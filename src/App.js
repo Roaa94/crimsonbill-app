@@ -2,23 +2,23 @@ import React from 'react';
 import './App.css';
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {setUserAuthData} from "./redux/user/user.actions";
+import {setUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
-import {selectUserAuthData} from "./redux/user/user.selectors";
+import {selectUser} from "./redux/user/user.selectors";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        const {setUserAuthData} = this.props;
+        const {setUser} = this.props;
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
                 const userRef = await createUserProfileDocument(user);
                 if (userRef) {
                     userRef.onSnapshot(snapShot => {
-                        setUserAuthData({
+                        setUser({
                             id: snapShot.id,
                             ...snapShot.data(),
                         });
@@ -27,7 +27,7 @@ class App extends React.Component {
                 }
                 return;
             }
-            setUserAuthData(user);
+            setUser(user);
         })
     }
 
@@ -55,11 +55,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    user: selectUserAuthData(state),
+    user: selectUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-    setUserAuthData: user => dispatch(setUserAuthData(user))
+    setUser: user => dispatch(setUser(user))
 });
 
 export default connect(
