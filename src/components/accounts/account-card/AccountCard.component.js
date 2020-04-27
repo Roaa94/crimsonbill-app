@@ -1,6 +1,6 @@
 import React from 'react';
 import {deleteUserAccountDocument} from "../../../firebase/accounts.firebase-utils";
-import {selectUser} from "../../../redux/user/user.selectors";
+import {selectUserId} from "../../../redux/user/user.selectors";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
 import {
@@ -23,8 +23,8 @@ import {selectAccountBalances} from "../../../redux/accounts/accounts.selectors"
 
 class AccountCard extends React.Component {
     componentDidMount() {
-        let {id, user, fetchBalancesStartAsync} = this.props;
-        fetchBalancesStartAsync(user.id, id);
+        let {id, userId, fetchBalancesStartAsync} = this.props;
+        fetchBalancesStartAsync(userId, id);
     }
 
     state = {
@@ -33,8 +33,8 @@ class AccountCard extends React.Component {
     }
 
     deleteAccount = async (accountId) => {
-        let {user} = this.props;
-        await deleteUserAccountDocument(user.id, accountId);
+        let {userId} = this.props;
+        await deleteUserAccountDocument(userId, accountId);
     };
 
     handleExpansionPanelChange = () => {
@@ -144,7 +144,7 @@ class AccountCard extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    user: selectUser(state),
+    userId: selectUserId(state),
     accountFormShow: selectAccountFormShow(state),
     balances: selectAccountBalances(ownProps.id)(state),
 });

@@ -10,7 +10,7 @@ import AccountCard from "../../components/accounts/account-card/AccountCard.comp
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
 import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
 import WithLoader from "../../components/HOC/WithLoader";
-import {selectUser} from "../../redux/user/user.selectors";
+import {selectUserId} from "../../redux/user/user.selectors";
 import {selectAccountsArray, selectAccountsFetching} from "../../redux/accounts/accounts.selectors";
 import {fetchAccountsStartAsync} from "../../redux/accounts/accounts.actions";
 
@@ -19,8 +19,8 @@ const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>)
 class AccountsPage extends React.Component {
 
     componentDidMount() {
-        const {fetchAccountsStartAsync, user} = this.props;
-        fetchAccountsStartAsync(user.id);
+        const {fetchAccountsStartAsync, userId} = this.props;
+        fetchAccountsStartAsync(userId);
     }
 
     render() {
@@ -54,7 +54,7 @@ class AccountsPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-    user: selectUser,
+    userId: selectUserId,
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
     isFetchingAccounts: selectAccountsFetching,

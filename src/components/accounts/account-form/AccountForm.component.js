@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.firebase-utils";
 import TextFieldFilled from "../../ui/inputs/text-field/TextFieldFilled";
-import {selectUser} from "../../../redux/user/user.selectors";
+import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
 import {createStructuredSelector} from "reselect";
@@ -27,9 +27,9 @@ class AccountForm extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {user, accountId} = this.props;
+        const {userId, accountId} = this.props;
         if (accountId) {
-            const userAccountRef = firestore.doc(`users/${user.id}/accounts/${accountId}`);
+            const userAccountRef = firestore.doc(`users/${userId}/accounts/${accountId}`);
             userAccountRef.onSnapshot(snapShot => {
                 let accountData = snapShot.data();
                 if (this._isMounted) {
@@ -45,9 +45,9 @@ class AccountForm extends Component {
 
     handleFormSubmit = async event => {
         event.preventDefault();
-        let {user, accountId, handleFormCancel} = this.props;
+        let {userId, accountId, handleFormCancel} = this.props;
         const accountData = this.state;
-        await addOrUpdateUserAccountDocument(user.id, accountId, accountData);
+        await addOrUpdateUserAccountDocument(userId, accountId, accountData);
 
         this.setState({
             type: '',
@@ -137,7 +137,7 @@ class AccountForm extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-    user: selectUser,
+    userId: selectUserId,
 });
 
 export default connect(mapStateToProps)(AccountForm);

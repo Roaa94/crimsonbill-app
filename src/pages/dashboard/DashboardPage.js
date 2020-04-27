@@ -27,13 +27,7 @@ class DashboardPage extends React.Component {
                 <TransactionsDrawer open={drawerOpen}/>
                 <DashboardPageContent>
                     <h1 className='light'>Welcome {user.displayName}</h1>
-                    {
-                        user.accounts && user.accounts.length > 0
-                            ? <div>You have some accounts</div>
-                            : (
-                                <AddAccountView drawerOpen={drawerOpen}/>
-                            )
-                    }
+                    <AddAccountView drawerOpen={drawerOpen}/>
                 </DashboardPageContent>
             </DashboardPageWrapper>
         );
