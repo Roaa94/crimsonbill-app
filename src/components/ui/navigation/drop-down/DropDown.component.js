@@ -45,7 +45,10 @@ const DropDown = ({menuItems}) => {
             >
                 {
                     menuItems.map(({id, title, handleClick}) => (
-                        <MenuItem key={id} onClick={handleClick}>
+                        <MenuItem key={id} onClick={event => {
+                            handleClick();
+                            handleClose(event);
+                        }}>
                             {title}
                         </MenuItem>
                     ))

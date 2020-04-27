@@ -15,6 +15,8 @@ import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 
 class AccountForm extends Component {
+    _isMounted = false;
+
     state = {
         type: '',
         name: '',
@@ -24,14 +26,21 @@ class AccountForm extends Component {
     };
 
     componentDidMount() {
+        this._isMounted = true;
         const {user, accountId} = this.props;
         if (accountId) {
             const userAccountRef = firestore.doc(`users/${user.id}/accounts/${accountId}`);
             userAccountRef.onSnapshot(snapShot => {
                 let accountData = snapShot.data();
-                this.setState(accountData);
+                if (this._isMounted) {
+                    this.setState(accountData);
+                }
             })
         }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     handleFormSubmit = async event => {

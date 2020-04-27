@@ -17,34 +17,55 @@ import Grid from "@material-ui/core/Grid";
 import Button from "../../ui/buttons/button-filled/Button.component";
 import {colors} from "../../../styles/global";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import AccountForm from "../account-form/AccountForm.component";
+import Box from "@material-ui/core/Box";
 
 class AccountCard extends React.Component {
+
+
+    state = {
+        showAccountForm: false,
+        accountCardExpanded: false,
+    }
 
     deleteAccount = async (accountId) => {
         let {user} = this.props;
         await deleteUserAccountDocument(user.id, accountId);
     };
 
+    handleExpansionPanelChange = () => {
+        let {accountCardExpanded} = this.state;
+        this.setState({accountCardExpanded: !accountCardExpanded});
+    }
 
     render() {
         let {id, type, name, currency, notes, totalBalance} = this.props;
-
+        let {showAccountForm, accountCardExpanded} = this.state;
         const accountCardMenuItems = [
             {
                 id: 0,
                 title: 'Edit Account',
                 handleClick: () => {
+                    if (!showAccountForm) {
+                        this.setState({
+                            showAccountForm: true,
+                            accountCardExpanded: true,
+                        });
+                    }
                 },
             },
             {
                 id: 1,
                 title: 'Delete Account',
-                handleClick: () => this.deleteAccount(id),
+                handleClick: async () => {
+                    this.setState({showAccountForm: false});
+                    await this.deleteAccount(id);
+                },
             }
         ];
 
         return (
-            <AccountCardExpansionPanel>
+            <AccountCardExpansionPanel expanded={accountCardExpanded} onChange={this.handleExpansionPanelChange}>
                 <AccountCardExpansionPanelSummary>
                     <AccountCardExpansionPanelHeader>
                         <Grid container alignItems='center'>
@@ -57,32 +78,50 @@ class AccountCard extends React.Component {
                                 </h3>
                             </Grid>
                             <Grid item xs={4} container justify='flex-end'>
-                                    <div className='account-type'>
-                                        <AccountBalanceRoundedIcon/>
-                                        {type}
-                                    </div>
-                                    <DropDown menuItems={accountCardMenuItems}/>
+                                <div className='account-type'>
+                                    <AccountBalanceRoundedIcon/>
+                                    {type}
+                                </div>
+                                <DropDown menuItems={accountCardMenuItems}/>
                             </Grid>
                         </Grid>
                     </AccountCardExpansionPanelHeader>
                 </AccountCardExpansionPanelSummary>
                 <ExpansionPanelContent>
-                    {notes}
-                    <Button
-                        fullWidth={false}
-                        bgColor={colors.info}
-                        prefixIcon={<AddRoundedIcon/>}
-                        margin='0 20px 0 0'
-                    >
-                        Add Balance
-                    </Button>
-                    <Button
-                        fullWidth={false}
-                        bgColor={colors.info}
-                        prefixIcon={<AddRoundedIcon/>}
-                    >
-                        Add Transaction
-                    </Button>
+                    {
+                        notes ? (
+                            <Box mb={2}>
+                                {notes}
+                            </Box>
+                        ) : null
+                    }
+                    {
+                        showAccountForm ? (
+                            <AccountForm
+                                accountId={id}
+                                handleFormCancel={() => this.setState({showAccountForm: false})}
+                            />
+                        ) : (
+                            <div>
+                                <Button
+                                    fullWidth={false}
+                                    bgColor={colors.info}
+                                    prefixIcon={<AddRoundedIcon/>}
+                                    margin='0 20px 0 0'
+                                >
+                                    Add Balance
+                                </Button>
+                                <Button
+                                    fullWidth={false}
+                                    bgColor={colors.info}
+                                    prefixIcon={<AddRoundedIcon/>}
+                                >
+                                    Add Transaction
+                                </Button>
+                            </div>
+                        )
+                    }
+
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>
         );
