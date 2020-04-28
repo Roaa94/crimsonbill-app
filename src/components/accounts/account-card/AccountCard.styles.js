@@ -55,5 +55,5 @@ export const AccountCardExpansionPanelHeader = styled.div`
 `;
 
 export const ExpansionPanelContent = styled.div`
-  padding: 20px;
+  padding: 0 20px 20px 20px;
 `;

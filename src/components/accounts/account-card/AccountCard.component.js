@@ -13,19 +13,11 @@ import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded'
 import FormattedNumber from "../../ui/FormattedNumber";
 import DropDown from "../../ui/navigation/drop-down/DropDown.component";
 import Grid from "@material-ui/core/Grid";
-import Button from "../../ui/buttons/button-filled/Button.component";
-import {colors} from "../../../styles/global";
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import AccountForm from "../account-form/AccountForm.component";
 import Box from "@material-ui/core/Box";
-import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions";
-import {selectAccountBalances} from "../../../redux/accounts/accounts.selectors";
+import BalanceList from "../BalanceList";
 
 class AccountCard extends React.Component {
-    componentDidMount() {
-        let {id, userId, fetchBalancesStartAsync} = this.props;
-        fetchBalancesStartAsync(userId, id);
-    }
 
     state = {
         showAccountForm: false,
@@ -50,10 +42,9 @@ class AccountCard extends React.Component {
     }
 
     render() {
-        let {id, type, name, currency, notes, totalBalance, balances} = this.props;
+        let {id, type, name, currency, notes, totalBalance} = this.props;
         let {showAccountForm, accountCardExpanded} = this.state;
-        console.log('balances');
-        console.log(balances);
+
         const accountCardMenuItems = [
             {
                 id: 0,
@@ -116,41 +107,18 @@ class AccountCard extends React.Component {
                                 accountId={id}
                                 handleFormCancel={() => this.setState({showAccountForm: false})}
                             />
-                        ) : (
-                            <div>
-                                <Button
-                                    fullWidth={false}
-                                    bgColor={colors.info}
-                                    prefixIcon={<AddRoundedIcon/>}
-                                    margin='0 20px 0 0'
-                                >
-                                    Add Balance
-                                </Button>
-                                <Button
-                                    fullWidth={false}
-                                    bgColor={colors.info}
-                                    prefixIcon={<AddRoundedIcon/>}
-                                >
-                                    Add Transaction
-                                </Button>
-                            </div>
-                        )
+                        ) : null
                     }
-
+                    <BalanceList accountId={id} />
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>
         );
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     userId: selectUserId(state),
     accountFormShow: selectAccountFormShow(state),
-    balances: selectAccountBalances(ownProps.id)(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-    fetchBalancesStartAsync: (userId, accountId) => dispatch(fetchBalancesStartAsync(userId, accountId)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AccountCard);
+export default connect(mapStateToProps)(AccountCard);

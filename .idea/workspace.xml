@@ -20,14 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/accounts/BalanceList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions/TransactionsDrawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/TransactionsDrawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/StatisticsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/StatisticsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/DashboardPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/buttons/AddIconButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/buttons/AddIconButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,14 +137,7 @@
       <workItem from="1587738591324" duration="29777000" />
       <workItem from="1587817611391" duration="34763000" />
       <workItem from="1587898232893" duration="29136000" />
-      <workItem from="1588005637869" duration="16127000" />
-    </task>
-    <task id="LOCAL-00064" summary="added default loader wrapper to WithLoader HOC">
-      <created>1587784588693</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1587784588694</updated>
+      <workItem from="1588005637869" duration="18789000" />
     </task>
     <task id="LOCAL-00065" summary="added loaders reducer">
       <created>1587784600471</created>
@@ -485,7 +475,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588029178904</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="added user id selector to avoid selecting entire user object unnecessarily">
+      <created>1588029902848</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1588029902848</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +517,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="added boxShadows object to global styles" />
     <MESSAGE value="changed drawer width" />
     <MESSAGE value="switched dropdown component from Mui Menu to Mui Select" />
     <MESSAGE value="styling fixes to text field components" />
@@ -545,7 +541,8 @@
     <MESSAGE value="separated accounts into its own reducer and used redux-thunk to asynchronously fetch them" />
     <MESSAGE value="[Balances CRUD - Read] worked on fetching account balances with asynchronous redux actions" />
     <MESSAGE value="optimization on edit account form" />
-    <option name="LAST_COMMIT_MESSAGE" value="optimization on edit account form" />
+    <MESSAGE value="added user id selector to avoid selecting entire user object unnecessarily" />
+    <option name="LAST_COMMIT_MESSAGE" value="added user id selector to avoid selecting entire user object unnecessarily" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1587865574913">
@@ -564,16 +561,16 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587773750935" />
-    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588029177450">
+    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588029902046">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588029177450" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588026747741">
+    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588029902046" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588036592699">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588026747741" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588036592699" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1583401638303">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -598,10 +595,10 @@
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
     <state width="2517" height="298" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588023499778" />
-    <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1588020181900">
+    <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1588030049993">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588020181900" />
+    <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588030049993" />
     <state x="937" y="258" key="SettingsEditor" timestamp="1587767826662">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -615,11 +612,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1101" y="323" key="VCS.ChangeListViewerDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587205353399" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1587954716037">
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1588029947311">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="722" y="254" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583401704491" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587954716037" />
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588029947311" />
     <state x="985" y="353" key="VcsDiffUtil.ChangesDialog" timestamp="1587825550391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -636,10 +633,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587855324869" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1588029181482">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1588036423121">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588029181482" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588036423121" />
   </component>
 </project>

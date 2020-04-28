@@ -8,6 +8,7 @@ const AddIconButtonContainer = styled.div`
   padding: 10px;
   width: 50px;
   height: 50px;
+  margin: 0 20px;
   border-radius: ${borderRadius.l};
   cursor: pointer;
   display: flex;
