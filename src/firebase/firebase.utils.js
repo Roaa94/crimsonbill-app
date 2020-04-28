@@ -33,18 +33,18 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
     const snapShot = await userRef.get();
     if (!snapShot.exists) {
         const createdAt = new Date();
-            try {
-                await userRef.set({
-                    displayName: additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName,
-                    email: authUser.email,
-                    avatarUrl: authUser.photoURL ? authUser.photoURL : null,
-                    createdAt,
-                });
-            } catch (error) {
-                console.log('error creating user reference', error.message);
-                return;
-            }
-            console.log('user created, display name:', additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName);
+        try {
+            await userRef.set({
+                displayName: additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName,
+                email: authUser.email,
+                avatarUrl: authUser.photoURL ? authUser.photoURL : null,
+                createdAt,
+            });
+        } catch (error) {
+            console.log('error creating user reference', error.message);
+            return;
+        }
+        console.log('user created, display name:', additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName);
     }
     return userRef;
 };
