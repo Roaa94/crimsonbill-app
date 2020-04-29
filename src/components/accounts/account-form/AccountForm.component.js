@@ -13,6 +13,7 @@ import Button from "../../ui/buttons/button-filled/Button.component";
 import {colors} from "../../../styles/global";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
+import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions";
 
 class AccountForm extends Component {
     _isMounted = false;
@@ -45,7 +46,7 @@ class AccountForm extends Component {
 
     handleFormSubmit = async event => {
         event.preventDefault();
-        let {userId, accountId, handleFormCancel} = this.props;
+        let {userId, accountId, handleFormCancel, fetchBalancesStartAsync} = this.props;
         const accountData = this.state;
         await addOrUpdateUserAccountDocument(userId, accountId, accountData);
 
@@ -56,6 +57,7 @@ class AccountForm extends Component {
             notes: '',
             totalBalance: 0.0,
         });
+        fetchBalancesStartAsync(userId, accountId);
         handleFormCancel();
     };
 
@@ -140,4 +142,9 @@ const mapStateToProps = createStructuredSelector({
     userId: selectUserId,
 });
 
-export default connect(mapStateToProps)(AccountForm);
+const mapDispatchToProps = dispatch => ({
+    fetchBalancesStartAsync: (userId, accountId) => dispatch(fetchBalancesStartAsync(userId, accountId)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountForm);
