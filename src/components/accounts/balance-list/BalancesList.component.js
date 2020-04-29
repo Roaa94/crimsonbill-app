@@ -11,23 +11,36 @@ import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import {BalanceListHeader} from "./BalancesList.styles";
 import BalanceCard from "../balance-card/BalanceCard.component";
+import BalanceForm from "../balance-form/BalanceForm.component";
 
 class BalancesList extends React.Component {
+    state = {
+        showBalanceForm: false,
+    };
+
     componentDidMount() {
         let {accountId, userId, fetchBalancesStartAsync} = this.props;
         fetchBalancesStartAsync(userId, accountId);
     }
 
     render() {
-        let {balances, isBalancesLoaded} = this.props;
+        let {accountId, balances, isBalancesLoaded} = this.props;
+        let {showBalanceForm} = this.state;
 
         return (
             <div>
                 <Box display='flex' alignItems='center'>
                     <h4>Balances</h4>
-                    <AddIconButton handleClick={() => {
-                    }}/>
+                    <AddIconButton handleClick={() => this.setState({showBalanceForm: true})}/>
                 </Box>
+                {
+                    showBalanceForm ? (
+                        <BalanceForm
+                            accountId={accountId}
+                            handleFormCancel={() => this.setState({showBalanceForm: false})}
+                        />
+                    ) : null
+                }
                 {
                     isBalancesLoaded && balances.length !== 0
                         ? (

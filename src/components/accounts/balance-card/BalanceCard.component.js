@@ -6,10 +6,11 @@ import {colors} from "../../../styles/global";
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import Box from "@material-ui/core/Box";
+import FormattedNumber from "../../ui/FormattedNumber";
 
 class BalanceCard extends React.Component {
     render() {
-        let {name, currency, balance} = this.props;
+        let {name, currency, totalBalance} = this.props;
         return (
             <BalanceCardExpansionPanel>
                 <BalanceCardExpansionPanelSummary>
@@ -23,7 +24,7 @@ class BalanceCard extends React.Component {
                             {currency}
                         </Grid>
                         <Grid item xs={2}>
-                            {balance}
+                            <FormattedNumber number={totalBalance}/>
                         </Grid>
                         <Grid item xs={4} container justify='flex-end'>
                             <Button

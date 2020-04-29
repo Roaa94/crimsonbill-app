@@ -1,10 +1,10 @@
 import {firestore} from "./firebase.utils";
 
 export const addOrUpdateAccountDocument = async (userId, accountId, accountData) => {
-    const userAccountRef = accountId ?
+    const accountRef = accountId ?
         await firestore.doc(`users/${userId}/accounts/${accountId}`)
         : await firestore.doc(`users/${userId}`).collection('accounts').doc();
-    const snapShot = await userAccountRef.get();
+    const snapShot = await accountRef.get();
     let newAccount = null;
     if (!snapShot.exists && !accountId) {
         const createdAt = new Date();
@@ -14,23 +14,19 @@ export const addOrUpdateAccountDocument = async (userId, accountId, accountData)
             totalBalance: 0.0,
         };
         try {
-            await userAccountRef.set(newAccount);
+            await accountRef.set(newAccount);
         } catch (error) {
             console.log(error.message);
-            return;
         }
     } else {
         try {
             newAccount = accountData;
-            await userAccountRef.update(newAccount);
+            await accountRef.update(newAccount);
             console.log('Document Updated Successfully');
         } catch (error) {
             console.log(error.message);
-            return;
         }
     }
-
-    return newAccount;
 };
 
 export const deleteAccountDocument = async (userId, accountId) => {
