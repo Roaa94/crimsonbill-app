@@ -1,18 +1,18 @@
 import React from 'react';
-import {addOrUpdateBalanceDocument} from "../../../firebase/balances.firebase-utils";
+import {addOrUpdateBalanceDocument} from "../../firebase/balances.firebase-utils";
 import {createStructuredSelector} from "reselect";
-import {selectUserId} from "../../../redux/user/user.selectors";
+import {selectUserId} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import TextFieldFilled from "../../ui/inputs/text-field/TextFieldFilled";
-import Select from "../../ui/inputs/select/Select.component";
-import {currencies} from "../../../data";
-import Button from "../../ui/buttons/button-filled/Button.component";
-import {colors} from "../../../styles/global";
+import TextFieldFilled from "../ui/inputs/text-field/TextFieldFilled";
+import Select from "../ui/inputs/select/Select";
+import {currencies} from "../../data";
+import Button from "../ui/buttons/button-filled/Button";
+import {colors} from "../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Box from "@material-ui/core/Box";
-import {firestore} from "../../../firebase/firebase.utils";
+import {firestore} from "../../firebase/firebase.utils";
 
 class BalanceForm extends React.Component {
     _isMounted = false;

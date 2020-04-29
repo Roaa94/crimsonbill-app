@@ -10,8 +10,8 @@ import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions"
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import {BalanceListHeader} from "./BalancesList.styles";
-import BalanceCard from "../balance-card/BalanceCard.component";
-import BalanceForm from "../balance-form/BalanceForm.component";
+import BalanceCard from "../balance-card/BalanceCard";
+import BalanceForm from "../BalanceForm";
 
 class BalancesList extends React.Component {
     state = {

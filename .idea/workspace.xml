@@ -20,9 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-form/BalanceForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/balance-form/BalanceForm.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountFormContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountFormContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-card/BalanceCard.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-card/BalanceCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-card/BalanceCard.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-card/BalanceCard.styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-form/BalanceForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/BalanceForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-list/BalancesList.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-list/BalancesList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-list/BalancesList.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-list/BalancesList.styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-title/AppTitle.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-title/AppTitle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/SignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignInForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/buttons/button-filled/Button.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/buttons/button-filled/Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/buttons/button-outlined/ButtonOutlined.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/buttons/button-outlined/ButtonOutlined.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/drawer-avatar/DrawerAvatar.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/drawer-avatar/DrawerAvatar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/navigation/Drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/navigation/Drawer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,14 +151,7 @@
       <workItem from="1588005637869" duration="25076000" />
       <workItem from="1588085562062" duration="11305000" />
       <workItem from="1588112668486" duration="5499000" />
-      <workItem from="1588173843869" duration="8395000" />
-    </task>
-    <task id="LOCAL-00077" summary="added add icon button component">
-      <created>1587831298874</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1587831298874</updated>
+      <workItem from="1588173843869" duration="8750000" />
     </task>
     <task id="LOCAL-00078" summary="worked on account form expansion panel and add button">
       <created>1587831356707</created>
@@ -483,7 +489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588181146506</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="unsubscribed from snapshot in account and balance forms">
+      <created>1588192032397</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1588192032397</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,7 +531,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="styling chnages on account form container and removed add balance button" />
     <MESSAGE value="fixed closing account form on form submit" />
     <MESSAGE value="worked on select component styling" />
     <MESSAGE value="changed drop down menu position" />
@@ -543,7 +555,8 @@
     <MESSAGE value="[Balances CRUD - Create] - worked on balance form and creating a balance document" />
     <MESSAGE value="[Balances CRUD - Delete] - worked on deleting a balance" />
     <MESSAGE value="[Balances CRUD - Update] - worked on updating a balance" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Balances CRUD - Update] - worked on updating a balance" />
+    <MESSAGE value="unsubscribed from snapshot in account and balance forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="unsubscribed from snapshot in account and balance forms" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1587865574913">
@@ -562,11 +575,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587773750935" />
-    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588181145788">
+    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588192031712">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588181145788" />
+    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588192031712" />
     <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588181129552">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

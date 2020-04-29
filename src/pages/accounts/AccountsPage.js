@@ -6,7 +6,7 @@ import {selectAccountFormShow} from "../../redux/account-form/account-form.selec
 import {createStructuredSelector} from "reselect";
 import {toggleAccountForm} from "../../redux/account-form/account-form.actions";
 import {AccountsPageHeader} from "./AccountsPage.styles";
-import AccountCard from "../../components/accounts/account-card/AccountCard.component";
+import AccountCard from "../../components/accounts/account-card/AccountCard";
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
 import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
 import WithLoader from "../../components/HOC/WithLoader";

@@ -7,7 +7,7 @@ import {
 import {createStructuredSelector} from "reselect";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
-import AccountForm from "./AccountForm.component";
+import AccountForm from "./AccountForm";
 import {toggleAccountForm} from "../../../redux/account-form/account-form.actions";
 
 const AccountFormContainer = ({accountFormShow, toggleAccountForm}) => {

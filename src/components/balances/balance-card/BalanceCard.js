@@ -1,7 +1,7 @@
 import React from 'react';
 import {BalanceCardExpansionPanel, BalanceCardExpansionPanelSummary} from "./BalanceCard.styles";
 import Grid from "@material-ui/core/Grid";
-import Button from "../../ui/buttons/button-filled/Button.component";
+import Button from "../../ui/buttons/button-filled/Button";
 import {colors} from "../../../styles/global";
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
@@ -10,7 +10,7 @@ import FormattedNumber from "../../ui/FormattedNumber";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {deleteBalanceDocument} from "../../../firebase/balances.firebase-utils";
-import BalanceForm from "../balance-form/BalanceForm.component";
+import BalanceForm from "../BalanceForm";
 
 class BalanceCard extends React.Component {
 

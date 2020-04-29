@@ -11,11 +11,11 @@ import {
 } from './AccountCard.styles';
 import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
 import FormattedNumber from "../../ui/FormattedNumber";
-import DropDown from "../../ui/navigation/drop-down/DropDown.component";
+import DropDown from "../../ui/navigation/drop-down/DropDown";
 import Grid from "@material-ui/core/Grid";
-import AccountForm from "../account-form/AccountForm.component";
+import AccountForm from "../account-form/AccountForm";
 import Box from "@material-ui/core/Box";
-import BalancesList from "../balance-list/BalancesList.component";
+import BalancesList from "../../balances/balance-list/BalancesList";
 
 class AccountCard extends React.Component {
 
