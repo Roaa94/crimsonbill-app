@@ -12,12 +12,33 @@ import {colors} from "../../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Box from "@material-ui/core/Box";
+import {firestore} from "../../../firebase/firebase.utils";
 
 class BalanceForm extends React.Component {
+    _isMounted = false;
+
     state = {
         name: '',
         currency: '',
     };
+
+    componentDidMount() {
+        this._isMounted = true;
+        const {userId, accountId, balanceId} = this.props;
+        if (balanceId) {
+            const balanceRef = firestore.doc(`users/${userId}/accounts/${accountId}/balances/${balanceId}`);
+            balanceRef.onSnapshot(snapShot => {
+                let balanceData = snapShot.data();
+                if (this._isMounted) {
+                    this.setState(balanceData);
+                }
+            })
+        }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
     handleFormSubmit = async event => {
         event.preventDefault();
@@ -73,6 +94,7 @@ class BalanceForm extends React.Component {
                         bgColor={colors.info}
                         prefixIcon={<CheckRoundedIcon/>}
                         margin='0 20px 20px 0'
+                        size='small'
                     >
                         Submit
                     </Button>
@@ -82,6 +104,7 @@ class BalanceForm extends React.Component {
                         onClick={handleFormCancel}
                         prefixIcon={<ClearRoundedIcon/>}
                         margin='0 0 20px 0'
+                        size='small'
                     >
                         Cancel
                     </Button>

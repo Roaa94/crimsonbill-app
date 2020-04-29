@@ -26,6 +26,7 @@ export const SelectFormControl = withStyles(theme => ({
             border: 'none',
             borderRadius: borderRadius.m,
             background: colors.background,
+            padding: 0
         },
         '& .MuiFilledInput-underline:before': {
             display: 'none',
