@@ -15,7 +15,7 @@ export const boxShadows = {
 };
 
 export const borderRadius = {
-    s: '5px',
+    s: '7px',
     m: '10px',
     l: '15px',
     xl: '30px',
