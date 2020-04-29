@@ -16,6 +16,7 @@ import {firestore} from "../../../firebase/firebase.utils";
 
 class BalanceForm extends React.Component {
     _isMounted = false;
+    unsub = null;
 
     state = {
         name: '',
@@ -27,7 +28,7 @@ class BalanceForm extends React.Component {
         const {userId, accountId, balanceId} = this.props;
         if (balanceId) {
             const balanceRef = firestore.doc(`users/${userId}/accounts/${accountId}/balances/${balanceId}`);
-            balanceRef.onSnapshot(snapShot => {
+            this.unsub = balanceRef.onSnapshot(snapShot => {
                 let balanceData = snapShot.data();
                 if (this._isMounted) {
                     this.setState(balanceData);
@@ -37,7 +38,11 @@ class BalanceForm extends React.Component {
     }
 
     componentWillUnmount() {
+        const {balanceId} = this.props;
         this._isMounted = false;
+        if (balanceId) {
+            this.unsub();
+        }
     }
 
     handleFormSubmit = async event => {

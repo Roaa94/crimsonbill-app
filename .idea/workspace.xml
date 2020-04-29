@@ -21,9 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-card/BalanceCard.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/balance-card/BalanceCard.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-form/BalanceForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/balance-form/BalanceForm.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/inputs/select/Select.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/inputs/select/Select.styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,14 +138,7 @@
       <workItem from="1588005637869" duration="25076000" />
       <workItem from="1588085562062" duration="11305000" />
       <workItem from="1588112668486" duration="5499000" />
-      <workItem from="1588173843869" duration="6767000" />
-    </task>
-    <task id="LOCAL-00076" summary="variable name changes">
-      <created>1587831269602</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1587831269602</updated>
+      <workItem from="1588173843869" duration="8395000" />
     </task>
     <task id="LOCAL-00077" summary="added add icon button component">
       <created>1587831298874</created>
@@ -484,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588178408420</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="[Balances CRUD - Update] - worked on updating a balance">
+      <created>1588181146506</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1588181146506</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -519,7 +518,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="separated account form from its expansion panel container into two components" />
     <MESSAGE value="styling chnages on account form container and removed add balance button" />
     <MESSAGE value="fixed closing account form on form submit" />
     <MESSAGE value="worked on select component styling" />
@@ -544,7 +542,8 @@
     <MESSAGE value="variable name changes" />
     <MESSAGE value="[Balances CRUD - Create] - worked on balance form and creating a balance document" />
     <MESSAGE value="[Balances CRUD - Delete] - worked on deleting a balance" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Balances CRUD - Delete] - worked on deleting a balance" />
+    <MESSAGE value="[Balances CRUD - Update] - worked on updating a balance" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Balances CRUD - Update] - worked on updating a balance" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1587865574913">
@@ -563,11 +562,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587773750935" />
-    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588178407730">
+    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588181145788">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588178407730" />
+    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588181145788" />
     <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588181129552">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -639,10 +638,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587855324869" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1588179425504">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1588191821937">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588179425504" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588191821937" />
   </component>
 </project>

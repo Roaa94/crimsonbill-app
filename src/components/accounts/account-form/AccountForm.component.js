@@ -16,6 +16,7 @@ import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions";
 
 class AccountForm extends Component {
+    unsub = null;
     _isMounted = false;
 
     state = {
@@ -30,7 +31,7 @@ class AccountForm extends Component {
         const {userId, accountId} = this.props;
         if (accountId) {
             const userAccountRef = firestore.doc(`users/${userId}/accounts/${accountId}`);
-            userAccountRef.onSnapshot(snapShot => {
+            this.unsub = userAccountRef.onSnapshot(snapShot => {
                 let accountData = snapShot.data();
                 if (this._isMounted) {
                     this.setState(accountData);
@@ -41,6 +42,7 @@ class AccountForm extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;
+        this.unsub();
     }
 
     handleFormSubmit = async event => {
