@@ -28,23 +28,24 @@ class BalancesList extends React.Component {
                     <AddIconButton handleClick={() => {
                     }}/>
                 </Box>
-                <BalanceListHeader>
-                    <Grid container>
-                        <Grid item xs={3}>
-                            Name
-                        </Grid>
-                        <Grid item xs={2}>
-                            Currency
-                        </Grid>
-                        <Grid item xs={2}>
-                            Balance
-                        </Grid>
-                        <Grid item xs/>
-                        <Grid item xs={4}>
-                            Actions
-                        </Grid>
-                    </Grid>
-                </BalanceListHeader>
+                {
+                    isBalancesLoaded && balances.length !== 0
+                        ? (
+                            <BalanceListHeader>
+                                <Grid container>
+                                    <Grid item xs={4}>
+                                        Name
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        Currency
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        Balance
+                                    </Grid>
+                                </Grid>
+                            </BalanceListHeader>
+                        ) : null
+                }
                 {
                     isBalancesLoaded ?
                         (

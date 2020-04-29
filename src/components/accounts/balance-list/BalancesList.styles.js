@@ -4,4 +4,5 @@ import {colors} from "../../../styles/global";
 export const BalanceListHeader = styled.div`
   padding: 10px 0;
   border-bottom: 2px solid ${colors.background};
+  font-size: 0.9rem;
 `;
