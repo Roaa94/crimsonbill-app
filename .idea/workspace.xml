@@ -19,13 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="worked on fetching account balances from global state in balances list component and added balance card component">
-      <change afterPath="$PROJECT_DIR$/src/components/accounts/balance-form/BalanceForm.component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/firebase/balances.firebase-utils.js" afterDir="false" />
+    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-card/BalanceCard.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/balance-card/BalanceCard.component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-list/BalancesList.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/balance-list/BalancesList.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/accounts.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/accounts.firebase-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/balances.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/balances.firebase-utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,14 +139,7 @@
       <workItem from="1588005637869" duration="25076000" />
       <workItem from="1588085562062" duration="11305000" />
       <workItem from="1588112668486" duration="5499000" />
-      <workItem from="1588173843869" duration="3077000" />
-    </task>
-    <task id="LOCAL-00074" summary="fixed user reducer state syntax and removed unused actions">
-      <created>1587826498150</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1587826498150</updated>
+      <workItem from="1588173843869" duration="4017000" />
     </task>
     <task id="LOCAL-00075" summary="minor formatting">
       <created>1587829747543</created>
@@ -486,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588175128649</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="[Balances CRUD - Create] - worked on balance form and creating a balance document">
+      <created>1588177443726</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1588177443726</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -521,7 +519,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="added black list to persist config" />
     <MESSAGE value="changed account balance field and added balances field" />
     <MESSAGE value="separated account form from its expansion panel container into two components" />
     <MESSAGE value="styling chnages on account form container and removed add balance button" />
@@ -546,7 +543,8 @@
     <MESSAGE value="modified button component" />
     <MESSAGE value="worked on balance card" />
     <MESSAGE value="variable name changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="variable name changes" />
+    <MESSAGE value="[Balances CRUD - Create] - worked on balance form and creating a balance document" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Balances CRUD - Create] - worked on balance form and creating a balance document" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1587865574913">
@@ -565,16 +563,16 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587773750935" />
-    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588175126934">
+    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588177443003">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588175126934" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588175119014">
+    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588177443003" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588177801919">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588175119014" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588177801919" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1583401638303">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -21,7 +21,7 @@ class AccountCard extends React.Component {
 
     state = {
         showAccountForm: false,
-        accountCardExpanded: false,
+        accountCardExpanded: true,
     }
 
     deleteAccount = async (accountId) => {

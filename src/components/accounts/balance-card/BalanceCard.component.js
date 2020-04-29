@@ -7,10 +7,20 @@ import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import Box from "@material-ui/core/Box";
 import FormattedNumber from "../../ui/FormattedNumber";
+import {selectUserId} from "../../../redux/user/user.selectors";
+import {connect} from "react-redux";
+import {deleteBalanceDocument} from "../../../firebase/balances.firebase-utils";
 
 class BalanceCard extends React.Component {
+
+    deleteBalance = async () => {
+        let {userId, accountId, balanceId} = this.props;
+        await deleteBalanceDocument(userId, accountId, balanceId);
+    }
+
     render() {
         let {name, currency, totalBalance} = this.props;
+
         return (
             <BalanceCardExpansionPanel>
                 <BalanceCardExpansionPanelSummary>
@@ -40,6 +50,10 @@ class BalanceCard extends React.Component {
                                 bgColor={colors.secondary}
                                 size='small'
                                 fullWidth={false}
+                                onClick={async (event) => {
+                                    event.stopPropagation();
+                                    await this.deleteBalance();
+                                }}
                                 prefixIcon={<DeleteRoundedIcon/>}
                             >
                                 Delete
@@ -55,4 +69,8 @@ class BalanceCard extends React.Component {
     }
 }
 
-export default BalanceCard;
+const mapStateToProps = (state) => ({
+    userId: selectUserId(state),
+});
+
+export default connect(mapStateToProps)(BalanceCard);

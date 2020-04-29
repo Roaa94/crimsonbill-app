@@ -63,7 +63,12 @@ class BalancesList extends React.Component {
                     isBalancesLoaded ?
                         (
                             balances.map(({id, ...balanceDetails}) => (
-                                <BalanceCard key={id} {...balanceDetails} />
+                                <BalanceCard
+                                    accountId={accountId}
+                                    balanceId={id}
+                                    key={id}
+                                    {...balanceDetails}
+                                />
                             ))
                         ) : null
                 }

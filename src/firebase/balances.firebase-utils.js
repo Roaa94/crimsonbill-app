@@ -29,3 +29,13 @@ export const addOrUpdateBalanceDocument = async (userId, accountId, balanceId, b
         }
     }
 }
+
+export const deleteBalanceDocument = async (userId, accountId, balanceId) => {
+    console.log(userId, accountId, balanceId);
+    try {
+        await firestore.doc(`users/${userId}/accounts/${accountId}/balances/${balanceId}`).delete();
+        console.log('Document Deleted Successfully');
+    } catch (error) {
+        console.log(error.message);
+    }
+};
