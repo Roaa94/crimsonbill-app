@@ -1,6 +1,6 @@
 import {firestore} from "./firebase.utils";
 
-export const addOrUpdateUserAccountDocument = async (userId, accountId, accountData) => {
+export const addOrUpdateAccountDocument = async (userId, accountId, accountData) => {
     const userAccountRef = accountId ?
         await firestore.doc(`users/${userId}/accounts/${accountId}`)
         : await firestore.doc(`users/${userId}`).collection('accounts').doc();
@@ -11,6 +11,7 @@ export const addOrUpdateUserAccountDocument = async (userId, accountId, accountD
         newAccount = {
             createdAt,
             ...accountData,
+            totalBalance: 0.0,
         };
         try {
             await userAccountRef.set(newAccount);
@@ -32,7 +33,7 @@ export const addOrUpdateUserAccountDocument = async (userId, accountId, accountD
     return newAccount;
 };
 
-export const deleteUserAccountDocument = async (userId, accountId) => {
+export const deleteAccountDocument = async (userId, accountId) => {
     try {
         await firestore.doc(`users/${userId}/accounts/${accountId}`).delete();
         console.log('Document Deleted Successfully');

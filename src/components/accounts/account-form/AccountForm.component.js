@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {addOrUpdateUserAccountDocument} from "../../../firebase/accounts.firebase-utils";
+import {addOrUpdateAccountDocument} from "../../../firebase/accounts.firebase-utils";
 import TextFieldFilled from "../../ui/inputs/text-field/TextFieldFilled";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
@@ -23,7 +23,6 @@ class AccountForm extends Component {
         name: '',
         currency: '',
         notes: '',
-        totalBalance: 0.0,
     };
 
     componentDidMount() {
@@ -48,14 +47,13 @@ class AccountForm extends Component {
         event.preventDefault();
         let {userId, accountId, handleFormCancel, fetchBalancesStartAsync} = this.props;
         const accountData = this.state;
-        await addOrUpdateUserAccountDocument(userId, accountId, accountData);
+        await addOrUpdateAccountDocument(userId, accountId, accountData);
 
         this.setState({
             type: '',
             name: '',
             currency: '',
             notes: '',
-            totalBalance: 0.0,
         });
         fetchBalancesStartAsync(userId, accountId);
         handleFormCancel();

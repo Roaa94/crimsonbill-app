@@ -1,5 +1,5 @@
 import React from 'react';
-import {deleteUserAccountDocument} from "../../../firebase/accounts.firebase-utils";
+import {deleteAccountDocument} from "../../../firebase/accounts.firebase-utils";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
@@ -26,7 +26,7 @@ class AccountCard extends React.Component {
 
     deleteAccount = async (accountId) => {
         let {userId} = this.props;
-        await deleteUserAccountDocument(userId, accountId);
+        await deleteAccountDocument(userId, accountId);
     };
 
     handleExpansionPanelChange = () => {
