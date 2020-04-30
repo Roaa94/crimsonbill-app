@@ -32,7 +32,7 @@ export const AccountFormExpansionPanelSummary = withStyles({
 })(MuiExpansionPanelSummary);
 
 export const AccountFormExpansionPanelContent = styled.div`
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   h3{
     margin-bottom: 20px;
   }

@@ -16,6 +16,7 @@ import Grid from "@material-ui/core/Grid";
 import AccountForm from "../account-form/AccountForm";
 import Box from "@material-ui/core/Box";
 import BalancesList from "../../balances/balance-list/BalancesList";
+import TransactionsList from "../../transactions/transactions-list/TransactionsList";
 
 class AccountCard extends React.Component {
 
@@ -109,7 +110,8 @@ class AccountCard extends React.Component {
                             />
                         ) : null
                     }
-                    <BalancesList accountId={id} />
+                    <TransactionsList/>
+                    <BalancesList accountId={id}/>
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>
         );

@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import {BalanceListHeader} from "./BalancesList.styles";
 import BalanceCard from "../balance-card/BalanceCard";
 import BalanceForm from "../BalanceForm";
+import {colors} from "../../../styles/global";
 
 class BalancesList extends React.Component {
     state = {
@@ -31,7 +32,11 @@ class BalancesList extends React.Component {
             <div>
                 <Box display='flex' alignItems='center'>
                     <h4>Balances</h4>
-                    <AddIconButton handleClick={() => this.setState({showBalanceForm: true})}/>
+                    <AddIconButton
+                        bgColor={colors.background}
+                        size='small'
+                        handleClick={() => this.setState({showBalanceForm: true})}
+                    />
                 </Box>
                 {
                     showBalanceForm ? (
