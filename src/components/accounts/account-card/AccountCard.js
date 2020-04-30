@@ -43,7 +43,7 @@ class AccountCard extends React.Component {
     }
 
     render() {
-        let {id, type, name, currency, notes, totalBalance} = this.props;
+        let {id, type, name, currency, notes, hasBalances, totalBalance} = this.props;
         let {showAccountForm, accountCardExpanded} = this.state;
 
         const accountCardMenuItems = [
@@ -110,8 +110,11 @@ class AccountCard extends React.Component {
                             />
                         ) : null
                     }
-                    <TransactionsList/>
-                    <BalancesList accountId={id}/>
+                    {
+                        hasBalances
+                            ? <BalancesList accountId={id}/>
+                            : <TransactionsList/>
+                    }
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>
         );

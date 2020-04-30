@@ -14,6 +14,8 @@ import {colors} from "../../../styles/global";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 class AccountForm extends Component {
     _isMounted = false;
@@ -23,6 +25,7 @@ class AccountForm extends Component {
         name: '',
         currency: '',
         notes: '',
+        hasBalances: false,
     };
 
     componentDidMount() {
@@ -54,6 +57,7 @@ class AccountForm extends Component {
             name: '',
             currency: '',
             notes: '',
+            hasBalances: false,
         });
         fetchBalancesStartAsync(userId, accountId);
         handleFormCancel();
@@ -64,8 +68,13 @@ class AccountForm extends Component {
         this.setState({[name]: value});
     };
 
+    handleCheckBoxChange = event => {
+        this.setState({hasBalances: event.target.checked});
+        console.log(this.state);
+    }
+
     render() {
-        const {type, name, currency, notes} = this.state;
+        const {type, name, currency, notes, hasBalances} = this.state;
         const {handleFormCancel} = this.props;
 
         return (
@@ -112,6 +121,19 @@ class AccountForm extends Component {
                         </Box>
                     </Grid>
                 </Grid>
+                <Box mb={2}>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={hasBalances}
+                                onChange={this.handleCheckBoxChange}
+                                name="hasBalances"
+                                color="secondary"
+                            />
+                        }
+                        label="Has Balances (Sub Accounts)"
+                    />
+                </Box>
                 <Grid container>
                     <Button
                         fullWidth={false}

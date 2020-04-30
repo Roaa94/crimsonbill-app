@@ -20,22 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountFormContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountFormContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-card/BalanceCard.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-card/BalanceCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-card/BalanceCard.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-card/BalanceCard.styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-form/BalanceForm.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/BalanceForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-list/BalancesList.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-list/BalancesList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/balance-list/BalancesList.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-list/BalancesList.styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app-title/AppTitle.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-title/AppTitle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/SignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignInForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignUpForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/buttons/button-filled/Button.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/buttons/button-filled/Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/buttons/button-outlined/ButtonOutlined.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/buttons/button-outlined/ButtonOutlined.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/drawer-avatar/DrawerAvatar.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/drawer-avatar/DrawerAvatar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/navigation/Drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/navigation/Drawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/transactions-list/TransactionsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transactions-list/TransactionsList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,11 +74,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\balances" />
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\accounts" />
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\accounts\balance-list" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\accounts\account-form" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\accounts\account-form-container" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\ui\inputs\select" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\ui\inputs\text-field" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -151,42 +138,7 @@
       <workItem from="1588005637869" duration="25076000" />
       <workItem from="1588085562062" duration="11305000" />
       <workItem from="1588112668486" duration="5499000" />
-      <workItem from="1588173843869" duration="8750000" />
-    </task>
-    <task id="LOCAL-00078" summary="worked on account form expansion panel and add button">
-      <created>1587831356707</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1587831356707</updated>
-    </task>
-    <task id="LOCAL-00079" summary="removed h3 margin globally">
-      <created>1587831646593</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1587831646593</updated>
-    </task>
-    <task id="LOCAL-00080" summary="added rotation animation to transactions drawer in dashboard page">
-      <created>1587831899584</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1587831899584</updated>
-    </task>
-    <task id="LOCAL-00081" summary="added NumberFormat package and created FormattedNumber component">
-      <created>1587833188704</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1587833188704</updated>
-    </task>
-    <task id="LOCAL-00082" summary="added balance field to account form">
-      <created>1587833522305</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1587833522305</updated>
+      <workItem from="1588173843869" duration="16505000" />
     </task>
     <task id="LOCAL-00083" summary="styling on account card expansion panel header">
       <created>1587833542084</created>
@@ -496,7 +448,42 @@
       <option name="project" value="LOCAL" />
       <updated>1588192032397</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="file name and folder structure changes">
+      <created>1588192276978</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1588192276978</updated>
+    </task>
+    <task id="LOCAL-00128" summary="removed unsub functions from account and balance form">
+      <created>1588210076487</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1588210076488</updated>
+    </task>
+    <task id="LOCAL-00129" summary="optimized add icon button component">
+      <created>1588210094779</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1588210094779</updated>
+    </task>
+    <task id="LOCAL-00130" summary="changed firebase project config object (moved to another firebase account)">
+      <created>1588210135984</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1588210135984</updated>
+    </task>
+    <task id="LOCAL-00131" summary="worked on transactions list">
+      <created>1588210171811</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1588210171811</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,11 +518,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="fixed closing account form on form submit" />
-    <MESSAGE value="worked on select component styling" />
-    <MESSAGE value="changed drop down menu position" />
-    <MESSAGE value="created global border radius values" />
-    <MESSAGE value="added buttons to empty account card" />
     <MESSAGE value="worked on edit account form inside account card" />
     <MESSAGE value="removed loaders redux files" />
     <MESSAGE value="added balances and transactions fields to user accounts" />
@@ -556,7 +538,12 @@
     <MESSAGE value="[Balances CRUD - Delete] - worked on deleting a balance" />
     <MESSAGE value="[Balances CRUD - Update] - worked on updating a balance" />
     <MESSAGE value="unsubscribed from snapshot in account and balance forms" />
-    <option name="LAST_COMMIT_MESSAGE" value="unsubscribed from snapshot in account and balance forms" />
+    <MESSAGE value="file name and folder structure changes" />
+    <MESSAGE value="removed unsub functions from account and balance form" />
+    <MESSAGE value="optimized add icon button component" />
+    <MESSAGE value="changed firebase project config object (moved to another firebase account)" />
+    <MESSAGE value="worked on transactions list" />
+    <option name="LAST_COMMIT_MESSAGE" value="worked on transactions list" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1587865574913">
@@ -575,40 +562,40 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587773750935" />
-    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588192031712">
+    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588210171205">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588192031712" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588181129552">
+    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588210171205" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588210915634">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588181129552" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588210915634" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1583401638303">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583401638303" />
-    <state width="2517" height="366" key="GridCell.Tab.0.bottom" timestamp="1588175133164">
+    <state width="2517" height="242" key="GridCell.Tab.0.bottom" timestamp="1588209536837">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="366" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588175133164" />
-    <state width="2517" height="366" key="GridCell.Tab.0.center" timestamp="1588175133163">
+    <state width="2517" height="242" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588209536837" />
+    <state width="2517" height="242" key="GridCell.Tab.0.center" timestamp="1588209536836">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="366" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588175133163" />
-    <state width="2517" height="366" key="GridCell.Tab.0.left" timestamp="1588175133163">
+    <state width="2517" height="242" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588209536836" />
+    <state width="2517" height="242" key="GridCell.Tab.0.left" timestamp="1588209536836">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="366" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588175133163" />
-    <state width="2517" height="366" key="GridCell.Tab.0.right" timestamp="1588175133163">
+    <state width="2517" height="242" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588209536836" />
+    <state width="2517" height="242" key="GridCell.Tab.0.right" timestamp="1588209536836">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="366" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588175133163" />
+    <state width="2517" height="242" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588209536836" />
     <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1588101789682">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -639,10 +626,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="93" y="93" width="2375" height="1215" key="com.intellij.history.integration.ui.views.FileHistoryDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588090661449" />
-    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1588175098195">
+    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1588199062398">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588175098195" />
+    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588199062398" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1583078153354">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -651,10 +638,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587855324869" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1588191821937">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1588200577966">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588191821937" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588200577966" />
   </component>
 </project>
