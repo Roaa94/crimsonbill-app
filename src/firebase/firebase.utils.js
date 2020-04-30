@@ -4,13 +4,13 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCL3K6pPVEIHFNMHXxLX3fX5NIAf5Wy0xo",
-    authDomain: "planner-app-c5da5.firebaseapp.com",
-    databaseURL: "https://planner-app-c5da5.firebaseio.com",
-    projectId: "planner-app-c5da5",
-    storageBucket: "planner-app-c5da5.appspot.com",
-    messagingSenderId: "517745240344",
-    appId: "1:517745240344:web:6958f2f9a3aeab0e64166d"
+    apiKey: "AIzaSyD3VlTiHyq4kowWs41Tyw22q3lDN2iZ4xs",
+    authDomain: "tracker-app-c38fe.firebaseapp.com",
+    databaseURL: "https://tracker-app-c38fe.firebaseio.com",
+    projectId: "tracker-app-c38fe",
+    storageBucket: "tracker-app-c38fe.appspot.com",
+    messagingSenderId: "547781474090",
+    appId: "1:547781474090:web:c4e1ae74f78defc49cd053"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
