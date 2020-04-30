@@ -11,6 +11,7 @@ import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {deleteBalanceDocument} from "../../../firebase/balances.firebase-utils";
 import BalanceForm from "../BalanceForm";
+import TransactionsList from "../../transactions/transactions-list/TransactionsList";
 
 class BalanceCard extends React.Component {
 
@@ -100,7 +101,7 @@ class BalanceCard extends React.Component {
                             />
                         ) : null
                     }
-                    bla bla
+                    <TransactionsList/>
                 </Box>
             </BalanceCardExpansionPanel>
         );

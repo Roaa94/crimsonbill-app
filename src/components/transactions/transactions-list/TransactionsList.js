@@ -1,6 +1,5 @@
 import React from 'react';
 import {TransactionsListHeader} from "./TransactionsList.styles";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import {colors} from "../../../styles/global";
 import AddIconButton from "../../ui/buttons/AddIconButton";
