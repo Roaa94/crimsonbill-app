@@ -17,7 +17,7 @@ export const selectAccountBalances = accountId => createSelector(
     accountsArray => {
         let balances = [];
         accountsArray.forEach(account => {
-            if(account.id === accountId) {
+            if (account.id === accountId) {
                 balances = account.balances;
             }
         });
@@ -25,12 +25,27 @@ export const selectAccountBalances = accountId => createSelector(
     },
 );
 
-export const selectBalancesFetching = createSelector(
-    [selectAccounts],
-    accounts => accounts.isFetchingBalances,
-);
-
-export const selectIsBalancesLoaded = accountId => createSelector(
-    [selectAccountBalances(accountId)],
-    balances => !!balances,
+export const selectAccountTransactions = (accountId, balanceId) => createSelector(
+    [selectAccountsArray],
+    accountsArray => {
+        let transactions = [];
+        if (balanceId) {
+            accountsArray.forEach(account => {
+                if (account.id === accountId) {
+                    account.balances.forEach(balance => {
+                        if (balance.id === balanceId) {
+                            transactions = balance.transactions;
+                        }
+                    })
+                }
+            });
+        } else {
+            accountsArray.forEach(account => {
+                if (account.id === accountId) {
+                    transactions = account.transactions;
+                }
+            });
+        }
+        return transactions;
+    },
 );

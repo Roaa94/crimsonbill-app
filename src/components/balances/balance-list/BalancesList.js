@@ -4,7 +4,6 @@ import AddIconButton from "../../ui/buttons/AddIconButton";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {
     selectAccountBalances,
-    selectIsBalancesLoaded
 } from "../../../redux/accounts/accounts.selectors";
 import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions";
 import {connect} from "react-redux";
@@ -85,7 +84,7 @@ class BalancesList extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     balances: selectAccountBalances(ownProps.accountId)(state),
-    isBalancesLoaded: selectIsBalancesLoaded(ownProps.accountId)(state),
+    isBalancesLoaded: !!selectAccountBalances(ownProps.accountId)(state),
 });
 
 const mapDispatchToProps = dispatch => ({

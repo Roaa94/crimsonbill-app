@@ -1,10 +1,11 @@
 import {accountsActionTypes} from "./accounts.action-types";
-import {addAccountBalances} from "./accounts.redux-utils";
+import {addAccountBalances, addAccountTransactions} from "./accounts.redux-utils";
 
 const INITIAL_STATE = {
     accountsArray: [],
     isFetchingAccounts: false,
     isFetchingBalances: false,
+    isFetchingTransactions: false,
     errorMessage: undefined,
 };
 
@@ -42,6 +43,23 @@ const accountsReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isFetchingBalances: false,
+                errorMessage: action.payload,
+            };
+        case accountsActionTypes.FETCH_TRANSACTIONS_START:
+            return {
+                ...state,
+                isFetchingTransactions: true,
+            }
+        case accountsActionTypes.FETCH_TRANSACTIONS_SUCCESS:
+            return {
+                ...state,
+                isFetchingTransactions: false,
+                accountsArray: addAccountTransactions(state.accountsArray, action.payload),
+            };
+        case accountsActionTypes.FETCH_TRANSACTIONS_ERROR:
+            return {
+                ...state,
+                isFetchingTransactions: false,
                 errorMessage: action.payload,
             };
         default:

@@ -4,15 +4,24 @@ import Grid from "@material-ui/core/Grid";
 import {colors} from "../../../styles/global";
 import AddIconButton from "../../ui/buttons/AddIconButton";
 import TransactionForm from "../transaction-form/TransactionForm";
+import {selectUserId} from "../../../redux/user/user.selectors";
+import {connect} from "react-redux";
+import {fetchTransactionsStartAsync} from "../../../redux/accounts/accounts.actions";
+import {selectAccountTransactions} from "../../../redux/accounts/accounts.selectors";
 
 class TransactionsList extends React.Component {
     state = {
         showTransactionForm: false,
     };
 
+    componentDidMount() {
+        const {fetchTransactionsStartAsync, userId, accountId, balanceId} = this.props;
+        fetchTransactionsStartAsync(userId, accountId, balanceId);
+    }
+
     render() {
         const {showTransactionForm} = this.state;
-        const {accountId, balanceId} = this.props;
+        const {accountId, balanceId, transactions, isTransactionsLoaded} = this.props;
 
         return (
             <div>
@@ -38,9 +47,27 @@ class TransactionsList extends React.Component {
                         />
                     ) : null
                 }
+                {
+                    isTransactionsLoaded ?
+                        (
+                            transactions.map(({id, amount}) => (
+                                <div key={id}>{amount}</div>
+                            ))
+                        ) : null
+                }
             </div>
         );
     }
 }
 
-export default TransactionsList;
+const mapStateToProps = (state, ownProps) => ({
+    userId: selectUserId(state),
+    transactions: selectAccountTransactions(ownProps.accountId, ownProps.balanceId)(state),
+    isTransactionsLoaded: !!selectAccountTransactions(ownProps.accountId, ownProps.balanceId)(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchTransactionsStartAsync: (userId, accountId, balanceId) => dispatch(fetchTransactionsStartAsync(userId, accountId, balanceId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionsList);
