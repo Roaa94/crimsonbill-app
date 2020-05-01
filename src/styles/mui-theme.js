@@ -101,6 +101,11 @@ export const theme = createMuiTheme({
                 },
             }
         },
+        MuiExpansionPanel: {
+            TransitionProps: {
+                unmountOnExit: true,
+            }
+        }
     },
     typography: {
         fontFamily: 'Raleway',

@@ -69,7 +69,6 @@ class AccountCard extends React.Component {
 
         return (
             <AccountCardExpansionPanel
-                TransitionProps={{unmountOnExit: true}}
                 expanded={accountCardExpanded}
                 onChange={this.handleExpansionPanelChange}
             >
