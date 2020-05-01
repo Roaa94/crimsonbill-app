@@ -1,7 +1,7 @@
 import React from 'react';
 import {BalanceCardExpansionPanel, BalanceCardExpansionPanelSummary} from "./BalanceCard.styles";
 import Grid from "@material-ui/core/Grid";
-import Button from "../../ui/buttons/button-filled/Button";
+import Button from "../../ui/buttons/Button";
 import {colors} from "../../../styles/global";
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';

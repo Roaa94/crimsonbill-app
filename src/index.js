@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from "redux-persist/integration/react";
 import {store, persistor} from './redux/store';
 import {ThemeProvider} from '@material-ui/core/styles';
-import {theme} from './styles/global';
+import {theme} from "./styles/mui-theme";
 
 ReactDOM.render(
     <Provider store={store}>

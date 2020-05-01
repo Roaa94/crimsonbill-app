@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import TextFieldOutlined from "../ui/inputs/text-field/TextFieldOutlined";
+import TextFieldOutlined from "../ui/inputs/TextFieldOutlined";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import ButtonOutlined from "../ui/buttons/button-outlined/ButtonOutlined";
+import ButtonOutlined from "../ui/buttons/ButtonOutlined";
 import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/firebase.utils";
 
 class SignUpForm extends Component {

@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
 import {addOrUpdateAccountDocument} from "../../../firebase/accounts.firebase-utils";
-import TextFieldFilled from "../../ui/inputs/text-field/TextFieldFilled";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {firestore} from "../../../firebase/firebase.utils";
 import {createStructuredSelector} from "reselect";
 import Grid from '@material-ui/core/Grid';
 import Box from "@material-ui/core/Box";
-import Select from "../../ui/inputs/select/Select";
+import Select from "../../ui/inputs/Select";
 import {currencies, types} from "../../../data";
-import Button from "../../ui/buttons/button-filled/Button";
+import Button from "../../ui/buttons/Button";
 import {colors} from "../../../styles/global";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import TextField from "@material-ui/core/TextField";
 
 class AccountForm extends Component {
     _isMounted = false;
@@ -81,7 +81,7 @@ class AccountForm extends Component {
             <form onSubmit={this.handleFormSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
-                        <TextFieldFilled
+                        <TextField
                             label='Account Name'
                             value={name}
                             name='name'
@@ -109,7 +109,7 @@ class AccountForm extends Component {
                     </Grid>
                     <Grid item xs={12}>
                         <Box mb={2}>
-                            <TextFieldFilled
+                            <TextField
                                 label='Notes'
                                 value={notes}
                                 name='notes'

@@ -2,6 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import {ReactComponent as FolderCabinetSVG} from '../../assets/svg/folder-cabinet.svg';
+
 export const transactionDrawerWidth = 320;
 
 const useStyles = makeStyles(() => ({

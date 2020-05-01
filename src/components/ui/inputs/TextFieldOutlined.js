@@ -5,16 +5,6 @@ import Box from "@material-ui/core/Box";
 
 const CustomOutlinedTextField = withStyles(theme => ({
     root: {
-        background: theme.palette.background.main,
-        '& label': {
-            color: theme.palette.primary.main,
-        },
-        '& label.Mui-focused': {
-            color: theme.palette.secondary.main,
-        },
-        '& .MuiInputLabel-shrink': {
-            color: theme.palette.secondary.main,
-        },
         '& .MuiInput-underline:after': {
             borderBottomColor: theme.palette.secondary.main,
         },

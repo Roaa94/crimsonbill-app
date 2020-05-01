@@ -4,10 +4,10 @@ import {createStructuredSelector} from "reselect";
 import {selectUserId} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import TextFieldFilled from "../ui/inputs/text-field/TextFieldFilled";
-import Select from "../ui/inputs/select/Select";
+import Select from "../ui/inputs/Select";
+import TextField from "@material-ui/core/TextField";
 import {currencies} from "../../data";
-import Button from "../ui/buttons/button-filled/Button";
+import Button from "../ui/buttons/Button";
 import {colors} from "../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
@@ -67,7 +67,7 @@ class BalanceForm extends React.Component {
                 <Box my={2}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
-                            <TextFieldFilled
+                            <TextField
                                 label='Balance Name'
                                 value={name}
                                 name='name'

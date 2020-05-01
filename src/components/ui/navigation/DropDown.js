@@ -2,7 +2,7 @@ import React from 'react';
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from "@material-ui/core/IconButton";
-import {DropDownMenu, DropDownWrapper} from "./DropDown.styles";
+import Menu from "@material-ui/core/Menu";
 
 const DropDown = ({menuItems}) => {
     const [menuElement, setMenuElement] = React.useState(null);
@@ -18,16 +18,16 @@ const DropDown = ({menuItems}) => {
     };
 
     return (
-        <DropDownWrapper>
+        <div>
             <IconButton
                 aria-label="more"
                 aria-controls="long-menu"
                 aria-haspopup="true"
                 onClick={handleClick}
             >
-                <MoreVertIcon />
+                <MoreVertIcon/>
             </IconButton>
-            <DropDownMenu
+            <Menu
                 id="simple-menu"
                 anchorEl={menuElement}
                 keepMounted
@@ -45,16 +45,19 @@ const DropDown = ({menuItems}) => {
             >
                 {
                     menuItems.map(({id, title, handleClick}) => (
-                        <MenuItem key={id} onClick={event => {
-                            handleClick();
-                            handleClose(event);
-                        }}>
+                        <MenuItem
+                            key={id}
+                            onClick={event => {
+                                handleClick();
+                                handleClose(event);
+                            }}
+                        >
                             {title}
                         </MenuItem>
                     ))
                 }
-            </DropDownMenu>
-        </DropDownWrapper>
+            </Menu>
+        </div>
     );
 };
 

@@ -1,13 +1,30 @@
 import React from 'react';
-import {CustomButton} from "./Button.styles";
-import {colors} from "../../../../styles/global";
+import {borderRadius, boxShadows, colors} from "../../../styles/global";
+import withStyles from "@material-ui/core/styles/withStyles";
+import MuiButton from "@material-ui/core/Button";
+
+export const CustomButton = withStyles({
+    root: {
+        backgroundColor: props => props.bgcolor,
+        color: props => props.textcolor,
+        height: props => props.height,
+        padding: props => props.size === 'small' ? '3px 10px' : '8px 20px',
+        margin: props => props.margin,
+        fontSize: props => props.size === 'small' ? '0.7rem' : '0.8rem',
+        borderRadius: props => props.size === 'small' ? borderRadius.s : borderRadius.m,
+        '&:hover': {
+            backgroundColor: props => props.bgcolor,
+            color: props => props.textcolor,
+            boxShadow: boxShadows.main,
+        }
+    }
+})(MuiButton);
 
 const Button = ({
                     children,
                     textColor = colors.white,
                     bgColor = colors.primary,
                     height = 'auto',
-                    fullWidth = true,
                     prefixIcon,
                     suffixIcon,
                     justifyContent = 'center',
@@ -18,7 +35,6 @@ const Button = ({
     return (
         <CustomButton
             variant='contained'
-            fullWidth={fullWidth}
             textcolor={textColor}
             bgcolor={bgColor}
             height={height}
