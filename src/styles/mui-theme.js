@@ -12,9 +12,7 @@ export const theme = createMuiTheme({
         background: {
             default: colors.white
         },
-        divider: {
-            main: '#EBF4FE'
-        },
+        divider: 'rgba(0,0,0,0)',
         action: {
             hover: colors.background,
             selected: colors.background,
@@ -79,6 +77,47 @@ export const theme = createMuiTheme({
                 }
             }
         },
+        MuiTableRow: {
+            root: {
+                transition: 'all .3s',
+                borderRadius: borderRadius.s,
+                '&:hover': {
+                    backgroundColor: colors.background,
+                }
+            }
+        },
+        MuiTableCell: {
+            root: {
+                padding: '10px',
+                borderBottom: 'none',
+            }
+        },
+        MuiExpansionPanel: {
+            root: {
+                margin: 0,
+                boxShadow: 'none',
+                borderRadius: 0,
+                '&:before': {
+                    display: 'none',
+                },
+                '&$expanded': {
+                    margin: 0,
+                },
+            },
+            rounded: {
+                '&:last-child': {
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
+                }
+            },
+        },
+        MuiExpansionPanelSummary: {
+            content: {
+                '&$expanded': {
+                    margin: '12px 0',
+                },
+            },
+        }
     },
     props: {
         MuiButton: {

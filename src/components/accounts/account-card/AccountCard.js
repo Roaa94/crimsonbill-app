@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import {
     AccountCardExpansionPanel,
     AccountCardExpansionPanelHeader,
-    AccountCardExpansionPanelSummary,
     ExpansionPanelContent
 } from './AccountCard.styles';
 import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
@@ -17,6 +16,7 @@ import AccountForm from "../account-form/AccountForm";
 import Box from "@material-ui/core/Box";
 import BalancesList from "../../balances/balance-list/BalancesList";
 import TransactionsList from "../../transactions/transactions-list/TransactionsList";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 
 class AccountCard extends React.Component {
 
@@ -72,7 +72,7 @@ class AccountCard extends React.Component {
                 expanded={accountCardExpanded}
                 onChange={this.handleExpansionPanelChange}
             >
-                <AccountCardExpansionPanelSummary>
+                <ExpansionPanelSummary>
                     <AccountCardExpansionPanelHeader>
                         <Grid container alignItems='center'>
                             <Grid item xs={4}>
@@ -92,7 +92,7 @@ class AccountCard extends React.Component {
                             </Grid>
                         </Grid>
                     </AccountCardExpansionPanelHeader>
-                </AccountCardExpansionPanelSummary>
+                </ExpansionPanelSummary>
                 <ExpansionPanelContent>
                     {
                         notes ? (
