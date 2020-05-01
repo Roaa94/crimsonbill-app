@@ -33,3 +33,21 @@ export const currencies = [
         value: '$',
     },
 ];
+
+export const categories = [
+    {
+        id: 0,
+        title: 'Groceries',
+        value: 'Groceries',
+    },
+    {
+        id: 1,
+        title: 'Gas',
+        value: 'Gas',
+    },
+    {
+        id: 2,
+        title: 'Misc',
+        value: 'Misc',
+    },
+];
