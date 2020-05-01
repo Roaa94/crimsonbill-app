@@ -86,6 +86,7 @@ class AccountForm extends Component {
                             value={name}
                             name='name'
                             type='text'
+                            required
                             onChange={this.handleFieldChange}
                         />
                     </Grid>
