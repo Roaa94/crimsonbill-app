@@ -3,7 +3,7 @@ import {colors} from "../../styles/global";
 
 export const AppTitleContainer = styled.div`
   margin: 30px;
-  color: ${colors.primary};
+  color: ${colors.text};
   display: flex;
   align-items: center;
 `;

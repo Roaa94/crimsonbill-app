@@ -36,7 +36,7 @@ export const DashboardPageWrapper = styled.div`
       border-bottom-left-radius: 20px;
       border-top-left-radius: 20px;
       background-color: #fff;
-      color: ${colors.primary};
+      color: ${colors.text};
       cursor: pointer;
       display: flex;
       align-items: center;

@@ -14,7 +14,7 @@ const TransactionTypeIconContainer = styled.div`
   cursor: pointer;
   justify-content: center;
   border-radius: ${borderRadius.m};
-  border: ${props => props.checked ? `3px solid ${props.type === 'spending' ? colors.secondary : colors.info}` : 'none'};
+  border: ${props => props.checked ? `3px solid ${props.type === 'spending' ? colors.primary : colors.secondary}` : 'none'};
   transition: all .3s;
   box-shadow: ${props => props.checked ? boxShadows.main : 'none'};
   

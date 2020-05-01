@@ -11,7 +11,7 @@ import ScheduleRoundedIcon from '@material-ui/icons/ScheduleRounded';
 const CustomTimePicker = withStyles(theme => ({
     root: {
         '& .MuiInputLabel-shrink': {
-            color: theme.palette.secondary.main,
+            color: theme.palette.primary.main,
         },
     }
 }))(KeyboardTimePicker);

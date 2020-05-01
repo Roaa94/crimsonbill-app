@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {borderRadius, boxShadows, colors} from "../../../styles/global";
 
 const AddIconButtonContainer = styled.div`
-  color: ${colors.primary};
+  color: ${colors.text};
   padding: ${props => props.size === 'small' ? '5px' : '10px'};
   width: ${props => props.size === 'small' ? '30px' : '50px'};
   height: ${props => props.size === 'small' ? '30px' : '50px'};
@@ -20,7 +20,7 @@ const AddIconButtonContainer = styled.div`
   background-color: ${props => props.bgcolor};
     
   :hover{
-    color: ${colors.info};
+    color: ${colors.secondary};
     box-shadow: ${boxShadows.main};
   }
   

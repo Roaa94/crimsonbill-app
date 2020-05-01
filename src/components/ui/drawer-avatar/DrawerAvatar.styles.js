@@ -12,7 +12,7 @@ export const AvatarWrapper = styled.div`
 export const AvatarContainer = styled.div`
   width: 130px;
   height: 130px;
-  border: 2px solid ${colors.secondary};
+  border: 2px solid ${colors.primary};
   border-radius: 100%;
   padding: 7px;
   position: relative;
@@ -25,7 +25,7 @@ export const AvatarContainer = styled.div`
     top: -5px;
     left: -5px;
     border-radius: 100%;
-    border: 7px solid ${colors.infoLight};
+    border: 7px solid ${colors.secondaryLight};
     z-index: -1;
   }
   
@@ -38,9 +38,9 @@ export const AvatarContainer = styled.div`
     width: 25px;
     height: 25px;
     border-radius: 100%;
-    color: ${colors.secondary};
+    color: ${colors.primary};
     background-color: #fff;
-    border: 2px solid ${colors.primary};
+    border: 2px solid ${colors.text};
     z-index: 10;
     font-size: 12px;
     display: flex;

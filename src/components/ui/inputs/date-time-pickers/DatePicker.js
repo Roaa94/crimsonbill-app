@@ -10,7 +10,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 const CustomDatePicker = withStyles(theme => ({
     root: {
         '& .MuiInputLabel-shrink': {
-            color: theme.palette.secondary.main,
+            color: theme.palette.primary.main,
         },
     }
 }))(KeyboardDatePicker);

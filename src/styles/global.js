@@ -1,10 +1,10 @@
 export const colors = {
-    primary: '#0E2549',
-    secondary: '#CE4C50',
-    info: '#8DBADF',
+    text: '#0E2549',
+    primary: '#CE4C50',
+    secondary: '#8DBADF',
     background: '#F4F6F8',
-    secondaryLight: '#FBE8E8',
-    infoLight: '#DAE8F4',
+    primaryLight: '#FBE8E8',
+    secondaryLight: '#DAE8F4',
     white: '#FFFFFF',
 };
 

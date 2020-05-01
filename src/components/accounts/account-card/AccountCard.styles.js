@@ -39,11 +39,11 @@ export const AccountCardExpansionPanelHeader = styled.div`
   width: 100%;
   
   .account-currency{
-    color: ${colors.info};
+    color: ${colors.secondary};
   }
   
   .account-type{
-    color: ${colors.secondary};
+    color: ${colors.primary};
     font-weight: 600;
     display: flex;
     align-items: center;

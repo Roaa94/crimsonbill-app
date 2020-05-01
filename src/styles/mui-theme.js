@@ -9,9 +9,6 @@ export const theme = createMuiTheme({
         secondary: {
             main: colors.secondary,
         },
-        info: {
-            main: colors.info,
-        },
         background: {
             default: colors.white
         },
@@ -26,20 +23,20 @@ export const theme = createMuiTheme({
     overrides: {
         MuiInputLabel: {
             root: {
-                color: colors.primary,
+                color: colors.text,
                 fontSize: '0.9rem',
             },
             filled: {
-                color: colors.primary,
+                color: colors.text,
             },
             shrink: {
-                color: colors.secondary,
+                color: colors.primary,
             }
         },
         MuiFormLabel: {
             root: {
                 '&$focused': {
-                    color: colors.secondary,
+                    color: colors.primary,
                 }
             }
         },

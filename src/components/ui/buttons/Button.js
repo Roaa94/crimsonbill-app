@@ -23,7 +23,7 @@ export const CustomButton = withStyles({
 const Button = ({
                     children,
                     textColor = colors.white,
-                    bgColor = colors.primary,
+                    bgColor = colors.text,
                     height = 'auto',
                     prefixIcon,
                     suffixIcon,

@@ -91,7 +91,7 @@ class BalanceForm extends React.Component {
                     <Button
                         fullWidth={false}
                         type='submit'
-                        bgColor={colors.info}
+                        bgColor={colors.secondary}
                         prefixIcon={<CheckRoundedIcon/>}
                         margin='0 20px 20px 0'
                         size='small'
@@ -99,7 +99,7 @@ class BalanceForm extends React.Component {
                         Submit
                     </Button>
                     <Button
-                        bgColor={colors.secondary}
+                        bgColor={colors.primary}
                         fullWidth={false}
                         onClick={handleFormCancel}
                         prefixIcon={<ClearRoundedIcon/>}

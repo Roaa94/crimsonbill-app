@@ -17,7 +17,7 @@ import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
 
 class TransactionForm extends React.Component {
     defaultValues = {
-        type: '',
+        type: 'spending',
         category: '',
         amount: 0.0,
         dateTime: new Date(),
@@ -65,7 +65,7 @@ class TransactionForm extends React.Component {
     }
 
     render() {
-        const {typePicker, category, amount, dateTime, accountToAccount, notes} = this.state;
+        const {typePicker, category, amount, dateTime, accountToAccount, notes, type} = this.state;
         const {handleFormCancel} = this.props;
 
         return (
@@ -126,7 +126,7 @@ class TransactionForm extends React.Component {
                                         checked={accountToAccount}
                                         onChange={this.handleCheckBoxChange}
                                         name="accountToAccount"
-                                        color='secondary'
+                                        color={type === 'spending' ? 'primary' : 'secondary'}
                                     />
                                 }
                                 label="Account to Account Transaction"
@@ -145,7 +145,10 @@ class TransactionForm extends React.Component {
                                         />
                                     </Grid>
                                     <Grid container item xs={12} md justify='center'>
-                                        <Icon color='secondary' fontSize='large'>
+                                        <Icon
+                                            color={type === 'spending' ? 'primary' : 'secondary'}
+                                            fontSize='large'
+                                        >
                                             <DoubleArrowRoundedIcon/>
                                         </Icon>
                                     </Grid>
@@ -178,14 +181,14 @@ class TransactionForm extends React.Component {
                     <Button
                         fullWidth={false}
                         type='submit'
-                        bgColor={colors.info}
+                        bgColor={colors.secondary}
                         prefixIcon={<CheckRoundedIcon/>}
                         margin='0 20px 20px 0'
                     >
                         Submit
                     </Button>
                     <Button
-                        bgColor={colors.secondary}
+                        bgColor={colors.primary}
                         fullWidth={false}
                         onClick={handleFormCancel}
                         prefixIcon={<ClearRoundedIcon/>}

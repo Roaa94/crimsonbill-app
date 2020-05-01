@@ -12,11 +12,11 @@ const AddAccountIconWrapper = styled(AddAccountSvgIcon)`
   overflow: visible;
   
   .document{
-    fill: ${colors.primary};
+    fill: ${colors.text};
   }
   
   .plus{
-    fill: ${colors.secondary};
+    fill: ${colors.primary};
     transition: transform .2s ease-in-out;
     transform-origin: 72% 72%;
   }

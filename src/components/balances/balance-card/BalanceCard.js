@@ -62,7 +62,7 @@ class BalanceCard extends React.Component {
                         <Grid item xs={4} container justify='flex-end'>
                             <Button
                                 fullWidth={false}
-                                bgColor={colors.info}
+                                bgColor={colors.secondary}
                                 size='small'
                                 prefixIcon={<EditRoundedIcon/>}
                                 onClick={(event) => {
@@ -77,7 +77,7 @@ class BalanceCard extends React.Component {
                                 Edit
                             </Button>
                             <Button
-                                bgColor={colors.secondary}
+                                bgColor={colors.primary}
                                 size='small'
                                 fullWidth={false}
                                 onClick={async (event) => {

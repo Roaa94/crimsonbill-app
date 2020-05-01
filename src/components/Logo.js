@@ -8,15 +8,15 @@ const LogoWrapper = styled(LogoSVG)`
   margin-right: 10px;
   
   .large{
-    fill: ${colors.secondary};
-  }
-  
-  .medium{
     fill: ${colors.primary};
   }
   
+  .medium{
+    fill: ${colors.text};
+  }
+  
   .small{
-    fill: ${colors.info};
+    fill: ${colors.secondary};
   }
 `;
 
