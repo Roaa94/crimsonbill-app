@@ -8,6 +8,7 @@ import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {fetchTransactionsStartAsync} from "../../../redux/accounts/accounts.actions";
 import {selectAccountTransactions} from "../../../redux/accounts/accounts.selectors";
+import TransactionCard from "../transaction-card/TransactionCard";
 
 class TransactionsList extends React.Component {
     state = {
@@ -48,12 +49,11 @@ class TransactionsList extends React.Component {
                     ) : null
                 }
                 {
-                    isTransactionsLoaded ?
-                        (
-                            transactions.map(({id, amount}) => (
-                                <div key={id}>{amount}</div>
-                            ))
-                        ) : null
+                    isTransactionsLoaded ? (
+                        transactions.map(transaction => (
+                            <TransactionCard key={transaction.id} {...transaction} />
+                        ))
+                    ) : null
                 }
             </div>
         );
