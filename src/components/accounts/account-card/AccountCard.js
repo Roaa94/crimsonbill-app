@@ -113,7 +113,7 @@ class AccountCard extends React.Component {
                     {
                         hasBalances
                             ? <BalancesList accountId={id}/>
-                            : <TransactionsList/>
+                            : <TransactionsList accountId={id}/>
                     }
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>

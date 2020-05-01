@@ -14,40 +14,63 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import DateTimePicker from "../../ui/inputs/date-time-pickers/DateTimePicker";
 import Icon from "@material-ui/core/Icon";
 import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
+import {addOrUpdateTransactionDocument} from "../../../firebase/transactions.firebase-utils";
+import {createStructuredSelector} from "reselect";
+import {selectUserId} from "../../../redux/user/user.selectors";
+import {connect} from "react-redux";
 
 class TransactionForm extends React.Component {
-    defaultValues = {
+    defaultTransactionValues = {
         type: 'spending',
         category: '',
-        amount: 0.0,
+        amount: '',
         dateTime: new Date(),
-        accountToAccount: true,
+        accountToAccount: false,
         sourceAccountId: '',
         destinationAccountId: '',
         notes: '',
-        typePicker: {
-            spending: true,
-            earning: false,
-        }
     };
 
-    state = this.defaultValues;
+    typePicker = {
+        spending: true,
+        earning: false,
+    };
+
+    state = {
+        defaultValues: this.defaultTransactionValues,
+        typePicker: this.typePicker,
+    };
 
     handleFormSubmit = async event => {
         event.preventDefault();
-        let {handleFormCancel} = this.props;
-        this.setState(this.defaultValues);
+        let {handleFormCancel, userId, accountId, transactionId, balanceId} = this.props;
+        const transactionData = this.state.defaultValues;
+        await addOrUpdateTransactionDocument(userId, accountId, balanceId, transactionId, transactionData);
+        this.setState({
+            defaultValues: this.defaultTransactionValues,
+            typePicker: this.typePicker,
+        });
         handleFormCancel();
     }
 
     handleFieldChange = event => {
+        const {defaultValues} = this.state;
         const {name, value} = event.target;
-        this.setState({[name]: value});
+        this.setState({
+            defaultValues: {
+                ...defaultValues,
+                [name]: value
+            },
+        });
     };
 
     handleTypePickerChange = value => {
+        const {defaultValues} = this.state;
         this.setState({
-            type: value,
+            defaultValues: {
+                ...defaultValues,
+                type: value,
+            },
             typePicker: {
                 [value]: true,
             }
@@ -55,17 +78,28 @@ class TransactionForm extends React.Component {
     };
 
     handleDateChange = pickedDate => {
+        const {defaultValues} = this.state;
         this.setState({
-            dateTime: pickedDate,
-        })
+            defaultValues: {
+                ...defaultValues,
+                date: pickedDate,
+            }
+        });
     }
 
     handleCheckBoxChange = event => {
-        this.setState({accountToAccount: event.target.checked});
+        const {defaultValues} = this.state;
+        this.setState({
+            defaultValues: {
+                ...defaultValues,
+                accountToAccount: event.target.checked,
+            }
+        })
     }
 
     render() {
-        const {typePicker, category, amount, dateTime, accountToAccount, notes, type} = this.state;
+        const {typePicker, defaultValues} = this.state;
+        const {category, amount, dateTime, accountToAccount, notes, type} = defaultValues;
         const {handleFormCancel} = this.props;
 
         return (
@@ -108,6 +142,7 @@ class TransactionForm extends React.Component {
                                 value={amount}
                                 name='amount'
                                 type='text'
+                                required
                                 onChange={this.handleFieldChange}
                             />
                         </Grid>
@@ -202,4 +237,8 @@ class TransactionForm extends React.Component {
     }
 }
 
-export default TransactionForm;
+const mapStateToProps = createStructuredSelector({
+    userId: selectUserId,
+});
+
+export default connect(mapStateToProps)(TransactionForm);

@@ -7,11 +7,12 @@ import TransactionForm from "../transaction-form/TransactionForm";
 
 class TransactionsList extends React.Component {
     state = {
-        showTransactionForm: true,
+        showTransactionForm: false,
     };
 
     render() {
         const {showTransactionForm} = this.state;
+        const {accountId, balanceId} = this.props;
 
         return (
             <div>
@@ -32,6 +33,8 @@ class TransactionsList extends React.Component {
                     showTransactionForm ? (
                         <TransactionForm
                             handleFormCancel={() => this.setState({showTransactionForm: false})}
+                            accountId={accountId}
+                            balanceId={balanceId}
                         />
                     ) : null
                 }

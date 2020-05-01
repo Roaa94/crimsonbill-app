@@ -101,7 +101,10 @@ class BalanceCard extends React.Component {
                             />
                         ) : null
                     }
-                    <TransactionsList/>
+                    <TransactionsList
+                        accountId={accountId}
+                        balanceId={balanceId}
+                    />
                 </Box>
             </BalanceCardExpansionPanel>
         );
