@@ -12,6 +12,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const TransactionFormLayout = (
     {
+        formTitle,
         typePickers,
         onSelectType,
         categorySelectValue,
@@ -34,7 +35,7 @@ const TransactionFormLayout = (
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Box fontWeight='600' fontSize='small'>
-                        Add Transaction
+                        {formTitle}
                     </Box>
                 </Grid>
                 <Grid item container alignItems='stretch' wrap='nowrap' xs={12} md={7} xl={4}>

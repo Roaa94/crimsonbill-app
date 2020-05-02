@@ -12,6 +12,7 @@ export const TransactionExpansionPanelSummary = withStyles({
         transition: 'all .3s',
         '&$expanded': {
             minHeight: '30px',
+            backgroundColor: colors.background,
         },
         '&:hover': {
             backgroundColor: colors.background,

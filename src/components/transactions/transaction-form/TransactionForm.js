@@ -10,6 +10,7 @@ import {createStructuredSelector} from "reselect";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import TransactionFormLayout from "./TransactionFormLayout";
+import {firestore} from "../../../firebase/firebase.utils";
 
 class TransactionForm extends React.Component {
     defaultTransactionValues = {
@@ -32,6 +33,44 @@ class TransactionForm extends React.Component {
         defaultValues: this.defaultTransactionValues,
         typePickerValues: this.typePickerValues,
     };
+
+    _isMounted = false;
+
+    componentDidMount() {
+        this._isMounted = true;
+        const {userId, accountId, balanceId, transactionId} = this.props;
+
+        if (transactionId) {
+            const accountPath = `users/${userId}/accounts/${accountId}`;
+            const balancePath = `${accountPath}/balances/${balanceId}`;
+            const transactionDocPath = `${balanceId ? balancePath : accountPath}/transactions/${transactionId}`;
+            const transactionRef = firestore.doc(transactionDocPath);
+
+            transactionRef.onSnapshot(snapShot => {
+                let transactionData = snapShot.data();
+                let {type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes} = transactionData;
+                const parsedDateTime = new Date(transactionData.dateTime.seconds * 1000);
+                console.log('parsedDateTime');
+                console.log(parsedDateTime);
+                if (this._isMounted) {
+                    this.setState({
+                        defaultValues: {
+                            dateTime: parsedDateTime,
+                            type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes,
+                        },
+                        typePickerValues: {
+                            spending: transactionData.type === 'spending',
+                            earning: transactionData.type === 'earning',
+                        }
+                    });
+                }
+            })
+        }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
     handleFormSubmit = async event => {
         event.preventDefault();
@@ -93,11 +132,12 @@ class TransactionForm extends React.Component {
     render() {
         const {typePickerValues, defaultValues} = this.state;
         const {category, amount, dateTime, accountToAccount, notes, type} = defaultValues;
-        const {handleFormCancel} = this.props;
+        const {handleFormCancel, transactionId} = this.props;
 
         return (
             <form onSubmit={this.handleFormSubmit}>
                 <TransactionFormLayout
+                    formTitle={transactionId ? 'Edit Transaction' : 'Add Transaction'}
                     typePickers={typePickerValues}
                     onSelectType={this.handleTypePickerChange}
                     onFieldChange={this.handleFieldChange}

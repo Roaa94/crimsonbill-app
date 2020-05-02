@@ -14,16 +14,34 @@ import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {deleteTransactionDocument} from "../../../firebase/transactions.firebase-utils";
 import FormattedNumber from "../../ui/FormattedNumber";
+import TransactionForm from "../transaction-form/TransactionForm";
 
 class TransactionCard extends React.Component {
+    state = {
+        showTransactionForm: false,
+        transactionCardExpanded: false,
+    };
 
     deleteTransaction = async () => {
         let {userId, accountId, balanceId, transactionId} = this.props;
         await deleteTransactionDocument(userId, accountId, balanceId, transactionId);
     }
 
+    handleExpansionPanelChange = () => {
+        let {transactionCardExpanded} = this.state;
+        this.setState({
+            transactionCardExpanded: !transactionCardExpanded,
+        });
+        if (!transactionCardExpanded) {
+            this.setState({
+                showTransactionForm: false,
+            });
+        }
+    }
+
     render() {
-        let {category, type, amount, dateTime, notes} = this.props;
+        let {category, type, amount, dateTime, notes, accountId, balanceId, transactionId} = this.props;
+        let {transactionCardExpanded, showTransactionForm} = this.state;
 
         let parsedDateTime = new Date(dateTime.seconds * 1000);
         let formattedDate = format(parsedDateTime, 'dd.MMM');
@@ -31,7 +49,10 @@ class TransactionCard extends React.Component {
 
 
         return (
-            <ExpansionPanel>
+            <ExpansionPanel
+                expanded={transactionCardExpanded}
+                onChange={this.handleExpansionPanelChange}
+            >
                 <TransactionExpansionPanelSummary>
                     <Grid container alignItems='center' spacing={2}>
                         <Grid item container xs spacing={1}>
@@ -42,7 +63,7 @@ class TransactionCard extends React.Component {
                                         : <SpendingArrow><ArrowUp/></SpendingArrow>
                                 }
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={4}>
                                 <TransactionAmount type={type}>
                                     <FormattedNumber number={amount} currency='$'/>
                                 </TransactionAmount>
@@ -67,8 +88,8 @@ class TransactionCard extends React.Component {
                                 onClick={(event) => {
                                     event.stopPropagation();
                                     this.setState({
-                                        // showTransactionForm: true,
-                                        // transactionCardExpanded: true,
+                                        showTransactionForm: true,
+                                        transactionCardExpanded: true,
                                     });
                                 }}
                                 margin='0 10px 0 0'
@@ -91,6 +112,18 @@ class TransactionCard extends React.Component {
                         </Grid>
                     </Grid>
                 </TransactionExpansionPanelSummary>
+                {
+                    showTransactionForm ? (
+                        <Box px={2} pt={2}>
+                            <TransactionForm
+                                handleFormCancel={() => this.setState({showTransactionForm: false})}
+                                accountId={accountId}
+                                balanceId={balanceId}
+                                transactionId={transactionId}
+                            />
+                        </Box>
+                    ) : null
+                }
                 {
                     notes ? (
                         <Box p={2}>
