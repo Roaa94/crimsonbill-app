@@ -36,3 +36,15 @@ export const addOrUpdateTransactionDocument = async (userId, accountId, balanceI
         }
     }
 }
+
+export const deleteTransactionDocument = async (userId, accountId, balanceId, transactionId) => {
+    try {
+        const accountDocPath = `users/${userId}/accounts/${accountId}`;
+        const balanceDocPath = `${accountDocPath}/balances/${balanceId}`;
+        const docPath = `${balanceId ? balanceDocPath : accountDocPath}/transactions/${transactionId}`;
+        await firestore.doc(docPath).delete();
+        console.log('Document Deleted Successfully');
+    } catch (error) {
+        console.log(error.message);
+    }
+};

@@ -44,8 +44,14 @@ class TransactionsList extends React.Component {
                 }
                 {
                     isTransactionsLoaded ? (
-                        transactions.map(transaction => (
-                            <TransactionCard key={transaction.id} {...transaction} />
+                        transactions.map(({id, ...transaction}) => (
+                            <TransactionCard
+                                key={id}
+                                accountId={accountId}
+                                balanceId={balanceId}
+                                transactionId={id}
+                                {...transaction}
+                            />
                         ))
                     ) : null
                 }
