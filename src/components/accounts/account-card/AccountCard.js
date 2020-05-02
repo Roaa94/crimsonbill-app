@@ -17,6 +17,7 @@ import Box from "@material-ui/core/Box";
 import BalancesList from "../../balances/balance-list/BalancesList";
 import TransactionsList from "../../transactions/transactions-list/TransactionsList";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import AllTransactionsList from "../../transactions/transactions-list/AllTransactionsList";
 
 class AccountCard extends React.Component {
 
@@ -110,9 +111,14 @@ class AccountCard extends React.Component {
                         ) : null
                     }
                     {
-                        hasBalances
-                            ? <BalancesList accountId={id}/>
-                            : <TransactionsList accountId={id}/>
+                        hasBalances ? (
+                            <div>
+                                <Box mb={2}>
+                                    <AllTransactionsList accountId={id}/>
+                                </Box>
+                                <BalancesList accountId={id}/>
+                            </div>
+                        ) : <TransactionsList accountId={id}/>
                     }
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>

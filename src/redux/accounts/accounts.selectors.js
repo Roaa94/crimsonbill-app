@@ -49,3 +49,26 @@ export const selectAccountTransactions = (accountId, balanceId) => createSelecto
         return transactions;
     },
 );
+
+export const selectAllBalancesTransactions = (accountId) => createSelector(
+    [selectAccountsArray],
+    accountsArray => {
+        let allTransactions = [];
+        accountsArray.forEach(account => {
+            if (account.id === accountId && account.balances) {
+                account.balances.forEach(balance => {
+                    if (balance.transactions) {
+                        allTransactions.push(...balance.transactions);
+                    }
+                });
+            }
+        });
+        //Sort transactions by transaction date
+        allTransactions.sort((transactionA, transactionB) => {
+            let transactionATimestamp = transactionA.dateTime.seconds;
+            let transactionBTimestamp = transactionB.dateTime.seconds;
+            return transactionATimestamp - transactionBTimestamp;
+        })
+        return allTransactions;
+    }
+);

@@ -40,7 +40,7 @@ class TransactionCard extends React.Component {
     }
 
     render() {
-        let {category, type, amount, dateTime, notes, accountId, balanceId, transactionId} = this.props;
+        let {category, type, amount, dateTime, notes, accountId, balanceId, transactionId, readOnly} = this.props;
         let {transactionCardExpanded, showTransactionForm} = this.state;
 
         let parsedDateTime = new Date(dateTime.seconds * 1000);
@@ -78,42 +78,46 @@ class TransactionCard extends React.Component {
                             <Grid item>{formattedDate}</Grid>
                             <Grid item>{formattedTime}</Grid>
                         </Grid>
-                        <Grid item xs container justify='flex-end' spacing={1}>
-                            <Button
-                                fullWidth={false}
-                                bgColor={colors.transparent}
-                                textColor={colors.secondary}
-                                size='small'
-                                prefixIcon={<EditRoundedIcon/>}
-                                onClick={(event) => {
-                                    event.stopPropagation();
-                                    this.setState({
-                                        showTransactionForm: true,
-                                        transactionCardExpanded: true,
-                                    });
-                                }}
-                                margin='0 10px 0 0'
-                            >
-                                Edit
-                            </Button>
-                            <Button
-                                bgColor={colors.transparent}
-                                textColor={colors.primary}
-                                size='small'
-                                fullWidth={false}
-                                onClick={async (event) => {
-                                    event.stopPropagation();
-                                    await this.deleteTransaction();
-                                }}
-                                prefixIcon={<DeleteRoundedIcon/>}
-                            >
-                                Delete
-                            </Button>
-                        </Grid>
+                        {
+                            !readOnly ? (
+                                <Grid item xs container justify='flex-end' spacing={1}>
+                                    <Button
+                                        fullWidth={false}
+                                        bgColor={colors.transparent}
+                                        textColor={colors.secondary}
+                                        size='small'
+                                        prefixIcon={<EditRoundedIcon/>}
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            this.setState({
+                                                showTransactionForm: true,
+                                                transactionCardExpanded: true,
+                                            });
+                                        }}
+                                        margin='0 10px 0 0'
+                                    >
+                                        Edit
+                                    </Button>
+                                    <Button
+                                        bgColor={colors.transparent}
+                                        textColor={colors.primary}
+                                        size='small'
+                                        fullWidth={false}
+                                        onClick={async (event) => {
+                                            event.stopPropagation();
+                                            await this.deleteTransaction();
+                                        }}
+                                        prefixIcon={<DeleteRoundedIcon/>}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Grid>
+                            ) : null
+                        }
                     </Grid>
                 </TransactionExpansionPanelSummary>
                 {
-                    showTransactionForm ? (
+                    showTransactionForm && !readOnly ? (
                         <Box px={2} pt={2}>
                             <TransactionForm
                                 handleFormCancel={() => this.setState({showTransactionForm: false})}

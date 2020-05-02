@@ -68,7 +68,6 @@ class AccountForm extends Component {
 
     handleCheckBoxChange = event => {
         this.setState({hasBalances: event.target.checked});
-        console.log(this.state);
     }
 
     render() {
