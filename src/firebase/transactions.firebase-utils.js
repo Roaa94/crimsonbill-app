@@ -22,7 +22,8 @@ export const addOrUpdateTransactionDocument = async (userId, accountId, balanceI
         } else {
             const existingTransactionData = transactionSnapshot.data();
             oldTransactionAmount = existingTransactionData.amount;
-            newTransactionAmount = +transactionData.amount - +oldTransactionAmount;
+            newTransactionAmount = +transactionData.amount - +existingTransactionData.amount;
+            oldTransactionAmount = newTransactionAmount === 0 ? oldTransactionAmount * 2 : oldTransactionAmount;
             await transactionRef.update(transactionData);
         }
     } catch (error) {
@@ -42,8 +43,18 @@ export const deleteTransactionDocument = async (userId, accountId, balanceId, tr
     try {
         const accountDocPath = `users/${userId}/accounts/${accountId}`;
         const balanceDocPath = `${accountDocPath}/balances/${balanceId}`;
-        const docPath = `${balanceId ? balanceDocPath : accountDocPath}/transactions/${transactionId}`;
-        await firestore.doc(docPath).delete();
+        const transactionPath = `${balanceId ? balanceDocPath : accountDocPath}/transactions/${transactionId}`;
+        const transactionRef = firestore.doc(transactionPath);
+        const transactionSnapshot = await transactionRef.get();
+        const transactionData = transactionSnapshot.data();
+
+        await updateBalanceTotalBalance(
+            balanceDocPath,
+            -(+transactionData.amount),
+            0,
+            transactionData.type
+        );
+        await transactionRef.delete();
         console.log('Document Deleted Successfully');
     } catch (error) {
         console.log(error.message);
@@ -58,8 +69,8 @@ const updateBalanceTotalBalance = async (balancePath, oldTransactionAmount, newT
     const oldTotalBalance = balanceData.totalBalance;
     const newTotalBalance = newTransactionAmount === 0
         ? newTransactionType === 'spending'
-            ? (+oldTotalBalance - +oldTransactionAmount * 2)
-            : (+oldTotalBalance + +oldTransactionAmount * 2)
+            ? (+oldTotalBalance - +oldTransactionAmount)
+            : (+oldTotalBalance + +oldTransactionAmount)
         : newTransactionType === 'spending'
             ? (+oldTotalBalance - +newTransactionAmount)
             : (+oldTotalBalance + +newTransactionAmount);

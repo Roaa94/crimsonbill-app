@@ -48,20 +48,22 @@ class TransactionForm extends React.Component {
 
             transactionRef.onSnapshot(snapShot => {
                 let transactionData = snapShot.data();
-                let {type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes} = transactionData;
-                const parsedDateTime = new Date(transactionData.dateTime.seconds * 1000);
+                if (transactionData) {
+                    let {type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes} = transactionData;
+                    const parsedDateTime = new Date(transactionData.dateTime.seconds * 1000);
 
-                if (this._isMounted) {
-                    this.setState({
-                        defaultValues: {
-                            dateTime: parsedDateTime,
-                            type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes,
-                        },
-                        typePickerValues: {
-                            spending: transactionData.type === 'spending',
-                            earning: transactionData.type === 'earning',
-                        }
-                    });
+                    if (this._isMounted) {
+                        this.setState({
+                            defaultValues: {
+                                dateTime: parsedDateTime,
+                                type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes,
+                            },
+                            typePickerValues: {
+                                spending: transactionData.type === 'spending',
+                                earning: transactionData.type === 'earning',
+                            }
+                        });
+                    }
                 }
             })
         }
