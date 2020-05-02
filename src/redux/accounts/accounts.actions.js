@@ -21,8 +21,9 @@ export const fetchAccountsStartAsync = (userId) => {
         dispatch(fetchAccountsStart());
         const accountsCollectionPath = `users/${userId}/accounts`;
         const accountsRef = firestore.collection(accountsCollectionPath);
+        const orderedAccountsRef = accountsRef.orderBy('createdAt', 'desc');
 
-        accountsRef.onSnapshot(async accountsSnapshot => {
+        orderedAccountsRef.onSnapshot(async accountsSnapshot => {
             const accountsArray = convertCollectionToArray(accountsSnapshot);
             dispatch(fetchAccountsSuccess(accountsArray));
             accountsArray.forEach(account => {
