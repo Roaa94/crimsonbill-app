@@ -78,10 +78,12 @@ class TransactionForm extends React.Component {
         let {handleFormCancel, userId, accountId, transactionId, balanceId} = this.props;
         const transactionData = this.state.defaultValues;
         await addOrUpdateTransactionDocument(userId, accountId, balanceId, transactionId, transactionData);
-        this.setState({
-            defaultValues: this.defaultTransactionValues,
-            typePickerValues: this.typePickerValues,
-        });
+        if (this._isMounted) {
+            this.setState({
+                defaultValues: this.defaultTransactionValues,
+                typePickerValues: this.typePickerValues,
+            });
+        }
         handleFormCancel();
     }
 

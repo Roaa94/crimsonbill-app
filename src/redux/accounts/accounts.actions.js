@@ -28,10 +28,10 @@ export const fetchAccountsStartAsync = (userId) => {
             dispatch(fetchAccountsSuccess(accountsArray));
             accountsArray.forEach(account => {
                 if (account.hasBalances) {
-                    console.log(`fetching balances of account ${account.name}...`);
+                    // console.log(`fetching balances of account ${account.name}...`);
                     fetchBalancesStartAsync(userId, account.id)(dispatch);
                 } else {
-                    console.log(`fetching transactions of account ${account.name}...`);
+                    // console.log(`fetching transactions of account ${account.name}...`);
                     fetchTransactionsStartAsync(userId, account.id, null)(dispatch);
                 }
             })
@@ -63,7 +63,7 @@ export const fetchBalancesStartAsync = (userId, accountId) => {
             const balancesArray = convertCollectionToArray(balancesSnapshot);
             dispatch(fetchBalancesSuccess(accountId, balancesArray));
             balancesArray.forEach(balance => {
-                console.log(`fetching balance transactions of account ${accountId} balance ${balance.name}...`);
+                // console.log(`fetching balance transactions of account ${accountId} balance ${balance.name}...`);
                 fetchTransactionsStartAsync(userId, accountId, balance.id)(dispatch);
             });
         }, error => dispatch(fetchBalancesError(error.message)));
