@@ -9,7 +9,6 @@ export const addAccountBalances = (accountsArray, {accountId, balancesArray}) =>
 
 export const addAccountTransactions = (accountsArray, {accountId, balanceId, transactionsArray}) => {
     if (balanceId) {
-        console.log('fetching balance transactions...');
         accountsArray.forEach(account => {
             if (account.id === accountId) {
                 account.balances.forEach(balance => {
@@ -20,7 +19,6 @@ export const addAccountTransactions = (accountsArray, {accountId, balanceId, tra
             }
         });
     } else {
-        console.log('fetching account transactions...');
         accountsArray.forEach(account => {
             if (account.id === accountId) {
                 account.transactions = transactionsArray;

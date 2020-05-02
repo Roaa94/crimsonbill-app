@@ -5,7 +5,6 @@ import {selectUserId} from "../../../redux/user/user.selectors";
 import {
     selectAccountBalances,
 } from "../../../redux/accounts/accounts.selectors";
-import {fetchBalancesStartAsync} from "../../../redux/accounts/accounts.actions";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import {BalanceListHeader} from "./BalancesList.styles";
@@ -17,11 +16,6 @@ class BalancesList extends React.Component {
     state = {
         showBalanceForm: false,
     };
-
-    componentDidMount() {
-        let {accountId, userId, fetchBalancesStartAsync} = this.props;
-        fetchBalancesStartAsync(userId, accountId);
-    }
 
     render() {
         let {accountId, balances, isBalancesLoaded} = this.props;
@@ -87,8 +81,4 @@ const mapStateToProps = (state, ownProps) => ({
     isBalancesLoaded: !!selectAccountBalances(ownProps.accountId)(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-    fetchBalancesStartAsync: (userId, accountId) => dispatch(fetchBalancesStartAsync(userId, accountId)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(BalancesList);
+export default connect(mapStateToProps)(BalancesList);

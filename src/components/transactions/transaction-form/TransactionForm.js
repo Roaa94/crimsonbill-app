@@ -94,7 +94,6 @@ class TransactionForm extends React.Component {
         const {typePickerValues, defaultValues} = this.state;
         const {category, amount, dateTime, accountToAccount, notes, type} = defaultValues;
         const {handleFormCancel} = this.props;
-        console.log(defaultValues);
 
         return (
             <form onSubmit={this.handleFormSubmit}>

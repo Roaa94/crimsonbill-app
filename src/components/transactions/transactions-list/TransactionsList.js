@@ -6,7 +6,6 @@ import AddIconButton from "../../ui/buttons/AddIconButton";
 import TransactionForm from "../transaction-form/TransactionForm";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {fetchTransactionsStartAsync} from "../../../redux/accounts/accounts.actions";
 import {selectAccountTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
 
@@ -14,11 +13,6 @@ class TransactionsList extends React.Component {
     state = {
         showTransactionForm: false,
     };
-
-    componentDidMount() {
-        const {fetchTransactionsStartAsync, userId, accountId, balanceId} = this.props;
-        fetchTransactionsStartAsync(userId, accountId, balanceId);
-    }
 
     render() {
         const {showTransactionForm} = this.state;
@@ -66,8 +60,4 @@ const mapStateToProps = (state, ownProps) => ({
     isTransactionsLoaded: !!selectAccountTransactions(ownProps.accountId, ownProps.balanceId)(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-    fetchTransactionsStartAsync: (userId, accountId, balanceId) => dispatch(fetchTransactionsStartAsync(userId, accountId, balanceId))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionsList);
+export default connect(mapStateToProps)(TransactionsList);
