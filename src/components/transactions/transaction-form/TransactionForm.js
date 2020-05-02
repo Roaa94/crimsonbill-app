@@ -50,8 +50,7 @@ class TransactionForm extends React.Component {
                 let transactionData = snapShot.data();
                 let {type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes} = transactionData;
                 const parsedDateTime = new Date(transactionData.dateTime.seconds * 1000);
-                console.log('parsedDateTime');
-                console.log(parsedDateTime);
+
                 if (this._isMounted) {
                     this.setState({
                         defaultValues: {
