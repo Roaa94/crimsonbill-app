@@ -59,7 +59,7 @@ class TransactionCard extends React.Component {
                         <Grid item xs container justify='flex-end' spacing={1}>
                             <Button
                                 fullWidth={false}
-                                bgColor={colors.white}
+                                bgColor={colors.transparent}
                                 textColor={colors.secondary}
                                 size='small'
                                 prefixIcon={<EditRoundedIcon/>}
@@ -75,7 +75,7 @@ class TransactionCard extends React.Component {
                                 Edit
                             </Button>
                             <Button
-                                bgColor={colors.white}
+                                bgColor={colors.transparent}
                                 textColor={colors.primary}
                                 size='small'
                                 fullWidth={false}

@@ -19,12 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="refactored transaction form (separated layout from state)">
+    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="[Transactions CRUD - Delete] worked on deleting transaction document">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions/transactions-list/TransactionsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transactions-list/TransactionsList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/transactions.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/transactions.firebase-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,14 +143,7 @@
       <workItem from="1588173843869" duration="21434000" />
       <workItem from="1588265516028" duration="1378000" />
       <workItem from="1588278448509" duration="4000" />
-      <workItem from="1588337434931" duration="39428000" />
-    </task>
-    <task id="LOCAL-00100" summary="styling chnages on account form container and removed add balance button">
-      <created>1587938341801</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1587938341801</updated>
+      <workItem from="1588337434931" duration="40155000" />
     </task>
     <task id="LOCAL-00101" summary="fixed closing account form on form submit">
       <created>1587940777506</created>
@@ -488,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588382790864</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="[Transactions CRUD - Delete] worked on deleting transaction document">
+      <created>1588383341037</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1588383341037</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -523,7 +523,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="[Balances CRUD - Create] - worked on balance form and creating a balance document" />
     <MESSAGE value="[Balances CRUD - Delete] - worked on deleting a balance" />
     <MESSAGE value="[Balances CRUD - Update] - worked on updating a balance" />
     <MESSAGE value="unsubscribed from snapshot in account and balance forms" />
@@ -548,7 +547,8 @@
     <MESSAGE value="worked on transaction card" />
     <MESSAGE value="changed accounts fetching logic to fix some accounts data not being updated" />
     <MESSAGE value="refactored asynchronous accounts fetching functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored asynchronous accounts fetching functions" />
+    <MESSAGE value="[Transactions CRUD - Delete] worked on deleting transaction document" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Transactions CRUD - Delete] worked on deleting transaction document" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1587865574913">
@@ -567,11 +567,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588371877377" />
-    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588382789891">
+    <state x="851" y="83" key="CommitChangelistDialog2" timestamp="1588383339998">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588382789891" />
+    <state x="851" y="83" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588383339998" />
     <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588382776659">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

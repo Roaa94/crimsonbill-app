@@ -1,16 +1,27 @@
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import {withStyles} from "@material-ui/core/styles";
 import styled from 'styled-components';
-import {colors} from "../../../styles/global";
+import {borderRadius, colors} from "../../../styles/global";
 
 export const TransactionExpansionPanelSummary = withStyles({
     root: {
-        minHeight: '40px',
-        padding: 0,
+        minHeight: '30px',
+        padding: '0 10px',
         fontSize: '0.8rem',
+        borderRadius: borderRadius.m,
+        transition: 'all .3s',
         '&$expanded': {
-            minHeight: '40px',
+            minHeight: '30px',
         },
+        '&:hover': {
+            backgroundColor: colors.background,
+        }
+    },
+    content: {
+        margin: '8px 0',
+        '&$expanded': {
+            margin: '8px 0',
+        }
     },
     expanded: {
         margin: 0,

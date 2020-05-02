@@ -6,6 +6,7 @@ export const colors = {
     primaryLight: '#FBE8E8',
     secondaryLight: '#DAE8F4',
     white: '#FFFFFF',
+    transparent: 'transparent'
 };
 
 export const boxShadows = {
