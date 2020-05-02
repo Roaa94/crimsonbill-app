@@ -6,7 +6,7 @@ import {borderRadius, colors} from "../../../styles/global";
 export const TransactionExpansionPanelSummary = withStyles({
     root: {
         minHeight: '30px',
-        padding: '0 10px',
+        padding: '0 16px 0 10px',
         fontSize: '0.8rem',
         borderRadius: borderRadius.m,
         transition: 'all .3s',

@@ -8,6 +8,7 @@ import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {selectAccountTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
+import Scrollbar from "../../ui/Scrollbar";
 
 class TransactionsList extends React.Component {
     state = {
@@ -44,15 +45,19 @@ class TransactionsList extends React.Component {
                 }
                 {
                     isTransactionsLoaded ? (
-                        transactions.map(({id, ...transaction}) => (
-                            <TransactionCard
-                                key={id}
-                                accountId={accountId}
-                                balanceId={balanceId}
-                                transactionId={id}
-                                {...transaction}
-                            />
-                        ))
+                        <Scrollbar>
+                            {
+                                transactions.map(({id, ...transaction}) => (
+                                    <TransactionCard
+                                        key={id}
+                                        accountId={accountId}
+                                        balanceId={balanceId}
+                                        transactionId={id}
+                                        {...transaction}
+                                    />
+                                ))
+                            }
+                        </Scrollbar>
                     ) : null
                 }
             </div>

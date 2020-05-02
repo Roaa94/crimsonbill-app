@@ -13,6 +13,7 @@ import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {deleteTransactionDocument} from "../../../firebase/transactions.firebase-utils";
+import FormattedNumber from "../../ui/FormattedNumber";
 
 class TransactionCard extends React.Component {
 
@@ -22,7 +23,7 @@ class TransactionCard extends React.Component {
     }
 
     render() {
-        let {category, type, amount, dateTime} = this.props;
+        let {category, type, amount, dateTime, notes} = this.props;
 
         let parsedDateTime = new Date(dateTime.seconds * 1000);
         let formattedDate = format(parsedDateTime, 'dd.MMM');
@@ -43,12 +44,12 @@ class TransactionCard extends React.Component {
                             </Grid>
                             <Grid item xs={3}>
                                 <TransactionAmount type={type}>
-                                    {amount}
+                                    <FormattedNumber number={amount} currency='$'/>
                                 </TransactionAmount>
                             </Grid>
                             <Grid item xs>
                                 <Box fontWeight='600'>
-                                    Category{category}
+                                    {category}
                                 </Box>
                             </Grid>
                         </Grid>
@@ -90,6 +91,13 @@ class TransactionCard extends React.Component {
                         </Grid>
                     </Grid>
                 </TransactionExpansionPanelSummary>
+                {
+                    notes ? (
+                        <Box p={2}>
+                            {notes}
+                        </Box>
+                    ) : null
+                }
             </ExpansionPanel>
         );
     }

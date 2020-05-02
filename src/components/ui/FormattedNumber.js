@@ -5,7 +5,7 @@ import NumberFormat from "react-number-format";
 const FormattedNumber = ({number, currency}) => {
     return (
         <NumberFormat
-            value={number.toFixed(2)}
+            value={parseFloat(number).toFixed(2)}
             prefix={currency}
             thousandSeparator={true}
             displayType='text'
