@@ -77,7 +77,7 @@ export const fetchTransactionsStartAsync = (userId, accountId, balanceId) => {
         const balancePath = `${accountPath}/balances/${balanceId}`;
         const collectionPath = `${balanceId ? balancePath : accountPath}/transactions`;
         const transactionsRef = firestore.collection(collectionPath);
-        const orderedTransactionsRef = transactionsRef.orderBy('dateTime', 'asc');
+        const orderedTransactionsRef = transactionsRef.orderBy('dateTime', 'desc');
 
         orderedTransactionsRef.onSnapshot(async transactionsSnapshot => {
             const transactionsArray = convertCollectionToArray(transactionsSnapshot);

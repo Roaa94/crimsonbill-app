@@ -67,7 +67,7 @@ export const selectAllBalancesTransactions = (accountId) => createSelector(
         allTransactions.sort((transactionA, transactionB) => {
             let transactionATimestamp = transactionA.dateTime.seconds;
             let transactionBTimestamp = transactionB.dateTime.seconds;
-            return transactionATimestamp - transactionBTimestamp;
+            return transactionATimestamp + transactionBTimestamp;
         })
         return allTransactions;
     }
