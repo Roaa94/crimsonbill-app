@@ -11,31 +11,29 @@ export const addOrUpdateTransactionDocument = async (userId, accountId, balanceI
         : await firestore.doc(initialPath).collection('transactions').doc();
 
     const transactionSnapshot = await transactionRef.get();
-    let oldTransactionAmount;
-    let newTransactionAmount;
+    let existingTransactionData;
 
     try {
         if (!transactionSnapshot.exists && !transactionId) {
+            //Create new transaction
             await addDocument(transactionRef, transactionData);
-            oldTransactionAmount = 0;
-            newTransactionAmount = transactionData.amount;
         } else {
-            const existingTransactionData = transactionSnapshot.data();
-            oldTransactionAmount = existingTransactionData.amount;
-            newTransactionAmount = +transactionData.amount - +existingTransactionData.amount;
-            oldTransactionAmount = newTransactionAmount === 0 ? oldTransactionAmount * 2 : oldTransactionAmount;
+            //Update existing transaction
+            existingTransactionData = transactionSnapshot.data();
             await transactionRef.update(transactionData);
         }
     } catch (error) {
         console.log(error.message);
         return;
     }
-    await updateBalanceTotalBalance(
-        balanceDocPath,
-        oldTransactionAmount,
-        newTransactionAmount,
-        transactionData.type
+    let {oldTotalBalance, newTotalBalance} = await updateTotalBalance(
+        balanceId ? balanceDocPath : accountDocPath,
+        existingTransactionData,
+        transactionData,
     );
+    if (balanceId) {
+        await updateAccountTotalBalance(accountDocPath, oldTotalBalance, newTotalBalance);
+    }
     console.log('Transaction and balance updated successfully');
 }
 
@@ -48,12 +46,14 @@ export const deleteTransactionDocument = async (userId, accountId, balanceId, tr
         const transactionSnapshot = await transactionRef.get();
         const transactionData = transactionSnapshot.data();
 
-        await updateBalanceTotalBalance(
-            balanceDocPath,
-            -(+transactionData.amount),
-            0,
-            transactionData.type
+        let {oldTotalBalance, newTotalBalance} = await updateTotalBalance(
+            balanceId ? balanceDocPath : accountDocPath,
+            transactionData,
+            null,
         );
+        if (balanceId) {
+            await updateAccountTotalBalance(accountDocPath, oldTotalBalance, newTotalBalance);
+        }
         await transactionRef.delete();
         console.log('Document Deleted Successfully');
     } catch (error) {
@@ -62,17 +62,47 @@ export const deleteTransactionDocument = async (userId, accountId, balanceId, tr
 };
 
 
-const updateBalanceTotalBalance = async (balancePath, oldTransactionAmount, newTransactionAmount, newTransactionType) => {
-    const balanceRef = firestore.doc(balancePath)
-    const balanceSnapshot = await balanceRef.get();
-    const balanceData = balanceSnapshot.data();
-    const oldTotalBalance = balanceData.totalBalance;
-    const newTotalBalance = newTransactionAmount === 0
-        ? newTransactionType === 'spending'
-            ? (+oldTotalBalance - +oldTransactionAmount)
-            : (+oldTotalBalance + +oldTransactionAmount)
-        : newTransactionType === 'spending'
-            ? (+oldTotalBalance - +newTransactionAmount)
-            : (+oldTotalBalance + +newTransactionAmount);
-    await balanceRef.update({totalBalance: newTotalBalance});
+const updateTotalBalance = async (collectionPath, oldTransactionData, newTransactionData) => {
+    const collectionRef = firestore.doc(collectionPath)
+    const collectionSnapshot = await collectionRef.get();
+    const collectionData = collectionSnapshot.data();
+    const oldTotalBalance = collectionData.totalBalance;
+    let amountToUpdate = 0;
+    let newTotalBalance = 0;
+
+    if (oldTransactionData && newTransactionData) {
+        //On Transaction update
+        //If the user switched between spending <=> earning types
+        amountToUpdate = oldTransactionData.type !== newTransactionData.type
+            ? +oldTransactionData.amount + +newTransactionData.amount
+            : +newTransactionData.amount;
+        newTotalBalance = newTransactionData.type === 'spending'
+            ? +oldTotalBalance - +amountToUpdate
+            : +oldTotalBalance + +amountToUpdate;
+    } else if (!oldTransactionData) {
+        //On Transaction Creation
+        amountToUpdate = +newTransactionData.amount;
+        newTotalBalance = newTransactionData.type === 'spending'
+            ? +oldTotalBalance - +amountToUpdate
+            : +oldTotalBalance + +amountToUpdate;
+    } else if (!newTransactionData) {
+        //On Transaction Deletion
+        amountToUpdate = +oldTransactionData.amount;
+        newTotalBalance = oldTransactionData.type === 'spending'
+            ? +oldTotalBalance + +amountToUpdate
+            : +oldTotalBalance - +amountToUpdate;
+    }
+
+    await collectionRef.update({totalBalance: newTotalBalance});
+    return {oldTotalBalance, newTotalBalance};
 }
+
+const updateAccountTotalBalance = async (accountDocPath, oldTotalBalance, newTotalBalance) => {
+    const accountRef = firestore.doc(accountDocPath);
+    const accountSnapshot = await accountRef.get();
+    const accountData = accountSnapshot.data();
+    const oldAccountTotalBalance = accountData.totalBalance;
+    const newAccountTotalBalance = +oldAccountTotalBalance + (+newTotalBalance - +oldTotalBalance);
+    await accountRef.update({totalBalance: newAccountTotalBalance});
+    console.log('Updated account total balance');
+};
