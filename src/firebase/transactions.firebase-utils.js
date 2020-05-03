@@ -8,7 +8,7 @@ export const addOrUpdateTransactionDocument = async (userId, accountId, balanceI
 
     const transactionRef = transactionId
         ? await firestore.doc(transactionDocPath)
-        : await firestore.doc(transactionDocPath).collection('transactions').doc();
+        : await firestore.doc(balanceDocPath).collection('transactions').doc();
 
     const transactionSnapshot = await transactionRef.get();
     let existingTransactionData;
