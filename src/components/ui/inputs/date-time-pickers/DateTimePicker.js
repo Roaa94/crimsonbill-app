@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 const CustomTimePicker = withStyles(theme => ({
     root: {
         '& .MuiInputLabel-shrink': {
-            color: theme.palette.secondary.main,
+            color: theme.palette.primary.main,
         },
     }
 }))(KeyboardTimePicker);
@@ -20,7 +20,7 @@ const CustomTimePicker = withStyles(theme => ({
 const CustomDatePicker = withStyles(theme => ({
     root: {
         '& .MuiInputLabel-shrink': {
-            color: theme.palette.secondary.main,
+            color: theme.palette.primary.main,
         },
     }
 }))(KeyboardDatePicker);
