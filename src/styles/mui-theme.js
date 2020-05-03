@@ -16,7 +16,8 @@ export const theme = createMuiTheme({
         action: {
             hover: colors.background,
             selected: colors.background,
-        }
+            disabledBackground: colors.disabledBackground,
+        },
     },
     overrides: {
         MuiInputLabel: {
@@ -35,8 +36,13 @@ export const theme = createMuiTheme({
             root: {
                 '&$focused': {
                     color: colors.primary,
-                }
+                },
             }
+        },
+        MuiInputBase: {
+          root: {
+              fontSize: '0.9rem',
+          }
         },
         MuiFormControl: {
             marginNormal: {
@@ -59,6 +65,9 @@ export const theme = createMuiTheme({
                 },
                 '&$focused': {
                     backgroundColor: colors.background,
+                },
+                '&$disabled': {
+                    backgroundColor: colors.disabledBackground,
                 }
             },
         },

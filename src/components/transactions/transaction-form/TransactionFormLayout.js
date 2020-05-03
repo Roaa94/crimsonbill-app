@@ -9,6 +9,11 @@ import TextField from "@material-ui/core/TextField";
 import DateTimePicker from "../../ui/inputs/date-time-pickers/DateTimePicker";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import styled from 'styled-components';
+
+const ArrowIcon = styled.div`
+  transform: rotateY(${props => props.spending ? '0' : '180deg'});
+`;
 
 const TransactionFormLayout = (
     {
@@ -22,8 +27,10 @@ const TransactionFormLayout = (
         dateTimeValue,
         accountToAccount,
         onCheckboxChange,
-        fromAccountSelectValue,
-        toAccountSelectValue,
+        currentAccountValue,
+        currentBalanceValue,
+        targetAccountSelectValue,
+        targetBalanceSelectValue,
         type,
         notesValue,
         onFieldChange,
@@ -108,31 +115,55 @@ const TransactionFormLayout = (
                 {
                     accountToAccount ? (
                         <Grid item xs={12} container alignItems='center' justify='space-between'>
-                            <Grid item xs={12} md={5}>
-                                <Select
-                                    label='From Account'
-                                    name='category'
-                                    value={fromAccountSelectValue}
-                                    menuItems={accountList}
-                                    onChange={onFieldChange}
-                                />
+                            <Grid container item xs={12} md={5} spacing={2}>
+                                <Grid item xs={12} xl={6}>
+                                    <TextField
+                                        label={`${type === 'spending' ? 'From' : 'To'} Account`}
+                                        name='category'
+                                        disabled
+                                        value={currentAccountValue}
+                                        onChange={onFieldChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} xl={6}>
+                                    <TextField
+                                        label={`${type === 'spending' ? 'From' : 'To'} Balance`}
+                                        disabled
+                                        name='category'
+                                        value={currentBalanceValue}
+                                        onChange={onFieldChange}
+                                    />
+                                </Grid>
                             </Grid>
                             <Grid container item xs={12} md justify='center'>
+                                <ArrowIcon spending={type === 'spending'}>
                                 <Icon
                                     color={type === 'spending' ? 'primary' : 'secondary'}
                                     fontSize='large'
                                 >
                                     <DoubleArrowRoundedIcon/>
                                 </Icon>
+                                </ArrowIcon>
                             </Grid>
-                            <Grid item xs={12} md={5}>
-                                <Select
-                                    label='To Account'
-                                    name='category'
-                                    value={toAccountSelectValue}
-                                    menuItems={accountList}
-                                    onChange={onFieldChange}
-                                />
+                            <Grid container item xs={12} md={5} spacing={2}>
+                                <Grid item xs={12} xl={6}>
+                                    <Select
+                                        label={`${type === 'spending' ? 'To' : 'From'} Account`}
+                                        name='category'
+                                        value={targetAccountSelectValue}
+                                        menuItems={accountList}
+                                        onChange={onFieldChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} xl={6}>
+                                    <Select
+                                        label={`${type === 'spending' ? 'To' : 'From'} Balance`}
+                                        name='category'
+                                        value={targetBalanceSelectValue}
+                                        menuItems={accountList}
+                                        onChange={onFieldChange}
+                                    />
+                                </Grid>
                             </Grid>
                         </Grid>
                     ) : null

@@ -19,9 +19,9 @@ class TransactionForm extends React.Component {
         title: '',
         amount: '',
         dateTime: new Date(),
-        accountToAccount: false,
-        sourceAccountId: '',
-        destinationAccountId: '',
+        accountToAccount: true,
+        targetAccountId: '',
+        targetBalanceId: '',
         notes: '',
     };
 
@@ -152,8 +152,10 @@ class TransactionForm extends React.Component {
                     accountToAccount={accountToAccount}
                     onCheckboxChange={this.handleCheckBoxChange}
                     type={type}
-                    fromAccountSelectValue={category}
-                    toAccountSelectValue={category}
+                    currentAccountValue='Current Account Name'
+                    currentBalanceValue='Current Balance Name'
+                    targetAccountSelectValue={category}
+                    targetBalanceSelectValue={category}
                     accountList={categories}
                     notesValue={notes}
                 />
