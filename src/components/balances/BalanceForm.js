@@ -1,6 +1,5 @@
 import React from 'react';
 import {addOrUpdateBalanceDocument} from "../../firebase/balances.firebase-utils";
-import {createStructuredSelector} from "reselect";
 import {selectUserId} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
@@ -12,7 +11,7 @@ import {colors} from "../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Box from "@material-ui/core/Box";
-import {firestore} from "../../firebase/firebase.utils";
+import {selectBalance} from "../../redux/accounts/accounts.selectors";
 
 class BalanceForm extends React.Component {
     _isMounted = false;
@@ -24,15 +23,11 @@ class BalanceForm extends React.Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {userId, accountId, balanceId} = this.props;
-        if (balanceId) {
-            const balanceRef = firestore.doc(`users/${userId}/accounts/${accountId}/balances/${balanceId}`);
-            balanceRef.onSnapshot(snapShot => {
-                let balanceData = snapShot.data();
-                if (this._isMounted) {
-                    this.setState(balanceData);
-                }
-            })
+        const {balanceId, balance} = this.props;
+        if (balanceId && balance) {
+            if (this._isMounted) {
+                this.setState(balance);
+            }
         }
     }
 
@@ -114,8 +109,9 @@ class BalanceForm extends React.Component {
     }
 }
 
-const mapStateToProps = createStructuredSelector({
-    userId: selectUserId,
+const mapStateToProps = (state, ownProps) => ({
+    userId: selectUserId(state),
+    balance: selectBalance(ownProps.accountId, ownProps.balanceId)(state)
 });
 
 export default connect(mapStateToProps)(BalanceForm);
