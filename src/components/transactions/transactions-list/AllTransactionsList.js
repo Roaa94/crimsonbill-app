@@ -3,7 +3,7 @@ import {TransactionsListHeader} from "./TransactionsList.styles";
 import Grid from "@material-ui/core/Grid";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {selectAllBalancesTransactions} from "../../../redux/accounts/accounts.selectors";
+import {selectAllAccountTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
 import Scrollbar from "../../ui/Scrollbar";
 import {ExpansionPanel} from "@material-ui/core";
@@ -61,8 +61,8 @@ class AllTransactionsList extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
-    allTransactions: selectAllBalancesTransactions(ownProps.accountId)(state),
-    isAllTransactionsLoaded: !!selectAllBalancesTransactions(ownProps.accountId)(state),
+    allTransactions: selectAllAccountTransactions(ownProps.accountId)(state),
+    isAllTransactionsLoaded: !!selectAllAccountTransactions(ownProps.accountId)(state),
 });
 
 export default connect(mapStateToProps)(AllTransactionsList);

@@ -6,7 +6,7 @@ import AddIconButton from "../../ui/buttons/AddIconButton";
 import TransactionForm from "../transaction-form/TransactionForm";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {selectAccountTransactions} from "../../../redux/accounts/accounts.selectors";
+import {selectBalanceTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
 import Scrollbar from "../../ui/Scrollbar";
 
@@ -84,8 +84,8 @@ class TransactionsList extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
-    transactions: selectAccountTransactions(ownProps.accountId, ownProps.balanceId)(state),
-    isTransactionsLoaded: !!selectAccountTransactions(ownProps.accountId, ownProps.balanceId)(state),
+    transactions: selectBalanceTransactions(ownProps.accountId, ownProps.balanceId)(state),
+    isTransactionsLoaded: !!selectBalanceTransactions(ownProps.accountId, ownProps.balanceId)(state),
 });
 
 export default connect(mapStateToProps)(TransactionsList);
