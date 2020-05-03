@@ -37,7 +37,8 @@ export const deleteAccountSubCollections = functions.firestore
         return null;
     })
 
-//The function works fine but it makes the onSnapshot listener fire a lot of time and it's too slow
+// The function works fine but it makes the onSnapshot listener fire a lot of time and it's too slow
+// Consider using a transaction instead
 // export const balanceUpdated = functions.firestore
 //     .document('users/{userId}/accounts/{accountId}/balances/{balanceId}')
 //     .onUpdate((change, context) => {
