@@ -16,7 +16,6 @@ import AccountForm from "../account-form/AccountForm";
 import Box from "@material-ui/core/Box";
 import BalancesList from "../../balances/balance-list/BalancesList";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import AllTransactionsList from "../../transactions/transactions-list/AllTransactionsList";
 
 class AccountCard extends React.Component {
 
@@ -109,15 +108,7 @@ class AccountCard extends React.Component {
                             />
                         ) : null
                     }
-                    {
-
-                        <div>
-                            <Box mb={2}>
-                                <AllTransactionsList accountId={id}/>
-                            </Box>
-                            <BalancesList accountId={id}/>
-                        </div>
-                    }
+                    <BalancesList accountId={id}/>
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>
         );

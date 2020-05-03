@@ -11,6 +11,7 @@ import {BalanceListHeader} from "./BalancesList.styles";
 import BalanceCard from "../balance-card/BalanceCard";
 import BalanceForm from "../BalanceForm";
 import {colors} from "../../../styles/global";
+import AllTransactionsList from "../../transactions/transactions-list/AllTransactionsList";
 
 class BalancesList extends React.Component {
     state = {
@@ -23,7 +24,15 @@ class BalancesList extends React.Component {
 
         return (
             <div>
-                <Box display='flex' alignItems='center'>
+                {
+                    isBalancesLoaded && balances.length > 1
+                        ? (
+                            <Box mb={2}>
+                                <AllTransactionsList accountId={accountId}/>
+                            </Box>
+                        ) : null
+                }
+                <Box display='flex' alignItems='center' mb={1}>
                     <h4>Balances</h4>
                     <AddIconButton
                         bgColor={colors.background}

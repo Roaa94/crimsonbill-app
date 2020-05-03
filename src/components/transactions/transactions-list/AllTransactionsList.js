@@ -13,7 +13,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 const TransactionsListExpansionPanelSummary = withStyles({
     root: {
         padding: 0,
+        '&$expanded': {
+            minHeight: '48px',
+        },
     },
+    expanded: {
+        margin: 0,
+    }
 })(ExpansionPanelSummary)
 
 class AllTransactionsList extends React.Component {
