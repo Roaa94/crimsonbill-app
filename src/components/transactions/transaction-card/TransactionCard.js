@@ -77,7 +77,7 @@ class TransactionCard extends React.Component {
             >
                 <TransactionExpansionPanelSummary>
                     <Grid container alignItems='center' spacing={2}>
-                        <Grid item container xs spacing={1}>
+                        <Grid item alignItems='center' container xs spacing={1}>
                             <Grid item>
                                 {
                                     type === 'spending'

@@ -18,7 +18,7 @@ export const TransactionsListHeader = styled.div`
 
 export const TransactionsListExpansionPanelSummary = withStyles({
     root: {
-        backgroundColor: colors.secondaryLight,
+        backgroundColor: colors.background,
         borderRadius: borderRadius.m,
         fontSize: '0.9rem',
         '&$expanded': {
