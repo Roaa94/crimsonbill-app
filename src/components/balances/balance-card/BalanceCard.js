@@ -15,6 +15,16 @@ import TransactionsList from "../../transactions/transactions-list/TransactionsL
 
 class BalanceCard extends React.Component {
 
+    _isMount = false;
+
+    componentDidMount() {
+        this._isMount = true;
+    }
+
+    componentWillUnmount() {
+        this._isMount = false;
+    }
+
     state = {
         showBalanceForm: false,
         balanceCardExpanded: false,
@@ -33,6 +43,15 @@ class BalanceCard extends React.Component {
         if (!balanceCardExpanded) {
             this.setState({
                 showBalanceForm: false,
+            });
+        }
+    }
+
+    controlBalanceForm = value => {
+        if(this._isMount) {
+            this.setState({
+                showBalanceForm: value,
+                balanceCardExpanded: true,
             });
         }
     }
@@ -67,10 +86,7 @@ class BalanceCard extends React.Component {
                                 prefixIcon={<EditRoundedIcon/>}
                                 onClick={(event) => {
                                     event.stopPropagation();
-                                    this.setState({
-                                        showBalanceForm: true,
-                                        balanceCardExpanded: true,
-                                    });
+                                    this.controlBalanceForm(true);
                                 }}
                                 margin='0 20px 0 0'
                             >
@@ -97,7 +113,7 @@ class BalanceCard extends React.Component {
                             <BalanceForm
                                 accountId={accountId}
                                 balanceId={balanceId}
-                                handleFormCancel={() => this.setState({showBalanceForm: false})}
+                                handleFormCancel={() => this.controlBalanceForm(false)}
                             />
                         ) : null
                     }

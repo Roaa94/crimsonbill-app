@@ -11,9 +11,26 @@ import TransactionCard from "../transaction-card/TransactionCard";
 import Scrollbar from "../../ui/Scrollbar";
 
 class TransactionsList extends React.Component {
+
+    _isMount = false;
+
+    componentDidMount() {
+        this._isMount = true;
+    }
+
+    componentWillUnmount() {
+        this._isMount = false;
+    }
+
     state = {
         showTransactionForm: false,
     };
+
+    controlTransactionForm = value => {
+        if(this._isMount) {
+            this.setState({showTransactionForm: value});
+        }
+    }
 
     render() {
         const {showTransactionForm} = this.state;
@@ -27,7 +44,7 @@ class TransactionsList extends React.Component {
                         <AddIconButton
                             bgColor={colors.background}
                             size='small'
-                            handleClick={() => this.setState({showTransactionForm: true})}
+                            handleClick={() => this.controlTransactionForm(true)}
                         />
                     </Grid>
                     <Grid container alignItems='center' justify='flex-end'>
@@ -37,7 +54,7 @@ class TransactionsList extends React.Component {
                 {
                     showTransactionForm ? (
                         <TransactionForm
-                            handleFormCancel={() => this.setState({showTransactionForm: false})}
+                            handleFormCancel={() => this.controlTransactionForm(false)}
                             accountId={accountId}
                             balanceId={balanceId}
                         />

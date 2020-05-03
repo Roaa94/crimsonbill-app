@@ -17,6 +17,16 @@ import FormattedNumber from "../../ui/FormattedNumber";
 import TransactionForm from "../transaction-form/TransactionForm";
 
 class TransactionCard extends React.Component {
+    _isMount = false;
+
+    componentDidMount() {
+        this._isMount = true;
+    }
+
+    componentWillUnmount() {
+        this._isMount = false;
+    }
+
     state = {
         showTransactionForm: false,
         transactionCardExpanded: false,
@@ -35,6 +45,15 @@ class TransactionCard extends React.Component {
         if (!transactionCardExpanded) {
             this.setState({
                 showTransactionForm: false,
+            });
+        }
+    }
+
+    controlTransactionForm = value => {
+        if(this._isMount) {
+            this.setState({
+                showTransactionForm: value,
+                transactionCardExpanded: true,
             });
         }
     }
@@ -89,10 +108,7 @@ class TransactionCard extends React.Component {
                                         prefixIcon={<EditRoundedIcon/>}
                                         onClick={(event) => {
                                             event.stopPropagation();
-                                            this.setState({
-                                                showTransactionForm: true,
-                                                transactionCardExpanded: true,
-                                            });
+                                            this.controlTransactionForm(true);
                                         }}
                                         margin='0 10px 0 0'
                                     >
@@ -120,7 +136,7 @@ class TransactionCard extends React.Component {
                     showTransactionForm && !readOnly ? (
                         <Box px={2} pt={2}>
                             <TransactionForm
-                                handleFormCancel={() => this.setState({showTransactionForm: false})}
+                                handleFormCancel={() => this.controlTransactionForm(false)}
                                 accountId={accountId}
                                 balanceId={balanceId}
                                 transactionId={transactionId}
