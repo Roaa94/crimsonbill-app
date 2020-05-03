@@ -25,8 +25,12 @@ class BalanceForm extends React.Component {
         this._isMounted = true;
         const {balanceId, balance} = this.props;
         if (balanceId && balance) {
+            let {name, currency} = balance;
             if (this._isMounted) {
-                this.setState(balance);
+                this.setState({
+                    name,
+                    currency,
+                });
             }
         }
     }
@@ -89,7 +93,6 @@ class BalanceForm extends React.Component {
                         bgColor={colors.secondary}
                         prefixIcon={<CheckRoundedIcon/>}
                         margin='0 20px 20px 0'
-                        size='small'
                     >
                         Submit
                     </Button>
@@ -99,7 +102,6 @@ class BalanceForm extends React.Component {
                         onClick={handleFormCancel}
                         prefixIcon={<ClearRoundedIcon/>}
                         margin='0 0 20px 0'
-                        size='small'
                     >
                         Cancel
                     </Button>

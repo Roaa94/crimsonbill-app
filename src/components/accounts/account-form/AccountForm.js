@@ -27,8 +27,14 @@ class AccountForm extends Component {
         this._isMounted = true;
         const {accountId, account} = this.props;
         if (accountId && account) {
+            let {type, name, currency, notes} = account;
             if (this._isMounted) {
-                this.setState(account);
+                this.setState({
+                    type,
+                    name,
+                    currency,
+                    notes
+                });
             }
         }
     }
