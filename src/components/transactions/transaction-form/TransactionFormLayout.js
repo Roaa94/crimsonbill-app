@@ -2,18 +2,12 @@ import React from 'react';
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import TransactionTypeIcon from "../TransactionTypeIcon";
-import Icon from "@material-ui/core/Icon";
-import DoubleArrowRoundedIcon from "@material-ui/icons/DoubleArrowRounded";
 import Select from "../../ui/inputs/Select";
 import TextField from "@material-ui/core/TextField";
 import DateTimePicker from "../../ui/inputs/date-time-pickers/DateTimePicker";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import styled from 'styled-components';
-
-const ArrowIcon = styled.div`
-  transform: rotateY(${props => props.spending ? '0' : '180deg'});
-`;
+import TransactionArrow from "./TransactionArrow";
 
 const TransactionFormLayout = (
     {
@@ -114,7 +108,7 @@ const TransactionFormLayout = (
                 </Grid>
                 {
                     accountToAccount ? (
-                        <Grid item xs={12} container alignItems='center' justify='space-between'>
+                        <Grid item xs={12} container alignItems='center' justify='center'>
                             <Grid container item xs={12} md={5} spacing={2}>
                                 <Grid item xs={12} xl={6}>
                                     <TextField
@@ -136,14 +130,7 @@ const TransactionFormLayout = (
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} md justify='center'>
-                                <ArrowIcon spending={type === 'spending'}>
-                                <Icon
-                                    color={type === 'spending' ? 'primary' : 'secondary'}
-                                    fontSize='large'
-                                >
-                                    <DoubleArrowRoundedIcon/>
-                                </Icon>
-                                </ArrowIcon>
+                                <TransactionArrow isSpending={type === 'spending'} />
                             </Grid>
                             <Grid container item xs={12} md={5} spacing={2}>
                                 <Grid item xs={12} xl={6}>
