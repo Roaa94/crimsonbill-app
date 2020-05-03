@@ -12,6 +12,11 @@ export const selectAccountsFetching = createSelector(
     accounts => accounts.isFetchingAccounts,
 );
 
+export const selectAccount = accountId => createSelector(
+    [selectAccountsArray],
+    accountsArray => accountsArray.find(account => account.id === accountId),
+);
+
 export const selectAccountBalances = accountId => createSelector(
     [selectAccountsArray],
     accountsArray => {

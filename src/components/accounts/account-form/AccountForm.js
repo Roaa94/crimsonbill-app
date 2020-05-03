@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {addOrUpdateAccountDocument} from "../../../firebase/accounts.firebase-utils";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {firestore} from "../../../firebase/firebase.utils";
-import {createStructuredSelector} from "reselect";
 import Grid from '@material-ui/core/Grid';
 import Box from "@material-ui/core/Box";
 import Select from "../../ui/inputs/Select";
@@ -13,6 +11,7 @@ import {colors} from "../../../styles/global";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import TextField from "@material-ui/core/TextField";
+import {selectAccount} from "../../../redux/accounts/accounts.selectors";
 
 class AccountForm extends Component {
     _isMounted = false;
@@ -26,15 +25,11 @@ class AccountForm extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {userId, accountId} = this.props;
-        if (accountId) {
-            const userAccountRef = firestore.doc(`users/${userId}/accounts/${accountId}`);
-            userAccountRef.onSnapshot(snapShot => {
-                let accountData = snapShot.data();
-                if (this._isMounted) {
-                    this.setState(accountData);
-                }
-            })
+        const {accountId, account} = this.props;
+        if (accountId && account) {
+            if (this._isMounted) {
+                this.setState(account);
+            }
         }
     }
 
@@ -61,10 +56,6 @@ class AccountForm extends Component {
         const {name, value} = event.target;
         this.setState({[name]: value});
     };
-
-    handleCheckBoxChange = event => {
-        this.setState({hasBalances: event.target.checked});
-    }
 
     render() {
         const {type, name, currency, notes} = this.state;
@@ -139,9 +130,9 @@ class AccountForm extends Component {
     }
 }
 
-const mapStateToProps = createStructuredSelector({
-    userId: selectUserId,
+const mapStateToProps = (state, ownProps) => ({
+    userId: selectUserId(state),
+    account: selectAccount(ownProps.accountId)(state),
 });
-
 
 export default connect(mapStateToProps)(AccountForm);
