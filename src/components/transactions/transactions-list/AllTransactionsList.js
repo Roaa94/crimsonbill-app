@@ -1,5 +1,5 @@
 import React from 'react';
-import {TransactionsListHeader} from "./TransactionsList.styles";
+import {TransactionsListExpansionPanelSummary} from "./TransactionsList.styles";
 import Grid from "@material-ui/core/Grid";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
@@ -7,20 +7,7 @@ import {selectAllAccountTransactions} from "../../../redux/accounts/accounts.sel
 import TransactionCard from "../transaction-card/TransactionCard";
 import Scrollbar from "../../ui/Scrollbar";
 import {ExpansionPanel} from "@material-ui/core";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import withStyles from "@material-ui/core/styles/withStyles";
-
-const TransactionsListExpansionPanelSummary = withStyles({
-    root: {
-        padding: 0,
-        '&$expanded': {
-            minHeight: '48px',
-        },
-    },
-    expanded: {
-        margin: 0,
-    }
-})(ExpansionPanelSummary)
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 class AllTransactionsList extends React.Component {
 
@@ -29,15 +16,15 @@ class AllTransactionsList extends React.Component {
 
         return (
             <ExpansionPanel>
-                <TransactionsListExpansionPanelSummary>
-                    <TransactionsListHeader all={true}>
-                        <Grid container alignItems='center'>
+                <TransactionsListExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                    <Grid container alignItems='center'>
+                        <Grid item xs container alignItems='center'>
                             All Account Transactions
                         </Grid>
-                        <Grid container alignItems='center' justify='flex-end'>
+                        <Grid item xs container alignItems='center' justify='flex-end'>
                             filters
                         </Grid>
-                    </TransactionsListHeader>
+                    </Grid>
                 </TransactionsListExpansionPanelSummary>
                 {
                     isAllTransactionsLoaded ? (

@@ -4,7 +4,7 @@ export const colors = {
     secondary: '#8DBADF',
     background: '#F4F6F8',
     primaryLight: '#FBE8E8',
-    secondaryLight: '#DAE8F4',
+    secondaryLight: '#E1EDF6',
     white: '#FFFFFF',
     transparent: 'transparent',
     disabledBackground: '#E0E6EB',

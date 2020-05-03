@@ -1,8 +1,12 @@
 import React from 'react';
 import {format} from "date-fns";
-import {ExpansionPanel} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import {SpendingArrow, TransactionAmount, TransactionExpansionPanelSummary} from "./TransactionCard.styles";
+import {
+    SpendingArrow,
+    TransactionAmount,
+    TransactionExpansionPanel,
+    TransactionExpansionPanelSummary
+} from "./TransactionCard.styles";
 import {ReactComponent as ArrowUp} from '../../../assets/svg/arrow-up.svg';
 import {ReactComponent as ArrowDown} from '../../../assets/svg/arrow-down.svg';
 import Box from "@material-ui/core/Box";
@@ -59,7 +63,7 @@ class TransactionCard extends React.Component {
     }
 
     render() {
-        let {category, type, amount, dateTime, notes, accountId, balanceId, transactionId, readOnly} = this.props;
+        let {category, type, title, amount, dateTime, notes, accountId, balanceId, transactionId, readOnly} = this.props;
         let {transactionCardExpanded, showTransactionForm} = this.state;
 
         let formattedDate = format(dateTime.seconds * 1000, 'dd.MMM');
@@ -67,7 +71,7 @@ class TransactionCard extends React.Component {
 
 
         return (
-            <ExpansionPanel
+            <TransactionExpansionPanel
                 expanded={transactionCardExpanded}
                 onChange={this.handleExpansionPanelChange}
             >
@@ -143,14 +147,17 @@ class TransactionCard extends React.Component {
                         </Box>
                     ) : null
                 }
+                <Box p={2} fontWeight='600'>
+                    {title}
+                </Box>
                 {
                     notes ? (
-                        <Box p={2}>
+                        <Box px={2} pb={2}>
                             {notes}
                         </Box>
                     ) : null
                 }
-            </ExpansionPanel>
+            </TransactionExpansionPanel>
         );
     }
 }

@@ -2,6 +2,21 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import {withStyles} from "@material-ui/core/styles";
 import styled from 'styled-components';
 import {borderRadius, colors} from "../../../styles/global";
+import {ExpansionPanel} from "@material-ui/core";
+
+export const TransactionExpansionPanel = withStyles({
+    root: {
+        margin: '5px 0',
+        '&$expanded': {
+            margin: '5px 0',
+            borderBottom: `2px solid ${colors.background}`,
+            '&:first-child': {
+                marginTop: '5px',
+            }
+        }
+    },
+    expanded: {},
+})(ExpansionPanel);
 
 export const TransactionExpansionPanelSummary = withStyles({
     root: {
@@ -12,6 +27,7 @@ export const TransactionExpansionPanelSummary = withStyles({
         transition: 'all .3s',
         '&$expanded': {
             minHeight: '30px',
+            backgroundColor: colors.background,
         },
         '&:hover': {
             backgroundColor: colors.background,
