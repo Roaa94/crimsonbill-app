@@ -15,7 +15,6 @@ import Grid from "@material-ui/core/Grid";
 import AccountForm from "../account-form/AccountForm";
 import Box from "@material-ui/core/Box";
 import BalancesList from "../../balances/balance-list/BalancesList";
-import TransactionsList from "../../transactions/transactions-list/TransactionsList";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import AllTransactionsList from "../../transactions/transactions-list/AllTransactionsList";
 
@@ -44,7 +43,7 @@ class AccountCard extends React.Component {
     }
 
     render() {
-        let {id, type, name, currency, notes, hasBalances, totalBalance} = this.props;
+        let {id, type, name, currency, notes, totalBalance} = this.props;
         let {showAccountForm, accountCardExpanded} = this.state;
 
         const accountCardMenuItems = [
@@ -111,14 +110,13 @@ class AccountCard extends React.Component {
                         ) : null
                     }
                     {
-                        hasBalances ? (
-                            <div>
-                                <Box mb={2}>
-                                    <AllTransactionsList accountId={id}/>
-                                </Box>
-                                <BalancesList accountId={id}/>
-                            </div>
-                        ) : <TransactionsList accountId={id}/>
+
+                        <div>
+                            <Box mb={2}>
+                                <AllTransactionsList accountId={id}/>
+                            </Box>
+                            <BalancesList accountId={id}/>
+                        </div>
                     }
                 </ExpansionPanelContent>
             </AccountCardExpansionPanel>

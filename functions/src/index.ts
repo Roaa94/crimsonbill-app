@@ -27,22 +27,12 @@ export const deleteAccountSubCollections = functions.firestore
     .onDelete((snapshot, context) => {
         const batch = db.batch();
         const balancesPath = `users/${context.params.userId}/accounts/${context.params.accountId}/balances`;
-        const transactionsPath = `users/${context.params.userId}/accounts/${context.params.accountId}/transactions`;
         db.collection(balancesPath).get()
             .then(balancesSnapshot => {
                 balancesSnapshot.docs.forEach(doc => {
                     batch.delete(doc.ref);
                 })
-            })
-            .then(() => {
-                db.collection(transactionsPath).get()
-                    .then(transactionsSnapshot => {
-                        transactionsSnapshot.docs.forEach(doc => {
-                            batch.delete(doc.ref);
-                        })
-                        return batch.commit()
-                    })
-                    .catch(error => error.message)
+                return batch.commit();
             }).catch(error => error.message)
         return null;
     })

@@ -29,23 +29,15 @@ export const selectAccountTransactions = (accountId, balanceId) => createSelecto
     [selectAccountsArray],
     accountsArray => {
         let transactions = [];
-        if (balanceId) {
-            accountsArray.forEach(account => {
-                if (account.id === accountId) {
-                    account.balances.forEach(balance => {
-                        if (balance.id === balanceId) {
-                            transactions = balance.transactions;
-                        }
-                    })
-                }
-            });
-        } else {
-            accountsArray.forEach(account => {
-                if (account.id === accountId) {
-                    transactions = account.transactions;
-                }
-            });
-        }
+        accountsArray.forEach(account => {
+            if (account.id === accountId) {
+                account.balances.forEach(balance => {
+                    if (balance.id === balanceId) {
+                        transactions = balance.transactions;
+                    }
+                })
+            }
+        });
         return transactions;
     },
 );

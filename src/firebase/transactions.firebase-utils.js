@@ -4,12 +4,11 @@ import {updateAccountTotalBalance} from "./accounts.firebase-utils";
 export const addOrUpdateTransactionDocument = async (userId, accountId, balanceId, transactionId, transactionData) => {
     const accountDocPath = `users/${userId}/accounts/${accountId}`;
     const balanceDocPath = `${accountDocPath}/balances/${balanceId}`;
-    const initialPath = balanceId ? balanceDocPath : accountDocPath;
-    const transactionDocPath = `${initialPath}/transactions/${transactionId}`;
+    const transactionDocPath = `${balanceDocPath}/transactions/${transactionId}`;
 
     const transactionRef = transactionId
         ? await firestore.doc(transactionDocPath)
-        : await firestore.doc(initialPath).collection('transactions').doc();
+        : await firestore.doc(transactionDocPath).collection('transactions').doc();
 
     const transactionSnapshot = await transactionRef.get();
     let existingTransactionData;
@@ -28,13 +27,11 @@ export const addOrUpdateTransactionDocument = async (userId, accountId, balanceI
         return;
     }
     let {oldTotalBalance, newTotalBalance} = await updateTotalBalance(
-        balanceId ? balanceDocPath : accountDocPath,
+        balanceDocPath,
         existingTransactionData,
         transactionData,
     );
-    if (balanceId) {
-        await updateAccountTotalBalance(accountDocPath, oldTotalBalance, newTotalBalance);
-    }
+    await updateAccountTotalBalance(accountDocPath, oldTotalBalance, newTotalBalance);
     console.log('Transaction and balance updated successfully');
 }
 
@@ -42,19 +39,17 @@ export const deleteTransactionDocument = async (userId, accountId, balanceId, tr
     try {
         const accountDocPath = `users/${userId}/accounts/${accountId}`;
         const balanceDocPath = `${accountDocPath}/balances/${balanceId}`;
-        const transactionPath = `${balanceId ? balanceDocPath : accountDocPath}/transactions/${transactionId}`;
+        const transactionPath = `${balanceDocPath}/transactions/${transactionId}`;
         const transactionRef = firestore.doc(transactionPath);
         const transactionSnapshot = await transactionRef.get();
         const transactionData = transactionSnapshot.data();
 
         let {oldTotalBalance, newTotalBalance} = await updateTotalBalance(
-            balanceId ? balanceDocPath : accountDocPath,
+            balanceDocPath,
             transactionData,
             null,
         );
-        if (balanceId) {
-            await updateAccountTotalBalance(accountDocPath, oldTotalBalance, newTotalBalance);
-        }
+        await updateAccountTotalBalance(accountDocPath, oldTotalBalance, newTotalBalance);
         await transactionRef.delete();
         console.log('Document Deleted Successfully');
     } catch (error) {

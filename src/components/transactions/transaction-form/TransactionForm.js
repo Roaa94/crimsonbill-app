@@ -41,9 +41,7 @@ class TransactionForm extends React.Component {
         const {userId, accountId, balanceId, transactionId} = this.props;
 
         if (transactionId) {
-            const accountPath = `users/${userId}/accounts/${accountId}`;
-            const balancePath = `${accountPath}/balances/${balanceId}`;
-            const transactionDocPath = `${balanceId ? balancePath : accountPath}/transactions/${transactionId}`;
+            const transactionDocPath = `users/${userId}/accounts/${accountId}/balances/${balanceId}/transactions/${transactionId}`;
             const transactionRef = firestore.doc(transactionDocPath);
 
             transactionRef.onSnapshot(snapShot => {

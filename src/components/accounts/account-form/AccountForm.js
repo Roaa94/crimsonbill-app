@@ -12,8 +12,6 @@ import Button from "../../ui/buttons/Button";
 import {colors} from "../../../styles/global";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 
 class AccountForm extends Component {
@@ -24,7 +22,6 @@ class AccountForm extends Component {
         name: '',
         currency: '',
         notes: '',
-        hasBalances: false,
     };
 
     componentDidMount() {
@@ -56,7 +53,6 @@ class AccountForm extends Component {
             name: '',
             currency: '',
             notes: '',
-            hasBalances: false,
         });
         handleFormCancel();
     };
@@ -71,7 +67,7 @@ class AccountForm extends Component {
     }
 
     render() {
-        const {type, name, currency, notes, hasBalances} = this.state;
+        const {type, name, currency, notes} = this.state;
         const {handleFormCancel} = this.props;
 
         return (
@@ -106,52 +102,38 @@ class AccountForm extends Component {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <Box mb={2}>
-                            <TextField
-                                label='Notes'
-                                value={notes}
-                                name='notes'
-                                type='text'
-                                multiline
-                                rows={3}
-                                onChange={this.handleFieldChange}
-                            />
-                        </Box>
+                        <TextField
+                            label='Notes'
+                            value={notes}
+                            name='notes'
+                            type='text'
+                            multiline
+                            rows={3}
+                            onChange={this.handleFieldChange}
+                        />
                     </Grid>
                 </Grid>
-                <Box mb={2}>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={hasBalances}
-                                onChange={this.handleCheckBoxChange}
-                                name="hasBalances"
-                                color="secondary"
-                            />
-                        }
-                        label="Has Balances (Sub Accounts)"
-                    />
+                <Box my={2}>
+                    <Grid container>
+                        <Button
+                            fullWidth={false}
+                            type='submit'
+                            bgColor={colors.secondary}
+                            prefixIcon={<CheckRoundedIcon/>}
+                            margin='0 20px 0px 0'
+                        >
+                            Submit
+                        </Button>
+                        <Button
+                            bgColor={colors.primary}
+                            fullWidth={false}
+                            onClick={handleFormCancel}
+                            prefixIcon={<ClearRoundedIcon/>}
+                        >
+                            Cancel
+                        </Button>
+                    </Grid>
                 </Box>
-                <Grid container>
-                    <Button
-                        fullWidth={false}
-                        type='submit'
-                        bgColor={colors.secondary}
-                        prefixIcon={<CheckRoundedIcon/>}
-                        margin='0 20px 20px 0'
-                    >
-                        Submit
-                    </Button>
-                    <Button
-                        bgColor={colors.primary}
-                        fullWidth={false}
-                        onClick={handleFormCancel}
-                        prefixIcon={<ClearRoundedIcon/>}
-                        margin='0 0 20px 0'
-                    >
-                        Cancel
-                    </Button>
-                </Grid>
             </form>
         );
     }

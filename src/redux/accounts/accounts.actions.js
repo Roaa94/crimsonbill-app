@@ -27,13 +27,8 @@ export const fetchAccountsStartAsync = (userId) => {
             const accountsArray = convertCollectionToArray(accountsSnapshot);
             dispatch(fetchAccountsSuccess(accountsArray));
             accountsArray.forEach(account => {
-                if (account.hasBalances) {
-                    // console.log(`fetching balances of account ${account.name}...`);
-                    fetchBalancesStartAsync(userId, account.id)(dispatch);
-                } else {
-                    // console.log(`fetching transactions of account ${account.name}...`);
-                    fetchTransactionsStartAsync(userId, account.id, null)(dispatch);
-                }
+                // console.log(`fetching balances of account ${account.name}...`);
+                fetchBalancesStartAsync(userId, account.id)(dispatch);
             })
         }, error => dispatch(fetchAccountsError(error.message)));
     }
@@ -75,7 +70,7 @@ export const fetchTransactionsStartAsync = (userId, accountId, balanceId) => {
         dispatch(fetchTransactionsStart());
         const accountPath = `users/${userId}/accounts/${accountId}`;
         const balancePath = `${accountPath}/balances/${balanceId}`;
-        const collectionPath = `${balanceId ? balancePath : accountPath}/transactions`;
+        const collectionPath = `${balancePath}/transactions`;
         const transactionsRef = firestore.collection(collectionPath);
         const orderedTransactionsRef = transactionsRef.orderBy('dateTime', 'desc');
 

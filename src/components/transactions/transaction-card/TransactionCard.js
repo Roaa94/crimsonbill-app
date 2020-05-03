@@ -62,9 +62,8 @@ class TransactionCard extends React.Component {
         let {category, type, amount, dateTime, notes, accountId, balanceId, transactionId, readOnly} = this.props;
         let {transactionCardExpanded, showTransactionForm} = this.state;
 
-        let parsedDateTime = new Date(dateTime.seconds * 1000);
-        let formattedDate = format(parsedDateTime, 'dd.MMM');
-        let formattedTime = format(parsedDateTime, 'hh:mm a');
+        let formattedDate = format(dateTime.seconds * 1000, 'dd.MMM');
+        let formattedTime = format(dateTime.seconds * 1000, 'hh:mm a');
 
 
         return (

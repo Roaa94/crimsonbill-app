@@ -6,6 +6,15 @@ import {connect} from "react-redux";
 import {selectAllBalancesTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
 import Scrollbar from "../../ui/Scrollbar";
+import {ExpansionPanel} from "@material-ui/core";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const TransactionsListExpansionPanelSummary = withStyles({
+    root: {
+        padding: 0,
+    },
+})(ExpansionPanelSummary)
 
 class AllTransactionsList extends React.Component {
 
@@ -13,15 +22,17 @@ class AllTransactionsList extends React.Component {
         const {allTransactions, isAllTransactionsLoaded} = this.props;
 
         return (
-            <div>
-                <TransactionsListHeader all={true}>
-                    <Grid container alignItems='center'>
-                        All Account Transactions
-                    </Grid>
-                    <Grid container alignItems='center' justify='flex-end'>
-                        filters
-                    </Grid>
-                </TransactionsListHeader>
+            <ExpansionPanel>
+                <TransactionsListExpansionPanelSummary>
+                    <TransactionsListHeader all={true}>
+                        <Grid container alignItems='center'>
+                            All Account Transactions
+                        </Grid>
+                        <Grid container alignItems='center' justify='flex-end'>
+                            filters
+                        </Grid>
+                    </TransactionsListHeader>
+                </TransactionsListExpansionPanelSummary>
                 {
                     isAllTransactionsLoaded ? (
                         <Scrollbar>
@@ -37,7 +48,7 @@ class AllTransactionsList extends React.Component {
                         </Scrollbar>
                     ) : null
                 }
-            </div>
+            </ExpansionPanel>
         );
     }
 }
