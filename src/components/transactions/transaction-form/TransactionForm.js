@@ -6,11 +6,10 @@ import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import {categories} from "../../../data";
 import {addOrUpdateTransactionDocument} from "../../../firebase/transactions.firebase-utils";
-import {createStructuredSelector} from "reselect";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import TransactionFormLayout from "./TransactionFormLayout";
-import {firestore} from "../../../firebase/firebase.utils";
+import {selectTransaction} from "../../../redux/accounts/accounts.selectors";
 
 class TransactionForm extends React.Component {
     defaultTransactionValues = {
@@ -39,32 +38,23 @@ class TransactionForm extends React.Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {userId, accountId, balanceId, transactionId} = this.props;
+        const {transactionId, transaction} = this.props;
 
-        if (transactionId) {
-            const transactionDocPath = `users/${userId}/accounts/${accountId}/balances/${balanceId}/transactions/${transactionId}`;
-            const transactionRef = firestore.doc(transactionDocPath);
-
-            transactionRef.onSnapshot(snapShot => {
-                let transactionData = snapShot.data();
-                if (transactionData) {
-                    let {type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes} = transactionData;
-                    const parsedDateTime = new Date(transactionData.dateTime.seconds * 1000);
-
-                    if (this._isMounted) {
-                        this.setState({
-                            defaultValues: {
-                                dateTime: parsedDateTime,
-                                type, category, amount, accountToAccount, sourceAccountId, destinationAccountId, notes,
-                            },
-                            typePickerValues: {
-                                spending: transactionData.type === 'spending',
-                                earning: transactionData.type === 'earning',
-                            }
-                        });
+        if (transactionId && transaction) {
+            const parsedDateTime = new Date(transaction.dateTime.seconds * 1000);
+            let {type, category, title, amount, accountToAccount, notes} = transaction;
+            if (this._isMounted) {
+                this.setState({
+                    defaultValues: {
+                        dateTime: parsedDateTime,
+                        type, category, title, amount, accountToAccount, notes,
+                    },
+                    typePickerValues: {
+                        spending: transaction.type === 'spending',
+                        earning: transaction.type === 'earning',
                     }
-                }
-            })
+                });
+            }
         }
     }
 
@@ -184,8 +174,9 @@ class TransactionForm extends React.Component {
     }
 }
 
-const mapStateToProps = createStructuredSelector({
-    userId: selectUserId,
+const mapStateToProps = (state, ownProps) => ({
+    userId: selectUserId(state),
+    transaction: selectTransaction(ownProps.accountId, ownProps.balanceId, ownProps.transactionId)(state),
 });
 
 export default connect(mapStateToProps)(TransactionForm);

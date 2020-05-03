@@ -35,34 +35,31 @@ export const selectBalance = (accountId, balanceId) => createSelector(
     balances => balances.find(balance => balance.id === balanceId),
 );
 
-export const selectAccountTransactions = (accountId, balanceId) => createSelector(
-    [selectAccountsArray],
-    accountsArray => {
+export const selectBalanceTransactions = (accountId, balanceId) => createSelector(
+    [selectAccountBalances(accountId)],
+    balances => {
         let transactions = [];
-        accountsArray.forEach(account => {
-            if (account.id === accountId) {
-                account.balances.forEach(balance => {
-                    if (balance.id === balanceId) {
-                        transactions = balance.transactions;
-                    }
-                })
+        balances.forEach(balance => {
+            if (balance.id === balanceId) {
+                transactions = balance.transactions;
             }
-        });
+        })
         return transactions;
     },
 );
 
-export const selectAllBalancesTransactions = (accountId) => createSelector(
-    [selectAccountsArray],
-    accountsArray => {
+export const selectTransaction = (accountId, balanceId, transactionId) => createSelector(
+    [selectBalanceTransactions(accountId, balanceId)],
+    transactions => transactions.find(transaction => transaction.id === transactionId),
+);
+
+export const selectAllAccountTransactions = (accountId) => createSelector(
+    [selectAccountBalances(accountId)],
+    balances => {
         let allTransactions = [];
-        accountsArray.forEach(account => {
-            if (account.id === accountId && account.balances) {
-                account.balances.forEach(balance => {
-                    if (balance.transactions) {
-                        allTransactions.push(...balance.transactions);
-                    }
-                });
+        balances.forEach(balance => {
+            if (balance.transactions) {
+                allTransactions.push(...balance.transactions);
             }
         });
         //Sort transactions by transaction date
