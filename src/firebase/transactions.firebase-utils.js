@@ -1,4 +1,5 @@
 import {addDocument, firestore} from "./firebase.utils";
+import {updateAccountTotalBalance} from "./accounts.firebase-utils";
 
 export const addOrUpdateTransactionDocument = async (userId, accountId, balanceId, transactionId, transactionData) => {
     const accountDocPath = `users/${userId}/accounts/${accountId}`;
@@ -96,13 +97,3 @@ const updateTotalBalance = async (collectionPath, oldTransactionData, newTransac
     await collectionRef.update({totalBalance: newTotalBalance});
     return {oldTotalBalance, newTotalBalance};
 }
-
-const updateAccountTotalBalance = async (accountDocPath, oldTotalBalance, newTotalBalance) => {
-    const accountRef = firestore.doc(accountDocPath);
-    const accountSnapshot = await accountRef.get();
-    const accountData = accountSnapshot.data();
-    const oldAccountTotalBalance = accountData.totalBalance;
-    const newAccountTotalBalance = +oldAccountTotalBalance + (+newTotalBalance - +oldTotalBalance);
-    await accountRef.update({totalBalance: newAccountTotalBalance});
-    console.log('Updated account total balance');
-};

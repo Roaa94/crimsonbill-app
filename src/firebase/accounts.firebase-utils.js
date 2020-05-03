@@ -37,3 +37,14 @@ export const deleteAccountDocument = async (userId, accountId) => {
         console.log(error.message);
     }
 };
+
+
+export const updateAccountTotalBalance = async (accountDocPath, oldTotalBalance, newTotalBalance) => {
+    const accountRef = firestore.doc(accountDocPath);
+    const accountSnapshot = await accountRef.get();
+    const accountData = accountSnapshot.data();
+    const oldAccountTotalBalance = accountData.totalBalance;
+    const newAccountTotalBalance = +oldAccountTotalBalance + (+newTotalBalance - +oldTotalBalance);
+    await accountRef.update({totalBalance: newAccountTotalBalance});
+    console.log('Updated account total balance');
+};

@@ -1,4 +1,5 @@
 import {firestore} from "./firebase.utils";
+import {updateAccountTotalBalance} from "./accounts.firebase-utils";
 
 export const addOrUpdateBalanceDocument = async (userId, accountId, balanceId, balanceData) => {
     const balanceRef = balanceId
@@ -31,11 +32,18 @@ export const addOrUpdateBalanceDocument = async (userId, accountId, balanceId, b
 }
 
 export const deleteBalanceDocument = async (userId, accountId, balanceId) => {
-    console.log(userId, accountId, balanceId);
+    const accountDocPath = `users/${userId}/accounts/${accountId}`
+    const balanceDocPath = `${accountDocPath}/balances/${balanceId}`;
+    const balanceRef = firestore.doc(balanceDocPath);
+    const balanceSnapshot = await balanceRef.get();
+    const balanceData = balanceSnapshot.data();
+    const balanceToRemove = balanceData.totalBalance;
     try {
-        await firestore.doc(`users/${userId}/accounts/${accountId}/balances/${balanceId}`).delete();
+        await balanceRef.delete();
         console.log('Document Deleted Successfully');
     } catch (error) {
         console.log(error.message);
+        return;
     }
+    await updateAccountTotalBalance(accountDocPath, balanceToRemove, 0);
 };
