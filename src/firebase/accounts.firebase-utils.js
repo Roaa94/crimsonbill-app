@@ -4,9 +4,9 @@ export const addOrUpdateAccountDocument = async (userId, accountId, accountData)
     const accountRef = accountId ?
         await firestore.doc(`users/${userId}/accounts/${accountId}`)
         : await firestore.doc(`users/${userId}`).collection('accounts').doc();
-    const snapShot = await accountRef.get();
+    const accountSnapshot = await accountRef.get();
     let newAccount = null;
-    if (!snapShot.exists && !accountId) {
+    if (!accountSnapshot.exists && !accountId) {
         const createdAt = new Date();
         newAccount = {
             createdAt,
