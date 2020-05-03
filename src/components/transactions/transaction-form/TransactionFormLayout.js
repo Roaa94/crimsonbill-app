@@ -18,6 +18,7 @@ const TransactionFormLayout = (
         categorySelectValue,
         categorySelectItems,
         amountValue,
+        titleValue,
         dateTimeValue,
         accountToAccount,
         onCheckboxChange,
@@ -38,7 +39,7 @@ const TransactionFormLayout = (
                         {formTitle}
                     </Box>
                 </Grid>
-                <Grid item container alignItems='stretch' wrap='nowrap' xs={12} md={7} xl={4}>
+                <Grid item container alignItems='stretch' wrap='nowrap' xs={12} md={7} xl={3}>
                     <Grid item>
                         <TransactionTypeIcon
                             type='spending'
@@ -65,6 +66,16 @@ const TransactionFormLayout = (
                 </Grid>
                 <Grid item xs={12} md={5} xl={2}>
                     <TextField
+                        label='Title'
+                        value={titleValue}
+                        name='title'
+                        type='text'
+                        required
+                        onChange={onFieldChange}
+                    />
+                </Grid>
+                <Grid item xs={12} md={2} xl={1}>
+                    <TextField
                         label='Amount'
                         value={amountValue}
                         name='amount'
@@ -73,7 +84,7 @@ const TransactionFormLayout = (
                         onChange={onFieldChange}
                     />
                 </Grid>
-                <Grid item xs={12} xl={6}>
+                <Grid item xs={12} md={10} xl={6}>
                     <DateTimePicker
                         selectedDate={dateTimeValue}
                         dateFieldLabel='Transaction Date'

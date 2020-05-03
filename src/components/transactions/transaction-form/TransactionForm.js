@@ -16,6 +16,7 @@ class TransactionForm extends React.Component {
     defaultTransactionValues = {
         type: 'spending',
         category: '',
+        title: '',
         amount: '',
         dateTime: new Date(),
         accountToAccount: false,
@@ -132,7 +133,7 @@ class TransactionForm extends React.Component {
 
     render() {
         const {typePickerValues, defaultValues} = this.state;
-        const {category, amount, dateTime, accountToAccount, notes, type} = defaultValues;
+        const {category, title, amount, dateTime, accountToAccount, notes, type} = defaultValues;
         const {handleFormCancel, transactionId} = this.props;
 
         return (
@@ -144,6 +145,7 @@ class TransactionForm extends React.Component {
                     onFieldChange={this.handleFieldChange}
                     categorySelectValue={category}
                     categorySelectItems={categories}
+                    titleValue={title}
                     amountValue={amount}
                     dateTimeValue={dateTime}
                     onDateTimeChange={this.handleDateTimeChange}
