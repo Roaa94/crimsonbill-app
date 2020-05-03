@@ -44,6 +44,7 @@ export const deleteAccountSubCollections = functions.firestore
                     })
                     .catch(error => error.message)
             }).catch(error => error.message)
+        return null;
     })
 
 //The function works fine but it makes the onSnapshot listener fire a lot of time and it's too slow
