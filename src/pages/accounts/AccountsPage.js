@@ -26,7 +26,6 @@ class AccountsPage extends React.Component {
     render() {
         let {accountFormShow, toggleAccountForm, accounts, isFetchingAccounts} = this.props;
         let hasAccounts = accounts && accounts.length > 0;
-        console.log(accounts);
         return (
             <PageWrapper>
                 {
