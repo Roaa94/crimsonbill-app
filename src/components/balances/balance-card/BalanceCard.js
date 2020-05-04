@@ -12,7 +12,7 @@ import {connect} from "react-redux";
 import {deleteBalanceDocument} from "../../../firebase/balances.firebase-utils";
 import BalanceForm from "../BalanceForm";
 import TransactionsList from "../../transactions/transactions-list/TransactionsList";
-import {selectBalanceTotal} from "../../../redux/accounts/accounts.selectors";
+import {updateTotal} from "../../../firebase/accounts.firebase-utils";
 
 class BalanceCard extends React.Component {
 
@@ -34,6 +34,8 @@ class BalanceCard extends React.Component {
     deleteBalance = async () => {
         let {userId, accountId, balanceId} = this.props;
         await deleteBalanceDocument(userId, accountId, balanceId);
+        await updateTotal(userId, accountId, balanceId);
+        await updateTotal(userId, accountId);
     }
 
     handleExpansionPanelChange = () => {
@@ -58,7 +60,7 @@ class BalanceCard extends React.Component {
     }
 
     render() {
-        let {accountId, balanceId, name, currency, balanceTotal} = this.props;
+        let {accountId, balanceId, name, currency, totalBalance} = this.props;
         let {showBalanceForm, balanceCardExpanded} = this.state;
         return (
             <BalanceCardExpansionPanel
@@ -76,7 +78,7 @@ class BalanceCard extends React.Component {
                             {currency}
                         </Grid>
                         <Grid item xs={2}>
-                            <FormattedNumber number={balanceTotal}/>
+                            <FormattedNumber number={totalBalance}/>
                         </Grid>
                         <Grid item xs={4} container justify='flex-end'>
                             <Button
@@ -129,7 +131,6 @@ class BalanceCard extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
-    balanceTotal: selectBalanceTotal(ownProps.accountId)(state),
 });
 
 export default connect(mapStateToProps)(BalanceCard);
