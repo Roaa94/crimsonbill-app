@@ -161,7 +161,6 @@ class TransactionForm extends React.Component {
         return (
             <form onSubmit={this.handleFormSubmit}>
                 <TransactionFormLayout
-                    formTitle={transactionId ? 'Edit Transaction' : 'Add Transaction'}
                     typePickers={typePickerValues}
                     onSelectType={this.handleTypePickerChange}
                     onFieldChange={this.handleFieldChange}
@@ -181,6 +180,7 @@ class TransactionForm extends React.Component {
                     accountsList={otherAccounts}
                     balancesList={targetAccountBalances}
                     notesValue={notes}
+                    toEdit={!!transactionId}
                 />
                 <Grid container>
                     <Button

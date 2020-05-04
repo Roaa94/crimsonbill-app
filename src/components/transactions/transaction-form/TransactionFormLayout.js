@@ -11,7 +11,6 @@ import TransactionArrow from "./TransactionArrow";
 
 const TransactionFormLayout = (
     {
-        formTitle,
         typePickers,
         onSelectType,
         categorySelectValue,
@@ -31,6 +30,7 @@ const TransactionFormLayout = (
         onDateTimeChange,
         accountsList,
         balancesList,
+        toEdit,
     }
 ) => {
     return (
@@ -38,7 +38,7 @@ const TransactionFormLayout = (
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Box fontWeight='600' fontSize='small'>
-                        {formTitle}
+                        {toEdit ? 'Edit Transaction' : 'Add Transaction'}
                     </Box>
                 </Grid>
                 <Grid item container alignItems='stretch' wrap='nowrap' xs={12} md={7} xl={3}>
@@ -98,7 +98,7 @@ const TransactionFormLayout = (
                     <FormControlLabel
                         control={
                             <Checkbox
-                                disabled={accountsList.length === 0}
+                                disabled={accountsList.length === 0 || toEdit}
                                 checked={accountToAccount}
                                 onChange={onCheckboxChange}
                                 name="accountToAccount"
@@ -142,13 +142,14 @@ const TransactionFormLayout = (
                                         value={targetAccountSelectValue}
                                         menuItems={accountsList}
                                         onChange={onFieldChange}
+                                        disabled={toEdit}
                                     />
                                 </Grid>
                                 <Grid item xs={12} xl={6}>
                                     <Select
                                         label={`${type === 'spending' ? 'To' : 'From'} Balance`}
                                         name='targetBalanceId'
-                                        disabled={!(!!targetAccountSelectValue)}
+                                        disabled={!(!!targetAccountSelectValue) || toEdit}
                                         value={targetBalanceSelectValue}
                                         menuItems={balancesList}
                                         onChange={onFieldChange}
