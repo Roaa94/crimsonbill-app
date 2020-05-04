@@ -37,30 +37,22 @@ export const deleteAccountSubCollections = functions.firestore
         return null;
     })
 
-// The function works fine but it makes the onSnapshot listener fire a lot of time and it's too slow
-// Consider using a transaction instead
-// export const balanceUpdated = functions.firestore
-//     .document('users/{userId}/accounts/{accountId}/balances/{balanceId}')
-//     .onUpdate((change, context) => {
-//         const oldBalanceData = change.before.data();
-//         const newBalanceData = change.after.data();
-//         if (oldBalanceData && newBalanceData) {
-//
-//             const accountPath = `users/${context.params.userId}/accounts/${context.params.accountId}`;
-//             const accountRef = admin.firestore().doc(accountPath)
-//             accountRef.get().then(snapshot => {
-//                 const accountData = snapshot.data();
-//                 if (accountData) {
-//                     const oldAccountTotalBalance = accountData.totalBalance;
-//                     const newAccountTotalBalance = +oldAccountTotalBalance + (+newBalanceData.totalBalance - +oldBalanceData.totalBalance);
-//                     console.log('accountData');
-//                     console.log(accountData);
-//                     console.log(`newAccountTotalBalance: ${newAccountTotalBalance}`);
-//                     return accountRef.update({totalBalance: newAccountTotalBalance});
-//                 }
-//                 return null;
-//             }).catch(error => error.message);
-//             return null;
-//         }
-//         return null;
-//     })
+export const updateBalanceTotal = functions.firestore
+    .document('users/{userId}/accounts/{accountId}/balances/{balanceId}/transactions/{transactionId}')
+    .onUpdate((change, context) => {
+        const params = context.params;
+        const balanceDocPath = `users/${params.userId}/accounts/${params.accountId}/balances/${params.balanceId}`;
+        const balanceDocRef = db.doc(balanceDocPath);
+        const transactionsCollectionPath = `${balanceDocPath}/transactions`;
+        const transactionsCollectionRef = db.collection(transactionsCollectionPath);
+
+        transactionsCollectionRef.get().then(transactionCollectionSnapshot => {
+            let total = 0;
+            transactionCollectionSnapshot.docs.forEach(doc => {
+                const transactionData = doc.data();
+                total = transactionData.type === 'spending' ? total - +transactionData.amount : total + +transactionData.amount;
+            });
+            return balanceDocRef.update({totalBalance: total});
+        }).catch(error => error.message)
+        return null;
+    })
