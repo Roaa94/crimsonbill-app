@@ -1,6 +1,6 @@
-import {accountFormActionTypes} from "./account-form.action-types";
+import {AccountFormActionTypes} from "./account-form.action-types";
 
 export const toggleAccountForm = value => ({
-    type: accountFormActionTypes.TOGGLE_ACCOUNT_FORM,
+    type: AccountFormActionTypes.TOGGLE_ACCOUNT_FORM,
     payload: value,
 });

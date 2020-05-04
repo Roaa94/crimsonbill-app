@@ -1,4 +1,4 @@
-import {accountFormActionTypes} from "./account-form.action-types";
+import {AccountFormActionTypes} from "./account-form.action-types";
 
 const INITIAL_STATE = {
     accountFormShow: false,
@@ -8,17 +8,17 @@ const INITIAL_STATE = {
 
 const accountFormReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case accountFormActionTypes.TOGGLE_ACCOUNT_FORM:
+        case AccountFormActionTypes.TOGGLE_ACCOUNT_FORM:
             return {
                 ...state,
                 accountFormShow: action.payload,
             };
-        case accountFormActionTypes.TOGGLE_BALANCE_FORM:
+        case AccountFormActionTypes.TOGGLE_BALANCE_FORM:
             return {
                 ...state,
                 balanceFormShow: action.payload,
             };
-        case accountFormActionTypes.TOGGLE_TRANSACTION_FORM:
+        case AccountFormActionTypes.TOGGLE_TRANSACTION_FORM:
             return {
                 ...state,
                 transactionFormShow: action.payload,

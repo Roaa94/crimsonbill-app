@@ -1,4 +1,4 @@
-import {accountsActionTypes} from "./accounts.action-types";
+import {AccountsActionTypes} from "./accounts.action-types";
 import {addAccountBalances, addAccountTransactions} from "./accounts.redux-utils";
 
 const INITIAL_STATE = {
@@ -11,52 +11,52 @@ const INITIAL_STATE = {
 
 const accountsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case accountsActionTypes.FETCH_ACCOUNTS_START:
+        case AccountsActionTypes.FETCH_ACCOUNTS_START:
             return {
                 ...state,
                 isFetchingAccounts: true,
             }
-        case accountsActionTypes.FETCH_ACCOUNTS_SUCCESS:
+        case AccountsActionTypes.FETCH_ACCOUNTS_SUCCESS:
             return {
                 ...state,
                 isFetchingAccounts: false,
                 accountsArray: action.payload,
             };
-        case accountsActionTypes.FETCH_ACCOUNTS_ERROR:
+        case AccountsActionTypes.FETCH_ACCOUNTS_ERROR:
             return {
                 ...state,
                 isFetchingAccounts: false,
                 errorMessage: action.payload,
             };
-        case accountsActionTypes.FETCH_BALANCES_START:
+        case AccountsActionTypes.FETCH_BALANCES_START:
             return {
                 ...state,
                 isFetchingBalances: true,
             }
-        case accountsActionTypes.FETCH_BALANCES_SUCCESS:
+        case AccountsActionTypes.FETCH_BALANCES_SUCCESS:
             return {
                 ...state,
                 isFetchingBalances: false,
                 accountsArray: addAccountBalances(state.accountsArray, action.payload),
             };
-        case accountsActionTypes.FETCH_BALANCES_ERROR:
+        case AccountsActionTypes.FETCH_BALANCES_ERROR:
             return {
                 ...state,
                 isFetchingBalances: false,
                 errorMessage: action.payload,
             };
-        case accountsActionTypes.FETCH_TRANSACTIONS_START:
+        case AccountsActionTypes.FETCH_TRANSACTIONS_START:
             return {
                 ...state,
                 isFetchingTransactions: true,
             }
-        case accountsActionTypes.FETCH_TRANSACTIONS_SUCCESS:
+        case AccountsActionTypes.FETCH_TRANSACTIONS_SUCCESS:
             return {
                 ...state,
                 isFetchingTransactions: false,
                 accountsArray: addAccountTransactions(state.accountsArray, action.payload),
             };
-        case accountsActionTypes.FETCH_TRANSACTIONS_ERROR:
+        case AccountsActionTypes.FETCH_TRANSACTIONS_ERROR:
             return {
                 ...state,
                 isFetchingTransactions: false,

@@ -1,31 +1,31 @@
 import {convertCollectionToArray, firestore, getAccountDocPath, getBalanceDocPath} from "../../firebase/firebase.utils";
-import {accountsActionTypes} from "./accounts.action-types";
+import {AccountsActionTypes} from "./accounts.action-types";
 
 export const fetchAccountsStart = () => ({
-    type: accountsActionTypes.FETCH_ACCOUNTS_START,
+    type: AccountsActionTypes.FETCH_ACCOUNTS_START,
 });
 
 export const fetchAccountsSuccess = accountsArray => ({
-    type: accountsActionTypes.FETCH_ACCOUNTS_SUCCESS,
+    type: AccountsActionTypes.FETCH_ACCOUNTS_SUCCESS,
     payload: accountsArray,
 });
 
 export const fetchAccountsError = errorMessage => ({
-    type: accountsActionTypes.FETCH_ACCOUNTS_SUCCESS,
+    type: AccountsActionTypes.FETCH_ACCOUNTS_SUCCESS,
     payload: errorMessage,
 });
 
 export const fetchBalancesStart = () => ({
-    type: accountsActionTypes.FETCH_BALANCES_START,
+    type: AccountsActionTypes.FETCH_BALANCES_START,
 });
 
 export const fetchBalancesSuccess = (accountId, balancesArray) => ({
-    type: accountsActionTypes.FETCH_BALANCES_SUCCESS,
+    type: AccountsActionTypes.FETCH_BALANCES_SUCCESS,
     payload: {accountId, balancesArray},
 });
 
 export const fetchBalancesError = errorMessage => ({
-    type: accountsActionTypes.FETCH_BALANCES_SUCCESS,
+    type: AccountsActionTypes.FETCH_BALANCES_SUCCESS,
     payload: errorMessage,
 });
 
@@ -81,15 +81,15 @@ export const fetchTransactionsStartAsync = (userId, accountId, balanceId) => {
 };
 
 export const fetchTransactionsStart = () => ({
-    type: accountsActionTypes.FETCH_TRANSACTIONS_START,
+    type: AccountsActionTypes.FETCH_TRANSACTIONS_START,
 });
 
 export const fetchTransactionsSuccess = (accountId, balanceId, transactionsArray) => ({
-    type: accountsActionTypes.FETCH_TRANSACTIONS_SUCCESS,
+    type: AccountsActionTypes.FETCH_TRANSACTIONS_SUCCESS,
     payload: {accountId, balanceId, transactionsArray},
 });
 
 export const fetchTransactionsError = errorMessage => ({
-    type: accountsActionTypes.FETCH_TRANSACTIONS_SUCCESS,
+    type: AccountsActionTypes.FETCH_TRANSACTIONS_SUCCESS,
     payload: errorMessage,
 });
