@@ -64,13 +64,12 @@ class TransactionsList extends React.Component {
                     isTransactionsLoaded ? (
                         <Scrollbar>
                             {
-                                transactions.map(({id, ...transaction}) => (
+                                transactions.map((transaction) => (
                                     <TransactionCard
-                                        key={id}
+                                        key={transaction.id}
                                         accountId={accountId}
                                         balanceId={balanceId}
-                                        transactionId={id}
-                                        {...transaction}
+                                        transaction={transaction}
                                     />
                                 ))
                             }

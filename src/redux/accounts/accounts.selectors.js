@@ -37,6 +37,11 @@ export const selectAccount = accountId => createSelector(
     accountsArray => accountsArray.find(account => account.id === accountId),
 );
 
+export const selectAccountName = accountId => createSelector(
+    [selectAccount(accountId)],
+    account => account.name,
+);
+
 export const selectAccountBalances = accountId => createSelector(
     [selectAccount(accountId)],
     account => account.balances
@@ -45,6 +50,11 @@ export const selectAccountBalances = accountId => createSelector(
 export const selectBalance = (accountId, balanceId) => createSelector(
     [selectAccountBalances(accountId)],
     balances => balances.find(balance => balance.id === balanceId),
+);
+
+export const selectBalanceName = (accountId, balanceId) => createSelector(
+    [selectBalance(accountId, balanceId)],
+    balance => balance.name,
 );
 
 export const selectBalanceTransactions = (accountId, balanceId) => createSelector(

@@ -19,6 +19,7 @@ import {connect} from "react-redux";
 import {deleteTransactionDocument} from "../../../firebase/transactions.firebase-utils";
 import FormattedNumber from "../../ui/FormattedNumber";
 import TransactionForm from "../transaction-form/TransactionForm";
+import AccountToAccountView from "./AccountToAccountView";
 
 class TransactionCard extends React.Component {
     _isMount = false;
@@ -37,8 +38,8 @@ class TransactionCard extends React.Component {
     };
 
     deleteTransaction = async () => {
-        let {userId, accountId, balanceId, transactionId} = this.props;
-        await deleteTransactionDocument(userId, accountId, balanceId, transactionId);
+        let {userId, accountId, balanceId, transaction} = this.props;
+        await deleteTransactionDocument(userId, accountId, balanceId, transaction.id);
     }
 
     handleExpansionPanelChange = () => {
@@ -54,7 +55,7 @@ class TransactionCard extends React.Component {
     }
 
     controlTransactionForm = value => {
-        if(this._isMount) {
+        if (this._isMount) {
             this.setState({
                 showTransactionForm: value,
                 transactionCardExpanded: true,
@@ -63,7 +64,21 @@ class TransactionCard extends React.Component {
     }
 
     render() {
-        let {category, type, title, amount, dateTime, notes, accountId, balanceId, transactionId, readOnly} = this.props;
+        let {transaction, accountId, balanceId, readOnly} = this.props;
+
+        let {
+            id,
+            category,
+            type,
+            title,
+            amount,
+            dateTime,
+            notes,
+            accountToAccount,
+            targetAccountId,
+            targetBalanceId
+        } = transaction;
+
         let {transactionCardExpanded, showTransactionForm} = this.state;
 
         let formattedDate = format(dateTime.seconds * 1000, 'dd.MMM');
@@ -135,28 +150,36 @@ class TransactionCard extends React.Component {
                         }
                     </Grid>
                 </TransactionExpansionPanelSummary>
-                {
-                    showTransactionForm && !readOnly ? (
-                        <Box px={2} pt={2}>
+                <Box p={2}>
+
+                    {
+                        showTransactionForm && !readOnly ? (
                             <TransactionForm
                                 handleFormCancel={() => this.controlTransactionForm(false)}
                                 accountId={accountId}
                                 balanceId={balanceId}
-                                transactionId={transactionId}
+                                transactionId={id}
                             />
-                        </Box>
-                    ) : null
-                }
-                <Box p={2} fontWeight='600'>
-                    {title}
+                        ) : null
+                    }
+                    <Box py={2} fontWeight='600'>
+                        {title}
+                    </Box>
+                    {
+                        notes ? notes : null
+                    }
+                    {
+                        accountToAccount ? (
+                            <AccountToAccountView
+                                accountId={accountId}
+                                balanceId={balanceId}
+                                targetAccountId={targetAccountId}
+                                targetBalanceId={targetBalanceId}
+                                isSpending={type === 'spending'}
+                            />
+                        ) : null
+                    }
                 </Box>
-                {
-                    notes ? (
-                        <Box px={2} pb={2}>
-                            {notes}
-                        </Box>
-                    ) : null
-                }
             </TransactionExpansionPanel>
         );
     }
