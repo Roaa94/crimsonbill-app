@@ -40,9 +40,9 @@ export const theme = createMuiTheme({
             }
         },
         MuiInputBase: {
-          root: {
-              fontSize: '0.9rem',
-          }
+            root: {
+                fontSize: '0.9rem',
+            }
         },
         MuiFormControl: {
             marginNormal: {
@@ -76,6 +76,9 @@ export const theme = createMuiTheme({
                 '&:focus': {
                     backgroundColor: colors.background,
                     borderRadius: borderRadius.m,
+                },
+                '&$disabled:hover': {
+                    boxShadow: 'none !important',
                 }
             },
             selectMenu: {
