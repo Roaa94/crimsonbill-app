@@ -18,7 +18,6 @@ import {
     selectOtherAccounts,
     selectTransaction
 } from "../../../redux/accounts/accounts.selectors";
-import {updateTotal} from "../../../firebase/accounts.firebase-utils";
 
 class TransactionForm extends React.Component {
     defaultTransactionValues = {
@@ -81,12 +80,6 @@ class TransactionForm extends React.Component {
             await updateTransactionDocument(userId, accountId, balanceId, transactionId, transactionData);
         } else {
             await addTransactionDocument(userId, accountId, balanceId, transactionData);
-        }
-        await updateTotal(userId, accountId, balanceId);
-        await updateTotal(userId, accountId);
-        if (transactionData.accountToAccount) {
-            await updateTotal(userId, transactionData.targetBalanceId, transactionData.targetBalanceId);
-            await updateTotal(userId, transactionData.targetBalanceId);
         }
         if (this._isMounted) {
             this.setState({

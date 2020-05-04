@@ -19,7 +19,6 @@ import {connect} from "react-redux";
 import {deleteTransactionDocument} from "../../../firebase/transactions.firebase-utils";
 import FormattedNumber from "../../ui/FormattedNumber";
 import TransactionForm from "../transaction-form/TransactionForm";
-import {updateTotal} from "../../../firebase/accounts.firebase-utils";
 
 class TransactionCard extends React.Component {
     _isMount = false;
@@ -40,8 +39,6 @@ class TransactionCard extends React.Component {
     deleteTransaction = async () => {
         let {userId, accountId, balanceId, transactionId} = this.props;
         await deleteTransactionDocument(userId, accountId, balanceId, transactionId);
-        await updateTotal(userId, accountId, balanceId);
-        await updateTotal(userId, accountId);
     }
 
     handleExpansionPanelChange = () => {

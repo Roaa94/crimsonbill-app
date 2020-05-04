@@ -12,8 +12,6 @@ import {connect} from "react-redux";
 import {deleteBalanceDocument} from "../../../firebase/balances.firebase-utils";
 import BalanceForm from "../BalanceForm";
 import TransactionsList from "../../transactions/transactions-list/TransactionsList";
-import {updateTotal} from "../../../firebase/accounts.firebase-utils";
-
 class BalanceCard extends React.Component {
 
     _isMount = false;
@@ -34,8 +32,6 @@ class BalanceCard extends React.Component {
     deleteBalance = async () => {
         let {userId, accountId, balanceId} = this.props;
         await deleteBalanceDocument(userId, accountId, balanceId);
-        await updateTotal(userId, accountId, balanceId);
-        await updateTotal(userId, accountId);
     }
 
     handleExpansionPanelChange = () => {
