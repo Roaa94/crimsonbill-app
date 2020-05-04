@@ -68,6 +68,21 @@ export const selectBalanceTransactions = (accountId, balanceId) => createSelecto
     },
 );
 
+export const selectBalanceTotal = accountId => createSelector(
+    [selectAccountBalances(accountId)],
+    balances => {
+        let total = 0;
+        balances.forEach(balance => {
+            if (balance.transactions) {
+                balance.transactions.forEach(transaction => {
+                    total = transaction.type === 'spending' ? total - +transaction.amount : total + +transaction.amount;
+                });
+            }
+        })
+        return total;
+    },
+);
+
 export const selectTransaction = (accountId, balanceId, transactionId) => createSelector(
     [selectBalanceTransactions(accountId, balanceId)],
     transactions => transactions.find(transaction => transaction.id === transactionId),

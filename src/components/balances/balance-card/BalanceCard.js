@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import {deleteBalanceDocument} from "../../../firebase/balances.firebase-utils";
 import BalanceForm from "../BalanceForm";
 import TransactionsList from "../../transactions/transactions-list/TransactionsList";
+import {selectBalanceTotal} from "../../../redux/accounts/accounts.selectors";
 
 class BalanceCard extends React.Component {
 
@@ -57,9 +58,8 @@ class BalanceCard extends React.Component {
     }
 
     render() {
-        let {accountId, balanceId, name, currency, totalBalance} = this.props;
+        let {accountId, balanceId, name, currency, balanceTotal} = this.props;
         let {showBalanceForm, balanceCardExpanded} = this.state;
-
         return (
             <BalanceCardExpansionPanel
                 expanded={balanceCardExpanded}
@@ -76,7 +76,7 @@ class BalanceCard extends React.Component {
                             {currency}
                         </Grid>
                         <Grid item xs={2}>
-                            <FormattedNumber number={totalBalance}/>
+                            <FormattedNumber number={balanceTotal}/>
                         </Grid>
                         <Grid item xs={4} container justify='flex-end'>
                             <Button
@@ -127,8 +127,9 @@ class BalanceCard extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
+    balanceTotal: selectBalanceTotal(ownProps.accountId)(state),
 });
 
 export default connect(mapStateToProps)(BalanceCard);
