@@ -51,19 +51,11 @@ export const fetchAccountsStartAsync = (userId) => {
 export const fetchBalancesStartAsync = (userId, accountId) => {
     return dispatch => {
         dispatch(fetchBalancesStart());
-        const collectionPath = `users/${userId}/accounts/${accountId}/balances`;
+        const collectionPath = `${getAccountDocPath(userId, accountId)}/balances`;
         const balancesRef = firestore.collection(collectionPath);
-        const accountRef = firestore.doc(getAccountDocPath(userId, accountId));
 
         balancesRef.onSnapshot(async balancesSnapshot => {
             const balancesArray = convertCollectionToArray(balancesSnapshot);
-
-            let balancesTotal = 0;
-            balancesArray.forEach(balance => {
-                balancesTotal += +balance.totalBalance;
-            })
-            await accountRef.update({totalBalance: balancesTotal});
-
             dispatch(fetchBalancesSuccess(accountId, balancesArray));
             balancesArray.forEach(balance => {
                 // console.log(`fetching balance transactions of account ${accountId} balance ${balance.name}...`);
@@ -80,19 +72,9 @@ export const fetchTransactionsStartAsync = (userId, accountId, balanceId) => {
         const collectionPath = `${balanceDocPath}/transactions`;
         const transactionsRef = firestore.collection(collectionPath);
         const orderedTransactionsRef = transactionsRef.orderBy('dateTime', 'desc');
-        const balanceRef = firestore.doc(balanceDocPath);
 
         orderedTransactionsRef.onSnapshot(async transactionsSnapshot => {
             const transactionsArray = convertCollectionToArray(transactionsSnapshot);
-
-            let transactionsTotal = 0;
-            transactionsArray.forEach(transaction => {
-                transactionsTotal = transaction.type === 'spending'
-                    ? transactionsTotal - +transaction.amount
-                    : transactionsTotal + +transaction.amount;
-            });
-            await balanceRef.update({totalBalance: transactionsTotal});
-
             dispatch(fetchTransactionsSuccess(accountId, balanceId, transactionsArray));
         }, error => dispatch(fetchTransactionsError(error.message)));
     }
