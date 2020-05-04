@@ -38,16 +38,8 @@ export const selectAccount = accountId => createSelector(
 );
 
 export const selectAccountBalances = accountId => createSelector(
-    [selectAccountsArray],
-    accountsArray => {
-        let balances = [];
-        accountsArray.forEach(account => {
-            if (account.id === accountId) {
-                balances = account.balances;
-            }
-        });
-        return balances;
-    },
+    [selectAccount(accountId)],
+    account => account.balances
 );
 
 export const selectBalance = (accountId, balanceId) => createSelector(
@@ -56,36 +48,17 @@ export const selectBalance = (accountId, balanceId) => createSelector(
 );
 
 export const selectBalanceTransactions = (accountId, balanceId) => createSelector(
-    [selectAccountBalances(accountId)],
-    balances => {
-        let transactions = [];
-        balances.forEach(balance => {
-            if (balance.id === balanceId) {
-                transactions = balance.transactions;
-            }
-        })
-        return transactions;
-    },
-);
-
-export const selectBalanceTotal = accountId => createSelector(
-    [selectAccountBalances(accountId)],
-    balances => {
-        let total = 0;
-        balances.forEach(balance => {
-            if (balance.transactions) {
-                balance.transactions.forEach(transaction => {
-                    total = transaction.type === 'spending' ? total - +transaction.amount : total + +transaction.amount;
-                });
-            }
-        })
-        return total;
-    },
+    [selectBalance(accountId, balanceId)],
+    balance => balance.transactions
 );
 
 export const selectTransaction = (accountId, balanceId, transactionId) => createSelector(
-    [selectBalanceTransactions(accountId, balanceId)],
-    transactions => transactions.find(transaction => transaction.id === transactionId),
+    [selectBalance(accountId, balanceId)],
+    balance => {
+        if(balance.transactions) {
+            return balance.transactions.find(transaction => transaction.id === transactionId);
+        }
+    },
 );
 
 export const selectAllAccountTransactions = (accountId) => createSelector(
