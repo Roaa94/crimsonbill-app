@@ -10,11 +10,13 @@ export const addAccountBalances = (accountsArray, {accountId, balancesArray}) =>
 export const addAccountTransactions = (accountsArray, {accountId, balanceId, transactionsArray}) => {
     accountsArray.forEach(account => {
         if (account.id === accountId) {
-            account.balances.forEach(balance => {
-                if (balance.id === balanceId) {
-                    balance.transactions = transactionsArray;
-                }
-            })
+            if (account.balances) {
+                account.balances.forEach(balance => {
+                    if (balance.id === balanceId) {
+                        balance.transactions = transactionsArray;
+                    }
+                })
+            }
         }
     });
     return accountsArray;
