@@ -1,38 +1,75 @@
-import {addDocument, firestore} from "./firebase.utils";
-// import {updateAccountTotalBalance} from "./accounts.firebase-utils";
+import {firestore, getBalanceDocPath, getTransactionDocPath} from "./firebase.utils";
 
 export const addOrUpdateTransactionDocument = async (userId, accountId, balanceId, transactionId, transactionData) => {
-    const accountDocPath = `users/${userId}/accounts/${accountId}`;
-    const balanceDocPath = `${accountDocPath}/balances/${balanceId}`;
-    const transactionDocPath = `${balanceDocPath}/transactions/${transactionId}`;
+    const balanceDocPath = getBalanceDocPath(userId, accountId, balanceId);
+    const transactionDocPath = getTransactionDocPath(userId, accountId, balanceId, transactionId);
 
     const transactionRef = transactionId
         ? await firestore.doc(transactionDocPath)
         : await firestore.doc(balanceDocPath).collection('transactions').doc();
 
     const transactionSnapshot = await transactionRef.get();
-    // let existingTransactionData;
+    const batch = firestore.batch();
+    const accountToAccount = transactionData.accountToAccount && transactionData.targetAccountId && transactionData.targetBalanceId;
+    const otherBalanceDocPath = getBalanceDocPath(userId, transactionData.targetAccountId, transactionData.targetBalanceId);
 
-    try {
-        if (!transactionSnapshot.exists && !transactionId) {
-            //Create new transaction
-            await addDocument(transactionRef, transactionData);
-        } else {
-            //Update existing transaction
-            // existingTransactionData = transactionSnapshot.data();
-            await transactionRef.update(transactionData);
+    if (!transactionSnapshot.exists && !transactionId) {
+        //Create new transaction
+        batch.set(transactionRef, transactionData);
+        if (accountToAccount) {
+            //Add the transaction to the other account
+            try {
+                const mirrorTransactionRef = await firestore.doc(otherBalanceDocPath).collection('transactions').doc(transactionSnapshot.id);
+                const mirrorTransactionSnapshot = await mirrorTransactionRef.get();
+                if (!mirrorTransactionSnapshot.exists) {
+                    let mirrorTransaction = {
+                        ...transactionData,
+                        type: transactionData.type === 'spending' ? 'earning' : 'spending',
+                        targetAccountId: accountId,
+                        targetBalanceId: balanceId,
+                    };
+                    batch.set(mirrorTransactionRef, mirrorTransaction);
+                    console.log('mirrorTransaction')
+                    console.log(mirrorTransaction)
+                }
+            } catch (e) {
+                console.log('Could not add mirror transaction');
+                console.log(e.message);
+                return;
+            }
         }
-    } catch (error) {
-        console.log(error.message);
-        return;
+    } else {
+        try {
+            //Update existing transaction
+            batch.update(transactionRef, transactionData);
+            if (accountToAccount) {
+                const mirrorTransactionPath = getTransactionDocPath(userId, transactionData.targetAccountId, transactionData.targetBalanceId, transactionId);
+                const mirrorTransactionRef = await firestore.doc(mirrorTransactionPath);
+                const mirrorTransactionSnapshot = await mirrorTransactionRef.get();
+                const {title, amount, dateTime, notes, category} = transactionData;
+                if(mirrorTransactionSnapshot.exists) {
+                    let updatedMirrorTransaction = {
+                        ...mirrorTransactionSnapshot.data(),
+                        title, amount, dateTime, notes, category,
+                    }
+                    batch.update(mirrorTransactionRef, updatedMirrorTransaction);
+                } else {
+                    console.log('Mirror transaction does not exist');
+                    return;
+                }
+            }
+        } catch (error) {
+            console.log('Could not update transaction')
+            console.log(error.message);
+            return;
+        }
     }
-    // let {oldTotalBalance, newTotalBalance} = await updateTotalBalance(
-    //     balanceDocPath,
-    //     existingTransactionData,
-    //     transactionData,
-    // );
-    // await updateAccountTotalBalance(accountDocPath, oldTotalBalance, newTotalBalance);
-    console.log('Transaction and balance updated successfully');
+    try {
+        await batch.commit();
+    } catch (e) {
+        console.log('batch commit error');
+        console.log(e.message);
+    }
 }
 
 export const deleteTransactionDocument = async (userId, accountId, balanceId, transactionId) => {
@@ -41,54 +78,9 @@ export const deleteTransactionDocument = async (userId, accountId, balanceId, tr
         const balanceDocPath = `${accountDocPath}/balances/${balanceId}`;
         const transactionPath = `${balanceDocPath}/transactions/${transactionId}`;
         const transactionRef = firestore.doc(transactionPath);
-        // const transactionSnapshot = await transactionRef.get();
-        // const transactionData = transactionSnapshot.data();
-
-        // let {oldTotalBalance, newTotalBalance} = await updateTotalBalance(
-        //     balanceDocPath,
-        //     transactionData,
-        //     null,
-        // );
-        // await updateAccountTotalBalance(accountDocPath, oldTotalBalance, newTotalBalance);
         await transactionRef.delete();
         console.log('Document Deleted Successfully');
     } catch (error) {
         console.log(error.message);
     }
 };
-
-
-// const updateTotalBalance = async (collectionPath, oldTransactionData, newTransactionData) => {
-//     const collectionRef = firestore.doc(collectionPath)
-//     const collectionSnapshot = await collectionRef.get();
-//     const collectionData = collectionSnapshot.data();
-//     const oldTotalBalance = collectionData.totalBalance;
-//     let amountToUpdate = 0;
-//     let newTotalBalance = 0;
-//
-//     if (oldTransactionData && newTransactionData) {
-//         //On Transaction update
-//         //If the user switched between spending <=> earning types
-//         amountToUpdate = oldTransactionData.type !== newTransactionData.type
-//             ? +oldTransactionData.amount + +newTransactionData.amount
-//             : +newTransactionData.amount;
-//         newTotalBalance = newTransactionData.type === 'spending'
-//             ? +oldTotalBalance - +amountToUpdate
-//             : +oldTotalBalance + +amountToUpdate;
-//     } else if (!oldTransactionData) {
-//         //On Transaction Creation
-//         amountToUpdate = +newTransactionData.amount;
-//         newTotalBalance = newTransactionData.type === 'spending'
-//             ? +oldTotalBalance - +amountToUpdate
-//             : +oldTotalBalance + +amountToUpdate;
-//     } else if (!newTransactionData) {
-//         //On Transaction Deletion
-//         amountToUpdate = +oldTransactionData.amount;
-//         newTotalBalance = oldTransactionData.type === 'spending'
-//             ? +oldTotalBalance + +amountToUpdate
-//             : +oldTotalBalance - +amountToUpdate;
-//     }
-//
-//     await collectionRef.update({totalBalance: newTotalBalance});
-//     return {oldTotalBalance, newTotalBalance};
-// }
