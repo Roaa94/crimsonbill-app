@@ -2,7 +2,7 @@ import {firestore, getBalanceDocPath, getTransactionDocPath} from "./firebase.ut
 
 export const addTransactionDocument = async (userId, accountId, balanceId, transactionData) => {
     const balanceDocPath = getBalanceDocPath(userId, accountId, balanceId);
-    const transactionRef = await firestore.doc(balanceDocPath).collection('transactions').doc();
+    const transactionRef = firestore.doc(balanceDocPath).collection('transactions').doc();
     const transactionSnapshot = await transactionRef.get();
     const batch = firestore.batch();
     const accountToAccount = transactionData.accountToAccount && transactionData.targetAccountId && transactionData.targetBalanceId;
@@ -17,7 +17,7 @@ export const addTransactionDocument = async (userId, accountId, balanceId, trans
         //Add the transaction to the other account
         const otherBalanceDocPath = getBalanceDocPath(userId, transactionData.targetAccountId, transactionData.targetBalanceId);
         try {
-            const mirrorTransactionRef = await firestore.doc(otherBalanceDocPath).collection('transactions').doc(transactionSnapshot.id);
+            const mirrorTransactionRef = firestore.doc(otherBalanceDocPath).collection('transactions').doc(transactionSnapshot.id);
             const mirrorTransactionSnapshot = await mirrorTransactionRef.get();
             if (!mirrorTransactionSnapshot.exists) {
                 let mirrorTransaction = {
@@ -92,14 +92,31 @@ export const updateTransactionDocument = async (userId, accountId, balanceId, tr
 }
 
 export const deleteTransactionDocument = async (userId, accountId, balanceId, transactionId) => {
+    const batch = firestore.batch();
+    const transactionPath = getTransactionDocPath(userId, accountId, balanceId, transactionId);
+    const transactionRef = firestore.doc(transactionPath);
+    batch.delete(transactionRef);
     try {
-        const accountDocPath = `users/${userId}/accounts/${accountId}`;
-        const balanceDocPath = `${accountDocPath}/balances/${balanceId}`;
-        const transactionPath = `${balanceDocPath}/transactions/${transactionId}`;
-        const transactionRef = firestore.doc(transactionPath);
-        await transactionRef.delete();
-        console.log('Document Deleted Successfully');
+        const transactionSnapshot = await transactionRef.get();
+        const transactionData = transactionSnapshot.data();
+        const accountToAccount = transactionData && transactionData.accountToAccount && transactionData.targetAccountId && transactionData.targetBalanceId;
+        if (accountToAccount) {
+            const mirrorTransactionPath = getTransactionDocPath(
+                userId,
+                transactionData.targetAccountId,
+                transactionData.targetBalanceId,
+                transactionId
+            );
+            const mirrorTransactionRef = firestore.doc(mirrorTransactionPath);
+            batch.delete(mirrorTransactionRef);
+        }
     } catch (error) {
         console.log(error.message);
+    }
+    try {
+        await batch.commit();
+    } catch (e) {
+        console.log('batch commit error');
+        console.log(e.message);
     }
 };
