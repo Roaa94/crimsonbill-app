@@ -29,7 +29,8 @@ const TransactionFormLayout = (
         notesValue,
         onFieldChange,
         onDateTimeChange,
-        accountList
+        accountsList,
+        balancesList,
     }
 ) => {
     return (
@@ -97,6 +98,7 @@ const TransactionFormLayout = (
                     <FormControlLabel
                         control={
                             <Checkbox
+                                disabled={accountsList.length === 0}
                                 checked={accountToAccount}
                                 onChange={onCheckboxChange}
                                 name="accountToAccount"
@@ -136,18 +138,19 @@ const TransactionFormLayout = (
                                 <Grid item xs={12} xl={6}>
                                     <Select
                                         label={`${type === 'spending' ? 'To' : 'From'} Account`}
-                                        name='category'
+                                        name='targetAccountId'
                                         value={targetAccountSelectValue}
-                                        menuItems={accountList}
+                                        menuItems={accountsList}
                                         onChange={onFieldChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12} xl={6}>
                                     <Select
                                         label={`${type === 'spending' ? 'To' : 'From'} Balance`}
-                                        name='category'
+                                        name='targetBalanceId'
+                                        disabled={!(!!targetAccountSelectValue)}
                                         value={targetBalanceSelectValue}
-                                        menuItems={accountList}
+                                        menuItems={balancesList}
                                         onChange={onFieldChange}
                                     />
                                 </Grid>

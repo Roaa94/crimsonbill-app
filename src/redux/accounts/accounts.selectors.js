@@ -7,6 +7,26 @@ export const selectAccountsArray = createSelector(
     accounts => accounts.accountsArray,
 );
 
+export const selectOtherAccounts = (accountId) => createSelector(
+    [selectAccountsArray],
+    accountsArray => {
+        let otherAccounts = [];
+        accountsArray.forEach(account => {
+            if (account.id !== accountId) {
+                otherAccounts.push({
+                    id: account.id,
+                    name: account.name,
+                    balances: account.balances.map(balance => ({
+                        id: balance.id,
+                        name: balance.name,
+                    })),
+                })
+            }
+        })
+        return otherAccounts;
+    }
+);
+
 export const selectAccountsFetching = createSelector(
     [selectAccounts],
     accounts => accounts.isFetchingAccounts,
