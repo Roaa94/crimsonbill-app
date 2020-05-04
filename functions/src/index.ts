@@ -37,22 +37,57 @@ export const deleteAccountSubCollections = functions.firestore
         return null;
     })
 
-export const updateBalanceTotal = functions.firestore
+const updateBalanceTotal = async (userId: String, accountId: String, balanceId: String) => {
+    const balanceDocPath = `users/${userId}/accounts/${accountId}/balances/${balanceId}`;
+    const balanceDocRef = db.doc(balanceDocPath);
+    const transactionsCollectionPath = `${balanceDocPath}/transactions`;
+    const transactionsCollectionRef = db.collection(transactionsCollectionPath);
+
+    transactionsCollectionRef.get().then(transactionCollectionSnapshot => {
+        let total = 0;
+        transactionCollectionSnapshot.docs.forEach(doc => {
+            const transactionData = doc.data();
+            total = transactionData.type === 'spending'
+                ? total - +transactionData.amount
+                : total + +transactionData.amount;
+        });
+        return balanceDocRef.update({totalBalance: total});
+    }).catch(error => error.message)
+}
+
+export const updateBalanceTotalOnTransactionWrite = functions.firestore
     .document('users/{userId}/accounts/{accountId}/balances/{balanceId}/transactions/{transactionId}')
+    .onWrite((change, context) => {
+        const params = context.params;
+        return updateBalanceTotal(params.userId, params.accountId, params.balanceId);
+    })
+
+const updateAccountTotal = async (userId: String, accountId: String) => {
+    const accountDocPath = `users/${userId}/accounts/${accountId}`;
+    const accountDocRef = db.doc(accountDocPath);
+    const balancesCollectionPath = `${accountDocPath}/balances`;
+    const balancesCollectionRef = db.collection(balancesCollectionPath);
+
+    balancesCollectionRef.get().then(balanceCollectionSnapshot => {
+        let total = 0;
+        balanceCollectionSnapshot.docs.forEach(doc => {
+            const balanceData = doc.data();
+            total += +balanceData.totalBalance;
+        });
+        return accountDocRef.update({totalBalance: total});
+    }).catch(error => error.message)
+}
+
+export const updateAccountTotalOnBalanceUpdate = functions.firestore
+    .document('users/{userId}/accounts/{accountId}/balances/{balanceId}')
     .onUpdate((change, context) => {
         const params = context.params;
-        const balanceDocPath = `users/${params.userId}/accounts/${params.accountId}/balances/${params.balanceId}`;
-        const balanceDocRef = db.doc(balanceDocPath);
-        const transactionsCollectionPath = `${balanceDocPath}/transactions`;
-        const transactionsCollectionRef = db.collection(transactionsCollectionPath);
+        return updateAccountTotal(params.userId, params.accountId);
+    })
 
-        transactionsCollectionRef.get().then(transactionCollectionSnapshot => {
-            let total = 0;
-            transactionCollectionSnapshot.docs.forEach(doc => {
-                const transactionData = doc.data();
-                total = transactionData.type === 'spending' ? total - +transactionData.amount : total + +transactionData.amount;
-            });
-            return balanceDocRef.update({totalBalance: total});
-        }).catch(error => error.message)
-        return null;
+export const updateAccountTotalOnBalanceDelete = functions.firestore
+    .document('users/{userId}/accounts/{accountId}/balances/{balanceId}')
+    .onDelete((change, context) => {
+        const params = context.params;
+        return updateAccountTotal(params.userId, params.accountId);
     })
