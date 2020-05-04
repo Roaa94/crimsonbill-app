@@ -86,12 +86,12 @@ export const addDocument = async (docRef, data) => {
     }
 }
 
-export const getAccountPath = (userId, accountId) => {
+export const getAccountDocPath = (userId, accountId) => {
     return `users/${userId}/accounts/${accountId}`;
 }
 
 export const getBalanceDocPath = (userId, accountId, balanceId) => {
-    return `${getAccountPath(userId, accountId)}/balances/${balanceId}`;
+    return `${getAccountDocPath(userId, accountId)}/balances/${balanceId}`;
 }
 
 export const getTransactionDocPath = (userId, accountId, balanceId, transactionId) => {
