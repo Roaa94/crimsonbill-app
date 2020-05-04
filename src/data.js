@@ -1,53 +1,44 @@
 export const types = [
     {
         id: 0,
-        title: 'Type-1',
-        value: 'Type-1',
+        name: 'Type-1',
     },
     {
         id: 1,
-        title: 'Type-2',
-        value: 'Type-2',
+        name: 'Type-2',
     },
     {
         id: 3,
-        title: 'Type-3',
-        value: 'Type-3',
+        name: 'Type-3',
     },
 ];
 
 export const currencies = [
     {
         id: 0,
-        title: '$',
-        value: '$',
+        name: '$',
     },
     {
         id: 1,
-        title: '$',
-        value: '$',
+        name: '$',
     },
     {
         id: 3,
-        title: '$',
-        value: '$',
+        name: '$',
     },
 ];
 
 export const categories = [
     {
         id: 0,
-        title: 'Groceries',
-        value: 'Groceries',
+        name: 'Groceries',
     },
     {
         id: 1,
-        title: 'Gas',
-        value: 'Gas',
+        name: 'Gas',
     },
     {
         id: 2,
-        title: 'Misc',
-        value: 'Misc',
+        name: 'Misc',
     },
 ];
