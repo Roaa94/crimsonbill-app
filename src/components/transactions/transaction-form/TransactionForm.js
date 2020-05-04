@@ -5,7 +5,10 @@ import {colors} from "../../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import {categories} from "../../../data";
-import {addOrUpdateTransactionDocument} from "../../../firebase/transactions.firebase-utils";
+import {
+    addTransactionDocument,
+    updateTransactionDocument
+} from "../../../firebase/transactions.firebase-utils";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import TransactionFormLayout from "./TransactionFormLayout";
@@ -73,7 +76,11 @@ class TransactionForm extends React.Component {
         event.preventDefault();
         let {handleFormCancel, userId, accountId, transactionId, balanceId} = this.props;
         const transactionData = this.state.defaultValues;
-        await addOrUpdateTransactionDocument(userId, accountId, balanceId, transactionId, transactionData);
+        if (transactionId) {
+            await updateTransactionDocument(userId, accountId, balanceId, transactionId, transactionData);
+        } else {
+            await addTransactionDocument(userId, accountId, balanceId, transactionData);
+        }
         if (this._isMounted) {
             this.setState({
                 defaultValues: this.defaultTransactionValues,
@@ -148,7 +155,6 @@ class TransactionForm extends React.Component {
             targetAccountId,
             targetBalanceId
         } = defaultValues;
-
         const {handleFormCancel, transactionId, account, balance, otherAccounts} = this.props;
         // console.log(defaultValues);
 
