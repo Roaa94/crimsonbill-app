@@ -42,3 +42,70 @@ export const categories = [
         name: 'Misc',
     },
 ];
+
+export const defaultSpendingCategories = [
+    {
+        name: 'Groceries',
+        icon: '',
+    },
+    {
+        name: 'Gas',
+        icon: '',
+    },
+    {
+        name: 'Miscellaneous',
+        icon: '',
+    },
+    {
+        name: 'Personal',
+        icon: '',
+    },
+    {
+        name: 'Entertainment',
+        icon: '',
+
+    },
+    {
+        name: 'Utilities',
+        icon: '',
+    },
+    {
+        name: 'Food',
+        icon: '',
+
+    },
+    {
+        name: 'Transportation',
+        icon: '',
+    },
+    {
+        name: 'Housing',
+        icon: '',
+    }
+];
+
+export const defaultAccountTypes = [
+    {
+        name: 'Bank Account',
+        icon: '',
+    },
+    {
+        name: 'Online Banking Account',
+        icon: '',
+    },
+    {
+        name: 'Cash',
+        icon: '',
+    }
+];
+
+export const appTaxonomies = [
+    {
+        name: 'accountTypes',
+        defaultValues: defaultAccountTypes,
+    },
+    {
+        name: 'spendingCategories',
+        defaultValues: defaultSpendingCategories,
+    }
+];
