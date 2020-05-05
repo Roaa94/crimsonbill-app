@@ -8,28 +8,36 @@ import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
 import {selectUser} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
+import {fetchTaxonomiesStartAsync} from "./redux/settings/settings.actions";
+// import {initDefaultTaxonomies} from "./firebase/settings.firebase-utils";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        const {setUser} = this.props;
+        const {setUser, user, fetchTaxonomiesStartAsync} = this.props;
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
+                //The create user profile document always returns a user object
+                //If a user is logged in it returns its value and doesn't create a new document
                 const userRef = await createUserProfileDocument(user);
                 if (userRef) {
-                    userRef.onSnapshot(snapShot => {
+                    userRef.onSnapshot(async snapShot => {
                         setUser({
                             id: snapShot.id,
                             ...snapShot.data(),
                         });
-
+                        //Use for testing to write default taxonomies
+                        // await initDefaultTaxonomies(snapShot.id);
                     });
                 }
                 return;
             }
             setUser(user);
-        })
+        });
+        if(user && user.id) {
+            fetchTaxonomiesStartAsync(user.id);
+        }
     }
 
     componentWillUnmount() {
@@ -60,7 +68,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setUser: user => dispatch(setUser(user))
+    setUser: user => dispatch(setUser(user)),
+    fetchTaxonomiesStartAsync: userId => dispatch(fetchTaxonomiesStartAsync(userId)),
 });
 
 export default connect(

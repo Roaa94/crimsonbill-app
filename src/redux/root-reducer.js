@@ -4,6 +4,7 @@ import userReducer from "./user/user.reducer";
 import {persistReducer} from "redux-persist";
 import {combineReducers} from "redux";
 import accountsReducer from "./accounts/accounts.reducer";
+import {settingsReducer} from "./settings/settings.reducer";
 
 const persistConfig = {
     key: 'root',
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     accounts: accountsReducer,
     accountForm: accountFormReducer,
+    taxonomies: settingsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
