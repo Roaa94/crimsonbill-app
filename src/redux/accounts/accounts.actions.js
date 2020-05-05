@@ -3,6 +3,11 @@ import {AccountsActionTypes} from "./accounts.action-types";
 import {updateBalanceTotal} from "../../firebase/balances.firebase-utils";
 import {updateAccountTotal} from "../../firebase/accounts.firebase-utils";
 
+export const toggleAccountForm = value => ({
+    type: AccountsActionTypes.TOGGLE_ACCOUNT_FORM,
+    payload: value,
+});
+
 export const fetchAccountsStart = () => ({
     type: AccountsActionTypes.FETCH_ACCOUNTS_START,
 });

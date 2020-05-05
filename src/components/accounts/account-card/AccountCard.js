@@ -1,7 +1,6 @@
 import React from 'react';
 import {deleteAccountDocument} from "../../../firebase/accounts.firebase-utils";
 import {selectUserId} from "../../../redux/user/user.selectors";
-import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
 import {
     AccountCardExpansionPanel,
@@ -17,6 +16,7 @@ import Box from "@material-ui/core/Box";
 import BalancesList from "../../balances/balance-list/BalancesList";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import {selectTaxonomyValue} from "../../../redux/settings/settings.selectors";
+import {selectAccountFormShow} from "../../../redux/accounts/accounts.selectors";
 
 class AccountCard extends React.Component {
 

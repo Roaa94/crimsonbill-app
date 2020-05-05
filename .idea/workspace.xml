@@ -19,12 +19,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="[Transactions CRUD - Delete] worked on deleting transaction document">
+    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="removed custom scrollbar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/balances/balance-card/BalanceCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-card/BalanceCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/accounts/accounts.redux-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/accounts/accounts.redux-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/AddAccountIcon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/AddAccountIcon.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-card/AccountCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountFormContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountFormContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/account-form/account-form.action-types.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/account-form/account-form.actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/account-form/account-form.reducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/account-form/account-form.selectors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/accounts/accounts.action-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/accounts/accounts.action-types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/accounts/accounts.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/accounts/accounts.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/accounts/accounts.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/accounts/accounts.reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/accounts/accounts.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/accounts/accounts.selectors.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,147 +154,8 @@
       <workItem from="1588337434931" duration="48867000" />
       <workItem from="1588416218782" duration="50684000" />
       <workItem from="1588509139499" duration="49761000" />
-      <workItem from="1588613607875" duration="3150000" />
-    </task>
-    <task id="LOCAL-00151" summary="more styling work on transaction card and added custom scrollbar package">
-      <created>1588387809434</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1588387809434</updated>
-    </task>
-    <task id="LOCAL-00152" summary="[Transactions CRUD - Update] worked on updating transaction document">
-      <created>1588417101425</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1588417101426</updated>
-    </task>
-    <task id="LOCAL-00153" summary="minor change">
-      <created>1588417181484</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1588417181484</updated>
-    </task>
-    <task id="LOCAL-00154" summary="ordered transactions query by dateTime field (asc)">
-      <created>1588419048579</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1588419048579</updated>
-    </task>
-    <task id="LOCAL-00155" summary="ordered accounts query by createdAt field (desc)">
-      <created>1588419138281</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1588419138281</updated>
-    </task>
-    <task id="LOCAL-00156" summary="added all transactions list for accounts with balances">
-      <created>1588422404974</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1588422404974</updated>
-    </task>
-    <task id="LOCAL-00157" summary="updated total balance of balance after adding and editing transactions">
-      <created>1588437726668</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1588437726668</updated>
-    </task>
-    <task id="LOCAL-00158" summary="refactored balance update on transaction creation/update function">
-      <created>1588439182210</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1588439182210</updated>
-    </task>
-    <task id="LOCAL-00159" summary="updated balance total balance on transaction deletion">
-      <created>1588448370244</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1588448370244</updated>
-    </task>
-    <task id="LOCAL-00160" summary="reversed transactions order">
-      <created>1588448514567</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1588448514567</updated>
-    </task>
-    <task id="LOCAL-00161" summary="worked on updating account balances total balance on transaction creation/update/deletion">
-      <created>1588461999134</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1588461999134</updated>
-    </task>
-    <task id="LOCAL-00162" summary="minor changes">
-      <created>1588462024003</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1588462024003</updated>
-    </task>
-    <task id="LOCAL-00163" summary="set up firebase function and tested it out with a function for updating account balances on balance update">
-      <created>1588462107153</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1588462107153</updated>
-    </task>
-    <task id="LOCAL-00164" summary="fixed setState firing after component is unmounted error">
-      <created>1588464928661</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1588464928661</updated>
-    </task>
-    <task id="LOCAL-00165" summary="updated account total balance on balance deletion">
-      <created>1588464994083</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1588464994083</updated>
-    </task>
-    <task id="LOCAL-00166" summary="added firebase function to delete balance subcollections on balance deletion">
-      <created>1588472713077</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1588472713077</updated>
-    </task>
-    <task id="LOCAL-00167" summary="added firebase function to delete subcollections of account on account deletion">
-      <created>1588474980889</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1588474980889</updated>
-    </task>
-    <task id="LOCAL-00168" summary="fixed firebase function from returning undefined value">
-      <created>1588510310428</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1588510310428</updated>
-    </task>
-    <task id="LOCAL-00169" summary="variable name change">
-      <created>1588516033658</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1588516033658</updated>
-    </task>
-    <task id="LOCAL-00170" summary="changed data structure. Accounts will always have at least one balance automatically added on account creation">
-      <created>1588519127930</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1588519127930</updated>
+      <workItem from="1588613607875" duration="17582000" />
+      <workItem from="1588695151709" duration="19395000" />
     </task>
     <task id="LOCAL-00171" summary="fixed transaction addition function">
       <created>1588520314495</created>
@@ -491,7 +360,147 @@
       <option name="project" value="LOCAL" />
       <updated>1588622795219</updated>
     </task>
-    <option name="localTasksCounter" value="200" />
+    <task id="LOCAL-00200" summary="deleted messy total balance update function">
+      <created>1588622904350</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1588622904350</updated>
+    </task>
+    <task id="LOCAL-00201" summary="calculated total balances on asynchronous redux fetches - actions fire too many times">
+      <created>1588625908569</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1588625908569</updated>
+    </task>
+    <task id="LOCAL-00202" summary="deleted previous total balances calculation try code">
+      <created>1588626260447</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1588626260447</updated>
+    </task>
+    <task id="LOCAL-00203" summary="implemented balance calculation functionality using firebase functions (very slow)">
+      <created>1588628727942</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1588628727942</updated>
+    </task>
+    <task id="LOCAL-00204" summary="minor fix">
+      <created>1588628736574</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1588628736574</updated>
+    </task>
+    <task id="LOCAL-00205" summary="variable name changes">
+      <created>1588629032201</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1588629032201</updated>
+    </task>
+    <task id="LOCAL-00206" summary="[Account-to-Account Transactions CRUD - Read] retrieved account-to-account transactions data and created its view">
+      <created>1588633128712</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1588633128712</updated>
+    </task>
+    <task id="LOCAL-00207" summary="changes on transaction card styling">
+      <created>1588641218034</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1588641218034</updated>
+    </task>
+    <task id="LOCAL-00208" summary="syntax fix">
+      <created>1588696492042</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1588696492042</updated>
+    </task>
+    <task id="LOCAL-00209" summary="changes on transaction card styles">
+      <created>1588696544841</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1588696544841</updated>
+    </task>
+    <task id="LOCAL-00210" summary="disabled transaction card expansion in all transactions list">
+      <created>1588696565538</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1588696565538</updated>
+    </task>
+    <task id="LOCAL-00211" summary="moved total balances calculation functionality from firebase functions to redux async functions">
+      <created>1588697030460</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1588697030460</updated>
+    </task>
+    <task id="LOCAL-00212" summary="removed custom scrollbar plugins and customized app scrollbar globally">
+      <created>1588698293514</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1588698293514</updated>
+    </task>
+    <task id="LOCAL-00213" summary="created user firebase utils file">
+      <created>1588706925256</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1588706925256</updated>
+    </task>
+    <task id="LOCAL-00214" summary="removed unused function">
+      <created>1588716567197</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1588716567197</updated>
+    </task>
+    <task id="LOCAL-00215" summary="added taxonomies data and stored them in the database on user sign up">
+      <created>1588716655910</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1588716655910</updated>
+    </task>
+    <task id="LOCAL-00216" summary="added settings reducer and fetched taxonomies and stored them in the state">
+      <created>1588716757266</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1588716757266</updated>
+    </task>
+    <task id="LOCAL-00217" summary="minor change">
+      <created>1588722168464</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1588722168464</updated>
+    </task>
+    <task id="LOCAL-00218" summary="minor fix">
+      <created>1588722179286</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1588722179286</updated>
+    </task>
+    <task id="LOCAL-00219" summary="populated account type select component with account types taxonomies array in account form">
+      <created>1588722242742</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1588722242742</updated>
+    </task>
+    <option name="localTasksCounter" value="220" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -526,32 +535,32 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="temporarily commenting out total balance calculation functions" />
-    <MESSAGE value="changed date time picker label color" />
-    <MESSAGE value="worked on account to account transaction form" />
-    <MESSAGE value="removed unnecessary snapshot listener from account form" />
-    <MESSAGE value="removed unnecessary snapshot listener from balance form" />
-    <MESSAGE value="removed unnecessary snapshot listener in transaction form" />
-    <MESSAGE value="function name changes" />
-    <MESSAGE value="worked on account to account transaction form arrow component" />
-    <MESSAGE value="styling changes on transaction card and list" />
-    <MESSAGE value="styling edits" />
-    <MESSAGE value="fixed data being saved in account and balance forms" />
-    <MESSAGE value="changed select component data syntax" />
-    <MESSAGE value="populated account-to-account transaction form selects" />
-    <MESSAGE value="added helper functions for document paths" />
-    <MESSAGE value="[Account-to-Account Transactions CRUD - Create &amp; Update] account to account transaction gets mirrored and added/updated to other account" />
-    <MESSAGE value="split add/update transaction function into separate functions" />
-    <MESSAGE value="[Account-to-Account Transactions CRUD - Delete] deleting both transactions from both accounts" />
-    <MESSAGE value="disabled account-to-account transaction form when editing transaction" />
-    <MESSAGE value="removed box shadow of disabled select hover" />
     <MESSAGE value="testing with calculating balance totals with selectors (not efficient)" />
     <MESSAGE value="functions name change" />
     <MESSAGE value="added firebase function to calculate transactions total and update the total balance in the database" />
     <MESSAGE value="code format and clean up" />
     <MESSAGE value="deleted total balance calculation selector and refactored others" />
     <MESSAGE value="testing with a balance calculation function called after each form submission (messy)" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing with a balance calculation function called after each form submission (messy)" />
+    <MESSAGE value="deleted messy total balance update function" />
+    <MESSAGE value="calculated total balances on asynchronous redux fetches - actions fire too many times" />
+    <MESSAGE value="deleted previous total balances calculation try code" />
+    <MESSAGE value="implemented balance calculation functionality using firebase functions (very slow)" />
+    <MESSAGE value="variable name changes" />
+    <MESSAGE value="[Account-to-Account Transactions CRUD - Read] retrieved account-to-account transactions data and created its view" />
+    <MESSAGE value="changes on transaction card styling" />
+    <MESSAGE value="syntax fix" />
+    <MESSAGE value="changes on transaction card styles" />
+    <MESSAGE value="disabled transaction card expansion in all transactions list" />
+    <MESSAGE value="moved total balances calculation functionality from firebase functions to redux async functions" />
+    <MESSAGE value="removed custom scrollbar plugins and customized app scrollbar globally" />
+    <MESSAGE value="created user firebase utils file" />
+    <MESSAGE value="removed unused function" />
+    <MESSAGE value="added taxonomies data and stored them in the database on user sign up" />
+    <MESSAGE value="added settings reducer and fetched taxonomies and stored them in the state" />
+    <MESSAGE value="minor change" />
+    <MESSAGE value="minor fix" />
+    <MESSAGE value="populated account type select component with account types taxonomies array in account form" />
+    <option name="LAST_COMMIT_MESSAGE" value="populated account type select component with account types taxonomies array in account form" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1588426479228">
@@ -566,49 +575,49 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="961" y="438" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583332506750" />
-    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588371877377">
+    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588722515440">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588371877377" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1588622794503">
+    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722515440" />
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1588722241959">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588622794503" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588622861969">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722241959" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1588722592263">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588622861969" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722592263" />
     <state x="915" y="284" key="FileChooserDialogImpl" timestamp="1588446530757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583401638303" />
     <state x="915" y="284" key="FileChooserDialogImpl/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588446530757" />
-    <state width="2517" height="270" key="GridCell.Tab.0.bottom" timestamp="1588621996143">
+    <state width="2517" height="270" key="GridCell.Tab.0.bottom" timestamp="1588696477376">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="270" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588621996143" />
-    <state width="2517" height="270" key="GridCell.Tab.0.center" timestamp="1588621996143">
+    <state width="2517" height="270" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588696477376" />
+    <state width="2517" height="270" key="GridCell.Tab.0.center" timestamp="1588696477376">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="270" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588621996143" />
-    <state width="2517" height="270" key="GridCell.Tab.0.left" timestamp="1588621996143">
+    <state width="2517" height="270" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588696477376" />
+    <state width="2517" height="270" key="GridCell.Tab.0.left" timestamp="1588696477376">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="270" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588621996143" />
-    <state width="2517" height="270" key="GridCell.Tab.0.right" timestamp="1588621996143">
+    <state width="2517" height="270" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588696477376" />
+    <state width="2517" height="270" key="GridCell.Tab.0.right" timestamp="1588696477376">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="270" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588621996143" />
-    <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1588559508469">
+    <state width="2517" height="270" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588696477376" />
+    <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1588641679395">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588559508469" />
+    <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588641679395" />
     <state x="937" y="258" key="SettingsEditor" timestamp="1587767826662">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -622,11 +631,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1101" y="323" key="VCS.ChangeListViewerDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587205353399" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1588559544125">
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1588722248147">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="722" y="254" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583401704491" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588559544125" />
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722248147" />
     <state x="985" y="353" key="VcsDiffUtil.ChangesDialog" timestamp="1587825550391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -635,10 +644,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="93" y="93" width="2375" height="1215" key="com.intellij.history.integration.ui.views.FileHistoryDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588090661449" />
-    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1588566227792">
+    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1588722589472">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588566227792" />
+    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722589472" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1588514392130">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -647,10 +656,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587855324869" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1588621446137">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1588722290564">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588621446137" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722290564" />
   </component>
 </project>

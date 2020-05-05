@@ -2,8 +2,8 @@ import React from 'react';
 import {ReactComponent as AddAccountSvgIcon} from '../../assets/svg/add-account-icon.svg';
 import styled from 'styled-components';
 import {colors} from "../../styles/global";
-import {toggleAccountForm} from "../../redux/account-form/account-form.actions";
 import {connect} from "react-redux";
+import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 
 const AddAccountIconWrapper = styled(AddAccountSvgIcon)`
   width: 100px;

@@ -5,10 +5,10 @@ import {
     AccountFormExpansionPanelSummary
 } from "./AccountForm.styles";
 import {createStructuredSelector} from "reselect";
-import {selectAccountFormShow} from "../../../redux/account-form/account-form.selectors";
 import {connect} from "react-redux";
 import AccountForm from "./AccountForm";
-import {toggleAccountForm} from "../../../redux/account-form/account-form.actions";
+import {selectAccountFormShow} from "../../../redux/accounts/accounts.selectors";
+import {toggleAccountForm} from "../../../redux/accounts/accounts.actions";
 
 const AccountFormContainer = ({accountFormShow, toggleAccountForm}) => {
 

@@ -7,10 +7,16 @@ const INITIAL_STATE = {
     isFetchingBalances: false,
     isFetchingTransactions: false,
     errorMessage: undefined,
+    accountFormShow: false,
 };
 
 const accountsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case AccountsActionTypes.TOGGLE_ACCOUNT_FORM:
+            return {
+                ...state,
+                accountFormShow: action.payload,
+            };
         case AccountsActionTypes.FETCH_ACCOUNTS_START:
             return {
                 ...state,
