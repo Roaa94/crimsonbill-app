@@ -87,7 +87,7 @@ class TransactionCard extends React.Component {
 
         return (
             <TransactionExpansionPanel
-                expanded={transactionCardExpanded}
+                expanded={transactionCardExpanded && !readOnly}
                 onChange={this.handleExpansionPanelChange}
             >
                 <TransactionExpansionPanelSummary>
