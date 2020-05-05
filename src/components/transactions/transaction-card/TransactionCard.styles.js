@@ -6,10 +6,11 @@ import {ExpansionPanel} from "@material-ui/core";
 
 export const TransactionExpansionPanel = withStyles({
     root: {
-        backgroundColor: colors.background,
         borderRadius: borderRadius.m,
         margin: '5px 0',
+        transition: 'background-color .3s',
         '&$expanded': {
+            backgroundColor: colors.background,
             margin: '5px 0',
             '&:first-child': {
                 marginTop: '5px',
