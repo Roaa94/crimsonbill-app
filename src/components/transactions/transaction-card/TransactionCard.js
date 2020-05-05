@@ -162,7 +162,7 @@ class TransactionCard extends React.Component {
                             />
                         ) : null
                     }
-                    <Box py={2} fontWeight='600'>
+                    <Box pb={2} fontWeight='600'>
                         {title}
                     </Box>
                     {

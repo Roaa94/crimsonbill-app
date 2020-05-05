@@ -10,9 +10,9 @@ import {borderRadius, colors} from "../../../styles/global";
 
 const AccountInfoContainer = withStyles({
     root: {
-        backgroundColor: colors.background,
+        backgroundColor: colors.white,
         borderRadius: borderRadius.m,
-        margin: '10px 0',
+        margin: '8px',
     }
 })(props => (
     <Grid

@@ -116,12 +116,6 @@ export const theme = createMuiTheme({
                     margin: 0,
                 },
             },
-            rounded: {
-                '&:last-child': {
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                }
-            },
         },
         MuiExpansionPanelSummary: {
             content: {

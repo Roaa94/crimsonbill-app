@@ -18,6 +18,7 @@ import {
     selectOtherAccounts,
     selectTransaction
 } from "../../../redux/accounts/accounts.selectors";
+import {TransactionFormContainer} from "./TransactionForm.styles";
 
 class TransactionForm extends React.Component {
     defaultTransactionValues = {
@@ -159,50 +160,51 @@ class TransactionForm extends React.Component {
         // console.log(defaultValues);
 
         return (
-            <form onSubmit={this.handleFormSubmit}>
-                <TransactionFormLayout
-                    typePickers={typePickerValues}
-                    onSelectType={this.handleTypePickerChange}
-                    onFieldChange={this.handleFieldChange}
-                    categorySelectValue={category}
-                    categorySelectItems={categories}
-                    titleValue={title}
-                    amountValue={amount}
-                    dateTimeValue={dateTime}
-                    onDateTimeChange={this.handleDateTimeChange}
-                    accountToAccount={accountToAccount}
-                    onCheckboxChange={this.handleCheckBoxChange}
-                    type={type}
-                    currentAccountValue={account.name}
-                    currentBalanceValue={balance.name}
-                    targetAccountSelectValue={targetAccountId}
-                    targetBalanceSelectValue={targetBalanceId}
-                    accountsList={otherAccounts}
-                    balancesList={targetAccountBalances}
-                    notesValue={notes}
-                    toEdit={!!transactionId}
-                />
-                <Grid container>
-                    <Button
-                        fullWidth={false}
-                        type='submit'
-                        bgColor={colors.secondary}
-                        prefixIcon={<CheckRoundedIcon/>}
-                        margin='0 20px 20px 0'
-                    >
-                        Submit
-                    </Button>
-                    <Button
-                        bgColor={colors.primary}
-                        fullWidth={false}
-                        onClick={handleFormCancel}
-                        prefixIcon={<ClearRoundedIcon/>}
-                        margin='0 0 20px 0'
-                    >
-                        Cancel
-                    </Button>
-                </Grid>
-            </form>
+            <TransactionFormContainer>
+                <form onSubmit={this.handleFormSubmit}>
+                    <TransactionFormLayout
+                        typePickers={typePickerValues}
+                        onSelectType={this.handleTypePickerChange}
+                        onFieldChange={this.handleFieldChange}
+                        categorySelectValue={category}
+                        categorySelectItems={categories}
+                        titleValue={title}
+                        amountValue={amount}
+                        dateTimeValue={dateTime}
+                        onDateTimeChange={this.handleDateTimeChange}
+                        accountToAccount={accountToAccount}
+                        onCheckboxChange={this.handleCheckBoxChange}
+                        type={type}
+                        currentAccountValue={account.name}
+                        currentBalanceValue={balance.name}
+                        targetAccountSelectValue={targetAccountId}
+                        targetBalanceSelectValue={targetBalanceId}
+                        accountsList={otherAccounts}
+                        balancesList={targetAccountBalances}
+                        notesValue={notes}
+                        toEdit={!!transactionId}
+                    />
+                    <Grid container>
+                        <Button
+                            fullWidth={false}
+                            type='submit'
+                            bgColor={colors.secondary}
+                            prefixIcon={<CheckRoundedIcon/>}
+                            margin='0 20px 0 0'
+                        >
+                            Submit
+                        </Button>
+                        <Button
+                            bgColor={colors.primary}
+                            fullWidth={false}
+                            onClick={handleFormCancel}
+                            prefixIcon={<ClearRoundedIcon/>}
+                        >
+                            Cancel
+                        </Button>
+                    </Grid>
+                </form>
+            </TransactionFormContainer>
         );
     }
 }

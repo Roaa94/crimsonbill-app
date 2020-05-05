@@ -7,6 +7,12 @@ export const BalanceCardExpansionPanel = withStyles({
     root: {
         borderBottom: `2px solid ${colors.background}`,
     },
+    rounded: {
+        '&:last-child': {
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+        }
+    },
 })(MuiExpansionPanel);
 
 export const BalanceCardExpansionPanelSummary = withStyles({
