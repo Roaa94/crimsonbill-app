@@ -16,6 +16,12 @@ export const TransactionsListHeader = styled.div`
   font-size: 0.9rem;
 `;
 
+export const TransactionCardsList = styled.div`
+  max-height: 700px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+`;
+
 export const TransactionsListExpansionPanelSummary = withStyles({
     root: {
         backgroundColor: colors.background,

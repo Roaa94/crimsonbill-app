@@ -1,5 +1,5 @@
 import React from 'react';
-import {TransactionsListHeader} from "./TransactionsList.styles";
+import {TransactionCardsList, TransactionsListHeader} from "./TransactionsList.styles";
 import Grid from "@material-ui/core/Grid";
 import {colors} from "../../../styles/global";
 import AddIconButton from "../../ui/buttons/AddIconButton";
@@ -8,7 +8,6 @@ import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {selectBalanceTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
-import Scrollbar from "../../ui/Scrollbar";
 
 class TransactionsList extends React.Component {
 
@@ -62,7 +61,7 @@ class TransactionsList extends React.Component {
                 }
                 {
                     isTransactionsLoaded ? (
-                        <Scrollbar>
+                        <TransactionCardsList>
                             {
                                 transactions.map((transaction) => (
                                     <TransactionCard
@@ -73,7 +72,7 @@ class TransactionsList extends React.Component {
                                     />
                                 ))
                             }
-                        </Scrollbar>
+                        </TransactionCardsList>
                     ) : null
                 }
             </div>

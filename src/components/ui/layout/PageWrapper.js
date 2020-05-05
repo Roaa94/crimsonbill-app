@@ -4,11 +4,10 @@ import {borderRadius, colors} from "../../../styles/global";
 import {drawerWidth} from "../navigation/Drawer";
 
 const pageMargin = 10;
-const pagePadding = 40;
 
 const PageWrapperDiv = styled.div`
   position: relative;
-  padding: ${pagePadding / 2}px ${pagePadding}px;
+  padding: 20px 30px 20px 20px;
   height: 100%;
   
   ::before{

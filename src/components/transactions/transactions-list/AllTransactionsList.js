@@ -1,11 +1,10 @@
 import React from 'react';
-import {TransactionsListExpansionPanelSummary} from "./TransactionsList.styles";
+import {TransactionCardsList, TransactionsListExpansionPanelSummary} from "./TransactionsList.styles";
 import Grid from "@material-ui/core/Grid";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {selectAllAccountTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
-import Scrollbar from "../../ui/Scrollbar";
 import {ExpansionPanel} from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -28,7 +27,7 @@ class AllTransactionsList extends React.Component {
                 </TransactionsListExpansionPanelSummary>
                 {
                     isAllTransactionsLoaded ? (
-                        <Scrollbar>
+                        <TransactionCardsList>
                             {
                                 allTransactions.map(transaction => (
                                     <TransactionCard
@@ -38,7 +37,7 @@ class AllTransactionsList extends React.Component {
                                     />
                                 ))
                             }
-                        </Scrollbar>
+                        </TransactionCardsList>
                     ) : null
                 }
             </ExpansionPanel>
