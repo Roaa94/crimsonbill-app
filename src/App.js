@@ -35,7 +35,7 @@ class App extends React.Component {
             }
             setUser(user);
         });
-        if(user && user.id) {
+        if(user.id) {
             fetchTaxonomiesStartAsync(user.id);
         }
     }
