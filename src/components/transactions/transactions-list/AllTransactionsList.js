@@ -30,11 +30,11 @@ class AllTransactionsList extends React.Component {
                     isAllTransactionsLoaded ? (
                         <Scrollbar>
                             {
-                                allTransactions.map(({id, ...transaction}) => (
+                                allTransactions.map(transaction => (
                                     <TransactionCard
-                                        key={id}
+                                        key={transaction.id}
                                         readOnly={true}
-                                        {...transaction}
+                                        transaction={transaction}
                                     />
                                 ))
                             }
