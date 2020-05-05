@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     accounts: accountsReducer,
     accountForm: accountFormReducer,
-    taxonomies: settingsReducer,
+    settings: settingsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
