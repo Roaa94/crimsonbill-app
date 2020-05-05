@@ -40,19 +40,6 @@ export const convertCollectionToArray = (snapshot) => {
     return array;
 }
 
-export const addDocument = async (docRef, data) => {
-    const createdAt = new Date();
-    const newData = {
-        createdAt,
-        ...data,
-    };
-    try {
-        await docRef.set(newData);
-    } catch(error) {
-        console.log(error.message);
-    }
-}
-
 export const getAccountDocPath = (userId, accountId) => {
     return `users/${userId}/accounts/${accountId}`;
 }
