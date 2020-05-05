@@ -1,5 +1,7 @@
 import {convertCollectionToArray, firestore, getAccountDocPath, getBalanceDocPath} from "../../firebase/firebase.utils";
 import {AccountsActionTypes} from "./accounts.action-types";
+import {updateBalanceTotal} from "../../firebase/balances.firebase-utils";
+import {updateAccountTotal} from "../../firebase/accounts.firebase-utils";
 
 export const fetchAccountsStart = () => ({
     type: AccountsActionTypes.FETCH_ACCOUNTS_START,
@@ -58,9 +60,9 @@ export const fetchBalancesStartAsync = (userId, accountId) => {
             const balancesArray = convertCollectionToArray(balancesSnapshot);
             dispatch(fetchBalancesSuccess(accountId, balancesArray));
             balancesArray.forEach(balance => {
-                // console.log(`fetching balance transactions of account ${accountId} balance ${balance.name}...`);
                 fetchTransactionsStartAsync(userId, accountId, balance.id)(dispatch);
             });
+            await updateAccountTotal(userId, accountId);
         }, error => dispatch(fetchBalancesError(error.message)));
     }
 };
@@ -75,6 +77,7 @@ export const fetchTransactionsStartAsync = (userId, accountId, balanceId) => {
 
         orderedTransactionsRef.onSnapshot(async transactionsSnapshot => {
             const transactionsArray = convertCollectionToArray(transactionsSnapshot);
+            await updateBalanceTotal(userId, accountId, balanceId)
             dispatch(fetchTransactionsSuccess(accountId, balanceId, transactionsArray));
         }, error => dispatch(fetchTransactionsError(error.message)));
     }
