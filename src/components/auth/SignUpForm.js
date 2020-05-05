@@ -4,7 +4,8 @@ import TextFieldOutlined from "../ui/inputs/TextFieldOutlined";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import ButtonOutlined from "../ui/buttons/ButtonOutlined";
-import {auth, createUserProfileDocument, signInWithGoogle} from "../../firebase/firebase.utils";
+import {auth, signInWithGoogle} from "../../firebase/firebase.utils";
+import {createUserProfileDocument} from "../../firebase/user.firebase-utils";
 
 class SignUpForm extends Component {
     _isMounted = false;

@@ -3,7 +3,7 @@ import AvatarPlaceholder from '../../../assets/images/avatar-placeholder.png';
 import {selectUser} from "../../../redux/user/user.selectors";
 import {connect} from 'react-redux';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
-import {storageRef, updateUserDocumentAvatar} from '../../../firebase/firebase.utils';
+import {storageRef} from '../../../firebase/firebase.utils';
 import WithLoader from "../../HOC/WithLoader";
 import {
     AvatarWrapper,
@@ -11,6 +11,7 @@ import {
     AvatarImageWrapper,
     LoaderWrapper,
 } from './DrawerAvatar.styles';
+import {updateUserDocumentAvatar} from "../../../firebase/user.firebase-utils";
 
 const AvatarImageWrapperWithLoader = WithLoader(AvatarImageWrapper, LoaderWrapper)
 
