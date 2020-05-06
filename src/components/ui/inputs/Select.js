@@ -4,6 +4,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import FormControl from '@material-ui/core/FormControl';
 import MuiSelect from "@material-ui/core/Select";
+import Icon from "@material-ui/core/Icon";
+import {Box} from "@material-ui/core";
 
 const Select = ({label, value, menuItems, ...otherProps}) => {
 
@@ -18,8 +20,17 @@ const Select = ({label, value, menuItems, ...otherProps}) => {
                 {...otherProps}
             >
                 {
-                    menuItems.map(({id, name}) => (
-                        <MenuItem key={id} value={id}>
+                    menuItems.map(({id, name, icon}) => (
+                        <MenuItem dense key={id} value={id}>
+                            {
+                                icon ? (
+                                    <Box mr={1}>
+                                        <Icon fontSize='small' color='primary'>
+                                            {icon}
+                                        </Icon>
+                                    </Box>
+                                ) : null
+                            }
                             {name}
                         </MenuItem>
                     ))

@@ -81,6 +81,11 @@ export const theme = createMuiTheme({
                     boxShadow: 'none !important',
                 }
             },
+            filled: {
+                display: 'flex',
+                alignItems: 'center',
+                maxHeight: '1.1875em',
+            },
             selectMenu: {
                 borderRadius: borderRadius.m,
                 transition: 'box-shadow .3s',

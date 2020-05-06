@@ -30,9 +30,9 @@ export const AccountCardExpansionPanelHeader = styled.div`
     font-weight: 600;
     display: flex;
     align-items: center;
-    
-    svg{
-      margin-right: 10px;
+    span {
+        display: inline-block;
+        margin-right: 10px;
     }
   }
 `;

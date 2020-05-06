@@ -87,15 +87,15 @@ export const defaultSpendingCategories = [
 export const defaultAccountTypes = [
     {
         name: 'Bank Account',
-        icon: '',
+        icon: 'account_balance_rounded_icon',
     },
     {
         name: 'Online Banking Account',
-        icon: '',
+        icon: 'language_rounded_icon',
     },
     {
         name: 'Cash',
-        icon: '',
+        icon: 'account_balance_wallet_rounded_icon',
     }
 ];
 

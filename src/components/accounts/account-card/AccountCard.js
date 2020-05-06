@@ -7,7 +7,6 @@ import {
     AccountCardExpansionPanelHeader,
     ExpansionPanelContent
 } from './AccountCard.styles';
-import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
 import FormattedNumber from "../../ui/FormattedNumber";
 import DropDown from "../../ui/navigation/DropDown";
 import Grid from "@material-ui/core/Grid";
@@ -17,6 +16,7 @@ import BalancesList from "../../balances/balance-list/BalancesList";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import {selectTaxonomyValue} from "../../../redux/settings/settings.selectors";
 import {selectAccountFormShow} from "../../../redux/accounts/accounts.selectors";
+import {Icon} from "@material-ui/core";
 
 class AccountCard extends React.Component {
 
@@ -85,7 +85,7 @@ class AccountCard extends React.Component {
                             </Grid>
                             <Grid item xs container justify='flex-end' wrap='nowrap'>
                                 <div className='account-type'>
-                                    <AccountBalanceRoundedIcon/>
+                                    <Icon>{accountType.icon}</Icon>
                                     {accountType.name}
                                 </div>
                                 <DropDown menuItems={accountCardMenuItems}/>
