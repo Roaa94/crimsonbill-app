@@ -32,55 +32,50 @@ export const categories = [
     {
         id: 0,
         name: 'Groceries',
+        icon: 'category_rounded_icon',
     },
     {
         id: 1,
         name: 'Gas',
+        icon: 'category_rounded_icon',
     },
     {
         id: 2,
         name: 'Misc',
+        icon: 'category_rounded_icon',
     },
 ];
 
 export const defaultSpendingCategories = [
     {
-        name: 'Groceries',
-        icon: '',
-    },
-    {
-        name: 'Gas',
-        icon: '',
-    },
-    {
         name: 'Miscellaneous',
-        icon: '',
+        icon: 'category_rounded_icon',
     },
     {
         name: 'Personal',
-        icon: '',
+        icon: 'face_rounded_icon',
     },
     {
         name: 'Entertainment',
-        icon: '',
+        icon: 'theaters_rounded_icon',
 
     },
     {
         name: 'Utilities',
-        icon: '',
+        icon: 'flash_on_rounded_icon',
     },
     {
         name: 'Food',
-        icon: '',
+        icon: 'fast_food_rounded_icon',
 
     },
     {
         name: 'Transportation',
-        icon: '',
+        icon: 'commute_rounded_icon',
     },
     {
         name: 'Housing',
-        icon: '',
+        icon: 'home_rounded_icon',
     }
 ];
 

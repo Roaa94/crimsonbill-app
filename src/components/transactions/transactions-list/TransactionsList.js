@@ -3,7 +3,7 @@ import {TransactionCardsList, TransactionsListHeader} from "./TransactionsList.s
 import Grid from "@material-ui/core/Grid";
 import {colors} from "../../../styles/global";
 import AddIconButton from "../../ui/buttons/AddIconButton";
-import TransactionForm from "../transaction-form/TransactionForm";
+import TransactionForm from "../transaction-form/TransactionFormContainer";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {selectBalanceTransactions} from "../../../redux/accounts/accounts.selectors";

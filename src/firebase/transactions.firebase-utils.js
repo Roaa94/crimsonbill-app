@@ -65,12 +65,12 @@ export const updateTransactionDocument = async (userId, accountId, balanceId, tr
         try {
             const mirrorTransactionRef = await firestore.doc(mirrorTransactionPath);
             const mirrorTransactionSnapshot = await mirrorTransactionRef.get();
-            const {title, amount, dateTime, notes, category} = transactionData;
+            const {title, amount, dateTime, notes, categoryId} = transactionData;
             if (mirrorTransactionSnapshot.exists) {
                 let updatedMirrorTransaction = {
                     ...mirrorTransactionSnapshot.data(),
                     type: transactionData.type === 'spending' ? 'earning' : 'spending',
-                    title, amount, dateTime, notes, category,
+                    title, amount, dateTime, notes, categoryId,
                 }
                 batch.update(mirrorTransactionRef, updatedMirrorTransaction);
             } else {

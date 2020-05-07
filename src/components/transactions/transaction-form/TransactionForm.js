@@ -1,220 +1,146 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
-import Button from "../../ui/buttons/Button";
-import {colors} from "../../../styles/global";
-import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
-import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
-import {categories} from "../../../data";
-import {
-    addTransactionDocument,
-    updateTransactionDocument
-} from "../../../firebase/transactions.firebase-utils";
-import {selectUserId} from "../../../redux/user/user.selectors";
-import {connect} from "react-redux";
-import TransactionFormLayout from "./TransactionFormLayout";
-import {
-    selectAccount,
-    selectBalance,
-    selectOtherAccounts,
-    selectTransaction
-} from "../../../redux/accounts/accounts.selectors";
-import {TransactionFormContainer} from "./TransactionForm.styles";
+import Box from "@material-ui/core/Box";
+import TransactionTypeIcon from "../TransactionTypeIcon";
+import TextField from "@material-ui/core/TextField";
+import DateTimePicker from "../../ui/inputs/date-time-pickers/DateTimePicker";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Autocomplete from "../../ui/inputs/Autocomplete";
+import AccountToAccountForm from "./AccountToAccountForm";
 
-class TransactionForm extends React.Component {
-    defaultTransactionValues = {
-        type: 'spending',
-        category: '',
-        title: '',
-        amount: '',
-        dateTime: new Date(),
-        accountToAccount: false,
-        targetAccountId: '',
-        targetBalanceId: '',
-        notes: '',
+const TransactionForm = (
+    {
+        typePickers,
+        categorySelectItems,
+        onInputChange,
+        toEdit,
+        values,
+        accountToAccountData,
+    }
+) => {
+    const {
+        categoryId,
+        title,
+        amount,
+        dateTime,
+        accountToAccount,
+        notes,
+        type,
+        targetAccountId,
+        targetBalanceId
+    } = values;
+
+    const accountToAccountFormData = {
+        ...accountToAccountData,
+        targetAccountSelectValue: targetAccountId,
+        targetBalanceSelectValue: targetBalanceId,
     };
 
-    typePickerValues = {
-        spending: true,
-        earning: false,
-    };
-
-    state = {
-        defaultValues: this.defaultTransactionValues,
-        typePickerValues: this.typePickerValues,
-        targetAccountBalances: [],
-    };
-
-    _isMounted = false;
-
-    componentDidMount() {
-        this._isMounted = true;
-        const {transactionId, transaction, otherAccounts} = this.props;
-
-        if (transaction && transactionId) {
-            const parsedDateTime = new Date(transaction.dateTime.seconds * 1000);
-            let {type, category, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId} = transaction;
-            if (this._isMounted) {
-                this.setState({
-                    defaultValues: {
-                        dateTime: parsedDateTime,
-                        type, category, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId
-                    },
-                    typePickerValues: {
-                        spending: transaction.type === 'spending',
-                        earning: transaction.type === 'earning',
-                    },
-                    targetAccountBalances: accountToAccount ? otherAccounts.find(account => account.id === targetAccountId).balances : '',
-                });
-            }
-        }
-    }
-
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
-    handleFormSubmit = async event => {
-        event.preventDefault();
-        let {handleFormCancel, userId, accountId, transactionId, balanceId} = this.props;
-        const transactionData = this.state.defaultValues;
-        if (transactionId) {
-            await updateTransactionDocument(userId, accountId, balanceId, transactionId, transactionData);
-        } else {
-            await addTransactionDocument(userId, accountId, balanceId, transactionData);
-        }
-        if (this._isMounted) {
-            this.setState({
-                defaultValues: this.defaultTransactionValues,
-                typePickerValues: this.typePickerValues,
-            });
-        }
-        handleFormCancel();
-    }
-
-    handleFieldChange = event => {
-        const {defaultValues} = this.state;
-        const {name, value} = event.target;
-        this.setState({
-            defaultValues: {
-                ...defaultValues,
-                [name]: value
-            },
-        });
-        if (name === 'targetAccountId') {
-            const {otherAccounts} = this.props;
-            this.setState({
-                targetAccountBalances: otherAccounts.find(account => account.id === value).balances,
-            })
-        }
-    };
-
-    handleTypePickerChange = value => {
-        const {defaultValues} = this.state;
-        this.setState({
-            defaultValues: {
-                ...defaultValues,
-                type: value,
-            },
-            typePickerValues: {
-                [value]: true,
-            }
-        })
-    };
-
-    handleDateTimeChange = pickedDate => {
-        console.log(pickedDate);
-        const {defaultValues} = this.state;
-        this.setState({
-            defaultValues: {
-                ...defaultValues,
-                dateTime: pickedDate,
-            }
-        });
-    }
-
-    handleCheckBoxChange = event => {
-        const {defaultValues} = this.state;
-        this.setState({
-            defaultValues: {
-                ...defaultValues,
-                accountToAccount: event.target.checked,
-            }
-        })
-    }
-
-    render() {
-        const {typePickerValues, defaultValues, targetAccountBalances} = this.state;
-
-        const {
-            category,
-            title,
-            amount,
-            dateTime,
-            accountToAccount,
-            notes,
-            type,
-            targetAccountId,
-            targetBalanceId
-        } = defaultValues;
-        const {handleFormCancel, transactionId, account, balance, otherAccounts} = this.props;
-        // console.log(defaultValues);
-
-        return (
-            <TransactionFormContainer>
-                <form onSubmit={this.handleFormSubmit}>
-                    <TransactionFormLayout
-                        typePickers={typePickerValues}
-                        onSelectType={this.handleTypePickerChange}
-                        onFieldChange={this.handleFieldChange}
-                        categorySelectValue={category}
-                        categorySelectItems={categories}
-                        titleValue={title}
-                        amountValue={amount}
-                        dateTimeValue={dateTime}
-                        onDateTimeChange={this.handleDateTimeChange}
-                        accountToAccount={accountToAccount}
-                        onCheckboxChange={this.handleCheckBoxChange}
-                        type={type}
-                        currentAccountValue={account.name}
-                        currentBalanceValue={balance.name}
-                        targetAccountSelectValue={targetAccountId}
-                        targetBalanceSelectValue={targetBalanceId}
-                        accountsList={otherAccounts}
-                        balancesList={targetAccountBalances}
-                        notesValue={notes}
-                        toEdit={!!transactionId}
-                    />
-                    <Grid container>
-                        <Button
-                            fullWidth={false}
-                            type='submit'
-                            bgColor={colors.secondary}
-                            prefixIcon={<CheckRoundedIcon/>}
-                            margin='0 20px 0 0'
-                        >
-                            Submit
-                        </Button>
-                        <Button
-                            bgColor={colors.primary}
-                            fullWidth={false}
-                            onClick={handleFormCancel}
-                            prefixIcon={<ClearRoundedIcon/>}
-                        >
-                            Cancel
-                        </Button>
+    return (
+        <Box mb={2}>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Box fontWeight='600' fontSize='small'>
+                        {toEdit ? 'Edit Transaction' : 'Add Transaction'}
+                    </Box>
+                </Grid>
+                <Grid item container alignItems='stretch' wrap='nowrap' xs={12} md={7} xl={3}>
+                    <Grid item>
+                        <TransactionTypeIcon
+                            type='spending'
+                            checked={typePickers.spending}
+                            onClick={() => onInputChange('type', 'spending')}
+                        />
                     </Grid>
-                </form>
-            </TransactionFormContainer>
-        );
-    }
-}
+                    <Grid item>
+                        <TransactionTypeIcon
+                            type='earning'
+                            checked={typePickers.earning}
+                            onClick={() => onInputChange('type', 'earning')}
+                        />
+                    </Grid>
+                    <Grid item xs>
+                        <Autocomplete
+                            options={categorySelectItems}
+                            value={categoryId ? categorySelectItems.find(item => item.id === categoryId) : categorySelectItems[0]}
+                            onChange={
+                                (event, value) => {
+                                    if (value) {
+                                        onInputChange('categoryId', value.id);
+                                    }
+                                }
+                            }
+                            label='Category'
+                        />
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} md={5} xl={2}>
+                    <TextField
+                        label='Title'
+                        value={title}
+                        name='title'
+                        type='text'
+                        required
+                        onChange={(event) => onInputChange(event.target.name, event.target.value)}
+                    />
+                </Grid>
+                <Grid item xs={12} md={2} xl={1}>
+                    <TextField
+                        label='Amount'
+                        value={amount}
+                        name='amount'
+                        type='text'
+                        required
+                        onChange={(event) => onInputChange(event.target.name, event.target.value)}
+                    />
+                </Grid>
+                <Grid item xs={12} md={10} xl={6}>
+                    <DateTimePicker
+                        selectedDate={dateTime}
+                        dateFieldLabel='Transaction Date'
+                        timeFieldLabel='Transaction Time'
+                        onChange={(pickedDate) => onInputChange('dateTime', pickedDate)}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                disabled={accountToAccountData.accountsList.length === 0 || toEdit}
+                                checked={accountToAccount}
+                                onChange={(event) => onInputChange('accountToAccount', event.target.checked)}
+                                name="accountToAccount"
+                                color={type === 'spending' ? 'primary' : 'secondary'}
+                            />
+                        }
+                        label="Account to Account Transaction"
+                    />
+                </Grid>
+                {
+                    accountToAccount ? (
+                        <AccountToAccountForm
+                            isSpending={type === 'spending'}
+                            formData={accountToAccountFormData}
+                            onInputChange={onInputChange}
+                            toEdit={toEdit}
+                        />
+                    ) : null
+                }
+                <Grid item xs={12}>
+                    <TextField
+                        label='Transaction Notes'
+                        value={notes}
+                        name='notes'
+                        type='text'
+                        multiline
+                        rows={2}
+                        onChange={(event) => onInputChange(event.target.name, event.target.value)}
+                    />
+                </Grid>
+            </Grid>
+        </Box>
+    );
+};
 
-const mapStateToProps = (state, ownProps) => ({
-    userId: selectUserId(state),
-    account: selectAccount(ownProps.accountId)(state),
-    balance: selectBalance(ownProps.accountId, ownProps.balanceId)(state),
-    transaction: selectTransaction(ownProps.accountId, ownProps.balanceId, ownProps.transactionId)(state),
-    otherAccounts: selectOtherAccounts(ownProps.accountId)(state),
-});
-
-export default connect(mapStateToProps)(TransactionForm);
+export default TransactionForm;

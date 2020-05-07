@@ -18,8 +18,10 @@ import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {deleteTransactionDocument} from "../../../firebase/transactions.firebase-utils";
 import FormattedNumber from "../../ui/FormattedNumber";
-import TransactionForm from "../transaction-form/TransactionForm";
+import TransactionForm from "../transaction-form/TransactionFormContainer";
 import AccountToAccountView from "./AccountToAccountView";
+import {selectTaxonomyValue} from "../../../redux/settings/settings.selectors";
+import Icon from "@material-ui/core/Icon";
 
 class TransactionCard extends React.Component {
     _isMount = false;
@@ -64,26 +66,24 @@ class TransactionCard extends React.Component {
     }
 
     render() {
-        let {transaction, accountId, balanceId, readOnly} = this.props;
+        let {transaction, accountId, balanceId, readOnly, spendingCategory} = this.props;
 
         let {
             id,
-            category,
             type,
             title,
+            notes,
             amount,
             dateTime,
-            notes,
-            accountToAccount,
             targetAccountId,
-            targetBalanceId
+            targetBalanceId,
+            accountToAccount,
         } = transaction;
 
         let {transactionCardExpanded, showTransactionForm} = this.state;
 
         let formattedDate = format(dateTime.seconds * 1000, 'dd.MMM');
         let formattedTime = format(dateTime.seconds * 1000, 'hh:mm a');
-
 
         return (
             <TransactionExpansionPanel
@@ -105,9 +105,14 @@ class TransactionCard extends React.Component {
                                     <FormattedNumber number={amount} currency='$'/>
                                 </TransactionAmount>
                             </Grid>
-                            <Grid item xs>
+                            <Grid container alignItems='center' item xs>
+                                <Box mr={1}>
+                                    <Icon fontSize='small' color={type === 'spending' ? 'primary' : 'secondary'}>
+                                        {spendingCategory.icon}
+                                    </Icon>
+                                </Box>
                                 <Box fontWeight='600'>
-                                    {category}
+                                    {spendingCategory.name}
                                 </Box>
                             </Grid>
                         </Grid>
@@ -185,8 +190,9 @@ class TransactionCard extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
+    spendingCategory: selectTaxonomyValue(ownProps.transaction.categoryId, 'spendingCategories')(state)
 });
 
 export default connect(mapStateToProps)(TransactionCard);
