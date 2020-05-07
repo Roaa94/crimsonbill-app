@@ -20,6 +20,7 @@ export const TransactionCardsList = styled.div`
   max-height: 700px;
   overflow-x: hidden;
   overflow-y: scroll;
+  margin-right: -8px;
 `;
 
 export const TransactionsListExpansionPanelSummary = withStyles({

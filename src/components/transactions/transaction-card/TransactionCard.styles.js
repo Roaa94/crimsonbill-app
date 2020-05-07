@@ -9,11 +9,14 @@ export const TransactionExpansionPanel = withStyles({
         borderRadius: borderRadius.m,
         margin: '5px 0',
         transition: 'background-color .3s',
+        '&:first-child': {
+            marginTop: 0,
+        },
         '&$expanded': {
             backgroundColor: colors.background,
             margin: '5px 0',
             '&:first-child': {
-                marginTop: '5px',
+                marginTop: 0,
             }
         }
     },
