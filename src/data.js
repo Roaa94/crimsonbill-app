@@ -1,18 +1,3 @@
-export const types = [
-    {
-        id: 0,
-        name: 'Type-1',
-    },
-    {
-        id: 1,
-        name: 'Type-2',
-    },
-    {
-        id: 3,
-        name: 'Type-3',
-    },
-];
-
 export const currencies = [
     {
         id: 0,
@@ -28,25 +13,7 @@ export const currencies = [
     },
 ];
 
-export const categories = [
-    {
-        id: 0,
-        name: 'Groceries',
-        icon: 'category_rounded_icon',
-    },
-    {
-        id: 1,
-        name: 'Gas',
-        icon: 'category_rounded_icon',
-    },
-    {
-        id: 2,
-        name: 'Misc',
-        icon: 'category_rounded_icon',
-    },
-];
-
-export const defaultSpendingCategories = [
+const defaultSpendingCategories = [
     {
         name: 'Miscellaneous',
         icon: 'category_rounded_icon',
@@ -79,7 +46,7 @@ export const defaultSpendingCategories = [
     }
 ];
 
-export const defaultAccountTypes = [
+const defaultAccountTypes = [
     {
         name: 'Bank Account',
         icon: 'account_balance_rounded_icon',

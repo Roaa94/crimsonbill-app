@@ -118,8 +118,7 @@ class TransactionFormContainer extends React.Component {
 
     render() {
         const {typePickerValues, defaultValues, targetAccountBalances} = this.state;
-        console.log('defaultValues');
-        console.log(defaultValues);
+
         const {handleFormCancel, transactionId, account, balance, otherAccounts, spendingCategories} = this.props;
 
         const accountToAccountData = {
