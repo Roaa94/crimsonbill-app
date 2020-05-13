@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import {borderRadius, boxShadows, colors} from "../../../styles/global";
 
 const AddIconButtonContainer = styled.div`
-  color: ${colors.text};
+  color: ${props => props.color};
   padding: ${props => props.size === 'small' ? '5px' : '10px'};
   width: ${props => props.size === 'small' ? '30px' : '50px'};
   height: ${props => props.size === 'small' ? '30px' : '50px'};
-  margin: 0 20px;
-  border-radius: ${props => props.size === 'small' ? borderRadius.s : borderRadius.l};
+  margin: ${props => props.dense ? 0 : '0 20px'};
+  border-radius: ${props => props.size === 'small' ? borderRadius.s : borderRadius.m};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -20,7 +20,6 @@ const AddIconButtonContainer = styled.div`
   background-color: ${props => props.bgcolor};
     
   :hover{
-    color: ${colors.secondary};
     box-shadow: ${boxShadows.main};
   }
   
@@ -29,13 +28,26 @@ const AddIconButtonContainer = styled.div`
   }
 `;
 
-const AddIconButton = ({handleClick, disabled = false, size, bgColor = colors.white}) => {
+const AddIconButton = (
+    {
+        handleClick,
+        dense = false,
+        disabled = false,
+        size,
+        bgColor = colors.white,
+        color = colors.text,
+        ...otherProps
+    }
+) => {
     return (
         <AddIconButtonContainer
             onClick={handleClick}
             disabled={disabled}
             size={size}
+            dense={dense}
             bgcolor={bgColor}
+            color={color}
+            {...otherProps}
         >
             <AddIcon/>
         </AddIconButtonContainer>
