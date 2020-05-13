@@ -24,6 +24,7 @@ class TransactionFormContainer extends React.Component {
     defaultTransactionValues = {
         type: 'spending',
         categoryId: '',
+        sourceId: '',
         title: '',
         amount: '',
         dateTime: new Date(),
@@ -52,12 +53,12 @@ class TransactionFormContainer extends React.Component {
 
         if (transaction && transactionId) {
             const parsedDateTime = new Date(transaction.dateTime.seconds * 1000);
-            let {type, categoryId, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId} = transaction;
+            let {type, categoryId, sourceId, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId} = transaction;
             if (this._isMounted) {
                 this.setState({
                     defaultValues: {
                         dateTime: parsedDateTime,
-                        type, categoryId, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId
+                        type, categoryId, sourceId, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId
                     },
                     typePickerValues: {
                         spending: transaction.type === 'spending',
@@ -119,7 +120,7 @@ class TransactionFormContainer extends React.Component {
     render() {
         const {typePickerValues, defaultValues, targetAccountBalances} = this.state;
 
-        const {handleFormCancel, transactionId, account, balance, otherAccounts, spendingCategories} = this.props;
+        const {handleFormCancel, transactionId, account, balance, otherAccounts, spendingCategories, incomeSources} = this.props;
 
         const accountToAccountData = {
             currentAccountValue: account.name,
@@ -135,6 +136,7 @@ class TransactionFormContainer extends React.Component {
                         values={defaultValues}
                         typePickers={typePickerValues}
                         categorySelectItems={spendingCategories}
+                        sourcesSelectItems={incomeSources}
                         onInputChange={this.handleInputChange}
                         accountToAccountData={accountToAccountData}
                         toEdit={!!transactionId}
@@ -171,6 +173,7 @@ const mapStateToProps = (state, ownProps) => ({
     transaction: selectTransaction(ownProps.accountId, ownProps.balanceId, ownProps.transactionId)(state),
     otherAccounts: selectOtherAccounts(ownProps.accountId)(state),
     spendingCategories: selectTaxonomyArray('spendingCategories')(state),
+    incomeSources: selectTaxonomyArray('incomeSources')(state),
 });
 
 export default connect(mapStateToProps)(TransactionFormContainer);

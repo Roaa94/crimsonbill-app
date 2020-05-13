@@ -9,7 +9,13 @@ export const selectTaxonomies = createSelector(
 
 export const selectTaxonomyArray = taxonomyName => createSelector(
     [selectTaxonomies],
-    taxonomies => taxonomies[taxonomyName],
+    taxonomies => {
+        if (taxonomies[taxonomyName]) {
+            return taxonomies[taxonomyName];
+        } else {
+            return [];
+        }
+    },
 );
 
 export const selectTaxonomyValue = (taxonomyId, taxonomyName) => createSelector(

@@ -28,7 +28,6 @@ const initTaxonomyDefaults = async (userId, collectionName, defaultValues) => {
 }
 
 export const fetchTaxonomies = async (userId, collectionName) => {
-    console.log(`Fetching: ${collectionName}`);
     const taxonomyCollectionPath = `users/${userId}/settings/TAXONOMIES/${collectionName}`;
     const taxonomyCollectionRef = firestore.collection(taxonomyCollectionPath);
     const taxonomyCollectionSnapshot = await taxonomyCollectionRef.get();

@@ -5,11 +5,15 @@ import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import Icon from "@material-ui/core/Icon";
 import Grid from "@material-ui/core/Grid";
 
-const Autocomplete = ({label, ...otherProps}) => {
+const Autocomplete = ({options, idValue, label, ...otherProps}) => {
+    const hasOptions = options.length !== 0;
+    const targetValue = options.find(item => item.id === idValue);
 
     return (
         <MuiAutocomplete
             {...otherProps}
+            options={options}
+            value={targetValue ? targetValue : hasOptions ? options[0] : ''}
             id="auto-complete"
             popupIcon={<ExpandMoreRoundedIcon/>}
             renderOption={(option, state) => {
@@ -25,16 +29,17 @@ const Autocomplete = ({label, ...otherProps}) => {
                             ) : null
                         }
                         <Grid item>
-                            {option.name}
+                            {option.name ? option.name : ''}
                         </Grid>
                     </Grid>
                 )
             }}
-            getOptionLabel={(option) => option.name}
+            getOptionLabel={(option) => option.name ? option.name : ''}
             getOptionSelected={(option, value) => option.id === value.id}
             renderInput={
                 (params) => (
                     <TextField
+                        required
                         {...params}
                         label={label}
                     />

@@ -13,6 +13,7 @@ const TransactionForm = (
     {
         typePickers,
         categorySelectItems,
+        sourcesSelectItems,
         onInputChange,
         toEdit,
         values,
@@ -21,6 +22,7 @@ const TransactionForm = (
 ) => {
     const {
         categoryId,
+        sourceId,
         title,
         amount,
         dateTime,
@@ -61,18 +63,37 @@ const TransactionForm = (
                         />
                     </Grid>
                     <Grid item xs>
-                        <Autocomplete
-                            options={categorySelectItems}
-                            value={categoryId ? categorySelectItems.find(item => item.id === categoryId) : categorySelectItems[0]}
-                            onChange={
-                                (event, value) => {
-                                    if (value) {
-                                        onInputChange('categoryId', value.id);
+                        {
+                            type === 'spending' ? (
+                                <Autocomplete
+                                    options={categorySelectItems}
+                                    idValue={categoryId}
+                                    onChange={
+                                        (event, value) => {
+                                            if (value) {
+                                                onInputChange('categoryId', value.id);
+                                            }
+                                        }
                                     }
-                                }
-                            }
-                            label='Category'
-                        />
+                                    label='Category'
+                                    noOptionsText='No matching category, add from settings'
+                                />
+                            ) : (
+                                <Autocomplete
+                                    options={sourcesSelectItems}
+                                    idValue={sourceId}
+                                    onChange={
+                                        (event, value) => {
+                                            if (value) {
+                                                onInputChange('sourceId', value.id);
+                                            }
+                                        }
+                                    }
+                                    label='Source'
+                                    noOptionsText='No matching source, add from settings'
+                                />
+                            )
+                        }
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={5} xl={2}>
