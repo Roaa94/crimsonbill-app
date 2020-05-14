@@ -86,6 +86,11 @@ class TransactionFormContainer extends React.Component {
         event.preventDefault();
         let {handleFormCancel, userId, accountId, transactionId, balanceId} = this.props;
         const transactionData = this.state.defaultValues;
+        // const {defaultValues} = this.state;
+        // const transactionData = {
+        //     currencyId: balance.currencyId,
+        //     ...defaultValues,
+        // };
         if (transactionId) {
             await updateTransactionDocument(userId, accountId, balanceId, transactionId, transactionData);
         } else {

@@ -62,6 +62,11 @@ export const selectBalanceName = (accountId, balanceId) => createSelector(
     balance => balance.name,
 );
 
+export const selectBalanceCurrencyId = (accountId, balanceId) => createSelector(
+    [selectBalance(accountId, balanceId)],
+    balance => balance.currencyId,
+);
+
 export const selectBalanceTransactions = (accountId, balanceId) => createSelector(
     [selectBalance(accountId, balanceId)],
     balance => balance.transactions

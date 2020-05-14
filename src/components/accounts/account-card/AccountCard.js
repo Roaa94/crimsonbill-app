@@ -17,7 +17,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import {selectAccountFormShow} from "../../../redux/accounts/accounts.selectors";
 import {Icon} from "@material-ui/core";
-import {selectCurrency} from "../../../redux/currencies/currencies.selectors";
 
 class AccountCard extends React.Component {
 
@@ -44,7 +43,7 @@ class AccountCard extends React.Component {
     }
 
     render() {
-        let {id, accountType, name, notes, totalBalance, accountCurrency} = this.props;
+        let {id, accountType, name, currencyId, notes, totalBalance} = this.props;
         let {showAccountForm, accountCardExpanded} = this.state;
 
         const accountCardMenuItems = [
@@ -81,7 +80,7 @@ class AccountCard extends React.Component {
                             </Grid>
                             <Grid item xs={2} align='center'>
                                 <h3 className='account-currency'>
-                                    <FormattedNumber number={totalBalance} currencyCode={accountCurrency.code}/>
+                                    <FormattedNumber number={totalBalance} currencyId={currencyId}/>
                                 </h3>
                             </Grid>
                             <Grid item xs container justify='flex-end' wrap='nowrap'>
@@ -125,7 +124,6 @@ const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     accountFormShow: selectAccountFormShow(state),
     accountType: selectTaxonomyValue(ownProps.typeId, 'accountTypes')(state),
-    accountCurrency: selectCurrency(ownProps.currencyId)(state)
 });
 
 export default connect(mapStateToProps)(AccountCard);

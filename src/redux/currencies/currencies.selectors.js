@@ -15,4 +15,13 @@ export const selectDefaultCurrency = createSelector(
 export const selectCurrency = currencyId => createSelector(
     [selectAppCurrencies],
     appCurrencies => appCurrencies.find(currency => currency.id === currencyId),
+);
+
+export const selectCurrencyCode = currencyId => createSelector(
+    [selectCurrency(currencyId)],
+    currency => {
+        if(currency) {
+            return currency.code;
+        }
+    },
 )

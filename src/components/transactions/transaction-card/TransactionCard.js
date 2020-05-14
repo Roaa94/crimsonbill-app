@@ -22,6 +22,7 @@ import TransactionForm from "../transaction-form/TransactionFormContainer";
 import AccountToAccountView from "./AccountToAccountView";
 import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import Icon from "@material-ui/core/Icon";
+import {selectBalanceCurrencyId} from "../../../redux/accounts/accounts.selectors";
 
 class TransactionCard extends React.Component {
     _isMount = false;
@@ -66,7 +67,15 @@ class TransactionCard extends React.Component {
     }
 
     render() {
-        let {transaction, accountId, balanceId, readOnly, spendingCategory, incomeSource} = this.props;
+        let {
+            transaction,
+            accountId,
+            balanceId,
+            readOnly,
+            spendingCategory,
+            incomeSource,
+            balanceCurrencyId,
+        } = this.props;
 
         let {
             id,
@@ -97,14 +106,17 @@ class TransactionCard extends React.Component {
                         <Grid item alignItems='center' container xs spacing={1}>
                             <Grid item>
                                 {
-                                    type === 'spending'
+                                    isSpending
                                         ? <SpendingArrow><ArrowDown/></SpendingArrow>
                                         : <SpendingArrow><ArrowUp/></SpendingArrow>
                                 }
                             </Grid>
                             <Grid item xs={4}>
                                 <TransactionAmount type={type}>
-                                    <FormattedNumber number={amount}/>
+                                    <FormattedNumber
+                                        number={amount}
+                                        currencyId={balanceCurrencyId}
+                                    />
                                 </TransactionAmount>
                             </Grid>
                             <Grid container alignItems='center' item xs>
@@ -182,7 +194,7 @@ class TransactionCard extends React.Component {
                                 balanceId={balanceId}
                                 targetAccountId={targetAccountId}
                                 targetBalanceId={targetBalanceId}
-                                isSpending={type === 'spending'}
+                                isSpending={isSpending}
                             />
                         ) : null
                     }
@@ -196,6 +208,7 @@ const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     spendingCategory: selectTaxonomyValue(ownProps.transaction.categoryId, 'spendingCategories')(state),
     incomeSource: selectTaxonomyValue(ownProps.transaction.sourceId, 'incomeSources')(state),
+    balanceCurrencyId: selectBalanceCurrencyId(ownProps.accountId, ownProps.balanceId)(state),
 });
 
 export default connect(mapStateToProps)(TransactionCard);
