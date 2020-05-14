@@ -33,7 +33,7 @@ const defaultSpendingCategories = [
     },
     {
         name: 'Food',
-        icon: 'fast_food_rounded_icon',
+        icon: 'kitchen_rounded_icon',
 
     },
     {
