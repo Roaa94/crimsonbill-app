@@ -8,7 +8,7 @@ const SettingsPage = () => {
     return (
         <PageWrapper>
             <h1>Settings</h1>
-            <Box p={2}>
+            <Box py={2}>
                 <Grid container alignItems='stretch' spacing={2}>
                     <Grid item xs={12} md={6}>
                         Currencies card
@@ -33,7 +33,7 @@ const SettingsPage = () => {
                         <TaxonomyCard
                             header='Income Sources'
                             taxonomyCollectionName='incomeSources'
-                            taxonomyIcon='category_rounded_icon'
+                            taxonomyIcon='account_balance_wallet_rounded_icon'
                             textFieldLabel='Add Income Source'
                             noItemsText='Add your income sources'
                         />
