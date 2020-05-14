@@ -3,7 +3,7 @@ import userReducer from "./user/user.reducer";
 import {persistReducer} from "redux-persist";
 import {combineReducers} from "redux";
 import accountsReducer from "./accounts/accounts.reducer";
-import {settingsReducer} from "./settings/settings.reducer";
+import {taxonomiesReducer} from "./taxonomies/taxonomies.reducer";
 
 const persistConfig = {
     key: 'root',
@@ -13,7 +13,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userReducer,
     accounts: accountsReducer,
-    settings: settingsReducer,
+    taxonomies: taxonomiesReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

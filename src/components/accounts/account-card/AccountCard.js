@@ -14,7 +14,7 @@ import AccountForm from "../account-form/AccountForm";
 import Box from "@material-ui/core/Box";
 import BalancesList from "../../balances/balance-list/BalancesList";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import {selectTaxonomyValue} from "../../../redux/settings/settings.selectors";
+import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import {selectAccountFormShow} from "../../../redux/accounts/accounts.selectors";
 import {Icon} from "@material-ui/core";
 

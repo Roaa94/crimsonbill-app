@@ -1,17 +1,17 @@
 import {createSelector} from "reselect";
 
-export const selectSettings = state => state.settings;
+export const selectTaxonomies = state => state.taxonomies;
 
-export const selectTaxonomies = createSelector(
-    [selectSettings],
-    settings => settings.taxonomies,
+export const selectTaxonomiesData = createSelector(
+    [selectTaxonomies],
+    taxonomies => taxonomies.taxonomiesData,
 );
 
 export const selectTaxonomyArray = taxonomyName => createSelector(
-    [selectTaxonomies],
-    taxonomies => {
-        if (taxonomies[taxonomyName]) {
-            return taxonomies[taxonomyName];
+    [selectTaxonomiesData],
+    taxonomiesData => {
+        if (taxonomiesData[taxonomyName]) {
+            return taxonomiesData[taxonomyName];
         } else {
             return [];
         }

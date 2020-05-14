@@ -6,7 +6,7 @@ import {colors} from "../../../styles/global";
 import AddIconButton from "../../ui/buttons/AddIconButton";
 import TaxonomyItem from "../TaxonomyItem";
 import {selectUserId} from "../../../redux/user/user.selectors";
-import {selectTaxonomyArray} from "../../../redux/settings/settings.selectors";
+import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
 import {connect} from "react-redux";
 import {addTaxonomy, deleteTaxonomy} from "../../../firebase/taxonomies.firebase-utils";
 

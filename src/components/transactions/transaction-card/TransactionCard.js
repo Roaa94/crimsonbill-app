@@ -20,7 +20,7 @@ import {deleteTransactionDocument} from "../../../firebase/transactions.firebase
 import FormattedNumber from "../../ui/FormattedNumber";
 import TransactionForm from "../transaction-form/TransactionFormContainer";
 import AccountToAccountView from "./AccountToAccountView";
-import {selectTaxonomyValue} from "../../../redux/settings/settings.selectors";
+import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import Icon from "@material-ui/core/Icon";
 
 class TransactionCard extends React.Component {

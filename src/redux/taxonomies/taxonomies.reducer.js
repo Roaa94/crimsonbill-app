@@ -1,7 +1,7 @@
-import {SettingsActionTypes} from "./settings.action-types";
+import {TaxonomiesActionTypes} from "./taxonomies.action-types";
 
 const INITIAL_STATE = {
-    taxonomies: {
+    taxonomiesData: {
         categories: [],
         accountTypes: [],
         incomeSources: [],
@@ -9,24 +9,22 @@ const INITIAL_STATE = {
     },
     isFetchingTaxonomies: false,
     errorMessage: '',
-    currencies: [],
-    appCurrency: null,
 }
 
-export const settingsReducer = (state = INITIAL_STATE, action) => {
+export const taxonomiesReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case SettingsActionTypes.FETCH_TAXONOMIES_START:
+        case TaxonomiesActionTypes.FETCH_TAXONOMIES_START:
             return {
                 ...state,
                 isFetchingTaxonomies: true,
             }
-        case SettingsActionTypes.FETCH_TAXONOMIES_SUCCESS:
+        case TaxonomiesActionTypes.FETCH_TAXONOMIES_SUCCESS:
             return {
                 ...state,
-                taxonomies: action.payload,
+                taxonomiesData: action.payload,
                 isFetchingTaxonomies: false,
             }
-        case SettingsActionTypes.FETCH_TAXONOMIES_ERROR:
+        case TaxonomiesActionTypes.FETCH_TAXONOMIES_ERROR:
             return {
                 ...state,
                 isFetchingTaxonomies: false,

@@ -18,7 +18,7 @@ import {
     selectTransaction
 } from "../../../redux/accounts/accounts.selectors";
 import {TransactionFormWrapper} from "./TransactionForm.styles";
-import {selectTaxonomyArray} from "../../../redux/settings/settings.selectors";
+import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
 
 class TransactionFormContainer extends React.Component {
     defaultTransactionValues = {

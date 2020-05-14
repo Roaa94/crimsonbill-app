@@ -1,18 +1,18 @@
-import {SettingsActionTypes} from "./settings.action-types";
+import {TaxonomiesActionTypes} from "./taxonomies.action-types";
 import {appTaxonomies} from "../../data";
 import {convertCollectionToArray, firestore} from "../../firebase/firebase.utils";
 
 export const fetchTaxonomiesStart = () => ({
-    type: SettingsActionTypes.FETCH_TAXONOMIES_START,
+    type: TaxonomiesActionTypes.FETCH_TAXONOMIES_START,
 });
 
 export const fetchTaxonomiesError = errorMessage => ({
-    type: SettingsActionTypes.FETCH_TAXONOMIES_ERROR,
+    type: TaxonomiesActionTypes.FETCH_TAXONOMIES_ERROR,
     payload: errorMessage,
 });
 
 export const fetchTaxonomiesSuccess = taxonomies => ({
-    type: SettingsActionTypes.FETCH_TAXONOMIES_SUCCESS,
+    type: TaxonomiesActionTypes.FETCH_TAXONOMIES_SUCCESS,
     payload: taxonomies,
 })
 

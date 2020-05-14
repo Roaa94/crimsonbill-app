@@ -8,7 +8,7 @@ import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
 import {selectUser} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
-import {fetchTaxonomiesStartAsync} from "./redux/settings/settings.actions";
+import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
 // import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
 class App extends React.Component {

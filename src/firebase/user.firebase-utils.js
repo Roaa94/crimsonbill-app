@@ -21,7 +21,7 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
         try {
             await initDefaultTaxonomies(snapShot.id);
         } catch (e) {
-            console.log('Could not write default settings', e.message);
+            console.log('Could not write default taxonomies', e.message);
         }
         console.log('user created, display name:', additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName);
     }

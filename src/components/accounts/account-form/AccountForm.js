@@ -12,7 +12,7 @@ import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import TextField from "@material-ui/core/TextField";
 import {selectAccount} from "../../../redux/accounts/accounts.selectors";
-import {selectTaxonomyArray} from "../../../redux/settings/settings.selectors";
+import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
 
 class AccountForm extends Component {
     _isMounted = false;
