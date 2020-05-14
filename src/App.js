@@ -9,7 +9,7 @@ import HomePage from "./pages/home/HomePage";
 import {selectUser} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/settings/settings.actions";
-// import {initDefaultTaxonomies} from "./firebase/settings.firebase-utils";
+// import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;

@@ -1,6 +1,6 @@
 import {SettingsActionTypes} from "./settings.action-types";
 import {appTaxonomies} from "../../data";
-import {fetchTaxonomies} from "../../firebase/taxonomies.firebase-utils";
+import {convertCollectionToArray, firestore} from "../../firebase/firebase.utils";
 
 export const fetchTaxonomiesStart = () => ({
     type: SettingsActionTypes.FETCH_TAXONOMIES_START,
@@ -20,16 +20,15 @@ export const fetchTaxonomiesStartAsync = userId => {
     return async dispatch => {
         dispatch(fetchTaxonomiesStart());
         let taxonomies = {};
-        try {
-            for await (const {name} of appTaxonomies) {
-                taxonomies[name] = await fetchTaxonomies(userId, name);
-            }
-        } catch (e) {
-            console.log('Error fetching taxonomies', e.message);
-            dispatch(fetchTaxonomiesError(e.message));
-        }
-        console.log('taxonomies');
-        console.log(taxonomies);
-        dispatch(fetchTaxonomiesSuccess(taxonomies));
+        appTaxonomies.forEach(({name}) => {
+            const taxonomyCollectionPath = `users/${userId}/settings/TAXONOMIES/${name}`;
+            const taxonomyCollectionRef = firestore.collection(taxonomyCollectionPath);
+            const orderedTaxonomiesRef = taxonomyCollectionRef.orderBy('createdAt', 'asc');
+            orderedTaxonomiesRef.onSnapshot(taxonomyCollectionSnapshot => {
+                taxonomies[name] = convertCollectionToArray(taxonomyCollectionSnapshot);
+                console.log('fetching taxonomies: ', name);
+                dispatch(fetchTaxonomiesSuccess(taxonomies));
+            }, error => dispatch(fetchTaxonomiesError(error.message)));
+        })
     }
 };

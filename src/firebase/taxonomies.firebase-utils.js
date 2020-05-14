@@ -1,11 +1,13 @@
-import {convertCollectionToArray, firestore} from "./firebase.utils";
+import {firestore} from "./firebase.utils";
 import {appTaxonomies} from "../data";
 
 export const initDefaultTaxonomies = async userId => {
     console.log('setting default settings ...');
 
     for await (let {name, defaultValues} of appTaxonomies) {
-        await initTaxonomyDefaults(userId, name, defaultValues);
+        if (defaultValues) {
+            await initTaxonomyDefaults(userId, name, defaultValues);
+        }
     }
 }
 
@@ -16,8 +18,14 @@ const initTaxonomyDefaults = async (userId, collectionName, defaultValues) => {
     const batch = firestore.batch();
     defaultValues.forEach(value => {
         //init new document
+        const createdAt = new Date();
+        const data = {
+            createdAt,
+            isDefault: true,
+            ...value,
+        }
         const accountTypeDocRef = firestore.collection(taxonomyCollectionPath).doc();
-        batch.set(accountTypeDocRef, value);
+        batch.set(accountTypeDocRef, data);
     });
     try {
         await batch.commit();
@@ -27,9 +35,17 @@ const initTaxonomyDefaults = async (userId, collectionName, defaultValues) => {
     }
 }
 
-export const fetchTaxonomies = async (userId, collectionName) => {
-    const taxonomyCollectionPath = `users/${userId}/settings/TAXONOMIES/${collectionName}`;
-    const taxonomyCollectionRef = firestore.collection(taxonomyCollectionPath);
-    const taxonomyCollectionSnapshot = await taxonomyCollectionRef.get();
-    return convertCollectionToArray(taxonomyCollectionSnapshot);
+export const addTaxonomy = async (userId, taxonomyCollectionName, taxonomyData) => {
+    const taxonomyCollectionPath = `users/${userId}/settings/TAXONOMIES/${taxonomyCollectionName}`;
+    const taxonomyDocRef = firestore.collection(taxonomyCollectionPath).doc();
+    const taxonomyDocSnapshot = await taxonomyDocRef.get();
+    if (!taxonomyDocSnapshot.exists) {
+        try {
+            await taxonomyDocRef.set(taxonomyData);
+        } catch (error) {
+            console.log('Failure in adding taxonomy', error.message);
+        }
+    } else {
+        console.log('Taxonomy already exists');
+    }
 }

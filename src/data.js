@@ -69,5 +69,8 @@ export const appTaxonomies = [
     {
         name: 'spendingCategories',
         defaultValues: defaultSpendingCategories,
+    },
+    {
+        name: 'incomeSources',
     }
 ];
