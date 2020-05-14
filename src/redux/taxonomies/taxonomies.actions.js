@@ -17,7 +17,7 @@ export const fetchTaxonomiesSuccess = taxonomies => ({
 })
 
 export const fetchTaxonomiesStartAsync = userId => {
-    return async dispatch => {
+    return dispatch => {
         dispatch(fetchTaxonomiesStart());
         let taxonomies = {};
         appTaxonomies.forEach(({name}) => {

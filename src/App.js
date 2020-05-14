@@ -9,14 +9,15 @@ import HomePage from "./pages/home/HomePage";
 import {selectUser} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
-// import {initAppCurrencies} from "./firebase/currency.firebase-utils";
+import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
+// import {initAppCurrencies} from "./firebase/currencies.firebase-utils";
 // import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        const {setUser, user, fetchTaxonomiesStartAsync} = this.props;
+        const {setUser, user, fetchTaxonomiesStartAsync, fetchCurrenciesStartAsync} = this.props;
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
                 //The create user profile document always returns a user object
@@ -40,6 +41,7 @@ class App extends React.Component {
         });
         if(user.id) {
             fetchTaxonomiesStartAsync(user.id);
+            fetchCurrenciesStartAsync(user.id);
         }
     }
 
@@ -73,6 +75,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setUser: user => dispatch(setUser(user)),
     fetchTaxonomiesStartAsync: userId => dispatch(fetchTaxonomiesStartAsync(userId)),
+    fetchCurrenciesStartAsync: userId => dispatch(fetchCurrenciesStartAsync(userId))
 });
 
 export default connect(

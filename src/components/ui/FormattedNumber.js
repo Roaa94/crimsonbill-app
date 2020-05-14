@@ -1,7 +1,7 @@
 import React from 'react';
 import NumberFormat from "react-number-format";
 
-//Todo: when default currency functionality is finished, add the default currency as default value for the currency prop
+//Todo: when default currencies functionality is finished, add the default currencies as default value for the currencies prop
 const FormattedNumber = ({number, currency}) => {
     return (
         <NumberFormat

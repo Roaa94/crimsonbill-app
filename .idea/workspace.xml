@@ -20,18 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app-data/currency.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/firebase/currency.firebase-utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/currencies/currencies.action-types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/currencies/currencies.actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/currencies/currencies.reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/balances/BalanceForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/BalanceForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app-data/taxonomies.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/taxonomies.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/taxonomies.firebase-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/user.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/user.firebase-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/currency/currency.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/currency/currency.reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/FormattedNumber.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/FormattedNumber.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/currency/currency.action-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/currencies/currencies.selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/currency/currency.actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/currency/currency.reducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/currency/currency.selectors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/root-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/root-reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/taxonomies/taxonomies.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/taxonomies/taxonomies.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/taxonomies/taxonomies.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/taxonomies/taxonomies.selectors.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,21 +167,7 @@
       <workItem from="1589117038393" duration="4163000" />
       <workItem from="1589288573844" duration="3166000" />
       <workItem from="1589397353416" duration="23509000" />
-      <workItem from="1589460374722" duration="3460000" />
-    </task>
-    <task id="LOCAL-00186" summary="changed select component data syntax">
-      <created>1588555362922</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1588555362922</updated>
-    </task>
-    <task id="LOCAL-00187" summary="populated account-to-account transaction form selects">
-      <created>1588555418120</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1588555418121</updated>
+      <workItem from="1589460374722" duration="5799000" />
     </task>
     <task id="LOCAL-00188" summary="added helper functions for document paths">
       <created>1588555447137</created>
@@ -511,7 +498,21 @@
       <option name="project" value="LOCAL" />
       <updated>1589472888937</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="implemented writing app currencies to the database on user sign up">
+      <created>1589474562221</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1589474562221</updated>
+    </task>
+    <task id="LOCAL-00236" summary="minor change">
+      <created>1589475437780</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1589475437780</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +547,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="changes on transaction card styles" />
     <MESSAGE value="disabled transaction card expansion in all transactions list" />
     <MESSAGE value="moved total balances calculation functionality from firebase functions to redux async functions" />
     <MESSAGE value="removed custom scrollbar plugins and customized app scrollbar globally" />
@@ -554,7 +554,6 @@
     <MESSAGE value="removed unused function" />
     <MESSAGE value="added taxonomies data and stored them in the database on user sign up" />
     <MESSAGE value="added settings reducer and fetched taxonomies and stored them in the state" />
-    <MESSAGE value="minor change" />
     <MESSAGE value="populated account type select component with account types taxonomies array in account form" />
     <MESSAGE value="deleted unnecessary account form reducer" />
     <MESSAGE value="added icons to account types taxonomies and displayed them in the form and in the card" />
@@ -571,7 +570,9 @@
     <MESSAGE value="minor styling fix" />
     <MESSAGE value="changed settings files names to taxonomies to separate from currency logic" />
     <MESSAGE value="added currency reducer files" />
-    <option name="LAST_COMMIT_MESSAGE" value="added currency reducer files" />
+    <MESSAGE value="implemented writing app currencies to the database on user sign up" />
+    <MESSAGE value="minor change" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor change" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1588426479228">
@@ -594,16 +595,16 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1025" y="536" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722673140" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1589472888289">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1589475437178">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472888289" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1589472838938">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589475437178" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1589476727729">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472838938" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589476727729" />
     <state x="915" y="284" key="FileChooserDialogImpl" timestamp="1588446530757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -646,11 +647,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1101" y="323" key="VCS.ChangeListViewerDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587205353399" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1589472076973">
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1589475440515">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="722" y="254" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583401704491" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472076973" />
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589475440515" />
     <state x="985" y="353" key="VcsDiffUtil.ChangesDialog" timestamp="1587825550391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -659,10 +660,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="93" y="93" width="2375" height="1215" key="com.intellij.history.integration.ui.views.FileHistoryDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588090661449" />
-    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1589473042582">
+    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1589474411794">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589473042582" />
+    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589474411794" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1589415024627">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -671,10 +672,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587855324869" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1589474353746">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1589475916413">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589474353746" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589475916413" />
   </component>
 </project>

@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
 
-export const selectTaxonomies = state => state.taxonomies;
+const selectTaxonomies = state => state.taxonomies;
 
 export const selectTaxonomiesData = createSelector(
     [selectTaxonomies],
