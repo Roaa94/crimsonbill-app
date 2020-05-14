@@ -13,14 +13,12 @@ export const currencies = [
     },
 ];
 
-export const defaultCurrency = {
-    code: 'USD',
-    name: 'United States Dollar',
-    isDefault: true,
-}
-
 export const appCurrencies = [
-    defaultCurrency,
+    {
+        code: 'USD',
+        name: 'United States Dollar',
+        isDefault: true,
+    },
     {
         code: 'TRY',
         name: 'Turkish Lira',
