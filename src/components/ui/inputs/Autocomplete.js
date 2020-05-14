@@ -6,14 +6,13 @@ import Icon from "@material-ui/core/Icon";
 import Grid from "@material-ui/core/Grid";
 
 const Autocomplete = ({options, idValue, label, ...otherProps}) => {
-    const hasOptions = options.length !== 0;
     const targetValue = options.find(item => item.id === idValue);
 
     return (
         <MuiAutocomplete
             {...otherProps}
             options={options}
-            value={targetValue ? targetValue : hasOptions ? options[0] : ''}
+            value={targetValue ? targetValue : null}
             id="auto-complete"
             popupIcon={<ExpandMoreRoundedIcon/>}
             renderOption={(option, state) => {

@@ -23,8 +23,8 @@ import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selector
 class TransactionFormContainer extends React.Component {
     defaultTransactionValues = {
         type: 'spending',
-        categoryId: '',
-        sourceId: '',
+        categoryId: null,
+        sourceId: null,
         title: '',
         amount: '',
         dateTime: new Date(),
@@ -58,7 +58,15 @@ class TransactionFormContainer extends React.Component {
                 this.setState({
                     defaultValues: {
                         dateTime: parsedDateTime,
-                        type, categoryId, sourceId, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId
+                        type,
+                        categoryId,
+                        sourceId,
+                        title,
+                        amount,
+                        accountToAccount,
+                        notes,
+                        targetAccountId,
+                        targetBalanceId
                     },
                     typePickerValues: {
                         spending: transaction.type === 'spending',
@@ -108,7 +116,7 @@ class TransactionFormContainer extends React.Component {
                 targetAccountBalances: otherAccounts.find(account => account.id === value).balances,
             })
         }
-        if(name === 'type') {
+        if (name === 'type') {
             this.setState({
                 typePickerValues: {
                     [value]: true,
