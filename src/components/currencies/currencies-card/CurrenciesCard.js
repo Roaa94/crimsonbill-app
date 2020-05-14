@@ -3,10 +3,13 @@ import {CurrenciesCardContainer} from "./CurrenciesCard.styles";
 import {selectAppCurrencies} from "../../../redux/currencies/currencies.selectors";
 import {connect} from "react-redux";
 import CurrencyListItem from "../currency-list-item/CurrencyListItem";
+import {selectUserId} from "../../../redux/user/user.selectors";
+import {setDefaultCurrency} from "../../../firebase/currency.firebase-utils";
 
-const CurrenciesCard = ({appCurrencies}) => {
-    const handleClick = currencyId => {
-        console.log(currencyId);
+const CurrenciesCard = ({appCurrencies, userId}) => {
+
+    const handleClick = async currencyId => {
+        await setDefaultCurrency(userId, currencyId);
     };
 
     return (
@@ -18,7 +21,7 @@ const CurrenciesCard = ({appCurrencies}) => {
                         appCurrencies.map(currency => (
                             <CurrencyListItem
                                 key={currency.id}
-                                currency={currency}
+                                {...currency}
                                 onClick={handleClick}
                             />
                         ))
@@ -31,6 +34,7 @@ const CurrenciesCard = ({appCurrencies}) => {
 
 const mapStateToProps = (state) => ({
     appCurrencies: selectAppCurrencies(state),
+    userId: selectUserId(state),
 })
 
 export default connect(mapStateToProps)(CurrenciesCard);

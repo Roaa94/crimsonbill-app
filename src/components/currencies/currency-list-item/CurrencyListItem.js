@@ -4,8 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import CurrencyCode from "../CurrencyCode";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 
-const CurrencyListItem = ({currency, onClick}) => {
-    const {id, code, name, isDefault} = currency
+const CurrencyListItem = ({id, code, name, isDefault, onClick}) => {
     return (
         <CurrencyListItemContainer selected={isDefault} onClick={() => onClick(id)}>
             <Grid container alignItems='center' justify='space-between'>
