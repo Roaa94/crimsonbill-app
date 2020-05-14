@@ -8,7 +8,7 @@ import TaxonomyItem from "../TaxonomyItem";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {selectTaxonomyArray} from "../../../redux/settings/settings.selectors";
 import {connect} from "react-redux";
-import {addTaxonomy} from "../../../firebase/taxonomies.firebase-utils";
+import {addTaxonomy, deleteTaxonomy} from "../../../firebase/taxonomies.firebase-utils";
 
 class TaxonomyCard extends React.Component {
     state = {
@@ -36,6 +36,11 @@ class TaxonomyCard extends React.Component {
         this.setState({[name]: value});
     };
 
+    handleTaxonomyDelete = async taxonomyId => {
+        let {userId, taxonomyCollectionName} = this.props;
+        await deleteTaxonomy(userId, taxonomyCollectionName, taxonomyId);
+    }
+
     render() {
         let {
             header,
@@ -58,7 +63,13 @@ class TaxonomyCard extends React.Component {
                             {
                                 !taxonomyList || taxonomyList.length === 0
                                     ? noItemsText
-                                    : taxonomyList.map(item => <TaxonomyItem key={item.id} taxonomy={item}/>)
+                                    : taxonomyList.map(item => (
+                                        <TaxonomyItem
+                                            key={item.id}
+                                            deleteItem={() => this.handleTaxonomyDelete(item.id)}
+                                            taxonomy={item}
+                                        />
+                                    ))
                             }
                         </div>
                     </Grid>

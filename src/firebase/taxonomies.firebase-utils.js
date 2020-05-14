@@ -49,3 +49,14 @@ export const addTaxonomy = async (userId, taxonomyCollectionName, taxonomyData) 
         console.log('Taxonomy already exists');
     }
 }
+
+export const deleteTaxonomy = async (userId, taxonomyCollectionName, taxonomyId) => {
+    const taxonomyDocPath = `users/${userId}/settings/TAXONOMIES/${taxonomyCollectionName}/${taxonomyId}`;
+    const taxonomyDocRef = firestore.doc(taxonomyDocPath);
+    try {
+        await taxonomyDocRef.delete();
+        console.log('Taxonomy deleted successfully');
+    } catch(error) {
+        console.log('Could not delete taxonomy', error.message);
+    }
+}

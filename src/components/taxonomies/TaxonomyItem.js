@@ -6,7 +6,7 @@ import {colors} from "../../styles/global";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 
 const TaxonomyItem = ({taxonomy, deleteItem}) => {
-    let {id, name, icon, isDefault} = taxonomy;
+    let {name, icon, isDefault} = taxonomy;
 
     return (
         <Grid direction='row' container spacing={2} alignItems='center' justify='space-between'>
@@ -28,7 +28,7 @@ const TaxonomyItem = ({taxonomy, deleteItem}) => {
                             textColor={colors.primary}
                             size='small'
                             fullWidth={false}
-                            onClick={() => deleteItem(id)}
+                            onClick={deleteItem}
                             prefixIcon={<DeleteRoundedIcon/>}
                             margin='0 10px 0 0'
                         >
