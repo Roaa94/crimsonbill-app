@@ -28,7 +28,7 @@ export const addOrUpdateAccountDocument = async (userId, accountId, accountData)
             const mainBalance = {
                 createdAt,
                 name: 'Main Balance',
-                currency: accountData.currency,
+                currencyId: accountData.currencyId,
                 totalBalance: 0.0,
             };
             try {

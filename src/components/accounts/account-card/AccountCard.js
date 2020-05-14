@@ -17,6 +17,7 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import {selectAccountFormShow} from "../../../redux/accounts/accounts.selectors";
 import {Icon} from "@material-ui/core";
+import {selectCurrency} from "../../../redux/currencies/currencies.selectors";
 
 class AccountCard extends React.Component {
 
@@ -43,7 +44,7 @@ class AccountCard extends React.Component {
     }
 
     render() {
-        let {id, accountType, name, currency, notes, totalBalance} = this.props;
+        let {id, accountType, name, notes, totalBalance, accountCurrency} = this.props;
         let {showAccountForm, accountCardExpanded} = this.state;
 
         const accountCardMenuItems = [
@@ -80,20 +81,20 @@ class AccountCard extends React.Component {
                             </Grid>
                             <Grid item xs={2} align='center'>
                                 <h3 className='account-currency'>
-                                    <FormattedNumber number={totalBalance} currency={currency}/>
+                                    <FormattedNumber number={totalBalance} currencyCode={accountCurrency.code}/>
                                 </h3>
                             </Grid>
-                            {
-                                accountType ? (
-                                    <Grid item xs container justify='flex-end' wrap='nowrap'>
+                            <Grid item xs container justify='flex-end' wrap='nowrap'>
+                                {
+                                    accountType ? (
                                         <div className='account-type'>
                                             <Icon>{accountType.icon}</Icon>
                                             {accountType.name}
                                         </div>
-                                        <DropDown menuItems={accountCardMenuItems}/>
-                                    </Grid>
-                                ) : null
-                            }
+                                    ) : null
+                                }
+                                <DropDown menuItems={accountCardMenuItems}/>
+                            </Grid>
                         </Grid>
                     </AccountCardExpansionPanelHeader>
                 </ExpansionPanelSummary>
@@ -123,7 +124,8 @@ class AccountCard extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     accountFormShow: selectAccountFormShow(state),
-    accountType: selectTaxonomyValue(ownProps.typeId, 'accountTypes')(state)
+    accountType: selectTaxonomyValue(ownProps.typeId, 'accountTypes')(state),
+    accountCurrency: selectCurrency(ownProps.currencyId)(state)
 });
 
 export default connect(mapStateToProps)(AccountCard);

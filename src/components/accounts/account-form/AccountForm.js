@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import Grid from '@material-ui/core/Grid';
 import Box from "@material-ui/core/Box";
 import Select from "../../ui/inputs/Select";
-import {currencies} from "../../../app-data/currency";
 import Button from "../../ui/buttons/Button";
 import {colors} from "../../../styles/global";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
@@ -13,6 +12,8 @@ import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import TextField from "@material-ui/core/TextField";
 import {selectAccount} from "../../../redux/accounts/accounts.selectors";
 import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
+import {selectAppCurrencies} from "../../../redux/currencies/currencies.selectors";
+import CurrencySelect from "../../ui/inputs/CurrencySelect";
 
 class AccountForm extends Component {
     _isMounted = false;
@@ -20,7 +21,7 @@ class AccountForm extends Component {
     state = {
         typeId: '',
         name: '',
-        currency: '',
+        currencyId: '',
         notes: '',
     };
 
@@ -28,12 +29,12 @@ class AccountForm extends Component {
         this._isMounted = true;
         const {accountId, account} = this.props;
         if (accountId && account) {
-            let {typeId, name, currency, notes} = account;
+            let {typeId, name, currencyId, notes} = account;
             if (this._isMounted) {
                 this.setState({
                     typeId,
                     name,
-                    currency,
+                    currencyId,
                     notes
                 });
             }
@@ -53,7 +54,7 @@ class AccountForm extends Component {
         this.setState({
             typeId: '',
             name: '',
-            currency: '',
+            currencyId: '',
             notes: '',
         });
         handleFormCancel();
@@ -65,8 +66,8 @@ class AccountForm extends Component {
     };
 
     render() {
-        const {typeId, name, currency, notes} = this.state;
-        const {handleFormCancel, accountTypes} = this.props;
+        const {typeId, name, currencyId, notes} = this.state;
+        const {handleFormCancel, accountTypes, appCurrencies} = this.props;
 
         return (
             <form onSubmit={this.handleFormSubmit}>
@@ -91,11 +92,11 @@ class AccountForm extends Component {
                         />
                     </Grid>
                     <Grid item xs={12} md={2}>
-                        <Select
+                        <CurrencySelect
                             label='Currency'
-                            name='currency'
-                            value={currency}
-                            menuItems={currencies}
+                            name='currencyId'
+                            value={currencyId}
+                            menuItems={appCurrencies}
                             onChange={this.handleFieldChange}
                         />
                     </Grid>
@@ -141,6 +142,7 @@ const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     account: selectAccount(ownProps.accountId)(state),
     accountTypes: selectTaxonomyArray('accountTypes')(state),
+    appCurrencies: selectAppCurrencies(state),
 });
 
 export default connect(mapStateToProps)(AccountForm);

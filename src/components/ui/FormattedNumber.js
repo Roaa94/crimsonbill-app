@@ -1,12 +1,12 @@
 import React from 'react';
 import NumberFormat from "react-number-format";
+import getSymbolFromCurrency from 'currency-symbol-map';
 
-//Todo: when default currencies functionality is finished, add the default currencies as default value for the currencies prop
-const FormattedNumber = ({number, currency}) => {
+const FormattedNumber = ({number, currencyCode}) => {
     return (
         <NumberFormat
             value={parseFloat(number).toFixed(2)}
-            prefix={currency}
+            prefix={getSymbolFromCurrency(currencyCode)}
             thousandSeparator={true}
             displayType='text'
         />

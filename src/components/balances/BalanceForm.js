@@ -3,33 +3,33 @@ import {addOrUpdateBalanceDocument} from "../../firebase/balances.firebase-utils
 import {selectUserId} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import Select from "../ui/inputs/Select";
 import TextField from "@material-ui/core/TextField";
-import {currencies} from "../../app-data/currency";
 import Button from "../ui/buttons/Button";
 import {colors} from "../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Box from "@material-ui/core/Box";
 import {selectBalance} from "../../redux/accounts/accounts.selectors";
+import {selectAppCurrencies} from "../../redux/currencies/currencies.selectors";
+import CurrencySelect from "../ui/inputs/CurrencySelect";
 
 class BalanceForm extends React.Component {
     _isMounted = false;
 
     state = {
         name: '',
-        currency: '',
+        currencyId: '',
     };
 
     componentDidMount() {
         this._isMounted = true;
         const {balanceId, balance} = this.props;
         if (balanceId && balance) {
-            let {name, currency} = balance;
+            let {name, currencyId} = balance;
             if (this._isMounted) {
                 this.setState({
                     name,
-                    currency,
+                    currencyId,
                 });
             }
         }
@@ -47,7 +47,7 @@ class BalanceForm extends React.Component {
 
         this.setState({
             name: '',
-            currency: '',
+            currencyId: '',
         });
         handleFormCancel();
     };
@@ -58,8 +58,8 @@ class BalanceForm extends React.Component {
     };
 
     render() {
-        let {handleFormCancel} = this.props;
-        let {name, currency} = this.state;
+        let {handleFormCancel, appCurrencies} = this.props;
+        let {name, currencyId} = this.state;
 
         return (
             <form onSubmit={this.handleFormSubmit}>
@@ -76,11 +76,11 @@ class BalanceForm extends React.Component {
                             />
                         </Grid>
                         <Grid item xs={12} md={3}>
-                            <Select
+                            <CurrencySelect
                                 label='Currency'
-                                name='currency'
-                                value={currency}
-                                menuItems={currencies}
+                                name='currencyId'
+                                value={currencyId}
+                                menuItems={appCurrencies}
                                 onChange={this.handleFieldChange}
                             />
                         </Grid>
@@ -113,7 +113,8 @@ class BalanceForm extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
-    balance: selectBalance(ownProps.accountId, ownProps.balanceId)(state)
+    balance: selectBalance(ownProps.accountId, ownProps.balanceId)(state),
+    appCurrencies: selectAppCurrencies(state),
 });
 
 export default connect(mapStateToProps)(BalanceForm);

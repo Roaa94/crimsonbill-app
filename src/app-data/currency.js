@@ -1,18 +1,3 @@
-export const currencies = [
-    {
-        id: 0,
-        name: '$',
-    },
-    {
-        id: 1,
-        name: '$',
-    },
-    {
-        id: 3,
-        name: '$',
-    },
-];
-
 export const appCurrencies = [
     {
         code: 'USD',
