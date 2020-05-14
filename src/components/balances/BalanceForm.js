@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Select from "../ui/inputs/Select";
 import TextField from "@material-ui/core/TextField";
-import {currencies} from "../../data";
+import {currencies} from "../../app-data/currency";
 import Button from "../ui/buttons/Button";
 import {colors} from "../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";

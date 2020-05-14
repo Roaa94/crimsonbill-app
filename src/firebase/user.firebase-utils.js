@@ -1,5 +1,6 @@
 import {firestore} from "./firebase.utils";
 import {initDefaultTaxonomies} from "./taxonomies.firebase-utils";
+import {initAppCurrencies} from "./currency.firebase-utils";
 
 export const createUserProfileDocument = async (authUser, additionalData) => {
     if (!authUser) return;
@@ -18,10 +19,17 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
             console.log('error creating user reference', error.message);
             return;
         }
+        // Write default taxonomies of the user
         try {
             await initDefaultTaxonomies(snapShot.id);
         } catch (e) {
             console.log('Could not write default taxonomies', e.message);
+        }
+        // Write app currencies of the user
+        try {
+            await initAppCurrencies(snapShot.id);
+        } catch (e) {
+            console.log('Could not write app currencies', e.message);
         }
         console.log('user created, display name:', additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName);
     }

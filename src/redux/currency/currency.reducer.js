@@ -1,5 +1,7 @@
+import {defaultCurrency} from "../../app-data/currency";
+
 const INITIAL_STATE = {
-    defaultCurrency: null,
+    defaultCurrency: defaultCurrency,
     appCurrencies: [],
 };
 

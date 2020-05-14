@@ -20,9 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app-data/currency.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/firebase/currency.firebase-utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/SettingsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SettingsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/accounts/account-form/AccountForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/balances/BalanceForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/BalanceForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app-data/taxonomies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/taxonomies.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/taxonomies.firebase-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/user.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/user.firebase-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/currency/currency.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/currency/currency.reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/taxonomies/taxonomies.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/taxonomies/taxonomies.actions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,11 +84,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\app-data" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\taxonomies\taxonomy-card" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\transactions\transaction-card" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\ui\inputs\date-time-pickers" />
       <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\ui\inputs" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\ui\buttons" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -157,28 +166,7 @@
       <workItem from="1589117038393" duration="4163000" />
       <workItem from="1589288573844" duration="3166000" />
       <workItem from="1589397353416" duration="23509000" />
-      <workItem from="1589460374722" duration="1144000" />
-    </task>
-    <task id="LOCAL-00183" summary="styling changes on transaction card and list">
-      <created>1588541553443</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1588541553443</updated>
-    </task>
-    <task id="LOCAL-00184" summary="styling edits">
-      <created>1588543794832</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1588543794832</updated>
-    </task>
-    <task id="LOCAL-00185" summary="fixed data being saved in account and balance forms">
-      <created>1588543820140</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1588543820140</updated>
+      <workItem from="1589460374722" duration="3460000" />
     </task>
     <task id="LOCAL-00186" summary="changed select component data syntax">
       <created>1588555362922</created>
@@ -502,7 +490,28 @@
       <option name="project" value="LOCAL" />
       <updated>1589422529481</updated>
     </task>
-    <option name="localTasksCounter" value="232" />
+    <task id="LOCAL-00232" summary="minor styling fix">
+      <created>1589472075105</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1589472075107</updated>
+    </task>
+    <task id="LOCAL-00233" summary="changed settings files names to taxonomies to separate from currency logic">
+      <created>1589472391118</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1589472391118</updated>
+    </task>
+    <task id="LOCAL-00234" summary="added currency reducer files">
+      <created>1589472888937</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1589472888937</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,9 +546,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="[Account-to-Account Transactions CRUD - Read] retrieved account-to-account transactions data and created its view" />
-    <MESSAGE value="changes on transaction card styling" />
-    <MESSAGE value="syntax fix" />
     <MESSAGE value="changes on transaction card styles" />
     <MESSAGE value="disabled transaction card expansion in all transactions list" />
     <MESSAGE value="moved total balances calculation functionality from firebase functions to redux async functions" />
@@ -562,7 +568,10 @@
     <MESSAGE value="[Taxonomies CRUD - Create] - worked on creating new taxonomies and refactored taxonomy card component" />
     <MESSAGE value="changed food icon in default spending categories" />
     <MESSAGE value="[Taxonomies CRUD - Delete] worked on deleting taxonomy" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Taxonomies CRUD - Delete] worked on deleting taxonomy" />
+    <MESSAGE value="minor styling fix" />
+    <MESSAGE value="changed settings files names to taxonomies to separate from currency logic" />
+    <MESSAGE value="added currency reducer files" />
+    <option name="LAST_COMMIT_MESSAGE" value="added currency reducer files" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1588426479228">
@@ -585,41 +594,41 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1025" y="536" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722673140" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1589422528822">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1589472888289">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589422528822" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1589422745491">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472888289" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1589472838938">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589422745491" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472838938" />
     <state x="915" y="284" key="FileChooserDialogImpl" timestamp="1588446530757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583401638303" />
     <state x="915" y="284" key="FileChooserDialogImpl/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588446530757" />
-    <state width="2517" height="270" key="GridCell.Tab.0.bottom" timestamp="1589424282248">
+    <state width="2517" height="270" key="GridCell.Tab.0.bottom" timestamp="1589472061357">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="270" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589424282248" />
-    <state width="2517" height="270" key="GridCell.Tab.0.center" timestamp="1589424282248">
+    <state width="2517" height="270" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472061357" />
+    <state width="2517" height="270" key="GridCell.Tab.0.center" timestamp="1589472061357">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="270" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589424282248" />
-    <state width="2517" height="270" key="GridCell.Tab.0.left" timestamp="1589424282248">
+    <state width="2517" height="270" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472061357" />
+    <state width="2517" height="270" key="GridCell.Tab.0.left" timestamp="1589472061356">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="270" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589424282248" />
-    <state width="2517" height="270" key="GridCell.Tab.0.right" timestamp="1589424282248">
+    <state width="2517" height="270" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472061356" />
+    <state width="2517" height="270" key="GridCell.Tab.0.right" timestamp="1589472061357">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="270" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589424282248" />
+    <state width="2517" height="270" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472061357" />
     <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1588806374953">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -637,11 +646,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1101" y="323" key="VCS.ChangeListViewerDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587205353399" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1588970321275">
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1589472076973">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="722" y="254" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583401704491" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588970321275" />
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589472076973" />
     <state x="985" y="353" key="VcsDiffUtil.ChangesDialog" timestamp="1587825550391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -650,10 +659,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="93" y="93" width="2375" height="1215" key="com.intellij.history.integration.ui.views.FileHistoryDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588090661449" />
-    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1589412000735">
+    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1589473042582">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589412000735" />
+    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589473042582" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1589415024627">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -662,10 +671,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587855324869" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1589422864646">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1589474353746">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589422864646" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589474353746" />
   </component>
 </project>

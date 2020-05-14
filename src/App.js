@@ -9,6 +9,7 @@ import HomePage from "./pages/home/HomePage";
 import {selectUser} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
+// import {initAppCurrencies} from "./firebase/currency.firebase-utils";
 // import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
 class App extends React.Component {
@@ -29,6 +30,8 @@ class App extends React.Component {
                         });
                         //Use for testing to write default taxonomies
                         // await initDefaultTaxonomies(snapShot.id);
+                        //Use for testing to write app currencies
+                        // await initAppCurrencies(snapShot.id);
                     });
                 }
                 return;
