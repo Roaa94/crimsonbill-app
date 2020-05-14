@@ -83,13 +83,17 @@ class AccountCard extends React.Component {
                                     <FormattedNumber number={totalBalance} currency={currency}/>
                                 </h3>
                             </Grid>
-                            <Grid item xs container justify='flex-end' wrap='nowrap'>
-                                <div className='account-type'>
-                                    <Icon>{accountType.icon}</Icon>
-                                    {accountType.name}
-                                </div>
-                                <DropDown menuItems={accountCardMenuItems}/>
-                            </Grid>
+                            {
+                                accountType ? (
+                                    <Grid item xs container justify='flex-end' wrap='nowrap'>
+                                        <div className='account-type'>
+                                            <Icon>{accountType.icon}</Icon>
+                                            {accountType.name}
+                                        </div>
+                                        <DropDown menuItems={accountCardMenuItems}/>
+                                    </Grid>
+                                ) : null
+                            }
                         </Grid>
                     </AccountCardExpansionPanelHeader>
                 </ExpansionPanelSummary>
