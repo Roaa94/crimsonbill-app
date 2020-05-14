@@ -66,7 +66,7 @@ class TransactionCard extends React.Component {
     }
 
     render() {
-        let {transaction, accountId, balanceId, readOnly, spendingCategory} = this.props;
+        let {transaction, accountId, balanceId, readOnly, spendingCategory, incomeSource} = this.props;
 
         let {
             id,
@@ -79,6 +79,8 @@ class TransactionCard extends React.Component {
             targetBalanceId,
             accountToAccount,
         } = transaction;
+
+        const isSpending = type === 'spending';
 
         let {transactionCardExpanded, showTransactionForm} = this.state;
 
@@ -102,17 +104,17 @@ class TransactionCard extends React.Component {
                             </Grid>
                             <Grid item xs={4}>
                                 <TransactionAmount type={type}>
-                                    <FormattedNumber number={amount} currency='$'/>
+                                    <FormattedNumber number={amount}/>
                                 </TransactionAmount>
                             </Grid>
                             <Grid container alignItems='center' item xs>
                                 <Box mr={1}>
-                                    <Icon fontSize='small' color={type === 'spending' ? 'primary' : 'secondary'}>
-                                        {spendingCategory.icon}
+                                    <Icon fontSize='small' color={isSpending ? 'primary' : 'secondary'}>
+                                        {isSpending ? spendingCategory.icon : incomeSource.icon}
                                     </Icon>
                                 </Box>
                                 <Box fontWeight='600'>
-                                    {spendingCategory.name}
+                                    {isSpending ? spendingCategory.name : incomeSource.name}
                                 </Box>
                             </Grid>
                         </Grid>
@@ -192,7 +194,8 @@ class TransactionCard extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
-    spendingCategory: selectTaxonomyValue(ownProps.transaction.categoryId, 'spendingCategories')(state)
+    spendingCategory: selectTaxonomyValue(ownProps.transaction.categoryId, 'spendingCategories')(state),
+    incomeSource: selectTaxonomyValue(ownProps.transaction.sourceId, 'incomeSources')(state),
 });
 
 export default connect(mapStateToProps)(TransactionCard);
