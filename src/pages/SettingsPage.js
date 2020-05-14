@@ -3,6 +3,7 @@ import PageWrapper from "../components/ui/layout/PageWrapper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TaxonomyCard from "../components/taxonomies/taxonomy-card/TaxonomyCard";
+import CurrenciesCard from "../components/currencies/currencies-card/CurrenciesCard";
 
 const SettingsPage = () => {
     return (
@@ -11,7 +12,7 @@ const SettingsPage = () => {
             <Box py={2}>
                 <Grid container alignItems='stretch' spacing={2}>
                     <Grid item xs={12} md={6}>
-                        Currencies card
+                        <CurrenciesCard/>
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <TaxonomyCard
