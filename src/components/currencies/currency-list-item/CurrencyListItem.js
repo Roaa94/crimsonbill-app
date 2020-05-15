@@ -6,7 +6,7 @@ import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 
 const CurrencyListItem = ({id, code, name, isDefault, onClick}) => {
     return (
-        <CurrencyListItemContainer selected={isDefault} onClick={() => onClick(id)}>
+        <CurrencyListItemContainer selected={isDefault} onClick={() => onClick(id, code)}>
             <Grid container alignItems='center' justify='space-between'>
                 <Grid item>
                     <CurrencyCode currencyCode={code}/>

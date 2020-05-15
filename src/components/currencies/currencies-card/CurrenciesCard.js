@@ -8,8 +8,10 @@ import {setDefaultCurrency} from "../../../firebase/currency.firebase-utils";
 
 const CurrenciesCard = ({appCurrencies, userId}) => {
 
-    const handleClick = async currencyId => {
-        await setDefaultCurrency(userId, currencyId);
+    const handleClick = async (currencyId, selectedCurrencyCode) => {
+        const otherCurrencies = appCurrencies.filter(currency => currency.id !== currencyId);
+        const otherCurrenciesCodes = otherCurrencies.map(currency => currency.code);
+        await setDefaultCurrency(userId, currencyId, selectedCurrencyCode, otherCurrenciesCodes);
     };
 
     return (

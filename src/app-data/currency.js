@@ -1,3 +1,5 @@
+export const currencyAPIHost = 'https://api.frankfurter.app';
+
 export const appCurrencies = [
     {
         code: 'USD',
