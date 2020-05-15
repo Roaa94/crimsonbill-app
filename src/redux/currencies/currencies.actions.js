@@ -22,8 +22,8 @@ export const fetchCurrenciesStartAsync = userId => {
       const currenciesCollectionRef = firestore.collection(currenciesCollectionPath);
       currenciesCollectionRef.onSnapshot(currenciesCollectionSnapshot => {
           const currencies = convertCollectionToArray(currenciesCollectionSnapshot);
-          console.log('currencies');
-          console.log(currencies);
+          // console.log('currencies');
+          // console.log(currencies);
           dispatch(fetchCurrenciesSuccess(currencies));
       }, error => dispatch(fetchCurrenciesError(error.message)));
   }

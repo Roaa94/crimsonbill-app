@@ -26,7 +26,7 @@ export const fetchTaxonomiesStartAsync = userId => {
             const orderedTaxonomiesRef = taxonomyCollectionRef.orderBy('createdAt', 'asc');
             orderedTaxonomiesRef.onSnapshot(taxonomyCollectionSnapshot => {
                 taxonomies[name] = convertCollectionToArray(taxonomyCollectionSnapshot);
-                console.log('fetching taxonomies: ', name);
+                // console.log('fetching taxonomies: ', name);
                 dispatch(fetchTaxonomiesSuccess(taxonomies));
             }, error => dispatch(fetchTaxonomiesError(error.message)));
         })
