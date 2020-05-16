@@ -8,7 +8,7 @@ import CurrenciesCard from "../components/currencies/currencies-card/CurrenciesC
 const SettingsPage = () => {
     return (
         <PageWrapper>
-            <h1>Settings</h1>
+            <h2>Settings</h2>
             <Box py={2}>
                 <Grid container alignItems='stretch' spacing={2}>
                     <Grid item xs={12} md={6}>
