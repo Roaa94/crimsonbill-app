@@ -56,19 +56,3 @@ export const deleteAccountDocument = async (userId, accountId) => {
         console.log(error.message);
     }
 };
-
-export const updateAccountTotal = async (userId, accountId) => {
-    const accountDocPath = `users/${userId}/accounts/${accountId}`;
-    const accountDocRef = firestore.doc(accountDocPath);
-    const balancesCollectionPath = `${accountDocPath}/balances`;
-    const balancesCollectionRef = firestore.collection(balancesCollectionPath);
-
-    balancesCollectionRef.get().then(balanceCollectionSnapshot => {
-        let total = 0;
-        balanceCollectionSnapshot.docs.forEach(doc => {
-            const balanceData = doc.data();
-            total += +balanceData.totalBalance;
-        });
-        return accountDocRef.update({totalBalance: total});
-    }).catch(error => error.message)
-}

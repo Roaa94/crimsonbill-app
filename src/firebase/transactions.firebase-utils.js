@@ -120,3 +120,14 @@ export const deleteTransactionDocument = async (userId, accountId, balanceId, tr
         console.log(e.message);
     }
 };
+
+export const calcTransactionsTotal = (transactionsCollectionSnapshot) => {
+    let total = 0;
+    transactionsCollectionSnapshot.docs.forEach(doc => {
+        const transactionData = doc.data();
+        total = transactionData.type === 'spending'
+            ? total - +transactionData.amount
+            : total + +transactionData.amount;
+    });
+    return total;
+}

@@ -42,20 +42,11 @@ export const deleteBalanceDocument = async (userId, accountId, balanceId) => {
     }
 };
 
-export const updateBalanceTotal = async (userId, accountId, balanceId) => {
-    const balanceDocPath = `users/${userId}/accounts/${accountId}/balances/${balanceId}`;
-    const balanceDocRef = firestore.doc(balanceDocPath);
-    const transactionsCollectionPath = `${balanceDocPath}/transactions`;
-    const transactionsCollectionRef = firestore.collection(transactionsCollectionPath);
-
-    transactionsCollectionRef.get().then(transactionCollectionSnapshot => {
-        let total = 0;
-        transactionCollectionSnapshot.docs.forEach(doc => {
-            const transactionData = doc.data();
-            total = transactionData.type === 'spending'
-                ? total - +transactionData.amount
-                : total + +transactionData.amount;
-        });
-        return balanceDocRef.update({totalBalance: total});
-    }).catch(error => error.message)
-}
+export const calcBalancesTotal = (balanceCollectionSnapshot) => {
+    let total = 0;
+    balanceCollectionSnapshot.docs.forEach(doc => {
+        const balanceData = doc.data();
+        total += +balanceData.totalBalance;
+    });
+    return total;
+};

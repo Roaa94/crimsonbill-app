@@ -1,7 +1,7 @@
-import {convertCollectionToArray, firestore, getAccountDocPath, getBalanceDocPath} from "../../firebase/firebase.utils";
+import {convertCollectionToArray, firestore} from "../../firebase/firebase.utils";
 import {AccountsActionTypes} from "./accounts.action-types";
-import {updateBalanceTotal} from "../../firebase/balances.firebase-utils";
-import {updateAccountTotal} from "../../firebase/accounts.firebase-utils";
+import {calcTransactionsTotal} from "../../firebase/transactions.firebase-utils";
+import {calcBalancesTotal} from "../../firebase/balances.firebase-utils";
 
 export const toggleAccountForm = value => ({
     type: AccountsActionTypes.TOGGLE_ACCOUNT_FORM,
@@ -44,45 +44,44 @@ export const fetchAccountsStartAsync = (userId) => {
         const accountsRef = firestore.collection(accountsCollectionPath);
         const orderedAccountsRef = accountsRef.orderBy('createdAt', 'desc');
 
-        orderedAccountsRef.onSnapshot(async accountsSnapshot => {
-            const accountsArray = convertCollectionToArray(accountsSnapshot);
+        orderedAccountsRef.onSnapshot(async accountsCollectionSnapshot => {
+            const accountsArray = convertCollectionToArray(accountsCollectionSnapshot);
             dispatch(fetchAccountsSuccess(accountsArray));
-            accountsArray.forEach(account => {
-                // console.log(`fetching balances of account ${account.name}...`);
-                fetchBalancesStartAsync(userId, account.id)(dispatch);
+            accountsCollectionSnapshot.docs.forEach(accountDoc => {
+                fetchBalancesStartAsync(accountDoc.id, accountDoc.ref)(dispatch);
             })
         }, error => dispatch(fetchAccountsError(error.message)));
     }
 };
 
-export const fetchBalancesStartAsync = (userId, accountId) => {
+export const fetchBalancesStartAsync = (accountId, accountDocRef) => {
     return dispatch => {
         dispatch(fetchBalancesStart());
-        const collectionPath = `${getAccountDocPath(userId, accountId)}/balances`;
-        const balancesRef = firestore.collection(collectionPath);
+        const balancesCollectionRef = accountDocRef.collection('balances');
+        const orderedBalancesCollectionRef = balancesCollectionRef.orderBy('createdAt', 'desc');
 
-        balancesRef.onSnapshot(async balancesSnapshot => {
-            const balancesArray = convertCollectionToArray(balancesSnapshot);
+        orderedBalancesCollectionRef.onSnapshot(async balancesCollectionSnapshot => {
+            const balancesArray = convertCollectionToArray(balancesCollectionSnapshot);
             dispatch(fetchBalancesSuccess(accountId, balancesArray));
-            balancesArray.forEach(balance => {
-                fetchTransactionsStartAsync(userId, accountId, balance.id)(dispatch);
+            balancesCollectionSnapshot.docs.forEach(balanceDoc => {
+                fetchTransactionsStartAsync(accountId, balanceDoc.id, balanceDoc.ref)(dispatch);
             });
-            await updateAccountTotal(userId, accountId);
+            const balancesTotal = calcBalancesTotal(balancesCollectionSnapshot);
+            await accountDocRef.update({totalBalance: balancesTotal});;
         }, error => dispatch(fetchBalancesError(error.message)));
     }
 };
 
-export const fetchTransactionsStartAsync = (userId, accountId, balanceId) => {
+export const fetchTransactionsStartAsync = (accountId, balanceId, balanceDocRef) => {
     return dispatch => {
         dispatch(fetchTransactionsStart());
-        const balanceDocPath = getBalanceDocPath(userId, accountId, balanceId);
-        const collectionPath = `${balanceDocPath}/transactions`;
-        const transactionsRef = firestore.collection(collectionPath);
-        const orderedTransactionsRef = transactionsRef.orderBy('dateTime', 'desc');
+        const transactionsCollectionRef = balanceDocRef.collection('transactions');
+        const orderedTransactionsRef = transactionsCollectionRef.orderBy('dateTime', 'desc');
 
-        orderedTransactionsRef.onSnapshot(async transactionsSnapshot => {
-            const transactionsArray = convertCollectionToArray(transactionsSnapshot);
-            await updateBalanceTotal(userId, accountId, balanceId)
+        orderedTransactionsRef.onSnapshot(async transactionsCollectionSnapshot => {
+            const transactionsArray = convertCollectionToArray(transactionsCollectionSnapshot);
+            const transactionsTotal = calcTransactionsTotal(transactionsCollectionSnapshot);
+            await balanceDocRef.update({totalBalance: transactionsTotal});
             dispatch(fetchTransactionsSuccess(accountId, balanceId, transactionsArray));
         }, error => dispatch(fetchTransactionsError(error.message)));
     }
