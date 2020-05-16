@@ -1,7 +1,7 @@
 import {convertCollectionToArray, firestore} from "../../firebase/firebase.utils";
 import {AccountsActionTypes} from "./accounts.action-types";
 import {calcTransactionsTotal} from "../../firebase/transactions.firebase-utils";
-import {calcBalancesTotal} from "../../firebase/balances.firebase-utils";
+import {getConversionRateFromIds} from "../../firebase/currencies.firebase-utils";
 
 export const toggleAccountForm = value => ({
     type: AccountsActionTypes.TOGGLE_ACCOUNT_FORM,
@@ -48,13 +48,14 @@ export const fetchAccountsStartAsync = (userId) => {
             const accountsArray = convertCollectionToArray(accountsCollectionSnapshot);
             dispatch(fetchAccountsSuccess(accountsArray));
             accountsCollectionSnapshot.docs.forEach(accountDoc => {
-                fetchBalancesStartAsync(accountDoc.id, accountDoc.ref)(dispatch);
+                const accountData = accountDoc.data();
+                fetchBalancesStartAsync(userId, accountDoc.id, accountDoc.ref, accountData.currencyId)(dispatch);
             })
         }, error => dispatch(fetchAccountsError(error.message)));
     }
 };
 
-export const fetchBalancesStartAsync = (accountId, accountDocRef) => {
+export const fetchBalancesStartAsync = (userId, accountId, accountDocRef, accountCurrencyId) => {
     return dispatch => {
         dispatch(fetchBalancesStart());
         const balancesCollectionRef = accountDocRef.collection('balances');
@@ -64,11 +65,16 @@ export const fetchBalancesStartAsync = (accountId, accountDocRef) => {
             const balancesArray = convertCollectionToArray(balancesCollectionSnapshot);
             dispatch(fetchBalancesSuccess(accountId, balancesArray));
             let balancesTotal = 0;
-            balancesCollectionSnapshot.docs.forEach(balanceDoc => {
+            for await (let balanceDoc of balancesCollectionSnapshot.docs) {
                 const balanceData = balanceDoc.data();
-                balancesTotal += +balanceData.totalBalance;
+                if (balanceData.currencyId === accountCurrencyId) {
+                    balancesTotal += +balanceData.totalBalance;
+                } else {
+                    const conversionRate = await getConversionRateFromIds(userId, balanceData.currencyId, accountCurrencyId);
+                    balancesTotal += +balanceData.totalBalance * conversionRate;
+                }
                 fetchTransactionsStartAsync(accountId, balanceDoc.id, balanceDoc.ref)(dispatch);
-            });
+            }
             await accountDocRef.update({totalBalance: balancesTotal});
         }, error => dispatch(fetchBalancesError(error.message)));
     }
