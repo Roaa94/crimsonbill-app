@@ -10,14 +10,27 @@ import {selectUser} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
 import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
-// import {initAppCurrencies} from "./firebase/currencies.firebase-utils";
+import {updateAppCurrenciesRates} from "./firebase/currency.firebase-utils";
+import {
+    selectDefaultCurrencyCode,
+    selectOtherCurrenciesCodes
+} from "./redux/currencies/currencies.selectors";
+
 // import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        const {setUser, user, fetchTaxonomiesStartAsync, fetchCurrenciesStartAsync} = this.props;
+        const {
+            setUser,
+            user,
+            fetchTaxonomiesStartAsync,
+            fetchCurrenciesStartAsync,
+            defaultCurrencyCode,
+            otherCurrenciesCodes
+        } = this.props;
+
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
                 //The create user profile document always returns a user object
@@ -31,7 +44,7 @@ class App extends React.Component {
                         });
                         //Use for testing to write default taxonomies
                         // await initDefaultTaxonomies(snapShot.id);
-                        //Use for testing to write app currencies
+                        // Use for testing to write app currencies
                         // await initAppCurrencies(snapShot.id);
                     });
                 }
@@ -39,9 +52,22 @@ class App extends React.Component {
             }
             setUser(user);
         });
-        if(user.id) {
+
+        if (user.id) {
             fetchTaxonomiesStartAsync(user.id);
             fetchCurrenciesStartAsync(user.id);
+            if (defaultCurrencyCode && otherCurrenciesCodes) {
+                console.log('defaultCurrencyCode', defaultCurrencyCode);
+                updateAppCurrenciesRates(user.id, defaultCurrencyCode, otherCurrenciesCodes).then(() => {
+                    setInterval(() => {
+                        const {defaultCurrencyCode, otherCurrenciesCodes} = this.props;
+                        console.log('defaultCurrencyCode', defaultCurrencyCode);
+                        updateAppCurrenciesRates(user.id, defaultCurrencyCode, otherCurrenciesCodes).then(() => {
+                            console.log('Currencies rates updated');
+                        });
+                    }, 360000);
+                });
+            }
         }
     }
 
@@ -51,6 +77,8 @@ class App extends React.Component {
 
     render() {
         let {user} = this.props;
+        // console.log('defaultCurrencyCode');
+        // console.log(defaultCurrencyCode);
 
         return (
             <Switch>
@@ -70,12 +98,14 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
     user: selectUser(state),
+    defaultCurrencyCode: selectDefaultCurrencyCode(state),
+    otherCurrenciesCodes: selectOtherCurrenciesCodes(state)
 });
 
 const mapDispatchToProps = dispatch => ({
     setUser: user => dispatch(setUser(user)),
     fetchTaxonomiesStartAsync: userId => dispatch(fetchTaxonomiesStartAsync(userId)),
-    fetchCurrenciesStartAsync: userId => dispatch(fetchCurrenciesStartAsync(userId))
+    fetchCurrenciesStartAsync: userId => dispatch(fetchCurrenciesStartAsync(userId)),
 });
 
 export default connect(
