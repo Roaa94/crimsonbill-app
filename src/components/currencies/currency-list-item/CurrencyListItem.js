@@ -3,8 +3,11 @@ import {CurrencyListItemContainer} from "./CurrencyListItem.styles";
 import Grid from "@material-ui/core/Grid";
 import CurrencyCode from "../CurrencyCode";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
+import FormattedNumber from "../../ui/FormattedNumber";
+import {connect} from "react-redux";
+import {selectDefaultCurrency} from "../../../redux/currencies/currencies.selectors";
 
-const CurrencyListItem = ({id, code, name, isDefault, onClick}) => {
+const CurrencyListItem = ({id, code, name, rate, isDefault, onClick, defaultCurrency}) => {
     return (
         <CurrencyListItemContainer selected={isDefault} onClick={() => onClick(id, code)}>
             <Grid container alignItems='center' justify='space-between'>
@@ -13,16 +16,22 @@ const CurrencyListItem = ({id, code, name, isDefault, onClick}) => {
                     <span className='currency-code'>{code}</span>
                     <span>{name}</span>
                 </Grid>
-                {
-                    isDefault ? (
-                        <Grid item>
+                <Grid item className='list-item-end'>
+                    {
+                        isDefault ? (
                             <CheckRoundedIcon color='secondary'/>
-                        </Grid>
-                    ) : null
-                }
+                        ) : (
+                            <FormattedNumber number={rate} currencyId={defaultCurrency.id}/>
+                        )
+                    }
+                </Grid>
             </Grid>
         </CurrencyListItemContainer>
     );
 };
 
-export default CurrencyListItem;
+const mapStateToProps = state => ({
+    defaultCurrency: selectDefaultCurrency(state),
+})
+
+export default connect(mapStateToProps)(CurrencyListItem);

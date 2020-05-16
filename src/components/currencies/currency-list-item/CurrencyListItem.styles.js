@@ -17,4 +17,9 @@ export const CurrencyListItemContainer = styled.div`
     margin-right: 10px;
     font-weight: 600;
   }
+  
+  .list-item-end{
+    color: ${colors.secondary};
+    font-weight: 600;
+  }
 `;
