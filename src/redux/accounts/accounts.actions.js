@@ -63,11 +63,13 @@ export const fetchBalancesStartAsync = (accountId, accountDocRef) => {
         orderedBalancesCollectionRef.onSnapshot(async balancesCollectionSnapshot => {
             const balancesArray = convertCollectionToArray(balancesCollectionSnapshot);
             dispatch(fetchBalancesSuccess(accountId, balancesArray));
+            let balancesTotal = 0;
             balancesCollectionSnapshot.docs.forEach(balanceDoc => {
+                const balanceData = balanceDoc.data();
+                balancesTotal += +balanceData.totalBalance;
                 fetchTransactionsStartAsync(accountId, balanceDoc.id, balanceDoc.ref)(dispatch);
             });
-            const balancesTotal = calcBalancesTotal(balancesCollectionSnapshot);
-            await accountDocRef.update({totalBalance: balancesTotal});;
+            await accountDocRef.update({totalBalance: balancesTotal});
         }, error => dispatch(fetchBalancesError(error.message)));
     }
 };

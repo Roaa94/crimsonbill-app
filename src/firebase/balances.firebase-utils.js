@@ -41,12 +41,3 @@ export const deleteBalanceDocument = async (userId, accountId, balanceId) => {
         console.log(error.message);
     }
 };
-
-export const calcBalancesTotal = (balanceCollectionSnapshot) => {
-    let total = 0;
-    balanceCollectionSnapshot.docs.forEach(doc => {
-        const balanceData = doc.data();
-        total += +balanceData.totalBalance;
-    });
-    return total;
-};
