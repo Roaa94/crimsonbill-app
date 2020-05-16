@@ -1,6 +1,6 @@
 import {firestore} from "./firebase.utils";
 import {initDefaultTaxonomies} from "./taxonomies.firebase-utils";
-import {initAppCurrencies} from "./currency.firebase-utils";
+import {initAppCurrencies} from "./currencies.firebase-utils";
 
 export const createUserProfileDocument = async (authUser, additionalData) => {
     if (!authUser) return;

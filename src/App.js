@@ -10,7 +10,7 @@ import {selectUser} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
 import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
-import {updateAppCurrenciesRates} from "./firebase/currency.firebase-utils";
+import {updateAppCurrenciesRates} from "./firebase/currencies.firebase-utils";
 import {
     selectDefaultCurrencyCode,
     selectOtherCurrenciesCodes
