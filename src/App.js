@@ -20,6 +20,7 @@ import {
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
+    currencyUpdateInterval;
 
     componentDidMount() {
         const {
@@ -59,19 +60,20 @@ class App extends React.Component {
             if (defaultCurrencyCode && otherCurrenciesCodes) {
                 console.log('defaultCurrencyCode', defaultCurrencyCode);
                 updateAppCurrenciesRates(user.id, defaultCurrencyCode, otherCurrenciesCodes).then(() => {
-                    setInterval(() => {
+                    this.currencyUpdateInterval = setInterval(() => {
                         const {defaultCurrencyCode, otherCurrenciesCodes} = this.props;
                         console.log('defaultCurrencyCode', defaultCurrencyCode);
                         updateAppCurrenciesRates(user.id, defaultCurrencyCode, otherCurrenciesCodes).then(() => {
                             console.log('Currencies rates updated');
                         });
-                    }, 360000);
+                    }, 3600000);
                 });
             }
         }
     }
 
     componentWillUnmount() {
+        clearInterval(this.currencyUpdateInterval);
         this.unsubscribeFromAuth();
     }
 
