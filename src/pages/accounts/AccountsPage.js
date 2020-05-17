@@ -14,45 +14,37 @@ import {
     selectAccountsArray,
     selectAccountsFetching
 } from "../../redux/accounts/accounts.selectors";
-import {fetchAccountsStartAsync, toggleAccountForm} from "../../redux/accounts/accounts.actions";
+import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 
 const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
 
-class AccountsPage extends React.Component {
+const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingAccounts}) => {
+    let hasAccounts = accounts && accounts.length > 0;
 
-    componentDidMount() {
-        const {fetchAccountsStartAsync, userId} = this.props;
-        fetchAccountsStartAsync(userId);
-    }
-
-    render() {
-        let {accountFormShow, toggleAccountForm, accounts, isFetchingAccounts} = this.props;
-        let hasAccounts = accounts && accounts.length > 0;
-        return (
-            <PageWrapper>
-                {
-                    hasAccounts ?
-                        <AccountsPageHeader>
-                            <h3>Accounts</h3>
-                            <AddIconButton handleClick={() => toggleAccountForm(true)} disabled={accountFormShow} />
-                        </AccountsPageHeader>
-                        : null
-                }
-                <AccountFormContainer/>
-                {
-                    hasAccounts
-                        ? <AccountsListWithLoader loading={isFetchingAccounts}>
-                            {
-                                accounts.map(({id, ...accountDetails}) => (
-                                    <AccountCard id={id} {...accountDetails} key={id}/>
-                                ))
-                            }
-                        </AccountsListWithLoader>
-                        : accountFormShow ? null : <AddAccountView/>
-                }
-            </PageWrapper>
-        );
-    }
+    return (
+        <PageWrapper>
+            {
+                hasAccounts ?
+                    <AccountsPageHeader>
+                        <h3>Accounts</h3>
+                        <AddIconButton handleClick={() => toggleAccountForm(true)} disabled={accountFormShow}/>
+                    </AccountsPageHeader>
+                    : null
+            }
+            <AccountFormContainer/>
+            {
+                hasAccounts
+                    ? <AccountsListWithLoader loading={isFetchingAccounts}>
+                        {
+                            accounts.map(({id, ...accountDetails}) => (
+                                <AccountCard id={id} {...accountDetails} key={id}/>
+                            ))
+                        }
+                    </AccountsListWithLoader>
+                    : accountFormShow ? null : <AddAccountView/>
+            }
+        </PageWrapper>
+    );
 }
 
 const mapStateToProps = createStructuredSelector({
@@ -64,7 +56,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     toggleAccountForm: value => dispatch(toggleAccountForm(value)),
-    fetchAccountsStartAsync: userId => dispatch(fetchAccountsStartAsync(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountsPage);
