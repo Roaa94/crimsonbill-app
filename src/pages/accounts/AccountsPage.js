@@ -3,7 +3,6 @@ import PageWrapper from "../../components/ui/layout/PageWrapper";
 import {connect} from "react-redux";
 import AddAccountView from "../../components/accounts/AddAccountView";
 import {createStructuredSelector} from "reselect";
-import {AccountsPageHeader} from "./AccountsPage.styles";
 import AccountCard from "../../components/accounts/account-card/AccountCard";
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
 import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
@@ -15,6 +14,8 @@ import {
     selectAccountsFetching, selectHasAccounts
 } from "../../redux/accounts/accounts.selectors";
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
+import Grid from "@material-ui/core/Grid";
+import DefaultCurrencySelect from "../../components/currencies/DefaultCurrencySelect";
 
 const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
 
@@ -24,10 +25,23 @@ const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingA
         <PageWrapper>
             {
                 hasAccounts ?
-                    <AccountsPageHeader>
-                        <h3>Accounts</h3>
-                        <AddIconButton handleClick={() => toggleAccountForm(true)} disabled={accountFormShow}/>
-                    </AccountsPageHeader>
+                    <Grid spacing={2} container justify='space-between' alignItems='center'>
+                        <Grid item container xs={12} md={4} alignItems='center' justify='flex-start'>
+                            <h3>Accounts</h3>
+                            <AddIconButton
+                                handleClick={() => toggleAccountForm(true)}
+                                disabled={accountFormShow}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={4} container justify='center'>
+                            total Balance
+                        </Grid>
+                        <Grid item xs={12} md={4} container justify='flex-end'>
+                            <Grid item xs={12} md={7} xl={2}>
+                                <DefaultCurrencySelect/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                     : null
             }
             <AccountFormContainer/>
