@@ -7,7 +7,7 @@ import AccountCard from "../../components/accounts/account-card/AccountCard";
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
 import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
 import WithLoader from "../../components/HOC/WithLoader";
-import {selectUserId} from "../../redux/user/user.selectors";
+import {selectDefaultCurrencyCode, selectUserId, selectUserTotalBalance} from "../../redux/user/user.selectors";
 import {
     selectAccountFormShow,
     selectAccountsArray,
@@ -16,10 +16,22 @@ import {
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 import Grid from "@material-ui/core/Grid";
 import DefaultCurrencySelect from "../../components/currencies/DefaultCurrencySelect";
+import FormattedNumber from "../../components/ui/FormattedNumber";
+import {TotalBalance} from "./AccountsPage.styles";
 
 const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
 
-const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingAccounts, hasAccounts}) => {
+const AccountsPage = (
+    {
+        accountFormShow,
+        toggleAccountForm,
+        accounts,
+        isFetchingAccounts,
+        hasAccounts,
+        userTotalBalance,
+        defaultCurrencyCode
+    }
+) => {
 
     return (
         <PageWrapper>
@@ -33,8 +45,14 @@ const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingA
                                 disabled={accountFormShow}
                             />
                         </Grid>
-                        <Grid item xs={12} md={4} container justify='center'>
-                            total Balance
+                        <Grid item xs={12} md={4} container justify='center' alignItems='center'>
+                            Total Balance
+                            <TotalBalance>
+                                <FormattedNumber
+                                    number={userTotalBalance}
+                                    currencyCode={defaultCurrencyCode}
+                                />
+                            </TotalBalance>
                         </Grid>
                         <Grid item xs={12} md={4} container justify='flex-end'>
                             <Grid item xs={12} md={7}>
@@ -62,6 +80,8 @@ const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingA
 
 const mapStateToProps = createStructuredSelector({
     userId: selectUserId,
+    userTotalBalance: selectUserTotalBalance,
+    defaultCurrencyCode: selectDefaultCurrencyCode,
     hasAccounts: selectHasAccounts,
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,

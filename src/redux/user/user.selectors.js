@@ -10,4 +10,9 @@ export const selectUserId = createSelector(
 export const selectDefaultCurrencyCode = createSelector(
     [selectUser],
     user => user.defaultCurrencyCode,
-)
+);
+
+export const selectUserTotalBalance = createSelector(
+    [selectUser],
+    user => user.totalBalance,
+);
