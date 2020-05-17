@@ -11,10 +11,6 @@ import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
 import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
 import {updateAppCurrenciesRates} from "./firebase/currencies.firebase-utils";
-import {
-    selectDefaultCurrencyCode,
-    selectOtherCurrenciesCodes
-} from "./redux/currencies/currencies.selectors";
 
 // import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
@@ -28,9 +24,17 @@ class App extends React.Component {
             user,
             fetchTaxonomiesStartAsync,
             fetchCurrenciesStartAsync,
-            defaultCurrencyCode,
-            otherCurrenciesCodes
         } = this.props;
+
+        fetchCurrenciesStartAsync();
+
+        updateAppCurrenciesRates().then(() => {
+            this.currencyUpdateInterval = setInterval(() => {
+                updateAppCurrenciesRates().then(() => {
+                    console.log('Currencies rates updated');
+                });
+            }, 3600000);
+        });
 
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
@@ -45,8 +49,6 @@ class App extends React.Component {
                         });
                         //Use for testing to write default taxonomies
                         // await initDefaultTaxonomies(snapShot.id);
-                        // Use for testing to write app currencies
-                        // await initAppCurrencies(snapShot.id);
                     });
                 }
                 return;
@@ -54,21 +56,8 @@ class App extends React.Component {
             setUser(user);
         });
 
-        if (user.id) {
+        if (user && user.id) {
             fetchTaxonomiesStartAsync(user.id);
-            fetchCurrenciesStartAsync(user.id);
-            if (defaultCurrencyCode && otherCurrenciesCodes) {
-                console.log('defaultCurrencyCode', defaultCurrencyCode);
-                updateAppCurrenciesRates(user.id, defaultCurrencyCode, otherCurrenciesCodes).then(() => {
-                    this.currencyUpdateInterval = setInterval(() => {
-                        const {defaultCurrencyCode, otherCurrenciesCodes} = this.props;
-                        console.log('defaultCurrencyCode', defaultCurrencyCode);
-                        updateAppCurrenciesRates(user.id, defaultCurrencyCode, otherCurrenciesCodes).then(() => {
-                            console.log('Currencies rates updated');
-                        });
-                    }, 3600000);
-                });
-            }
         }
     }
 
@@ -79,8 +68,6 @@ class App extends React.Component {
 
     render() {
         let {user} = this.props;
-        // console.log('defaultCurrencyCode');
-        // console.log(defaultCurrencyCode);
 
         return (
             <Switch>
@@ -100,8 +87,6 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
     user: selectUser(state),
-    defaultCurrencyCode: selectDefaultCurrencyCode(state),
-    otherCurrenciesCodes: selectOtherCurrenciesCodes(state)
 });
 
 const mapDispatchToProps = dispatch => ({

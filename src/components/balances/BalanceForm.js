@@ -18,18 +18,18 @@ class BalanceForm extends React.Component {
 
     state = {
         name: '',
-        currencyId: '',
+        currencyCode: '',
     };
 
     componentDidMount() {
         this._isMounted = true;
         const {balanceId, balance} = this.props;
         if (balanceId && balance) {
-            let {name, currencyId} = balance;
+            let {name, currencyCode} = balance;
             if (this._isMounted) {
                 this.setState({
                     name,
-                    currencyId,
+                    currencyCode,
                 });
             }
         }
@@ -47,7 +47,7 @@ class BalanceForm extends React.Component {
 
         this.setState({
             name: '',
-            currencyId: '',
+            currencyCode: '',
         });
         handleFormCancel();
     };
@@ -59,7 +59,7 @@ class BalanceForm extends React.Component {
 
     render() {
         let {handleFormCancel, appCurrencies} = this.props;
-        let {name, currencyId} = this.state;
+        let {name, currencyCode} = this.state;
 
         return (
             <form onSubmit={this.handleFormSubmit}>
@@ -78,8 +78,8 @@ class BalanceForm extends React.Component {
                         <Grid item xs={12} md={3}>
                             <CurrencySelect
                                 label='Currency'
-                                name='currencyId'
-                                value={currencyId}
+                                name='currencyCode'
+                                value={currencyCode}
                                 menuItems={appCurrencies}
                                 onChange={this.handleFieldChange}
                             />

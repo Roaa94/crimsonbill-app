@@ -4,14 +4,12 @@ import {selectAppCurrencies} from "../../../redux/currencies/currencies.selector
 import {connect} from "react-redux";
 import CurrencyListItem from "../currency-list-item/CurrencyListItem";
 import {selectUserId} from "../../../redux/user/user.selectors";
-import {setDefaultCurrency} from "../../../firebase/currencies.firebase-utils";
+import {setDefaultCurrency} from "../../../firebase/user.firebase-utils";
 
 const CurrenciesCard = ({appCurrencies, userId}) => {
 
-    const handleClick = async (currencyId, selectedCurrencyCode) => {
-        const otherCurrencies = appCurrencies.filter(currency => currency.id !== currencyId);
-        const otherCurrenciesCodes = otherCurrencies.map(currency => currency.code);
-        await setDefaultCurrency(userId, currencyId, selectedCurrencyCode, otherCurrenciesCodes);
+    const handleClick = async currencyCode => {
+        await setDefaultCurrency(userId, currencyCode);
     };
 
     return (
@@ -23,7 +21,7 @@ const CurrenciesCard = ({appCurrencies, userId}) => {
                         appCurrencies.map(currency => (
                             <CurrencyListItem
                                 key={currency.id}
-                                {...currency}
+                                currency={currency}
                                 onClick={handleClick}
                             />
                         ))

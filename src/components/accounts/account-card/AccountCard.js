@@ -43,7 +43,7 @@ class AccountCard extends React.Component {
     }
 
     render() {
-        let {id, accountType, name, currencyId, notes, totalBalance} = this.props;
+        let {id, accountType, name, currencyCode, notes, totalBalance} = this.props;
         let {showAccountForm, accountCardExpanded} = this.state;
 
         const accountCardMenuItems = [
@@ -80,7 +80,7 @@ class AccountCard extends React.Component {
                             </Grid>
                             <Grid item xs={2} align='center'>
                                 <h3 className='account-currency'>
-                                    <FormattedNumber number={totalBalance} currencyId={currencyId}/>
+                                    <FormattedNumber number={totalBalance} currencyCode={currencyCode}/>
                                 </h3>
                             </Grid>
                             <Grid item xs container justify='flex-end' wrap='nowrap'>

@@ -21,7 +21,7 @@ class AccountForm extends Component {
     state = {
         typeId: '',
         name: '',
-        currencyId: '',
+        currencyCode: '',
         notes: '',
     };
 
@@ -29,12 +29,12 @@ class AccountForm extends Component {
         this._isMounted = true;
         const {accountId, account} = this.props;
         if (accountId && account) {
-            let {typeId, name, currencyId, notes} = account;
+            let {typeId, name, currencyCode, notes} = account;
             if (this._isMounted) {
                 this.setState({
                     typeId,
                     name,
-                    currencyId,
+                    currencyCode,
                     notes
                 });
             }
@@ -54,7 +54,7 @@ class AccountForm extends Component {
         this.setState({
             typeId: '',
             name: '',
-            currencyId: '',
+            currencyCode: '',
             notes: '',
         });
         handleFormCancel();
@@ -66,7 +66,7 @@ class AccountForm extends Component {
     };
 
     render() {
-        const {typeId, name, currencyId, notes} = this.state;
+        const {typeId, name, currencyCode, notes} = this.state;
         const {handleFormCancel, accountTypes, appCurrencies} = this.props;
 
         return (
@@ -94,8 +94,8 @@ class AccountForm extends Component {
                     <Grid item xs={12} md={2}>
                         <CurrencySelect
                             label='Currency'
-                            name='currencyId'
-                            value={currencyId}
+                            name='currencyCode'
+                            value={currencyCode}
                             menuItems={appCurrencies}
                             onChange={this.handleFieldChange}
                         />

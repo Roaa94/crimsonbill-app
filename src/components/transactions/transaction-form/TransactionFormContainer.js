@@ -88,7 +88,7 @@ class TransactionFormContainer extends React.Component {
         const transactionData = this.state.defaultValues;
         // const {defaultValues} = this.state;
         // const transactionData = {
-        //     currencyId: balance.currencyId,
+        //     currencyCode: balance.currencyCode,
         //     ...defaultValues,
         // };
         if (transactionId) {

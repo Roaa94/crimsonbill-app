@@ -1,6 +1,5 @@
 import {firestore} from "./firebase.utils";
 import {initDefaultTaxonomies} from "./taxonomies.firebase-utils";
-import {initAppCurrencies} from "./currencies.firebase-utils";
 
 export const createUserProfileDocument = async (authUser, additionalData) => {
     if (!authUser) return;
@@ -12,6 +11,7 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
             await userRef.set({
                 displayName: additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName,
                 email: authUser.email,
+                defaultCurrencyId: 'USD',
                 avatarUrl: authUser.photoURL ? authUser.photoURL : null,
                 createdAt,
             });
@@ -24,12 +24,6 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
             await initDefaultTaxonomies(snapShot.id);
         } catch (e) {
             console.log('Could not write default taxonomies', e.message);
-        }
-        // Write app currencies of the user
-        try {
-            await initAppCurrencies(snapShot.id);
-        } catch (e) {
-            console.log('Could not write app currencies', e.message);
         }
         console.log('user created, display name:', additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName);
     }
@@ -46,3 +40,14 @@ export const updateUserDocumentAvatar = async (user, avatarUrl) => {
         console.log('error updating avatar', error.message);
     }
 };
+
+export const setDefaultCurrency = async (userId, currencyCode) => {
+    const userRef = firestore.doc(`users/${userId}`);
+    try {
+        await userRef.update({
+            defaultCurrencyCode: currencyCode,
+        });
+    } catch (e) {
+        console.log('Error changing default currency', e.message);
+    }
+}

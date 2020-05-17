@@ -49,13 +49,13 @@ export const fetchAccountsStartAsync = (userId) => {
             dispatch(fetchAccountsSuccess(accountsArray));
             accountsCollectionSnapshot.docs.forEach(accountDoc => {
                 const accountData = accountDoc.data();
-                fetchBalancesStartAsync(userId, accountDoc.id, accountDoc.ref, accountData.currencyId)(dispatch);
+                fetchBalancesStartAsync(accountDoc.id, accountDoc.ref, accountData.currencyCode)(dispatch);
             })
         }, error => dispatch(fetchAccountsError(error.message)));
     }
 };
 
-export const fetchBalancesStartAsync = (userId, accountId, accountDocRef, accountCurrencyId) => {
+export const fetchBalancesStartAsync = (accountId, accountDocRef, accountCurrencyCode) => {
     return dispatch => {
         dispatch(fetchBalancesStart());
         const balancesCollectionRef = accountDocRef.collection('balances');
@@ -67,10 +67,10 @@ export const fetchBalancesStartAsync = (userId, accountId, accountDocRef, accoun
             let balancesTotal = 0;
             for await (let balanceDoc of balancesCollectionSnapshot.docs) {
                 const balanceData = balanceDoc.data();
-                if (balanceData.currencyId === accountCurrencyId) {
+                if (balanceData.currencyCode === accountCurrencyCode) {
                     balancesTotal += +balanceData.totalBalance;
                 } else {
-                    const conversionRate = await getConversionRateFromIds(userId, balanceData.currencyId, accountCurrencyId);
+                    const conversionRate = await getConversionRateFromIds(balanceData.currencyCode, accountCurrencyCode);
                     balancesTotal += +balanceData.totalBalance * conversionRate;
                 }
                 fetchTransactionsStartAsync(accountId, balanceDoc.id, balanceDoc.ref)(dispatch);

@@ -115,7 +115,7 @@ class TransactionCard extends React.Component {
                                 <TransactionAmount type={type}>
                                     <FormattedNumber
                                         number={amount}
-                                        currencyId={balanceCurrencyId}
+                                        currencyCode={balanceCurrencyId}
                                     />
                                 </TransactionAmount>
                             </Grid>

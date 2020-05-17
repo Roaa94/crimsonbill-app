@@ -15,15 +15,14 @@ export const fetchCurrenciesSuccess = currencies => ({
     payload: currencies,
 });
 
-export const fetchCurrenciesStartAsync = userId => {
+export const fetchCurrenciesStartAsync = () => {
   return dispatch => {
       dispatch(fetchCurrenciesStart());
-      const currenciesCollectionPath = `users/${userId}/settings/CURRENCY/currencies`;
-      const currenciesCollectionRef = firestore.collection(currenciesCollectionPath);
+      const currenciesCollectionRef = firestore.collection('currencies');
       currenciesCollectionRef.onSnapshot(currenciesCollectionSnapshot => {
           const currencies = convertCollectionToArray(currenciesCollectionSnapshot);
-          // console.log('currencies');
-          // console.log(currencies);
+          console.log('currencies');
+          console.log(currencies);
           dispatch(fetchCurrenciesSuccess(currencies));
       }, error => dispatch(fetchCurrenciesError(error.message)));
   }
