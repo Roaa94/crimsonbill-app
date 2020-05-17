@@ -1,6 +1,1 @@
-import styled from 'styled-components';
-
-export const AccountsPageHeader = styled.div`
-  display: flex;
-  align-items: center;
-`;
+// import styled from 'styled-components';
