@@ -7,6 +7,11 @@ export const selectAccountsArray = createSelector(
     accounts => accounts.accountsArray,
 );
 
+export const selectHasAccounts = createSelector(
+    [selectAccounts],
+    accounts => accounts && accounts.accountsArray && accounts.accountsArray.length > 0,
+);
+
 export const selectAccountFormShow = createSelector(
     [selectAccounts],
     accounts => accounts.accountFormShow,

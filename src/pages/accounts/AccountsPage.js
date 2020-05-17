@@ -12,14 +12,13 @@ import {selectUserId} from "../../redux/user/user.selectors";
 import {
     selectAccountFormShow,
     selectAccountsArray,
-    selectAccountsFetching
+    selectAccountsFetching, selectHasAccounts
 } from "../../redux/accounts/accounts.selectors";
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 
 const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
 
-const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingAccounts}) => {
-    let hasAccounts = accounts && accounts.length > 0;
+const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingAccounts, hasAccounts}) => {
 
     return (
         <PageWrapper>
@@ -49,6 +48,7 @@ const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingA
 
 const mapStateToProps = createStructuredSelector({
     userId: selectUserId,
+    hasAccounts: selectHasAccounts,
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
     isFetchingAccounts: selectAccountsFetching,
