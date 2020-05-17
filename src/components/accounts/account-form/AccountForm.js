@@ -12,7 +12,6 @@ import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import TextField from "@material-ui/core/TextField";
 import {selectAccount} from "../../../redux/accounts/accounts.selectors";
 import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
-import {selectAppCurrencies} from "../../../redux/currencies/currencies.selectors";
 import CurrencySelect from "../../ui/inputs/CurrencySelect";
 
 class AccountForm extends Component {
@@ -67,7 +66,7 @@ class AccountForm extends Component {
 
     render() {
         const {typeId, name, currencyCode, notes} = this.state;
-        const {handleFormCancel, accountTypes, appCurrencies} = this.props;
+        const {handleFormCancel, accountTypes} = this.props;
 
         return (
             <form onSubmit={this.handleFormSubmit}>
@@ -96,8 +95,7 @@ class AccountForm extends Component {
                             label='Currency'
                             name='currencyCode'
                             value={currencyCode}
-                            menuItems={appCurrencies}
-                            onChange={this.handleFieldChange}
+                            handleChange={this.handleFieldChange}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -142,7 +140,6 @@ const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     account: selectAccount(ownProps.accountId)(state),
     accountTypes: selectTaxonomyArray('accountTypes')(state),
-    appCurrencies: selectAppCurrencies(state),
 });
 
 export default connect(mapStateToProps)(AccountForm);
