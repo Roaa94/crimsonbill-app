@@ -10,7 +10,6 @@ import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Box from "@material-ui/core/Box";
 import {selectBalance} from "../../redux/accounts/accounts.selectors";
-import {selectAppCurrencies} from "../../redux/currencies/currencies.selectors";
 import CurrencySelect from "../ui/inputs/CurrencySelect";
 
 class BalanceForm extends React.Component {
@@ -44,11 +43,12 @@ class BalanceForm extends React.Component {
         let {userId, accountId, balanceId, handleFormCancel} = this.props;
         const balanceData = this.state;
         await addOrUpdateBalanceDocument(userId, accountId, balanceId, balanceData);
-
-        this.setState({
-            name: '',
-            currencyCode: '',
-        });
+        if (this._isMounted) {
+            this.setState({
+                name: '',
+                currencyCode: '',
+            });
+        }
         handleFormCancel();
     };
 
@@ -58,7 +58,7 @@ class BalanceForm extends React.Component {
     };
 
     render() {
-        let {handleFormCancel, appCurrencies} = this.props;
+        let {handleFormCancel} = this.props;
         let {name, currencyCode} = this.state;
 
         return (
@@ -80,8 +80,7 @@ class BalanceForm extends React.Component {
                                 label='Currency'
                                 name='currencyCode'
                                 value={currencyCode}
-                                menuItems={appCurrencies}
-                                onChange={this.handleFieldChange}
+                                handleChange={this.handleFieldChange}
                             />
                         </Grid>
                     </Grid>
@@ -114,7 +113,6 @@ class BalanceForm extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     balance: selectBalance(ownProps.accountId, ownProps.balanceId)(state),
-    appCurrencies: selectAppCurrencies(state),
 });
 
 export default connect(mapStateToProps)(BalanceForm);

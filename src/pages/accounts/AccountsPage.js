@@ -37,7 +37,7 @@ const AccountsPage = ({accountFormShow, toggleAccountForm, accounts, isFetchingA
                             total Balance
                         </Grid>
                         <Grid item xs={12} md={4} container justify='flex-end'>
-                            <Grid item xs={12} md={7} xl={2}>
+                            <Grid item xs={12} md={7}>
                                 <DefaultCurrencySelect/>
                             </Grid>
                         </Grid>
