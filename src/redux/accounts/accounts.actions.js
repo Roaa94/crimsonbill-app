@@ -37,20 +37,31 @@ export const fetchBalancesError = errorMessage => ({
 });
 
 export const fetchAccountsStartAsync = (userId) => {
-    return dispatch => {
+    return async dispatch => {
         console.log('fetching accounts...');
         dispatch(fetchAccountsStart());
-        const accountsCollectionPath = `users/${userId}/accounts`;
-        const accountsRef = firestore.collection(accountsCollectionPath);
+        const userDocRef = firestore.doc(`users/${userId}`);
+        const accountsRef = userDocRef.collection('accounts');
         const orderedAccountsRef = accountsRef.orderBy('createdAt', 'desc');
+
+        const userSnapshot = await userDocRef.get();
+        const userData = userSnapshot.data();
 
         orderedAccountsRef.onSnapshot(async accountsCollectionSnapshot => {
             const accountsArray = convertCollectionToArray(accountsCollectionSnapshot);
             dispatch(fetchAccountsSuccess(accountsArray));
-            accountsCollectionSnapshot.docs.forEach(accountDoc => {
+            let accountsTotal = 0;
+            for await (let accountDoc of accountsCollectionSnapshot.docs) {
                 const accountData = accountDoc.data();
+                if (accountData.currencyCode === userData.defaultCurrencyCode) {
+                    accountsTotal += +accountData.totalBalance;
+                } else {
+                    const conversionRate = await getConversionRateFromIds(accountData.currencyCode, userData.defaultCurrencyCode);
+                    accountsTotal += +accountData.totalBalance * conversionRate;
+                }
                 fetchBalancesStartAsync(accountDoc.id, accountDoc.ref, accountData.currencyCode)(dispatch);
-            })
+            }
+            await userDocRef.update({totalBalance: accountsTotal});
         }, error => dispatch(fetchAccountsError(error.message)));
     }
 };

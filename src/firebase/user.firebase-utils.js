@@ -1,5 +1,6 @@
 import {firestore} from "./firebase.utils";
 import {initDefaultTaxonomies} from "./taxonomies.firebase-utils";
+import {getConversionRateFromIds} from "./currencies.firebase-utils";
 
 export const createUserProfileDocument = async (authUser, additionalData) => {
     if (!authUser) return;
@@ -12,6 +13,7 @@ export const createUserProfileDocument = async (authUser, additionalData) => {
                 displayName: additionalData && additionalData.displayName ? additionalData.displayName : authUser.displayName,
                 email: authUser.email,
                 defaultCurrencyId: 'USD',
+                totalBalance: 0,
                 avatarUrl: authUser.photoURL ? authUser.photoURL : null,
                 createdAt,
             });
@@ -50,4 +52,30 @@ export const setDefaultCurrency = async (userId, currencyCode) => {
     } catch (e) {
         console.log('Error changing default currency', e.message);
     }
+    try{
+        await updateUserTotalBalance(userRef);
+        console.log('Updated user total balance');
+    } catch (e) {
+        console.log('Error updating user total balance', e.message);
+    }
+}
+
+export const updateUserTotalBalance = async userDocRef => {
+    const accountsRef = userDocRef.collection('accounts');
+    const accountsCollectionSnapshot = await accountsRef.get();
+    const userSnapshot = await userDocRef.get();
+    const userData = userSnapshot.data();
+
+    let accountsTotal = 0;
+
+    for await (let accountDoc of accountsCollectionSnapshot.docs) {
+        const accountData = accountDoc.data();
+        if (accountData.currencyCode === userData.defaultCurrencyCode) {
+            accountsTotal += +accountData.totalBalance;
+        } else {
+            const conversionRate = await getConversionRateFromIds(accountData.currencyCode, userData.defaultCurrencyCode);
+            accountsTotal += +accountData.totalBalance * conversionRate;
+        }
+    }
+    await userDocRef.update({totalBalance: accountsTotal});
 }
