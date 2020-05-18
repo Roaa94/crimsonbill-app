@@ -2,7 +2,7 @@ import React from 'react';
 import {DashboardPageContent, DashboardPageWrapper} from "./DashboardPage.styles";
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import TransactionsDrawer from "../../components/transactions/TransactionsDrawer";
-import {selectUser} from "../../redux/user/user.selectors";
+import {selectUserData} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import AddAccountView from "../../components/accounts/AddAccountView";
 
@@ -35,7 +35,7 @@ class DashboardPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    user: selectUser(state),
+    user: selectUserData(state),
 });
 
 export default connect(mapStateToProps)(DashboardPage);

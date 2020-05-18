@@ -1,6 +1,6 @@
 import React from 'react';
 import AvatarPlaceholder from '../../../assets/images/avatar-placeholder.png';
-import {selectUser} from "../../../redux/user/user.selectors";
+import {selectUserData} from "../../../redux/user/user.selectors";
 import {connect} from 'react-redux';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import {storageRef} from '../../../firebase/firebase.utils';
@@ -72,7 +72,7 @@ class DrawerAvatar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    user: selectUser(state),
+    user: selectUserData(state),
 });
 
 export default connect(mapStateToProps)(DrawerAvatar);

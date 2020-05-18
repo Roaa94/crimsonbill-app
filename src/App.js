@@ -6,7 +6,7 @@ import {setUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
-import {selectUser} from "./redux/user/user.selectors";
+import {selectUserData} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
 import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
@@ -78,7 +78,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    user: selectUser(state),
+    user: selectUserData(state),
 });
 
 const mapDispatchToProps = dispatch => ({

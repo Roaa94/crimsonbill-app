@@ -2,17 +2,22 @@ import {createSelector} from "reselect";
 
 export const selectUser = state => state.user;
 
-export const selectUserId = createSelector(
+export const selectUserData = createSelector(
     [selectUser],
-    user => user.id,
+    user => user.userData,
+);
+
+export const selectUserId = createSelector(
+    [selectUserData],
+    userData => userData.id,
 );
 
 export const selectDefaultCurrencyCode = createSelector(
-    [selectUser],
-    user => user.defaultCurrencyCode,
+    [selectUserData],
+    userData => userData.defaultCurrencyCode,
 );
 
 export const selectUserTotalBalance = createSelector(
-    [selectUser],
-    user => user.totalBalance,
+    [selectUserData],
+    userData => userData.totalBalance,
 );
