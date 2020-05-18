@@ -9,30 +9,36 @@ const db = admin.firestore();
 export const deleteBalanceSubCollections = functions.firestore
     .document('users/{userId}/accounts/{accountId}/balances/{balanceId}')
     .onDelete((snapshot, context) => {
-        const batch = db.batch();
-        const transactionsPath = `users/${context.params.userId}/accounts/${context.params.accountId}/balances/${context.params.balanceId}/transactions`;
-        db.collection(transactionsPath).get()
-            .then(transactionsSnapshot => {
-                transactionsSnapshot.docs.forEach(doc => {
-                    batch.delete(doc.ref);
+        if (snapshot.exists) {
+            const batch = db.batch();
+            const transactionsPath = `users/${context.params.userId}/accounts/${context.params.accountId}/balances/${context.params.balanceId}/transactions`;
+            db.collection(transactionsPath).get()
+                .then(transactionsSnapshot => {
+                    transactionsSnapshot.docs.forEach(doc => {
+                        batch.delete(doc.ref);
+                    })
+                    return batch.commit();
                 })
-                return batch.commit();
-            })
-            .catch(error => error.message)
+                .catch(error => error.message)
+            return null;
+        }
         return null;
     })
 
 export const deleteAccountSubCollections = functions.firestore
     .document('users/{userId}/accounts/{accountId}')
     .onDelete((snapshot, context) => {
-        const batch = db.batch();
-        const balancesPath = `users/${context.params.userId}/accounts/${context.params.accountId}/balances`;
-        db.collection(balancesPath).get()
-            .then(balancesSnapshot => {
-                balancesSnapshot.docs.forEach(doc => {
-                    batch.delete(doc.ref);
-                })
-                return batch.commit();
-            }).catch(error => error.message)
+        if (snapshot.exists) {
+            const batch = db.batch();
+            const balancesPath = `users/${context.params.userId}/accounts/${context.params.accountId}/balances`;
+            db.collection(balancesPath).get()
+                .then(balancesSnapshot => {
+                    balancesSnapshot.docs.forEach(doc => {
+                        batch.delete(doc.ref);
+                    })
+                    return batch.commit();
+                }).catch(error => error.message)
+            return null;
+        }
         return null;
     })
