@@ -23,6 +23,8 @@ import Grid from "@material-ui/core/Grid";
 import DefaultCurrencySelect from "../../components/currencies/DefaultCurrencySelect";
 import FormattedNumber from "../../components/ui/FormattedNumber";
 import {TotalBalance} from "./AccountsPage.styles";
+import {selectIsFetchingBalances} from "../../redux/balances/balances.selectors";
+import {selectIsFetchingTransactions} from "../../redux/transactions/transactions.selectors";
 
 const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
 const TotalBalanceWithLoader = WithLoader(({children}) => <TotalBalance>{children}</TotalBalance>, 'span');
@@ -32,7 +34,9 @@ const AccountsPage = (
         accountFormShow,
         toggleAccountForm,
         accounts,
-        isFetchingAccountsData,
+        isFetchingAccounts,
+        isFetchingBalances,
+        isFetchingTransactions,
         hasAccounts,
         userTotalBalance,
         defaultCurrencyCode,
@@ -42,7 +46,7 @@ const AccountsPage = (
 
     return (
         <PageWrapper>
-            <AccountsListWithLoader loading={isFetchingAccountsData}>
+            <AccountsListWithLoader loading={isFetchingAccounts || isFetchingBalances || isFetchingTransactions}>
                 {
                     hasAccounts ?
                         <Grid spacing={2} container justify='space-between' alignItems='center'>
@@ -94,6 +98,8 @@ const mapStateToProps = createStructuredSelector({
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
     isFetchingAccounts: selectIsFetchingAccounts,
+    isFetchingBalances: selectIsFetchingBalances,
+    isFetchingTransactions: selectIsFetchingTransactions,
     isCalculatingBalance: selectIsCalculatingBalance,
 });
 
