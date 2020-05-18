@@ -1,58 +1,88 @@
 import {firestore} from "./firebase.utils";
+import {getConversionRateFromIds} from "./currencies.firebase-utils";
+import {deleteAccountBalances} from "./balances.firebase-utils";
 
-export const addOrUpdateAccountDocument = async (userId, accountId, accountData) => {
-    const userDocPath = `users/${userId}`;
-    const accountDocPath = `${userDocPath}/accounts/${accountId}`;
-    const accountRef = accountId ?
-        await firestore.doc(accountDocPath)
-        : await firestore.doc(userDocPath).collection('accounts').doc();
-    const accountSnapshot = await accountRef.get();
-    let newAccount = null;
-    if (!accountSnapshot.exists && !accountId) {
-        const createdAt = new Date();
-        newAccount = {
-            createdAt,
+export const addAccountDocument = async (userId, accountData) => {
+    const userDocRef = firestore.doc(`users/${userId}`);
+    const accountDocRef = userDocRef.collection('accounts').doc();
+    const accountDocSnapshot = await accountDocRef.get();
+    if (!accountDocSnapshot.exists) {
+        const newAccount = {
+            createdAt: new Date(),
+            totalBalance: 0,
             ...accountData,
-            totalBalance: 0.0,
         };
-        const newAccountId = accountSnapshot.id;
         try {
-            await accountRef.set(newAccount);
+            await accountDocRef.set(newAccount);
         } catch (error) {
-            console.log(error.message);
-            return;
-        }
-        const mainBalanceRef = firestore.collection(`${userDocPath}/accounts/${newAccountId}/balances`).doc();
-        const mainBalanceSnapshot = await mainBalanceRef.get();
-        if (!mainBalanceSnapshot.exists) {
-            const mainBalance = {
-                createdAt,
-                name: 'Main Balance',
-                currencyCode: accountData.currencyCode,
-                totalBalance: 0.0,
-            };
-            try {
-                await mainBalanceRef.set(mainBalance);
-            } catch (error) {
-                console.log(error.message);
-            }
-        }
-    } else {
-        try {
-            newAccount = accountData;
-            await accountRef.update(newAccount);
-            console.log('Document Updated Successfully');
-        } catch (error) {
-            console.log(error.message);
+            console.log('Error adding account', error.message);
         }
     }
-};
+}
+
+export const updateAccountDocument = async (userId, accountId, updatedAccountData) => {
+    const userDocRef = firestore.doc(`users/${userId}`);
+    const accountDocRef = userDocRef.collection('accounts').doc(accountId);
+    const accountDocSnapshot = await accountDocRef.get();
+    if (accountDocSnapshot.exists) {
+        await accountDocRef.update(updatedAccountData);
+    } else {
+        console.log('Account does not exist');
+    }
+}
 
 export const deleteAccountDocument = async (userId, accountId) => {
+    const userDocRef = firestore.doc(`users/${userId}`);
+    const accountDocRef = userDocRef.collection('accounts').doc(accountId);
     try {
-        await firestore.doc(`users/${userId}/accounts/${accountId}`).delete();
-        console.log('Document Deleted Successfully');
-    } catch (error) {
-        console.log(error.message);
+        await deleteAccountBalances(userDocRef, accountId);
+        try {
+            await accountDocRef.delete();
+            console.log('Document Deleted Successfully');
+        } catch (error) {
+            console.log(error.message);
+        }
+    } catch (e) {
+        console.log('Error batch deleting account balances');
     }
+
 };
+
+export const updateAccountTotalBalance = async (userDocRef, accountId) => {
+    const accountDocRef = userDocRef.collection('accounts').doc(accountId);
+    const accountDocSnapshot = await accountDocRef.get();
+    if (accountDocSnapshot.exists) {
+        const accountData = accountDocSnapshot.data();
+
+        //Calculate balances total balance
+        const balancesCollectionRef = accountDocRef.collection('balances');
+        const balancesCollectionSnapshot = await balancesCollectionRef.get();
+        let balancesTotal = 0;
+
+        for await (let balanceDoc of balancesCollectionSnapshot.docs) {
+            const balanceData = balanceDoc.data();
+            //Calculate balance totals of balances of this account only
+            if (balanceData.accountId === accountId) {
+                if (balanceData.currencyCode === accountData.currencyCode) {
+                    balancesTotal += +balanceData.totalBalance;
+                } else {
+                    const conversionRate = await getConversionRateFromIds(
+                        balanceData.currencyCode,
+                        accountData.currencyCode
+                    );
+                    balancesTotal += +balanceData.totalBalance * conversionRate;
+                }
+            }
+        }
+
+        //Update account total balance
+        try {
+            await accountDocRef.update({totalBalance: balancesTotal});
+            console.log('Account total balance updated');
+        } catch (e) {
+            console.log('Error updating account total balance', e.message);
+        }
+    } else {
+        console.log('Account does not exist');
+    }
+}

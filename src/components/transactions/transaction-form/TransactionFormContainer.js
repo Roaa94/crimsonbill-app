@@ -13,12 +13,12 @@ import {connect} from "react-redux";
 import TransactionForm from "./TransactionForm";
 import {
     selectAccount,
-    selectBalance,
     selectOtherAccounts,
-    selectTransaction
 } from "../../../redux/accounts/accounts.selectors";
 import {TransactionFormWrapper} from "./TransactionForm.styles";
 import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
+import {selectBalance} from "../../../redux/balances/balances.selectors";
+import {selectTransaction} from "../../../redux/transactions/transactions.selectors";
 
 class TransactionFormContainer extends React.Component {
     defaultTransactionValues = {
@@ -49,9 +49,9 @@ class TransactionFormContainer extends React.Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {transactionId, transaction, otherAccounts} = this.props;
+        const {transaction, otherAccounts} = this.props;
 
-        if (transaction && transactionId) {
+        if (transaction) {
             const parsedDateTime = new Date(transaction.dateTime.seconds * 1000);
             let {type, categoryId, sourceId, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId} = transaction;
             if (this._isMounted) {
@@ -86,12 +86,7 @@ class TransactionFormContainer extends React.Component {
         event.preventDefault();
         let {handleFormCancel, userId, accountId, transactionId, balanceId} = this.props;
         const transactionData = this.state.defaultValues;
-        // const {defaultValues} = this.state;
-        // const transactionData = {
-        //     currencyCode: balance.currencyCode,
-        //     ...defaultValues,
-        // };
-        if (transactionId) {
+        if (transactionId && accountId && balanceId) {
             await updateTransactionDocument(userId, accountId, balanceId, transactionId, transactionData);
         } else {
             await addTransactionDocument(userId, accountId, balanceId, transactionData);
@@ -182,8 +177,8 @@ class TransactionFormContainer extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     account: selectAccount(ownProps.accountId)(state),
-    balance: selectBalance(ownProps.accountId, ownProps.balanceId)(state),
-    transaction: selectTransaction(ownProps.accountId, ownProps.balanceId, ownProps.transactionId)(state),
+    balance: selectBalance(ownProps.balanceId)(state),
+    transaction: selectTransaction(ownProps.transactionId)(state),
     otherAccounts: selectOtherAccounts(ownProps.accountId)(state),
     spendingCategories: selectTaxonomyArray('spendingCategories')(state),
     incomeSources: selectTaxonomyArray('incomeSources')(state),

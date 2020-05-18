@@ -5,6 +5,8 @@ import {combineReducers} from "redux";
 import accountsReducer from "./accounts/accounts.reducer";
 import {taxonomiesReducer} from "./taxonomies/taxonomies.reducer";
 import {currenciesReducer} from "./currencies/currencies.reducer";
+import balancesReducer from "./balances/balances.reducer";
+import transactionsReducer from "./transactions/transactions.reducer";
 
 const persistConfig = {
     key: 'root',
@@ -14,6 +16,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userReducer,
     accounts: accountsReducer,
+    balances: balancesReducer,
+    transactions: transactionsReducer,
     taxonomies: taxonomiesReducer,
     currencies: currenciesReducer,
 });

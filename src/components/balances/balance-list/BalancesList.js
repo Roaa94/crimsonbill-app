@@ -2,9 +2,6 @@ import React from 'react';
 import Box from "@material-ui/core/Box";
 import AddIconButton from "../../ui/buttons/AddIconButton";
 import {selectUserId} from "../../../redux/user/user.selectors";
-import {
-    selectAccountBalances,
-} from "../../../redux/accounts/accounts.selectors";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import {BalanceListHeader} from "./BalancesList.styles";
@@ -12,6 +9,11 @@ import BalanceCard from "../balance-card/BalanceCard";
 import BalanceForm from "../BalanceForm";
 import {colors} from "../../../styles/global";
 import AllTransactionsList from "../../transactions/transactions-list/AllTransactionsList";
+import {
+    selectAccountBalances,
+    selectAccountHasBalances,
+    selectIsFetchingBalances
+} from "../../../redux/balances/balances.selectors";
 
 class BalancesList extends React.Component {
     state = {
@@ -19,13 +21,13 @@ class BalancesList extends React.Component {
     };
 
     render() {
-        let {accountId, balances, isBalancesLoaded} = this.props;
+        let {accountId, balances, accountHasBalances, isFetchingBalances} = this.props;
         let {showBalanceForm} = this.state;
 
         return (
             <div>
                 {
-                    isBalancesLoaded && balances.length > 1
+                    !isFetchingBalances && accountHasBalances && balances.length > 1
                         ? (
                             <Box mb={2}>
                                 <AllTransactionsList accountId={accountId}/>
@@ -49,34 +51,31 @@ class BalancesList extends React.Component {
                     ) : null
                 }
                 {
-                    isBalancesLoaded && balances.length !== 0
+                    !isFetchingBalances && accountHasBalances
                         ? (
-                            <BalanceListHeader>
-                                <Grid container>
-                                    <Grid item xs={4}>
-                                        Name
+                            <React.Fragment>
+                                <BalanceListHeader>
+                                    <Grid container>
+                                        <Grid item xs={4}>
+                                            Name
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            Currency
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            Balance
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={2}>
-                                        Currency
-                                    </Grid>
-                                    <Grid item xs={2}>
-                                        Balance
-                                    </Grid>
-                                </Grid>
-                            </BalanceListHeader>
-                        ) : null
-                }
-                {
-                    isBalancesLoaded ?
-                        (
-                            balances.map(({id, ...balanceDetails}) => (
-                                <BalanceCard
-                                    accountId={accountId}
-                                    balanceId={id}
-                                    key={id}
-                                    {...balanceDetails}
-                                />
-                            ))
+                                </BalanceListHeader>
+                                {
+                                    balances.map(balance => (
+                                        <BalanceCard
+                                            key={balance.id}
+                                            balance={balance}
+                                        />
+                                    ))
+                                }
+                            </React.Fragment>
                         ) : null
                 }
             </div>
@@ -86,8 +85,9 @@ class BalancesList extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
+    accountHasBalances: selectAccountHasBalances(ownProps.accountId)(state),
+    isFetchingBalances: selectIsFetchingBalances(state),
     balances: selectAccountBalances(ownProps.accountId)(state),
-    isBalancesLoaded: !!selectAccountBalances(ownProps.accountId)(state),
 });
 
 export default connect(mapStateToProps)(BalancesList);

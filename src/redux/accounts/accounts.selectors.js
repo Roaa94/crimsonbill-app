@@ -26,10 +26,6 @@ export const selectOtherAccounts = (accountId) => createSelector(
                 otherAccounts.push({
                     id: account.id,
                     name: account.name,
-                    balances: account.balances.map(balance => ({
-                        id: balance.id,
-                        name: balance.name,
-                    })),
                 })
             }
         })
@@ -37,7 +33,7 @@ export const selectOtherAccounts = (accountId) => createSelector(
     }
 );
 
-export const selectAccountsFetching = createSelector(
+export const selectIsFetchingAccounts = createSelector(
     [selectAccounts],
     accounts => accounts.isFetchingAccounts,
 );
@@ -50,62 +46,4 @@ export const selectAccount = accountId => createSelector(
 export const selectAccountName = accountId => createSelector(
     [selectAccount(accountId)],
     account => account.name,
-);
-
-export const selectAccountBalances = accountId => createSelector(
-    [selectAccount(accountId)],
-    account => account.balances
-);
-
-export const selectBalance = (accountId, balanceId) => createSelector(
-    [selectAccountBalances(accountId)],
-    balances => balances.find(balance => balance.id === balanceId),
-);
-
-export const selectBalanceName = (accountId, balanceId) => createSelector(
-    [selectBalance(accountId, balanceId)],
-    balance => balance.name,
-);
-
-export const selectBalanceCurrencyId = (accountId, balanceId) => createSelector(
-    [selectBalance(accountId, balanceId)],
-    balance => balance.currencyCode,
-);
-
-export const selectBalanceTransactions = (accountId, balanceId) => createSelector(
-    [selectBalance(accountId, balanceId)],
-    balance => balance.transactions
-);
-
-export const selectTransaction = (accountId, balanceId, transactionId) => createSelector(
-    [selectBalance(accountId, balanceId)],
-    balance => {
-        if(balance.transactions) {
-            return balance.transactions.find(transaction => transaction.id === transactionId);
-        }
-    },
-);
-
-export const selectAllAccountTransactions = (accountId) => createSelector(
-    [selectAccountBalances(accountId)],
-    balances => {
-        let allTransactions = [];
-        balances.forEach(balance => {
-            if (balance.transactions) {
-                allTransactions.push(...balance.transactions);
-            }
-        });
-        //Sort transactions by transaction date
-        allTransactions.sort((transactionA, transactionB) => {
-            let transactionATimestamp = transactionA.dateTime.seconds;
-            let transactionBTimestamp = transactionB.dateTime.seconds;
-            return transactionATimestamp + transactionBTimestamp;
-        })
-        return allTransactions;
-    }
-);
-
-export const selectIsFetchingAccountsData = createSelector(
-    [selectAccounts],
-    accounts => accounts.isFetchingAccounts || accounts.isFetchingBalances || accounts.isFetchingTransactions,
 );

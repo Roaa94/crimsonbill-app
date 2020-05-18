@@ -16,8 +16,7 @@ import {
 import {
     selectAccountFormShow,
     selectAccountsArray,
-    selectHasAccounts,
-    selectIsFetchingAccountsData
+    selectHasAccounts, selectIsFetchingAccounts,
 } from "../../redux/accounts/accounts.selectors";
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 import Grid from "@material-ui/core/Grid";
@@ -94,7 +93,7 @@ const mapStateToProps = createStructuredSelector({
     hasAccounts: selectHasAccounts,
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
-    isFetchingAccountsData: selectIsFetchingAccountsData,
+    isFetchingAccounts: selectIsFetchingAccounts,
     isCalculatingBalance: selectIsCalculatingBalance,
 });
 

@@ -32,8 +32,9 @@ class BalanceCard extends React.Component {
     }
 
     deleteBalance = async () => {
-        let {userId, accountId, balanceId} = this.props;
-        await deleteBalanceDocument(userId, accountId, balanceId);
+        let {userId, balance} = this.props;
+        let {id, accountId} = balance;
+        await deleteBalanceDocument(userId, accountId, id);
     }
 
     handleExpansionPanelChange = () => {
@@ -58,7 +59,8 @@ class BalanceCard extends React.Component {
     }
 
     render() {
-        let {accountId, balanceId, name, currencyCode, totalBalance} = this.props;
+        let {balance} = this.props;
+        let {id, accountId, name, currencyCode, totalBalance} = balance;
         let {showBalanceForm, balanceCardExpanded} = this.state;
         return (
             <BalanceCardExpansionPanel
@@ -111,15 +113,14 @@ class BalanceCard extends React.Component {
                     {
                         showBalanceForm ? (
                             <BalanceForm
-                                accountId={accountId}
-                                balanceId={balanceId}
+                                balanceId={id}
                                 handleFormCancel={() => this.controlBalanceForm(false)}
                             />
                         ) : null
                     }
                     <TransactionsList
                         accountId={accountId}
-                        balanceId={balanceId}
+                        balanceId={id}
                     />
                 </Box>
             </BalanceCardExpansionPanel>

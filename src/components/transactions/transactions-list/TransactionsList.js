@@ -3,11 +3,15 @@ import {TransactionCardsList, TransactionsListHeader} from "./TransactionsList.s
 import Grid from "@material-ui/core/Grid";
 import {colors} from "../../../styles/global";
 import AddIconButton from "../../ui/buttons/AddIconButton";
-import TransactionForm from "../transaction-form/TransactionFormContainer";
+import TransactionFormContainer from "../transaction-form/TransactionFormContainer";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {selectBalanceTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
+import {
+    selectBalanceHasTransactions,
+    selectBalanceTransactions,
+    selectIsFetchingTransactions
+} from "../../../redux/transactions/transactions.selectors";
 
 class TransactionsList extends React.Component {
 
@@ -33,7 +37,7 @@ class TransactionsList extends React.Component {
 
     render() {
         const {showTransactionForm} = this.state;
-        const {accountId, balanceId, transactions, isTransactionsLoaded} = this.props;
+        const {accountId, balanceId, transactions, isFetchingTransactions, balanceHasTransactions} = this.props;
 
         return (
             <div>
@@ -52,7 +56,7 @@ class TransactionsList extends React.Component {
                 </TransactionsListHeader>
                 {
                     showTransactionForm ? (
-                        <TransactionForm
+                        <TransactionFormContainer
                             handleFormCancel={() => this.controlTransactionForm(false)}
                             accountId={accountId}
                             balanceId={balanceId}
@@ -60,13 +64,12 @@ class TransactionsList extends React.Component {
                     ) : null
                 }
                 {
-                    isTransactionsLoaded ? (
+                    !isFetchingTransactions && balanceHasTransactions ? (
                         <TransactionCardsList>
                             {
                                 transactions.map((transaction) => (
                                     <TransactionCard
                                         key={transaction.id}
-                                        accountId={accountId}
                                         balanceId={balanceId}
                                         transaction={transaction}
                                     />
@@ -82,8 +85,9 @@ class TransactionsList extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
-    transactions: selectBalanceTransactions(ownProps.accountId, ownProps.balanceId)(state),
-    isTransactionsLoaded: !!selectBalanceTransactions(ownProps.accountId, ownProps.balanceId)(state),
+    transactions: selectBalanceTransactions(ownProps.balanceId)(state),
+    isFetchingTransactions: selectIsFetchingTransactions(state),
+    balanceHasTransactions: selectBalanceHasTransactions(ownProps.balanceId)(state),
 });
 
 export default connect(mapStateToProps)(TransactionsList);

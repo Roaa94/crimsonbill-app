@@ -11,6 +11,8 @@ import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
 import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
 import {fetchAccountsStartAsync} from "./redux/accounts/accounts.actions";
+import {fetchTransactionsStartAsync} from "./redux/transactions/transactions.actions";
+import {fetchBalancesStartAsync} from "./redux/balances/balances.actions";
 
 // import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
@@ -24,6 +26,8 @@ class App extends React.Component {
             fetchTaxonomiesStartAsync,
             fetchCurrenciesStartAsync,
             fetchAccountsStartAsync,
+            fetchBalancesStartAsync,
+            fetchTransactionsStartAsync,
         } = this.props;
 
         fetchCurrenciesStartAsync();
@@ -51,6 +55,8 @@ class App extends React.Component {
         if (user && user.id) {
             fetchTaxonomiesStartAsync(user.id);
             fetchAccountsStartAsync(user.id);
+            fetchBalancesStartAsync(user.id);
+            fetchTransactionsStartAsync(user.id);
         }
     }
 
@@ -86,6 +92,8 @@ const mapDispatchToProps = dispatch => ({
     fetchTaxonomiesStartAsync: userId => dispatch(fetchTaxonomiesStartAsync(userId)),
     fetchCurrenciesStartAsync: userId => dispatch(fetchCurrenciesStartAsync(userId)),
     fetchAccountsStartAsync: userId => dispatch(fetchAccountsStartAsync(userId)),
+    fetchBalancesStartAsync: userId => dispatch(fetchBalancesStartAsync(userId)),
+    fetchTransactionsStartAsync: userId => dispatch(fetchTransactionsStartAsync(userId)),
 });
 
 export default connect(

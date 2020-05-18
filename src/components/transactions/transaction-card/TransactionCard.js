@@ -22,7 +22,7 @@ import TransactionForm from "../transaction-form/TransactionFormContainer";
 import AccountToAccountView from "./AccountToAccountView";
 import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import Icon from "@material-ui/core/Icon";
-import {selectBalanceCurrencyId} from "../../../redux/accounts/accounts.selectors";
+import {selectBalanceCurrencyCode} from "../../../redux/balances/balances.selectors";
 
 class TransactionCard extends React.Component {
     _isMount = false;
@@ -41,7 +41,8 @@ class TransactionCard extends React.Component {
     };
 
     deleteTransaction = async () => {
-        let {userId, accountId, balanceId, transaction} = this.props;
+        let {userId, transaction} = this.props;
+        let {accountId, balanceId} = transaction;
         await deleteTransactionDocument(userId, accountId, balanceId, transaction.id);
     }
 
@@ -69,16 +70,16 @@ class TransactionCard extends React.Component {
     render() {
         let {
             transaction,
-            accountId,
-            balanceId,
             readOnly,
             spendingCategory,
             incomeSource,
-            balanceCurrencyId,
+            balanceCurrencyCode,
         } = this.props;
 
         let {
             id,
+            accountId,
+            balanceId,
             type,
             title,
             notes,
@@ -115,7 +116,7 @@ class TransactionCard extends React.Component {
                                 <TransactionAmount type={type}>
                                     <FormattedNumber
                                         number={amount}
-                                        currencyCode={balanceCurrencyId}
+                                        currencyCode={balanceCurrencyCode}
                                     />
                                 </TransactionAmount>
                             </Grid>
@@ -208,7 +209,7 @@ const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     spendingCategory: selectTaxonomyValue(ownProps.transaction.categoryId, 'spendingCategories')(state),
     incomeSource: selectTaxonomyValue(ownProps.transaction.sourceId, 'incomeSources')(state),
-    balanceCurrencyId: selectBalanceCurrencyId(ownProps.accountId, ownProps.balanceId)(state),
+    balanceCurrencyCode: selectBalanceCurrencyCode(ownProps.balanceId)(state),
 });
 
 export default connect(mapStateToProps)(TransactionCard);

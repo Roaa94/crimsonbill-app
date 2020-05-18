@@ -52,7 +52,7 @@ export const setDefaultCurrency = async (userId, currencyCode) => {
     } catch (e) {
         console.log('Error changing default currency', e.message);
     }
-    try{
+    try {
         await updateUserTotalBalance(userRef);
         console.log('Updated user total balance');
     } catch (e) {
@@ -61,21 +61,27 @@ export const setDefaultCurrency = async (userId, currencyCode) => {
 }
 
 export const updateUserTotalBalance = async userDocRef => {
-    const accountsRef = userDocRef.collection('accounts');
-    const accountsCollectionSnapshot = await accountsRef.get();
     const userSnapshot = await userDocRef.get();
-    const userData = userSnapshot.data();
 
-    let accountsTotal = 0;
+    if (userSnapshot.exists) {
+        const userData = userSnapshot.data();
+        const accountsRef = userDocRef.collection('accounts');
+        const accountsCollectionSnapshot = await accountsRef.get();
 
-    for await (let accountDoc of accountsCollectionSnapshot.docs) {
-        const accountData = accountDoc.data();
-        if (accountData.currencyCode === userData.defaultCurrencyCode) {
-            accountsTotal += +accountData.totalBalance;
-        } else {
-            const conversionRate = await getConversionRateFromIds(accountData.currencyCode, userData.defaultCurrencyCode);
-            accountsTotal += +accountData.totalBalance * conversionRate;
+        let accountsTotal = 0;
+
+        for await (let accountDoc of accountsCollectionSnapshot.docs) {
+            const accountData = accountDoc.data();
+            if (accountData.currencyCode === userData.defaultCurrencyCode) {
+                accountsTotal += +accountData.totalBalance;
+            } else {
+                const conversionRate = await getConversionRateFromIds(accountData.currencyCode, userData.defaultCurrencyCode);
+                accountsTotal += +accountData.totalBalance * conversionRate;
+            }
         }
+        await userDocRef.update({totalBalance: accountsTotal});
+        console.log('Updated user total balance');
+    } else {
+        console.log('user does not exist');
     }
-    await userDocRef.update({totalBalance: accountsTotal});
 }

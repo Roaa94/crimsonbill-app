@@ -3,15 +3,15 @@ import {TransactionCardsList, TransactionsListExpansionPanelSummary} from "./Tra
 import Grid from "@material-ui/core/Grid";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {selectAllAccountTransactions} from "../../../redux/accounts/accounts.selectors";
 import TransactionCard from "../transaction-card/TransactionCard";
 import {ExpansionPanel} from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {selectHasTransactions, selectIsFetchingTransactions} from "../../../redux/transactions/transactions.selectors";
 
 class AllTransactionsList extends React.Component {
 
     render() {
-        const {allTransactions, isAllTransactionsLoaded} = this.props;
+        const {allTransactions, isFetchingTransactions, hasTransactions} = this.props;
 
         return (
             <ExpansionPanel>
@@ -26,7 +26,7 @@ class AllTransactionsList extends React.Component {
                     </Grid>
                 </TransactionsListExpansionPanelSummary>
                 {
-                    isAllTransactionsLoaded ? (
+                    !isFetchingTransactions && hasTransactions ? (
                         <TransactionCardsList>
                             {
                                 allTransactions.map(transaction => (
@@ -45,10 +45,10 @@ class AllTransactionsList extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     userId: selectUserId(state),
-    allTransactions: selectAllAccountTransactions(ownProps.accountId)(state),
-    isAllTransactionsLoaded: !!selectAllAccountTransactions(ownProps.accountId)(state),
+    isFetchingTransactions: selectIsFetchingTransactions(state),
+    hasTransactions: selectHasTransactions(state),
 });
 
 export default connect(mapStateToProps)(AllTransactionsList);

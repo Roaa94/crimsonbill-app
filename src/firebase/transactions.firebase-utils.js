@@ -1,133 +1,121 @@
-import {firestore, getBalanceDocPath, getTransactionDocPath} from "./firebase.utils";
+import {firestore} from "./firebase.utils";
 
 export const addTransactionDocument = async (userId, accountId, balanceId, transactionData) => {
-    const balanceDocPath = getBalanceDocPath(userId, accountId, balanceId);
-    const transactionRef = firestore.doc(balanceDocPath).collection('transactions').doc();
-    const transactionSnapshot = await transactionRef.get();
+    const userDocRef = firestore.doc(`users/${userId}`);
+    const transactionDocRef = userDocRef.collection('transactions').doc();
+    const transactionDocSnapshot = await transactionDocRef.get();
     const batch = firestore.batch();
     const accountToAccount = transactionData.accountToAccount && transactionData.targetAccountId && transactionData.targetBalanceId;
 
-    if (transactionSnapshot.exists) {
-        console.log('Transaction exists already!');
-        return;
-    }
-    //Create new transaction
-    batch.set(transactionRef, transactionData);
-    if (accountToAccount) {
-        //Add the transaction to the other account
-        const otherBalanceDocPath = getBalanceDocPath(userId, transactionData.targetAccountId, transactionData.targetBalanceId);
-        try {
-            const mirrorTransactionRef = firestore.doc(otherBalanceDocPath).collection('transactions').doc(transactionSnapshot.id);
-            const mirrorTransactionSnapshot = await mirrorTransactionRef.get();
-            if (!mirrorTransactionSnapshot.exists) {
-                let mirrorTransaction = {
-                    ...transactionData,
-                    type: transactionData.type === 'spending' ? 'earning' : 'spending',
-                    targetAccountId: accountId,
-                    targetBalanceId: balanceId,
-                };
-                batch.set(mirrorTransactionRef, mirrorTransaction);
-                console.log('mirrorTransaction')
-                console.log(mirrorTransaction)
-            }
-        } catch (e) {
-            console.log('Could not add mirror transaction');
-            console.log(e.message);
-            return;
+    if (!transactionDocSnapshot.exists) {
+        const newTransaction = {
+            accountId,
+            balanceId,
+            ...transactionData,
         }
-    }
-
-    try {
-        await batch.commit();
-    } catch (e) {
-        console.log('batch commit error');
-        console.log(e.message);
+        if (accountToAccount) {
+            const mirrorTransaction = {
+                ...transactionData,
+                type: transactionData.type === 'spending' ? 'earning' : 'spending',
+                targetAccountId: accountId,
+                targetBalanceId: balanceId,
+                mirrorTransactionId: transactionDocSnapshot.id,
+            }
+            const mirrorTransactionDocRef = userDocRef.collection('transactions').doc();
+            const mirrorTransactionSnapshot = await mirrorTransactionDocRef.get();
+            if (!mirrorTransactionSnapshot.exists) {
+                newTransaction['mirrorTransactionId'] = mirrorTransactionSnapshot.id;
+                batch.set(mirrorTransactionDocRef, mirrorTransaction);
+            }
+        }
+        batch.set(transactionDocRef, newTransaction);
+        try {
+            await batch.commit();
+            console.log('Added transaction(s)');
+        } catch (e) {
+            console.log('Transactions batch commit error', e.message);
+        }
     }
 }
 
 export const updateTransactionDocument = async (userId, accountId, balanceId, transactionId, transactionData) => {
-    const transactionDocPath = getTransactionDocPath(userId, accountId, balanceId, transactionId);
-    const transactionRef = await firestore.doc(transactionDocPath);
-    const transactionSnapshot = await transactionRef.get();
+    const userDocRef = firestore.doc(`users/${userId}`);
+    const transactionDocRef = userDocRef.collection('transactions').doc(transactionId);
+    const transactionDocSnapshot = await transactionDocRef.get();
+    if (transactionDocSnapshot.exists) {
+        const batch = firestore.batch();
+        const currentTransactionData = transactionDocSnapshot.data();
+        const mirrorTransactionId = currentTransactionData.mirrorTransactionId;
+        const accountToAccount = transactionData.accountToAccount && transactionData.targetAccountId && transactionData.targetBalanceId && mirrorTransactionId;
+        //Update existing transaction
+        batch.update(transactionDocRef, transactionData);
 
-    if (!transactionSnapshot.exists) {
-        console.log('The transaction does not exist!');
-        return;
-    }
-
-    const batch = firestore.batch();
-    const accountToAccount = transactionData.accountToAccount && transactionData.targetAccountId && transactionData.targetBalanceId;
-
-    //Update existing transaction
-    batch.update(transactionRef, transactionData);
-    if (accountToAccount) {
-        const mirrorTransactionPath = getTransactionDocPath(userId, transactionData.targetAccountId, transactionData.targetBalanceId, transactionId);
-        try {
-            const mirrorTransactionRef = await firestore.doc(mirrorTransactionPath);
-            const mirrorTransactionSnapshot = await mirrorTransactionRef.get();
+        if (accountToAccount) {
+            //Update mirror transaction
+            const mirrorTransactionDocRef = userDocRef.collection('transactions').doc(mirrorTransactionId);
+            const mirrorTransactionSnapshot = await mirrorTransactionDocRef.get();
             const {title, amount, dateTime, notes, categoryId} = transactionData;
             if (mirrorTransactionSnapshot.exists) {
-                let updatedMirrorTransaction = {
+                const updatedMirrorTransaction = {
                     ...mirrorTransactionSnapshot.data(),
                     type: transactionData.type === 'spending' ? 'earning' : 'spending',
                     title, amount, dateTime, notes, categoryId,
                 }
-                batch.update(mirrorTransactionRef, updatedMirrorTransaction);
+                batch.update(mirrorTransactionDocRef, updatedMirrorTransaction);
             } else {
                 console.log('Mirror transaction does not exist');
-                return;
             }
-        } catch (error) {
-            console.log('Could not update transaction')
-            console.log(error.message);
-            return;
         }
-    }
-    try {
-        await batch.commit();
-    } catch (e) {
-        console.log('batch commit error');
-        console.log(e.message);
+        try {
+            await batch.commit();
+            console.log('Added transaction(s)');
+        } catch (e) {
+            console.log('Transactions batch commit error', e.message);
+        }
+    } else {
+        console.log('Transaction does not exist');
     }
 }
 
 export const deleteTransactionDocument = async (userId, accountId, balanceId, transactionId) => {
-    const batch = firestore.batch();
-    const transactionPath = getTransactionDocPath(userId, accountId, balanceId, transactionId);
-    const transactionRef = firestore.doc(transactionPath);
-    batch.delete(transactionRef);
-    try {
-        const transactionSnapshot = await transactionRef.get();
+    const userDocRef = firestore.doc(`users/${userId}`);
+    const transactionDocRef = userDocRef.collection('transactions').doc(transactionId);
+    const transactionSnapshot = await transactionDocRef.get();
+    if (transactionSnapshot.exists) {
+        const batch = firestore.batch();
         const transactionData = transactionSnapshot.data();
-        const accountToAccount = transactionData && transactionData.accountToAccount && transactionData.targetAccountId && transactionData.targetBalanceId;
+        const mirrorTransactionId = transactionData.mirrorTransactionId;
+        const accountToAccount = transactionData && transactionData.accountToAccount && transactionData.targetAccountId && transactionData.targetBalanceId && mirrorTransactionId;
         if (accountToAccount) {
-            const mirrorTransactionPath = getTransactionDocPath(
-                userId,
-                transactionData.targetAccountId,
-                transactionData.targetBalanceId,
-                transactionId
-            );
-            const mirrorTransactionRef = firestore.doc(mirrorTransactionPath);
+            const mirrorTransactionRef = userDocRef.collection('transactions').doc(mirrorTransactionId);
             batch.delete(mirrorTransactionRef);
         }
-    } catch (error) {
-        console.log(error.message);
-    }
-    try {
-        await batch.commit();
-    } catch (e) {
-        console.log('batch commit error');
-        console.log(e.message);
+        batch.delete(transactionDocRef);
+        try {
+            await batch.commit();
+            console.log('Added transaction(s)');
+        } catch (e) {
+            console.log('Transactions batch commit error', e.message);
+        }
+    } else {
+        console.log('Transaction does not exist');
     }
 };
 
-export const calcTransactionsTotal = (transactionsCollectionSnapshot) => {
-    let total = 0;
-    transactionsCollectionSnapshot.docs.forEach(doc => {
-        const transactionData = doc.data();
-        total = transactionData.type === 'spending'
-            ? total - +transactionData.amount
-            : total + +transactionData.amount;
+export const deleteBalanceTransactions = async (userDocRef, accountId, balanceId) => {
+    const batch = firestore.batch();
+    const transactionsCollectionRef = userDocRef.collection('transactions');
+    const transactionsCollectionSnapshot = await transactionsCollectionRef.get();
+    transactionsCollectionSnapshot.docs.forEach(transactionDoc => {
+        const transactionData = transactionDoc.data();
+        if (transactionData.accountId === accountId && transactionData.balanceId === balanceId) {
+            batch.delete(transactionDoc.ref);
+        }
     });
-    return total;
+    try {
+        await batch.commit();
+        console.log('deleted transactions');
+    } catch (e) {
+        console.log('Transactions batch commit error', e.message);
+    }
 }

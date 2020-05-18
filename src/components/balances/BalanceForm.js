@@ -1,5 +1,8 @@
 import React from 'react';
-import {addOrUpdateBalanceDocument} from "../../firebase/balances.firebase-utils";
+import {
+    addBalanceDocument,
+    updateBalanceDocument
+} from "../../firebase/balances.firebase-utils";
 import {selectUserId} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
@@ -9,8 +12,8 @@ import {colors} from "../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Box from "@material-ui/core/Box";
-import {selectBalance} from "../../redux/accounts/accounts.selectors";
 import CurrencySelect from "../ui/inputs/CurrencySelect";
+import {selectBalance} from "../../redux/balances/balances.selectors";
 
 class BalanceForm extends React.Component {
     _isMounted = false;
@@ -42,7 +45,11 @@ class BalanceForm extends React.Component {
         event.preventDefault();
         let {userId, accountId, balanceId, handleFormCancel} = this.props;
         const balanceData = this.state;
-        await addOrUpdateBalanceDocument(userId, accountId, balanceId, balanceData);
+        if (balanceId && accountId) {
+            await updateBalanceDocument(userId, accountId, balanceId, balanceData);
+        } else {
+            await addBalanceDocument(userId, accountId, balanceData);
+        }
         if (this._isMounted) {
             this.setState({
                 name: '',
@@ -112,7 +119,7 @@ class BalanceForm extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
-    balance: selectBalance(ownProps.accountId, ownProps.balanceId)(state),
+    balance: selectBalance(ownProps.balanceId)(state),
 });
 
 export default connect(mapStateToProps)(BalanceForm);

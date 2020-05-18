@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {addOrUpdateAccountDocument} from "../../../firebase/accounts.firebase-utils";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import Grid from '@material-ui/core/Grid';
@@ -13,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import {selectAccount} from "../../../redux/accounts/accounts.selectors";
 import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
 import CurrencySelect from "../../ui/inputs/CurrencySelect";
+import {addAccountDocument, updateAccountDocument} from "../../../firebase/accounts.firebase-utils";
 
 class AccountForm extends Component {
     _isMounted = false;
@@ -48,7 +48,11 @@ class AccountForm extends Component {
         event.preventDefault();
         let {userId, accountId, handleFormCancel} = this.props;
         const accountData = this.state;
-        await addOrUpdateAccountDocument(userId, accountId, accountData);
+        if (accountId) {
+            await updateAccountDocument(userId, accountId, accountData);
+        } else {
+            await addAccountDocument(userId, accountData);
+        }
 
         if (this._isMounted) {
             this.setState({

@@ -1,5 +1,5 @@
 import React from 'react';
-import {selectAccountName, selectBalanceName} from "../../../redux/accounts/accounts.selectors";
+import {selectAccountName} from "../../../redux/accounts/accounts.selectors";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import TransactionArrow from "../transaction-form/TransactionArrow";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {borderRadius, colors} from "../../../styles/global";
+import {selectBalanceName} from "../../../redux/balances/balances.selectors";
 
 const AccountInfoContainer = withStyles({
     root: {
@@ -102,9 +103,9 @@ const AccountToAccountView = ({isSpending, accountName, balanceName, targetAccou
 
 const mapStateToProps = (state, ownProps) => ({
     accountName: selectAccountName(ownProps.accountId)(state),
-    balanceName: selectBalanceName(ownProps.accountId, ownProps.balanceId)(state),
+    balanceName: selectBalanceName(ownProps.balanceId)(state),
     targetAccountName: selectAccountName(ownProps.targetAccountId)(state),
-    targetBalanceName: selectBalanceName(ownProps.targetAccountId, ownProps.targetBalanceId)(state),
+    targetBalanceName: selectBalanceName(ownProps.targetBalanceId)(state),
 });
 
 export default connect(mapStateToProps)(AccountToAccountView);

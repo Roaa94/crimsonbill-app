@@ -40,16 +40,4 @@ export const convertCollectionToArray = (snapshot) => {
     return array;
 }
 
-export const getAccountDocPath = (userId, accountId) => {
-    return `users/${userId}/accounts/${accountId}`;
-}
-
-export const getBalanceDocPath = (userId, accountId, balanceId) => {
-    return `${getAccountDocPath(userId, accountId)}/balances/${balanceId}`;
-}
-
-export const getTransactionDocPath = (userId, accountId, balanceId, transactionId) => {
-    return `${getBalanceDocPath(userId, accountId, balanceId)}/transactions/${transactionId}`;
-}
-
 export default firebase;
