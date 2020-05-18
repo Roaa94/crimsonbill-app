@@ -36,45 +36,42 @@ const AccountsPage = (
 
     return (
         <PageWrapper>
-            {
-                hasAccounts ?
-                    <Grid spacing={2} container justify='space-between' alignItems='center'>
-                        <Grid item container xs={12} md={4} alignItems='center' justify='flex-start'>
-                            <h3>Accounts</h3>
-                            <AddIconButton
-                                handleClick={() => toggleAccountForm(true)}
-                                disabled={accountFormShow}
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={4} container justify='center' alignItems='center'>
-                            Total Balance
-                            <TotalBalance>
-                                <FormattedNumber
-                                    number={userTotalBalance}
-                                    currencyCode={defaultCurrencyCode}
+            <AccountsListWithLoader loading={isFetchingAccountsData}>
+                {
+                    hasAccounts ?
+                        <Grid spacing={2} container justify='space-between' alignItems='center'>
+                            <Grid item container xs={12} md={4} alignItems='center' justify='flex-start'>
+                                <h3>Accounts</h3>
+                                <AddIconButton
+                                    handleClick={() => toggleAccountForm(true)}
+                                    disabled={accountFormShow}
                                 />
-                            </TotalBalance>
-                        </Grid>
-                        <Grid item xs={12} md={4} container justify='flex-end'>
-                            <Grid item xs={12} md={7}>
-                                <DefaultCurrencySelect/>
+                            </Grid>
+                            <Grid item xs={12} md={4} container justify='center' alignItems='center'>
+                                Total Balance
+                                <TotalBalance>
+                                    <FormattedNumber
+                                        number={userTotalBalance}
+                                        currencyCode={defaultCurrencyCode}
+                                    />
+                                </TotalBalance>
+                            </Grid>
+                            <Grid item xs={12} md={4} container justify='flex-end'>
+                                <Grid item xs={12} md={7}>
+                                    <DefaultCurrencySelect/>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                    : null
-            }
-            <AccountFormContainer/>
-            {
-                hasAccounts
-                    ? <AccountsListWithLoader loading={isFetchingAccountsData}>
-                        {
-                            accounts.map(({id, ...accountDetails}) => (
-                                <AccountCard id={id} {...accountDetails} key={id}/>
-                            ))
-                        }
-                    </AccountsListWithLoader>
-                    : accountFormShow ? null : <AddAccountView/>
-            }
+                        : null
+                }
+                <AccountFormContainer/>
+                {
+                    hasAccounts
+                        ? accounts.map(({id, ...accountDetails}) => (
+                            <AccountCard id={id} {...accountDetails} key={id}/>
+                        )) : accountFormShow ? null : <AddAccountView/>
+                }
+            </AccountsListWithLoader>
         </PageWrapper>
     );
 }
