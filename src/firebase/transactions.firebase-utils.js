@@ -1,4 +1,5 @@
 import {firestore} from "./firebase.utils";
+import {updateBalanceTotal} from "./balances.firebase-utils";
 
 export const addTransactionDocument = async (userId, accountId, balanceId, transactionData) => {
     const userDocRef = firestore.doc(`users/${userId}`);
@@ -32,6 +33,7 @@ export const addTransactionDocument = async (userId, accountId, balanceId, trans
         try {
             await batch.commit();
             console.log('Added transaction(s)');
+            await updateBalanceTotal(userDocRef, balanceId);
         } catch (e) {
             console.log('Transactions batch commit error', e.message);
         }
@@ -69,6 +71,7 @@ export const updateTransactionDocument = async (userId, accountId, balanceId, tr
         try {
             await batch.commit();
             console.log('Added transaction(s)');
+            await updateBalanceTotal(userDocRef, balanceId);
         } catch (e) {
             console.log('Transactions batch commit error', e.message);
         }
@@ -94,6 +97,7 @@ export const deleteTransactionDocument = async (userId, accountId, balanceId, tr
         try {
             await batch.commit();
             console.log('Added transaction(s)');
+            await updateBalanceTotal(userDocRef, balanceId);
         } catch (e) {
             console.log('Transactions batch commit error', e.message);
         }
@@ -115,6 +119,7 @@ export const deleteBalanceTransactions = async (userDocRef, accountId, balanceId
     try {
         await batch.commit();
         console.log('deleted transactions');
+        await updateBalanceTotal(userDocRef, balanceId);
     } catch (e) {
         console.log('Transactions batch commit error', e.message);
     }

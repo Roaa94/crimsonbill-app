@@ -16,13 +16,14 @@ export const fetchTransactionsError = errorMessage => ({
 });
 
 export const fetchTransactionsStartAsync = userId => {
-    return dispatch => {
+    return async dispatch => {
         console.log('fetching transactions...');
         dispatch(fetchTransactionsStart());
         const transactionsCollectionRef = firestore.collection(`users/${userId}/transactions`);
         const orderedTransactionsRef = transactionsCollectionRef.orderBy('dateTime', 'desc');
 
         orderedTransactionsRef.onSnapshot(async transactionsCollectionSnapshot => {
+            console.log('Transactions snapshot updated');
             const transactionsArray = convertCollectionToArray(transactionsCollectionSnapshot);
             dispatch(fetchTransactionsSuccess(transactionsArray));
         }, error => dispatch(fetchTransactionsError(error.message)));

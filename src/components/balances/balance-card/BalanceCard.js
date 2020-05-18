@@ -114,6 +114,7 @@ class BalanceCard extends React.Component {
                         showBalanceForm ? (
                             <BalanceForm
                                 balanceId={id}
+                                accountId={accountId}
                                 handleFormCancel={() => this.controlBalanceForm(false)}
                             />
                         ) : null
