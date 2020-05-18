@@ -10,14 +10,12 @@ import {selectUser} from "./redux/user/user.selectors";
 import {createUserProfileDocument} from "./firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
 import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
-import {updateAppCurrenciesRates} from "./firebase/currencies.firebase-utils";
 import {fetchAccountsStartAsync} from "./redux/accounts/accounts.actions";
 
 // import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
 class App extends React.Component {
     unsubscribeFromAuth = null;
-    currencyUpdateInterval;
 
     componentDidMount() {
         const {
@@ -29,14 +27,6 @@ class App extends React.Component {
         } = this.props;
 
         fetchCurrenciesStartAsync();
-
-        updateAppCurrenciesRates().then(() => {
-            this.currencyUpdateInterval = setInterval(() => {
-                updateAppCurrenciesRates().then(() => {
-                    console.log('Currencies rates updated');
-                });
-            }, 3600000);
-        });
 
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
@@ -65,7 +55,6 @@ class App extends React.Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.currencyUpdateInterval);
         this.unsubscribeFromAuth();
     }
 
