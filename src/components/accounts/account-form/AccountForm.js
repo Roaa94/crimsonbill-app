@@ -50,12 +50,14 @@ class AccountForm extends Component {
         const accountData = this.state;
         await addOrUpdateAccountDocument(userId, accountId, accountData);
 
-        this.setState({
-            typeId: '',
-            name: '',
-            currencyCode: '',
-            notes: '',
-        });
+        if (this._isMounted) {
+            this.setState({
+                typeId: '',
+                name: '',
+                currencyCode: '',
+                notes: '',
+            });
+        }
         handleFormCancel();
     };
 
