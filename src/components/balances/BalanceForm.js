@@ -45,7 +45,7 @@ class BalanceForm extends React.Component {
         event.preventDefault();
         let {userId, accountId, balanceId, handleFormCancel} = this.props;
         const balanceData = this.state;
-        if (balanceId && accountId) {
+        if (balanceId) {
             await updateBalanceDocument(userId, accountId, balanceId, balanceData);
         } else {
             await addBalanceDocument(userId, accountId, balanceData);
