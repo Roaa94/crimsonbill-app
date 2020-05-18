@@ -1,3 +1,4 @@
 export const UserActionTypes = {
     SET_USER: 'SET_USER',
+    TOGGLE_IS_CALCULATING_BALANCE: 'TOGGLE_IS_CALCULATING_BALANCE'
 };

@@ -3,8 +3,15 @@ import CurrencySelect from "../ui/inputs/CurrencySelect";
 import {setDefaultCurrency} from "../../firebase/user.firebase-utils";
 import {selectDefaultCurrencyCode, selectUserId} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
+import {setIsCalculatingBalance} from "../../redux/user/user.actions";
 
-const DefaultCurrencySelect = ({defaultCurrencyCode, userId}) => {
+const DefaultCurrencySelect = ({defaultCurrencyCode, userId, setIsCalculatingBalance}) => {
+
+    const handleCurrencyChange = async event => {
+        setIsCalculatingBalance(true);
+        await setDefaultCurrency(userId, event.target.value);
+        setIsCalculatingBalance(false);
+    }
 
     return (
         <CurrencySelect
@@ -12,7 +19,7 @@ const DefaultCurrencySelect = ({defaultCurrencyCode, userId}) => {
             name='currencyCode'
             value={defaultCurrencyCode}
             whiteBg
-            handleChange={event => setDefaultCurrency(userId, event.target.value)}
+            handleChange={handleCurrencyChange}
         />
     );
 };
@@ -22,4 +29,8 @@ const mapStateToProps = state => ({
     defaultCurrencyCode: selectDefaultCurrencyCode(state),
 });
 
-export default connect(mapStateToProps)(DefaultCurrencySelect);
+const mapDispatchToProps = dispatch => ({
+    setIsCalculatingBalance: value => dispatch(setIsCalculatingBalance(value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultCurrencySelect);

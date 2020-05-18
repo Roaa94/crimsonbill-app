@@ -7,7 +7,12 @@ import AccountCard from "../../components/accounts/account-card/AccountCard";
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
 import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
 import WithLoader from "../../components/HOC/WithLoader";
-import {selectDefaultCurrencyCode, selectUserId, selectUserTotalBalance} from "../../redux/user/user.selectors";
+import {
+    selectDefaultCurrencyCode,
+    selectIsCalculatingBalance,
+    selectUserId,
+    selectUserTotalBalance
+} from "../../redux/user/user.selectors";
 import {
     selectAccountFormShow,
     selectAccountsArray,
@@ -21,6 +26,7 @@ import FormattedNumber from "../../components/ui/FormattedNumber";
 import {TotalBalance} from "./AccountsPage.styles";
 
 const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
+const TotalBalanceWithLoader = WithLoader(({children}) => <TotalBalance>{children}</TotalBalance>, 'span');
 
 const AccountsPage = (
     {
@@ -30,7 +36,8 @@ const AccountsPage = (
         isFetchingAccountsData,
         hasAccounts,
         userTotalBalance,
-        defaultCurrencyCode
+        defaultCurrencyCode,
+        isCalculatingBalance
     }
 ) => {
 
@@ -47,14 +54,18 @@ const AccountsPage = (
                                     disabled={accountFormShow}
                                 />
                             </Grid>
-                            <Grid item xs={12} md={4} container justify='center' alignItems='center'>
-                                Total Balance
-                                <TotalBalance>
-                                    <FormattedNumber
-                                        number={userTotalBalance}
-                                        currencyCode={defaultCurrencyCode}
-                                    />
-                                </TotalBalance>
+                            <Grid item xs={12} md={4} spacing={2} container justify='center' alignItems='center'>
+                                <Grid item>
+                                    Total Balance
+                                </Grid>
+                                <Grid item>
+                                    <TotalBalanceWithLoader loading={isCalculatingBalance} type='dots'>
+                                        <FormattedNumber
+                                            number={userTotalBalance}
+                                            currencyCode={defaultCurrencyCode}
+                                        />
+                                    </TotalBalanceWithLoader>
+                                </Grid>
                             </Grid>
                             <Grid item xs={12} md={4} container justify='flex-end'>
                                 <Grid item xs={12} md={7}>
@@ -84,6 +95,7 @@ const mapStateToProps = createStructuredSelector({
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
     isFetchingAccountsData: selectIsFetchingAccountsData,
+    isCalculatingBalance: selectIsCalculatingBalance,
 });
 
 const mapDispatchToProps = dispatch => ({

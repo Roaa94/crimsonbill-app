@@ -21,3 +21,8 @@ export const selectUserTotalBalance = createSelector(
     [selectUserData],
     userData => userData.totalBalance,
 );
+
+export const selectIsCalculatingBalance = createSelector(
+    [selectUser],
+    user => user.isCalculatingBalance,
+);
