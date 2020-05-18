@@ -11,7 +11,8 @@ import {selectDefaultCurrencyCode, selectUserId, selectUserTotalBalance} from ".
 import {
     selectAccountFormShow,
     selectAccountsArray,
-    selectAccountsFetching, selectHasAccounts
+    selectHasAccounts,
+    selectIsFetchingAccountsData
 } from "../../redux/accounts/accounts.selectors";
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 import Grid from "@material-ui/core/Grid";
@@ -26,7 +27,7 @@ const AccountsPage = (
         accountFormShow,
         toggleAccountForm,
         accounts,
-        isFetchingAccounts,
+        isFetchingAccountsData,
         hasAccounts,
         userTotalBalance,
         defaultCurrencyCode
@@ -65,7 +66,7 @@ const AccountsPage = (
             <AccountFormContainer/>
             {
                 hasAccounts
-                    ? <AccountsListWithLoader loading={isFetchingAccounts}>
+                    ? <AccountsListWithLoader loading={isFetchingAccountsData}>
                         {
                             accounts.map(({id, ...accountDetails}) => (
                                 <AccountCard id={id} {...accountDetails} key={id}/>
@@ -85,7 +86,7 @@ const mapStateToProps = createStructuredSelector({
     hasAccounts: selectHasAccounts,
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
-    isFetchingAccounts: selectAccountsFetching,
+    isFetchingAccountsData: selectIsFetchingAccountsData,
 });
 
 const mapDispatchToProps = dispatch => ({

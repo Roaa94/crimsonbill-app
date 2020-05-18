@@ -104,3 +104,8 @@ export const selectAllAccountTransactions = (accountId) => createSelector(
         return allTransactions;
     }
 );
+
+export const selectIsFetchingAccountsData = createSelector(
+    [selectAccounts],
+    accounts => accounts.isFetchingAccounts || accounts.isFetchingBalances || accounts.isFetchingTransactions,
+);
