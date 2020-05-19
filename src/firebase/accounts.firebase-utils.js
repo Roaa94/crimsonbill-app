@@ -25,8 +25,12 @@ export const updateAccountDocument = async (userId, accountId, updatedAccountDat
     const userDocRef = firestore.doc(`users/${userId}`);
     const accountDocRef = userDocRef.collection('accounts').doc(accountId);
     const accountDocSnapshot = await accountDocRef.get();
+    const accountData = accountDocSnapshot.data();
     if (accountDocSnapshot.exists) {
         await accountDocRef.update(updatedAccountData);
+        if(accountData.currencyCode !== updatedAccountData.currencyCode) {
+            await updateAccountTotal(userDocRef, accountId);
+        }
     } else {
         console.log('Account does not exist');
     }
