@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import TransactionArrow from "./TransactionArrow";
 import Select from "../../ui/inputs/Select";
+import TransactionTypeAutoComplete from "./TransactionTypeAutocomplete";
 
 const AccountToAccountForm = (
     {
@@ -18,7 +19,9 @@ const AccountToAccountForm = (
         targetAccountSelectValue,
         targetBalanceSelectValue,
         accountsList,
-        balancesList
+        balancesList,
+        sourceId,
+        categoryId,
     } = formData;
 
     return (
@@ -57,10 +60,19 @@ const AccountToAccountForm = (
                     <Select
                         label={`${isSpending ? 'To' : 'From'} Balance`}
                         name='targetBalanceId'
-                        disabled={!(!!targetAccountSelectValue) || toEdit}
+                        disabled={!(!!targetAccountSelectValue) || toEdit || balancesList.length === 0}
                         value={targetBalanceSelectValue}
                         menuItems={balancesList}
                         onChange={(event) => onInputChange(event.target.name, event.target.value)}
+                    />
+                </Grid>
+                <Grid item xs={12} xl={6}>
+                    <TransactionTypeAutoComplete
+                        isSpending={!isSpending}
+                        sourceId={sourceId}
+                        categoryId={categoryId}
+                        onInputChange={onInputChange}
+                        toEdit={toEdit}
                     />
                 </Grid>
             </Grid>

@@ -6,14 +6,12 @@ import TextField from "@material-ui/core/TextField";
 import DateTimePicker from "../../ui/inputs/date-time-pickers/DateTimePicker";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Autocomplete from "../../ui/inputs/Autocomplete";
 import AccountToAccountForm from "./AccountToAccountForm";
+import TransactionTypeAutoComplete from "./TransactionTypeAutocomplete";
 
 const TransactionForm = (
     {
         typePickers,
-        categorySelectItems,
-        sourcesSelectItems,
         onInputChange,
         toEdit,
         values,
@@ -30,13 +28,15 @@ const TransactionForm = (
         notes,
         type,
         targetAccountId,
-        targetBalanceId
+        targetBalanceId,
     } = values;
 
     const accountToAccountFormData = {
         ...accountToAccountData,
         targetAccountSelectValue: targetAccountId,
         targetBalanceSelectValue: targetBalanceId,
+        sourceId,
+        categoryId,
     };
 
     const allowAccountToAccountForm = accountToAccountData.accountsList.length === 0 || toEdit;
@@ -65,37 +65,12 @@ const TransactionForm = (
                         />
                     </Grid>
                     <Grid item xs>
-                        {
-                            type === 'spending' ? (
-                                <Autocomplete
-                                    options={categorySelectItems}
-                                    idValue={categoryId}
-                                    onChange={
-                                        (event, value) => {
-                                            if (value) {
-                                                onInputChange('categoryId', value.id);
-                                            }
-                                        }
-                                    }
-                                    label='Category'
-                                    noOptionsText='No matching category, add from settings'
-                                />
-                            ) : (
-                                <Autocomplete
-                                    options={sourcesSelectItems}
-                                    idValue={sourceId}
-                                    onChange={
-                                        (event, value) => {
-                                            if (value) {
-                                                onInputChange('sourceId', value.id);
-                                            }
-                                        }
-                                    }
-                                    label='Source'
-                                    noOptionsText='No matching source, add from settings'
-                                />
-                            )
-                        }
+                        <TransactionTypeAutoComplete
+                            isSpending={type === 'spending'}
+                            categoryId={categoryId}
+                            sourceId={sourceId}
+                            onInputChange={onInputChange}
+                        />
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={5} xl={2}>

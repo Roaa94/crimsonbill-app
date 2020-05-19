@@ -36,6 +36,9 @@ export const addTransactionDocument = async (userId, accountId, balanceId, trans
             await batch.commit();
             console.log('Added transaction(s)');
             await updateBalanceTotal(userDocRef, balanceId);
+            if (accountToAccount) {
+                await updateBalanceTotal(userDocRef, transactionData.targetBalanceId);
+            }
         } catch (e) {
             console.log('Transactions batch commit error', e.message);
         }
@@ -74,6 +77,9 @@ export const updateTransactionDocument = async (userId, accountId, balanceId, tr
             await batch.commit();
             console.log('Added transaction(s)');
             await updateBalanceTotal(userDocRef, balanceId);
+            if (accountToAccount) {
+                await updateBalanceTotal(userDocRef, transactionData.targetBalanceId);
+            }
         } catch (e) {
             console.log('Transactions batch commit error', e.message);
         }
@@ -100,6 +106,9 @@ export const deleteTransactionDocument = async (userId, accountId, balanceId, tr
             await batch.commit();
             console.log('Added transaction(s)');
             await updateBalanceTotal(userDocRef, balanceId);
+            if (accountToAccount) {
+                await updateBalanceTotal(userDocRef, transactionData.targetBalanceId);
+            }
         } catch (e) {
             console.log('Transactions batch commit error', e.message);
         }

@@ -5,7 +5,7 @@ import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import Icon from "@material-ui/core/Icon";
 import Grid from "@material-ui/core/Grid";
 
-const Autocomplete = ({options, idValue, label, ...otherProps}) => {
+const Autocomplete = ({options, disabled = false, idValue, label, ...otherProps}) => {
     const targetValue = options.find(item => item.id === idValue);
 
     return (
@@ -14,6 +14,7 @@ const Autocomplete = ({options, idValue, label, ...otherProps}) => {
             options={options}
             value={targetValue ? targetValue : null}
             id="auto-complete"
+            disabled={disabled}
             popupIcon={<ExpandMoreRoundedIcon/>}
             renderOption={(option, state) => {
                 return (
