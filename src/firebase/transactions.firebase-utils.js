@@ -29,6 +29,8 @@ export const addTransactionDocument = async (userId, accountId, balanceId, trans
             if (!mirrorTransactionSnapshot.exists) {
                 newTransaction['mirrorTransactionId'] = mirrorTransactionSnapshot.id;
                 batch.set(mirrorTransactionDocRef, mirrorTransaction);
+            } else {
+                console.log('Mirror transaction already exists');
             }
         }
         batch.set(transactionDocRef, newTransaction);

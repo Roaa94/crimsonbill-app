@@ -26,7 +26,7 @@ import {TotalBalance} from "./AccountsPage.styles";
 import {selectIsFetchingBalances} from "../../redux/balances/balances.selectors";
 import {selectIsFetchingTransactions} from "../../redux/transactions/transactions.selectors";
 
-const AccountsListWithLoader = WithLoader(({children}) => <div>{children}</div>);
+const AccountsListWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 const TotalBalanceWithLoader = WithLoader(({children}) => <TotalBalance>{children}</TotalBalance>, 'span');
 
 const AccountsPage = (
