@@ -21,13 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/balances/balance-card/BalanceCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/balances/balance-card/BalanceCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/accounts.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/accounts.firebase-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/balances.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/balances.firebase-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-card/AccountToAccountView.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-form/AccountToAccountForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionFormContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionFormContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/firebase/transactions.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/transactions.firebase-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/balances/balances.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/balances/balances.actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/transactions/transactions.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/transactions/transactions.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/accounts/accounts.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/accounts/accounts.selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/balances/balances.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/balances/balances.selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/mui-theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/mui-theme.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,41 +165,9 @@
       <workItem from="1589288573844" duration="3166000" />
       <workItem from="1589397353416" duration="23509000" />
       <workItem from="1589460374722" duration="5799000" />
-    </task>
-    <task id="LOCAL-00193" summary="removed box shadow of disabled select hover">
-      <created>1588559542113</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1588559542113</updated>
-    </task>
-    <task id="LOCAL-00194" summary="testing with calculating balance totals with selectors (not efficient)">
-      <created>1588560581806</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1588560581806</updated>
-    </task>
-    <task id="LOCAL-00195" summary="functions name change">
-      <created>1588622516541</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1588622516542</updated>
-    </task>
-    <task id="LOCAL-00196" summary="added firebase function to calculate transactions total and update the total balance in the database">
-      <created>1588622577405</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1588622577405</updated>
-    </task>
-    <task id="LOCAL-00197" summary="code format and clean up">
-      <created>1588622698363</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1588622698363</updated>
+      <workItem from="1589850608150" duration="60000" />
+      <workItem from="1589855818195" duration="3901000" />
+      <workItem from="1589891648100" duration="8458000" />
     </task>
     <task id="LOCAL-00198" summary="deleted total balance calculation selector and refactored others">
       <created>1588622735182</created>
@@ -507,7 +477,42 @@
       <option name="project" value="LOCAL" />
       <updated>1589831105541</updated>
     </task>
-    <option name="localTasksCounter" value="242" />
+    <task id="LOCAL-00242" summary="worked on calculating transactions, balances, accounts and user total balances">
+      <created>1589833430735</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1589833430735</updated>
+    </task>
+    <task id="LOCAL-00243" summary="worked on account-to-account transactions form, view and CRUD">
+      <created>1589856559175</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1589856559175</updated>
+    </task>
+    <task id="LOCAL-00244" summary="minor fix">
+      <created>1589859642419</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1589859642419</updated>
+    </task>
+    <task id="LOCAL-00245" summary="worked on account-to-account transactions form">
+      <created>1589859679690</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1589859679690</updated>
+    </task>
+    <task id="LOCAL-00246" summary="minor fixes">
+      <created>1589914286795</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1589914286796</updated>
+    </task>
+    <option name="localTasksCounter" value="247" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,10 +547,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="removed unused function" />
-    <MESSAGE value="added taxonomies data and stored them in the database on user sign up" />
-    <MESSAGE value="added settings reducer and fetched taxonomies and stored them in the state" />
-    <MESSAGE value="populated account type select component with account types taxonomies array in account form" />
     <MESSAGE value="deleted unnecessary account form reducer" />
     <MESSAGE value="added icons to account types taxonomies and displayed them in the form and in the card" />
     <MESSAGE value="added autocomplete component" />
@@ -566,8 +567,12 @@
     <MESSAGE value="removed commented code from failed attempt :(" />
     <MESSAGE value="[big] changed redux state and database structure" />
     <MESSAGE value="fetched all loading states in account page" />
+    <MESSAGE value="worked on calculating transactions, balances, accounts and user total balances" />
+    <MESSAGE value="worked on account-to-account transactions form, view and CRUD" />
     <MESSAGE value="minor fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fix" />
+    <MESSAGE value="worked on account-to-account transactions form" />
+    <MESSAGE value="minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1589828330152">
@@ -582,53 +587,53 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="961" y="438" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583332506750" />
-    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589807415597">
+    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589914506817">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589807415597" />
+    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914506817" />
     <state x="1025" y="536" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1588722673140">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1025" y="536" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722673140" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1589831104860">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1589914286028">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589831104860" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1589832102657">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914286028" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1589914972622">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589832102657" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914972622" />
     <state x="915" y="284" key="FileChooserDialogImpl" timestamp="1588446530757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583401638303" />
     <state x="915" y="284" key="FileChooserDialogImpl/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588446530757" />
-    <state width="2517" height="273" key="GridCell.Tab.0.bottom" timestamp="1589820023489">
+    <state width="2517" height="273" key="GridCell.Tab.0.bottom" timestamp="1589914266237">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="273" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589820023489" />
-    <state width="2517" height="273" key="GridCell.Tab.0.center" timestamp="1589820023488">
+    <state width="2517" height="273" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914266237" />
+    <state width="2517" height="273" key="GridCell.Tab.0.center" timestamp="1589914266237">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="273" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589820023488" />
-    <state width="2517" height="273" key="GridCell.Tab.0.left" timestamp="1589820023488">
+    <state width="2517" height="273" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914266237" />
+    <state width="2517" height="273" key="GridCell.Tab.0.left" timestamp="1589914266237">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="273" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589820023488" />
-    <state width="2517" height="273" key="GridCell.Tab.0.right" timestamp="1589820023488">
+    <state width="2517" height="273" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914266237" />
+    <state width="2517" height="273" key="GridCell.Tab.0.right" timestamp="1589914266237">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="273" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589820023488" />
-    <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1588806374953">
+    <state width="2517" height="273" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914266237" />
+    <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1589914143648">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588806374953" />
+    <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914143648" />
     <state x="937" y="258" key="SettingsEditor" timestamp="1589312298204">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -642,11 +647,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1101" y="323" key="VCS.ChangeListViewerDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587205353399" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1589475440515">
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1589856561908">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="722" y="254" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583401704491" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589475440515" />
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589856561908" />
     <state x="985" y="353" key="VcsDiffUtil.ChangesDialog" timestamp="1587825550391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -655,10 +660,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="93" y="93" width="2375" height="1215" key="com.intellij.history.integration.ui.views.FileHistoryDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588090661449" />
-    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1589832403791">
+    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1589914919457">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589832403791" />
+    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914919457" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1589832050042">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -667,10 +672,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589830518763" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1589833123800">
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1589914627896">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589833123800" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914627896" />
   </component>
 </project>

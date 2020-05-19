@@ -31,22 +31,3 @@ export const selectIsFetchingTransactions = createSelector(
     [selectTransactions],
     transactions => transactions.isFetchingTransactions,
 );
-
-// export const selectAllAccountTransactions = (accountId) => createSelector(
-//     [selectAccountBalances(accountId)],
-//     balances => {
-//         let allTransactions = [];
-//         balances.forEach(balance => {
-//             if (balance.transactions) {
-//                 allTransactions.push(...balance.transactions);
-//             }
-//         });
-//         //Sort transactions by transaction date
-//         allTransactions.sort((transactionA, transactionB) => {
-//             let transactionATimestamp = transactionA.dateTime.seconds;
-//             let transactionBTimestamp = transactionB.dateTime.seconds;
-//             return transactionATimestamp + transactionBTimestamp;
-//         })
-//         return allTransactions;
-//     }
-// );

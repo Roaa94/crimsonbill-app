@@ -11,12 +11,7 @@ import {
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import TransactionForm from "./TransactionForm";
-import {
-    selectAccount,
-    selectOtherAccounts,
-} from "../../../redux/accounts/accounts.selectors";
 import {TransactionFormWrapper} from "./TransactionForm.styles";
-import {selectBalance, selectBalancesArray} from "../../../redux/balances/balances.selectors";
 import {selectTransaction} from "../../../redux/transactions/transactions.selectors";
 
 class TransactionFormContainer extends React.Component {
@@ -27,9 +22,6 @@ class TransactionFormContainer extends React.Component {
         title: '',
         amount: '',
         dateTime: new Date(),
-        accountToAccount: false,
-        targetAccountId: '',
-        targetBalanceId: '',
         notes: '',
     };
 
@@ -41,18 +33,17 @@ class TransactionFormContainer extends React.Component {
     state = {
         defaultValues: this.defaultTransactionValues,
         typePickerValues: this.typePickerValues,
-        targetAccountBalances: [],
     };
 
     _isMounted = false;
 
     componentDidMount() {
         this._isMounted = true;
-        const {transaction, balances} = this.props;
+        const {transaction} = this.props;
 
         if (transaction) {
             const parsedDateTime = new Date(transaction.dateTime.seconds * 1000);
-            let {type, categoryId, sourceId, title, amount, accountToAccount, notes, targetAccountId, targetBalanceId} = transaction;
+            let {type, categoryId, sourceId, title, amount, notes} = transaction;
             if (this._isMounted) {
                 this.setState({
                     defaultValues: {
@@ -62,16 +53,12 @@ class TransactionFormContainer extends React.Component {
                         sourceId,
                         title,
                         amount,
-                        accountToAccount,
                         notes,
-                        targetAccountId,
-                        targetBalanceId
                     },
                     typePickerValues: {
                         spending: transaction.type === 'spending',
                         earning: transaction.type === 'earning',
                     },
-                    targetAccountBalances: accountToAccount ? balances.filter(balances => balances.accountId === targetAccountId) : '',
                 });
             }
         }
@@ -107,14 +94,8 @@ class TransactionFormContainer extends React.Component {
                 ...defaultValues,
                 [name]: value,
             }
-        })
+        });
 
-        if (name === 'targetAccountId') {
-            const {balances} = this.props;
-            this.setState({
-                targetAccountBalances: balances.filter(balances => balances.accountId === value),
-            })
-        }
         if (name === 'type') {
             this.setState({
                 typePickerValues: {
@@ -125,16 +106,9 @@ class TransactionFormContainer extends React.Component {
     }
 
     render() {
-        const {typePickerValues, defaultValues, targetAccountBalances} = this.state;
+        const {typePickerValues, defaultValues} = this.state;
 
-        const {handleFormCancel, transactionId, account, balance, otherAccounts} = this.props;
-
-        const accountToAccountData = {
-            currentAccountValue: account.name,
-            currentBalanceValue: balance.name,
-            accountsList: otherAccounts,
-            balancesList: targetAccountBalances,
-        };
+        const {handleFormCancel, transactionId} = this.props;
 
         return (
             <TransactionFormWrapper>
@@ -143,7 +117,6 @@ class TransactionFormContainer extends React.Component {
                         values={defaultValues}
                         typePickers={typePickerValues}
                         onInputChange={this.handleInputChange}
-                        accountToAccountData={accountToAccountData}
                         toEdit={!!transactionId}
                     />
                     <Grid container>
@@ -173,11 +146,7 @@ class TransactionFormContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
-    account: selectAccount(ownProps.accountId)(state),
-    balance: selectBalance(ownProps.balanceId)(state),
     transaction: selectTransaction(ownProps.transactionId)(state),
-    otherAccounts: selectOtherAccounts(ownProps.accountId)(state),
-    balances: selectBalancesArray(state),
 });
 
 export default connect(mapStateToProps)(TransactionFormContainer);

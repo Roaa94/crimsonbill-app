@@ -128,6 +128,11 @@ export const theme = createMuiTheme({
                     margin: '12px 0',
                 },
             },
+        },
+        MuiTooltip: {
+            tooltip: {
+                fontSize: '12px',
+            }
         }
     },
     props: {

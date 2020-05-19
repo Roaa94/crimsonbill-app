@@ -32,11 +32,6 @@ export const selectBalance = balanceId => createSelector(
     balancesArray => balancesArray.find(balance => balance.id === balanceId),
 );
 
-export const selectBalanceName = balanceId => createSelector(
-    [selectBalance(balanceId)],
-    balance => balance.name,
-);
-
 export const selectBalanceCurrencyCode = balanceId => createSelector(
     [selectBalance(balanceId)],
     balance => balance.currencyCode,

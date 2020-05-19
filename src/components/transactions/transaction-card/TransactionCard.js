@@ -19,7 +19,6 @@ import {connect} from "react-redux";
 import {deleteTransactionDocument} from "../../../firebase/transactions.firebase-utils";
 import FormattedNumber from "../../ui/FormattedNumber";
 import TransactionForm from "../transaction-form/TransactionFormContainer";
-import AccountToAccountView from "./AccountToAccountView";
 import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import Icon from "@material-ui/core/Icon";
 import {selectBalanceCurrencyCode} from "../../../redux/balances/balances.selectors";
@@ -85,9 +84,6 @@ class TransactionCard extends React.Component {
             notes,
             amount,
             dateTime,
-            targetAccountId,
-            targetBalanceId,
-            accountToAccount,
         } = transaction;
 
         const isSpending = type === 'spending';
@@ -187,17 +183,6 @@ class TransactionCard extends React.Component {
                     </Box>
                     {
                         notes ? notes : null
-                    }
-                    {
-                        accountToAccount ? (
-                            <AccountToAccountView
-                                accountId={accountId}
-                                balanceId={balanceId}
-                                targetAccountId={targetAccountId}
-                                targetBalanceId={targetBalanceId}
-                                isSpending={isSpending}
-                            />
-                        ) : null
                     }
                 </Box>
             </TransactionExpansionPanel>

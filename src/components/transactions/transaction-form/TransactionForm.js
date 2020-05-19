@@ -4,9 +4,6 @@ import Box from "@material-ui/core/Box";
 import TransactionTypeIcon from "../TransactionTypeIcon";
 import TextField from "@material-ui/core/TextField";
 import DateTimePicker from "../../ui/inputs/date-time-pickers/DateTimePicker";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import AccountToAccountForm from "./AccountToAccountForm";
 import TransactionTypeAutoComplete from "./TransactionTypeAutocomplete";
 
 const TransactionForm = (
@@ -15,7 +12,6 @@ const TransactionForm = (
         onInputChange,
         toEdit,
         values,
-        accountToAccountData,
     }
 ) => {
     const {
@@ -24,22 +20,9 @@ const TransactionForm = (
         title,
         amount,
         dateTime,
-        accountToAccount,
         notes,
         type,
-        targetAccountId,
-        targetBalanceId,
     } = values;
-
-    const accountToAccountFormData = {
-        ...accountToAccountData,
-        targetAccountSelectValue: targetAccountId,
-        targetBalanceSelectValue: targetBalanceId,
-        sourceId,
-        categoryId,
-    };
-
-    const allowAccountToAccountForm = accountToAccountData.accountsList.length === 0 || toEdit;
 
     return (
         <Box mb={2}>
@@ -101,30 +84,6 @@ const TransactionForm = (
                         onChange={(pickedDate) => onInputChange('dateTime', pickedDate)}
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                disabled={allowAccountToAccountForm}
-                                checked={accountToAccount}
-                                onChange={(event) => onInputChange('accountToAccount', event.target.checked)}
-                                name="accountToAccount"
-                                color={type === 'spending' ? 'primary' : 'secondary'}
-                            />
-                        }
-                        label="Account to Account Transaction"
-                    />
-                </Grid>
-                {
-                    accountToAccount ? (
-                        <AccountToAccountForm
-                            isSpending={type === 'spending'}
-                            formData={accountToAccountFormData}
-                            onInputChange={onInputChange}
-                            toEdit={toEdit}
-                        />
-                    ) : null
-                }
                 <Grid item xs={12}>
                     <TextField
                         label='Transaction Notes'
