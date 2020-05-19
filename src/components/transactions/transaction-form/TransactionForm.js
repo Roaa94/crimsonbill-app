@@ -39,6 +39,8 @@ const TransactionForm = (
         targetBalanceSelectValue: targetBalanceId,
     };
 
+    const allowAccountToAccountForm = accountToAccountData.accountsList.length === 0 || toEdit;
+
     return (
         <Box mb={2}>
             <Grid container spacing={2}>
@@ -128,7 +130,7 @@ const TransactionForm = (
                     <FormControlLabel
                         control={
                             <Checkbox
-                                disabled={accountToAccountData.accountsList.length === 0 || toEdit}
+                                disabled={allowAccountToAccountForm}
                                 checked={accountToAccount}
                                 onChange={(event) => onInputChange('accountToAccount', event.target.checked)}
                                 name="accountToAccount"

@@ -17,7 +17,7 @@ import {
 } from "../../../redux/accounts/accounts.selectors";
 import {TransactionFormWrapper} from "./TransactionForm.styles";
 import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
-import {selectBalance} from "../../../redux/balances/balances.selectors";
+import {selectBalance, selectBalancesArray} from "../../../redux/balances/balances.selectors";
 import {selectTransaction} from "../../../redux/transactions/transactions.selectors";
 
 class TransactionFormContainer extends React.Component {
@@ -111,9 +111,9 @@ class TransactionFormContainer extends React.Component {
         })
 
         if (name === 'targetAccountId') {
-            const {otherAccounts} = this.props;
+            const {balances} = this.props;
             this.setState({
-                targetAccountBalances: otherAccounts.find(account => account.id === value).balances,
+                targetAccountBalances: balances.filter(balances => balances.accountId === value),
             })
         }
         if (name === 'type') {
@@ -180,6 +180,7 @@ const mapStateToProps = (state, ownProps) => ({
     balance: selectBalance(ownProps.balanceId)(state),
     transaction: selectTransaction(ownProps.transactionId)(state),
     otherAccounts: selectOtherAccounts(ownProps.accountId)(state),
+    balances: selectBalancesArray(state),
     spendingCategories: selectTaxonomyArray('spendingCategories')(state),
     incomeSources: selectTaxonomyArray('incomeSources')(state),
 });

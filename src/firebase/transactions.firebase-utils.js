@@ -18,6 +18,8 @@ export const addTransactionDocument = async (userId, accountId, balanceId, trans
             const mirrorTransaction = {
                 ...transactionData,
                 type: transactionData.type === 'spending' ? 'earning' : 'spending',
+                accountId: transactionData.targetAccountId,
+                balanceId: transactionData.targetBalanceId,
                 targetAccountId: accountId,
                 targetBalanceId: balanceId,
                 mirrorTransactionId: transactionDocSnapshot.id,
@@ -114,6 +116,12 @@ export const deleteBalanceTransactions = async (userDocRef, accountId, balanceId
         const transactionData = transactionDoc.data();
         if (transactionData.accountId === accountId && transactionData.balanceId === balanceId) {
             batch.delete(transactionDoc.ref);
+        }
+        const accountToAccount = transactionData.accountToAccount;
+        if (accountToAccount) {
+            if (transactionData.targetAccountId === accountId && transactionData.targetBalanceId === balanceId) {
+                batch.delete(transactionDoc.ref);
+            }
         }
     });
     try {
