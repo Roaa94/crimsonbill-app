@@ -44,9 +44,11 @@ const AccountsPage = (
     }
 ) => {
 
+    const loading = isFetchingAccounts || isFetchingBalances || isFetchingTransactions;
+
     return (
         <PageWrapper>
-            <AccountsListWithLoader loading={isFetchingAccounts || isFetchingBalances || isFetchingTransactions}>
+            <AccountsListWithLoader loading={loading}>
                 {
                     hasAccounts ?
                         <Grid spacing={2} container justify='space-between' alignItems='center'>

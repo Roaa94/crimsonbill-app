@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
-import {transactionDrawerWidth} from "../transactions/TransactionsDrawer";
 import AddAccountIcon from "./AddAccountIcon";
 
 export const AddAccountViewWrapper = styled.div`
-  width: ${props => props.drawerOpen ? `calc(100% - ${transactionDrawerWidth}px)` : '100%'};
+  width: 100%;
   transition: width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   height: 100%;
   display: flex;
@@ -14,9 +13,9 @@ export const AddAccountViewWrapper = styled.div`
   justify-content: center;
 `;
 
-const AddAccountView = ({drawerOpen = false}) => {
+const AddAccountView = () => {
     return (
-        <AddAccountViewWrapper drawerOpen={drawerOpen}>
+        <AddAccountViewWrapper>
             <AddAccountIcon />
             <p>Please add an account to get started</p>
         </AddAccountViewWrapper>
