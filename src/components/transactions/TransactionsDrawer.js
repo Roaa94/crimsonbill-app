@@ -2,6 +2,9 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import {ReactComponent as FolderCabinetSVG} from '../../assets/svg/folder-cabinet.svg';
+import {selectHasTransactions, selectIsFetchingTransactions} from "../../redux/transactions/transactions.selectors";
+import {connect} from "react-redux";
+import WithLoader from "../HOC/WithLoader";
 
 export const transactionDrawerWidth = 320;
 
@@ -13,7 +16,6 @@ const useStyles = makeStyles(() => ({
     drawerPaper: {
         width: transactionDrawerWidth,
         padding: '30px 20px',
-        justifyContent: 'space-between',
     },
     svgImage: {
         position: 'absolute',
@@ -23,9 +25,10 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const TransactionsDrawer = ({open}) => {
-    const classes = useStyles();
+const TransactionsDrawerContentWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
+const TransactionsDrawer = ({open, hasTransactions, isFetchingTransactions}) => {
+    const classes = useStyles();
     return (
         <Drawer
             className={classes.drawer}
@@ -36,13 +39,26 @@ const TransactionsDrawer = ({open}) => {
                 paper: classes.drawerPaper,
             }}
         >
-            <div>
+            <TransactionsDrawerContentWithLoader loading={isFetchingTransactions}>
                 <h3>Latest Transactions</h3>
-                <p>No Transactions to Display</p>
-            </div>
-            <FolderCabinetSVG className={classes.svgImage}/>
+                {
+                    hasTransactions ? (
+                        <p>You have transactions dude!</p>
+                    ) : (
+                        <React.Fragment>
+                            <p>No Transactions to Display</p>
+                            <FolderCabinetSVG className={classes.svgImage}/>
+                        </React.Fragment>
+                    )
+                }
+            </TransactionsDrawerContentWithLoader>
         </Drawer>
     );
 };
 
-export default TransactionsDrawer;
+const mapStateToProps = state => ({
+    isFetchingTransactions: selectIsFetchingTransactions(state),
+    hasTransactions: selectHasTransactions(state),
+});
+
+export default connect(mapStateToProps)(TransactionsDrawer);
