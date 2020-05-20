@@ -5,80 +5,51 @@ import axios from "axios";
 admin.initializeApp();
 const db = admin.firestore();
 
-//Todo: configure the bellow batch writes for collections with +500 documents
-
-export const deleteBalanceSubCollections = functions.firestore
-    .document('users/{userId}/accounts/{accountId}/balances/{balanceId}')
-    .onDelete((snapshot, context) => {
-        if (snapshot.exists) {
-            const batch = db.batch();
-            const transactionsPath = `users/${context.params.userId}/accounts/${context.params.accountId}/balances/${context.params.balanceId}/transactions`;
-            db.collection(transactionsPath).get()
-                .then(transactionsSnapshot => {
-                    transactionsSnapshot.docs.forEach(doc => {
-                        batch.delete(doc.ref);
-                    })
-                    return batch.commit();
-                })
-                .catch(error => error.message)
-            return null;
-        }
-        return null;
-    })
-
-export const deleteAccountSubCollections = functions.firestore
-    .document('users/{userId}/accounts/{accountId}')
-    .onDelete((snapshot, context) => {
-        if (snapshot.exists) {
-            const batch = db.batch();
-            const balancesPath = `users/${context.params.userId}/accounts/${context.params.accountId}/balances`;
-            db.collection(balancesPath).get()
-                .then(balancesSnapshot => {
-                    balancesSnapshot.docs.forEach(doc => {
-                        batch.delete(doc.ref);
-                    })
-                    return batch.commit();
-                }).catch(error => error.message)
-            return null;
-        }
-        return null;
-    })
-
 export const updateAppCurrenciesRates = functions.pubsub.schedule('every 60 minutes')
-    .onRun((context) => {
+    .onRun(async (context) => {
         const batch = db.batch();
         const currenciesCollectionRef = db.collection('currencies');
-        currenciesCollectionRef.get()
-            .then(currenciesCollectionSnapshot => {
-                const appCurrencies : string[] = [];
-                currenciesCollectionSnapshot.docs.forEach(doc => {
-                    const {code} = doc.data();
-                    appCurrencies.push(code);
-                });
-                return appCurrencies;
-            })
-            .then(async appCurrencies => {
-                for await (const currencyCode of appCurrencies) {
+        try {
+            const currenciesCollectionSnapshot = await currenciesCollectionRef.get();
+            const appCurrencies: string[] = [];
+            currenciesCollectionSnapshot.docs.forEach(doc => {
+                const {code} = doc.data();
+                appCurrencies.push(code);
+            });
+            try {
+                for (const currencyCode of appCurrencies) {
                     const fromCurrencyCode = currencyCode;
                     const toCurrencyCodes = appCurrencies.filter(code => code !== currencyCode);
                     const rates = await fetchCurrenciesRates(fromCurrencyCode, toCurrencyCodes);
                     const currencyDocRef = db.doc(`currencies/${currencyCode}`);
                     toCurrencyCodes.forEach(code => {
-                        batch.update(currencyDocRef, {[`to${code}`]: rates[code]});
+                        const updatedRates = {[`to${code}`]: rates[code]};
+                        batch.update(currencyDocRef, updatedRates);
                     });
                 }
+                console.log('Committing batch ...');
                 return batch.commit();
-            }).catch(error => error.message)
+            } catch (e) {
+                console.log('Could not fetch currencies', e.message);
+            }
+        } catch (e) {
+            console.log('Could not run function', e.message);
+        }
         return null;
     })
 
-const currencyAPIHost : string = 'https://api.frankfurter.app';
+const currencyAPIHost: string = 'https://api.frankfurter.app';
 
-const fetchCurrenciesRates = async (fromCurrencyCode : string, toCurrenciesCodes : string[]) => {
+const fetchCurrenciesRates = async (fromCurrencyCode: string, toCurrenciesCodes: string[]) => {
     const targetCurrencies = toCurrenciesCodes.join(',');
     const url = `${currencyAPIHost}/latest?from=${fromCurrencyCode}&to=${targetCurrencies}`;
-    const response = await axios.get(url);
-    const {rates} = response.data;
-    console.log('fetched rates', rates);
-    return rates;
+    try {
+        const response = await axios.get(url);
+        const {rates} = response.data;
+        console.log(`fetched rates for ${fromCurrencyCode}: ${rates}`);
+        return rates;
+    } catch (e) {
+        console.log('Could not fetch rates');
+        throw e;
+    }
 };
