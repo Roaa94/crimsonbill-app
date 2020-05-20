@@ -16,15 +16,14 @@ import {
 import {
     selectAccountFormShow,
     selectAccountsArray,
-    selectHasAccounts, selectIsFetchingAccounts,
+    selectHasAccounts,
 } from "../../redux/accounts/accounts.selectors";
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 import Grid from "@material-ui/core/Grid";
 import DefaultCurrencySelect from "../../components/currencies/DefaultCurrencySelect";
 import FormattedNumber from "../../components/ui/FormattedNumber";
 import {TotalBalance} from "./AccountsPage.styles";
-import {selectIsFetchingBalances} from "../../redux/balances/balances.selectors";
-import {selectIsFetchingTransactions} from "../../redux/transactions/transactions.selectors";
+import {selectIsLoadingAllAccountsData} from "../../redux/global.selectors";
 
 const AccountsListWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 const TotalBalanceWithLoader = WithLoader(({children}) => <TotalBalance>{children}</TotalBalance>, 'span');
@@ -34,21 +33,17 @@ const AccountsPage = (
         accountFormShow,
         toggleAccountForm,
         accounts,
-        isFetchingAccounts,
-        isFetchingBalances,
-        isFetchingTransactions,
         hasAccounts,
         userTotalBalance,
         defaultCurrencyCode,
-        isCalculatingBalance
+        isCalculatingBalance,
+        isLoadingAllAccountsData
     }
 ) => {
 
-    const loading = isFetchingAccounts || isFetchingBalances || isFetchingTransactions;
-
     return (
         <PageWrapper>
-            <AccountsListWithLoader loading={loading}>
+            <AccountsListWithLoader loading={isLoadingAllAccountsData}>
                 {
                     hasAccounts ?
                         <Grid spacing={2} container justify='space-between' alignItems='center'>
@@ -99,9 +94,7 @@ const mapStateToProps = createStructuredSelector({
     hasAccounts: selectHasAccounts,
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
-    isFetchingAccounts: selectIsFetchingAccounts,
-    isFetchingBalances: selectIsFetchingBalances,
-    isFetchingTransactions: selectIsFetchingTransactions,
+    isLoadingAllAccountsData: selectIsLoadingAllAccountsData,
     isCalculatingBalance: selectIsCalculatingBalance,
 });
 
