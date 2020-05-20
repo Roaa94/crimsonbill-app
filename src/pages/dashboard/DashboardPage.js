@@ -5,37 +5,38 @@ import TransactionsDrawer from "../../components/transactions/TransactionsDrawer
 import {selectUserData} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import AddAccountView from "../../components/accounts/AddAccountView";
+import {selectHasAccounts, selectIsFetchingAccounts} from "../../redux/accounts/accounts.selectors";
+import WithLoader from "../../components/HOC/WithLoader";
 
-class DashboardPage extends React.Component {
-    state = {
-        drawerOpen: true,
-    };
+const DashboardContentWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
-    handleDrawerToggle = () => {
-        this.setState({drawerOpen: !this.state.drawerOpen});
-    };
+const DashboardPage = ({user, hasAccounts, isFetchingAccounts}) => {
+    const [drawerOpen, setDrawerOpen] = React.useState(true);
 
-    render() {
-        let {drawerOpen} = this.state;
-        let {user} = this.props;
-
-        return (
-            <DashboardPageWrapper drawerOpen={drawerOpen}>
-                <div className='open-drawer-icon-container' onClick={this.handleDrawerToggle}>
-                    <ArrowBackRoundedIcon/>
-                </div>
-                <TransactionsDrawer open={drawerOpen}/>
-                <DashboardPageContent>
+    return (
+        <DashboardPageWrapper drawerOpen={drawerOpen}>
+            <div className='open-drawer-icon-container' onClick={() => setDrawerOpen(!drawerOpen)}>
+                <ArrowBackRoundedIcon/>
+            </div>
+            <TransactionsDrawer open={drawerOpen}/>
+            <DashboardPageContent drawerOpen={drawerOpen}>
+                <DashboardContentWithLoader loading={isFetchingAccounts}>
                     <h1 className='light'>Welcome {user.displayName}</h1>
-                    <AddAccountView drawerOpen={drawerOpen}/>
-                </DashboardPageContent>
-            </DashboardPageWrapper>
-        );
-    }
+                    {
+                        hasAccounts ? (
+                            <div>You have accounts dude!</div>
+                        ) : <AddAccountView/>
+                    }
+                </DashboardContentWithLoader>
+            </DashboardPageContent>
+        </DashboardPageWrapper>
+    );
 }
 
 const mapStateToProps = state => ({
     user: selectUserData(state),
+    hasAccounts: selectHasAccounts(state),
+    isFetchingAccounts: selectIsFetchingAccounts(state),
 });
 
 export default connect(mapStateToProps)(DashboardPage);

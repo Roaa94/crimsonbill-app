@@ -4,11 +4,10 @@ import {drawerWidth} from "../../components/ui/navigation/Drawer";
 import {transactionDrawerWidth} from '../../components/transactions/TransactionsDrawer';
 
 const pageMargin = 10;
-const pagePadding = 40;
 
 export const DashboardPageWrapper = styled.div`
   position: relative;
-  padding: ${pagePadding / 2}px ${pagePadding}px;
+  padding: 20px;
   height: 100%;
   
   ::before{
@@ -54,5 +53,7 @@ export const DashboardPageWrapper = styled.div`
 `;
 
 export const DashboardPageContent = styled.div`
-  height: calc(100% - ${pagePadding * 2}px);
+  height: 100%;
+  width: ${props => props.drawerOpen ? `calc(100% - ${transactionDrawerWidth}px)` : '100%'};
+  transition: width .4s cubic-bezier(0, 0, 0.2, 1) 0ms;
 `;
