@@ -13,6 +13,7 @@ import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
 import {fetchAccountsStartAsync} from "./redux/accounts/accounts.actions";
 import {fetchTransactionsStartAsync} from "./redux/transactions/transactions.actions";
 import {fetchBalancesStartAsync} from "./redux/balances/balances.actions";
+import {selectFilters} from "./redux/filters/filters.selectors";
 
 // import {initDefaultTaxonomies} from "./firebase/taxonomies.firebase-utils";
 
@@ -28,6 +29,7 @@ class App extends React.Component {
             fetchAccountsStartAsync,
             fetchBalancesStartAsync,
             fetchTransactionsStartAsync,
+            filters,
         } = this.props;
 
         fetchCurrenciesStartAsync();
@@ -51,12 +53,11 @@ class App extends React.Component {
             }
             setUser(user);
         });
-
         if (user && user.id) {
             fetchTaxonomiesStartAsync(user.id);
             fetchAccountsStartAsync(user.id);
             fetchBalancesStartAsync(user.id);
-            fetchTransactionsStartAsync(user.id);
+            fetchTransactionsStartAsync(user.id, filters);
         }
     }
 
@@ -85,18 +86,19 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
     user: selectUserData(state),
+    filters: selectFilters(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
     setUser: user => dispatch(setUser(user)),
     fetchTaxonomiesStartAsync: userId => dispatch(fetchTaxonomiesStartAsync(userId)),
     fetchCurrenciesStartAsync: userId => dispatch(fetchCurrenciesStartAsync(userId)),
     fetchAccountsStartAsync: userId => dispatch(fetchAccountsStartAsync(userId)),
     fetchBalancesStartAsync: userId => dispatch(fetchBalancesStartAsync(userId)),
-    fetchTransactionsStartAsync: userId => dispatch(fetchTransactionsStartAsync(userId)),
+    fetchTransactionsStartAsync: (userId, filters) => dispatch(fetchTransactionsStartAsync(userId, filters)),
 });
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(App);

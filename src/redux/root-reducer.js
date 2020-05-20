@@ -7,10 +7,12 @@ import {taxonomiesReducer} from "./taxonomies/taxonomies.reducer";
 import {currenciesReducer} from "./currencies/currencies.reducer";
 import balancesReducer from "./balances/balances.reducer";
 import transactionsReducer from "./transactions/transactions.reducer";
+import filtersReducer from "./filters/filters.reducer";
 
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['filters'],
 };
 
 const rootReducer = combineReducers({
@@ -20,6 +22,7 @@ const rootReducer = combineReducers({
     transactions: transactionsReducer,
     taxonomies: taxonomiesReducer,
     currencies: currenciesReducer,
+    filters: filtersReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
