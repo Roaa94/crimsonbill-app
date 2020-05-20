@@ -22,12 +22,12 @@ export const fetchAccountsError = errorMessage => ({
 
 export const fetchAccountsStartAsync = userId => {
     return async dispatch => {
-        console.log('fetching accounts...');
         dispatch(fetchAccountsStart());
         const accountsRef = firestore.collection(`users/${userId}/accounts`);
         const orderedAccountsRef = accountsRef.orderBy('createdAt', 'desc');
 
         orderedAccountsRef.onSnapshot(async accountsCollectionSnapshot => {
+            console.log('fetching accounts...');
             const accountsArray = convertCollectionToArray(accountsCollectionSnapshot);
             dispatch(fetchAccountsSuccess(accountsArray));
         }, error => dispatch(fetchAccountsError(error.message)));

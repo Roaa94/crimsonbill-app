@@ -17,7 +17,6 @@ export const fetchTransactionsError = errorMessage => ({
 
 export const fetchTransactionsStartAsync = (userId, _startDate) => {
     return async dispatch => {
-        console.log('fetching transactions...');
         dispatch(fetchTransactionsStart());
         const defaultStartDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
         const startDate = _startDate ? _startDate : defaultStartDate;
@@ -25,7 +24,7 @@ export const fetchTransactionsStartAsync = (userId, _startDate) => {
         const transactionsQuery = transactionsCollectionRef.where('dateTime', '>=', startDate).orderBy('dateTime', 'desc');
 
         transactionsQuery.onSnapshot(async transactionsCollectionSnapshot => {
-            console.log('Transactions snapshot updated');
+            console.log('fetching transactions...');
             const transactionsArray = convertCollectionToArray(transactionsCollectionSnapshot);
             dispatch(fetchTransactionsSuccess(transactionsArray));
         }, error => dispatch(fetchTransactionsError(error.message)));

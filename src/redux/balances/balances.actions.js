@@ -17,12 +17,12 @@ export const fetchBalancesError = errorMessage => ({
 
 export const fetchBalancesStartAsync = userId => {
     return dispatch => {
-        console.log('fetching balances...');
         dispatch(fetchBalancesStart());
         const balancesCollectionRef = firestore.collection(`users/${userId}/balances`);
         const orderedBalancesCollectionRef = balancesCollectionRef.orderBy('createdAt', 'desc');
 
         orderedBalancesCollectionRef.onSnapshot(async balancesCollectionSnapshot => {
+            console.log('fetching balances...');
             const balancesArray = convertCollectionToArray(balancesCollectionSnapshot);
             dispatch(fetchBalancesSuccess(balancesArray));
         }, error => dispatch(fetchBalancesError(error.message)));
