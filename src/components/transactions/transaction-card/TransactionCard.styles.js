@@ -57,8 +57,3 @@ export const SpendingArrow = styled.div`
     height: 15px;
   }
 `;
-
-export const TransactionAmount = styled.div`
-  font-weight: 600;
-  color: ${props => props.type === 'spending' ? colors.primary : colors.secondary};
-`;

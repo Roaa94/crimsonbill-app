@@ -3,7 +3,6 @@ import {format} from "date-fns";
 import Grid from "@material-ui/core/Grid";
 import {
     SpendingArrow,
-    TransactionAmount,
     TransactionExpansionPanel,
     TransactionExpansionPanelSummary
 } from "./TransactionCard.styles";
@@ -108,12 +107,11 @@ class TransactionCard extends React.Component {
                                 }
                             </Grid>
                             <Grid item xs={4}>
-                                <TransactionAmount type={type}>
-                                    <FormattedNumber
-                                        number={amount}
-                                        currencyCode={currencyCode}
-                                    />
-                                </TransactionAmount>
+                                <FormattedNumber
+                                    number={amount}
+                                    negative={isSpending}
+                                    currencyCode={currencyCode}
+                                />
                             </Grid>
                             <Grid container alignItems='center' item xs>
                                 <Box mr={1}>
