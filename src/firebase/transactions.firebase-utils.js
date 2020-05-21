@@ -3,6 +3,13 @@ import {updateBalanceTotal} from "./balances.firebase-utils";
 
 export const addTransactionDocument = async (userId, accountId, balanceId, transactionData) => {
     const userDocRef = firestore.doc(`users/${userId}`);
+
+    // Get transaction balance currency code
+    const balanceDocRef = userDocRef.collection('balances').doc(balanceId);
+    const balanceDocSnapshot = await balanceDocRef.get();
+    const balanceData = balanceDocSnapshot.data();
+    const balanceCurrencyCode = balanceData.currencyCode;
+
     const transactionDocRef = userDocRef.collection('transactions').doc();
     const transactionDocSnapshot = await transactionDocRef.get();
 
@@ -10,6 +17,7 @@ export const addTransactionDocument = async (userId, accountId, balanceId, trans
         const newTransaction = {
             accountId,
             balanceId,
+            currencyCode: balanceCurrencyCode,
             ...transactionData,
         }
         try {
