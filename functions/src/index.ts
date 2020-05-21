@@ -46,7 +46,7 @@ const fetchCurrenciesRates = async (fromCurrencyCode: string, toCurrenciesCodes:
     try {
         const response = await axios.get(url);
         const {rates} = response.data;
-        console.log(`fetched rates for ${fromCurrencyCode}: ${rates}`);
+        console.log(`fetched rates for ${fromCurrencyCode}: `, rates);
         return rates;
     } catch (e) {
         console.log('Could not fetch rates');
