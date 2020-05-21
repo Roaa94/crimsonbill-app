@@ -31,3 +31,8 @@ export const selectIsFetchingTransactions = createSelector(
     [selectTransactions],
     transactions => transactions.isFetchingTransactions,
 );
+
+export const selectTransactionsByType = type => createSelector(
+    [selectTransactionsArray],
+    transactionsArray => transactionsArray.filter(transaction => transaction.type === type),
+);

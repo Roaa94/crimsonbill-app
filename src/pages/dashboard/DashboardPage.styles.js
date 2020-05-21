@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {borderRadius, colors} from "../../styles/global";
 import {drawerWidth} from "../../components/ui/navigation/Drawer";
-import {transactionDrawerWidth} from '../../components/transactions/TransactionsDrawer';
+import {transactionDrawerWidth} from '../../components/transactions/latest-transactions/LatestTransactionsDrawer';
 
 const pageMargin = 10;
 
@@ -9,6 +9,7 @@ export const DashboardPageWrapper = styled.div`
   position: relative;
   padding: 20px;
   height: 100%;
+  overflow: hidden;
   
   ::before{
     content: '';

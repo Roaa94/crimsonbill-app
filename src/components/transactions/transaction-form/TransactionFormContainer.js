@@ -107,7 +107,6 @@ class TransactionFormContainer extends React.Component {
 
     render() {
         const {typePickerValues, defaultValues} = this.state;
-
         const {handleFormCancel, transactionId} = this.props;
 
         return (
