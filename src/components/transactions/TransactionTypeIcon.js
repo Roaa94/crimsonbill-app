@@ -5,7 +5,7 @@ import {ReactComponent as ArrowUpIcon} from '../../assets/svg/arrow-up.svg';
 import {ReactComponent as ArrowDownIcon} from '../../assets/svg/arrow-down.svg';
 
 const TransactionTypeIconContainer = styled.div`
-  background-color: ${colors.background};
+  background-color: ${props => props.disabled ? colors.white : colors.background};
   width: 50px;
   height: 100%;
   margin-right: 10px;
@@ -16,7 +16,8 @@ const TransactionTypeIconContainer = styled.div`
   border-radius: ${borderRadius.m};
   border: ${props => props.checked ? `3px solid ${props.type === 'spending' ? colors.primary : colors.secondary}` : 'none'};
   transition: all .3s;
-  box-shadow: ${props => props.checked ? boxShadows.main : 'none'};
+  pointer-events: ${props => props.disabled ? 'none' : 'all'};
+  box-shadow: ${props => props.checked || props.disabled ? boxShadows.main : 'none'};
   
   :hover {
     box-shadow: ${boxShadows.main};
@@ -28,11 +29,12 @@ const TransactionTypeIconContainer = styled.div`
   }
 `;
 
-const TransactionTypeIcon = ({type, checked, ...otherProps}) => {
+const TransactionTypeIcon = ({type, disabled, checked, ...otherProps}) => {
     return (
         <TransactionTypeIconContainer
             type={type}
             checked={checked}
+            disabled={disabled}
             {...otherProps}
         >
             {
