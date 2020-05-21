@@ -21,7 +21,6 @@ import FormattedNumber from "../../ui/FormattedNumber";
 import TransactionForm from "../transaction-form/TransactionFormContainer";
 import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import Icon from "@material-ui/core/Icon";
-import {selectBalanceCurrencyCode} from "../../../redux/balances/balances.selectors";
 
 class TransactionCard extends React.Component {
     _isMount = false;
@@ -72,7 +71,6 @@ class TransactionCard extends React.Component {
             readOnly,
             spendingCategory,
             incomeSource,
-            balanceCurrencyCode,
         } = this.props;
 
         let {
@@ -84,6 +82,7 @@ class TransactionCard extends React.Component {
             notes,
             amount,
             dateTime,
+            currencyCode,
         } = transaction;
 
         const isSpending = type === 'spending';
@@ -112,7 +111,7 @@ class TransactionCard extends React.Component {
                                 <TransactionAmount type={type}>
                                     <FormattedNumber
                                         number={amount}
-                                        currencyCode={balanceCurrencyCode}
+                                        currencyCode={currencyCode}
                                     />
                                 </TransactionAmount>
                             </Grid>
@@ -194,7 +193,6 @@ const mapStateToProps = (state, ownProps) => ({
     userId: selectUserId(state),
     spendingCategory: selectTaxonomyValue(ownProps.transaction.categoryId, 'spendingCategories')(state),
     incomeSource: selectTaxonomyValue(ownProps.transaction.sourceId, 'incomeSources')(state),
-    balanceCurrencyCode: selectBalanceCurrencyCode(ownProps.balanceId)(state),
 });
 
 export default connect(mapStateToProps)(TransactionCard);
