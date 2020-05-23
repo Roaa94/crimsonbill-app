@@ -14,10 +14,13 @@ export const DashboardHeaderSvg = styled.div`
   right: 0;
   bottom: 0;
   width: 25%;
+  height: 125%;
   pointer-events: none;
   
   svg {
     height: 100%;
-    width: 100%;
+    display: block;
+    position: absolute;
+    right: 0;
   }
 `;

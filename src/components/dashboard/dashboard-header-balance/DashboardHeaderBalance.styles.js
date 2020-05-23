@@ -5,13 +5,13 @@ export const DashboardHeaderBalanceContainer = styled.div`
   box-shadow: ${boxShadows.main};
   border-radius: ${borderRadius.m};
   background: linear-gradient(${colors.background}, ${colors.white});
-  padding: 30px 20px;
+  padding: 0 20px;
   width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 150px;
+  height: 140px;
 `;
 
 export const BalanceLine = styled.div`
