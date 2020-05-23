@@ -7,12 +7,7 @@ import AccountCard from "../../components/accounts/account-card/AccountCard";
 import AddIconButton from "../../components/ui/buttons/AddIconButton";
 import AccountFormContainer from "../../components/accounts/account-form/AccountFormContainer";
 import WithLoader from "../../components/HOC/WithLoader";
-import {
-    selectDefaultCurrencyCode,
-    selectIsCalculatingBalance,
-    selectUserId,
-    selectUserTotalBalance
-} from "../../redux/user/user.selectors";
+import {selectUserId} from "../../redux/user/user.selectors";
 import {
     selectAccountFormShow,
     selectAccountsArray,
@@ -21,12 +16,10 @@ import {
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 import Grid from "@material-ui/core/Grid";
 import DefaultCurrencySelect from "../../components/currencies/DefaultCurrencySelect";
-import FormattedNumber from "../../components/ui/FormattedNumber";
-import {TotalBalance} from "./AccountsPage.styles";
 import {selectIsLoadingAllAccountsData} from "../../redux/global.selectors";
+import Balance from "../../components/Balance";
 
 const AccountsListWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
-const TotalBalanceWithLoader = WithLoader(({children}) => <TotalBalance>{children}</TotalBalance>, 'span');
 
 const AccountsPage = (
     {
@@ -34,9 +27,6 @@ const AccountsPage = (
         toggleAccountForm,
         accounts,
         hasAccounts,
-        userTotalBalance,
-        defaultCurrencyCode,
-        isCalculatingBalance,
         isLoadingAllAccountsData
     }
 ) => {
@@ -59,12 +49,7 @@ const AccountsPage = (
                                     Total Balance
                                 </Grid>
                                 <Grid item>
-                                    <TotalBalanceWithLoader loading={isCalculatingBalance} type='dots'>
-                                        <FormattedNumber
-                                            number={userTotalBalance}
-                                            currencyCode={defaultCurrencyCode}
-                                        />
-                                    </TotalBalanceWithLoader>
+                                    <Balance type='dots'/>
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} md={4} container justify='flex-end'>
@@ -89,13 +74,10 @@ const AccountsPage = (
 
 const mapStateToProps = createStructuredSelector({
     userId: selectUserId,
-    userTotalBalance: selectUserTotalBalance,
-    defaultCurrencyCode: selectDefaultCurrencyCode,
     hasAccounts: selectHasAccounts,
     accounts: selectAccountsArray,
     accountFormShow: selectAccountFormShow,
     isLoadingAllAccountsData: selectIsLoadingAllAccountsData,
-    isCalculatingBalance: selectIsCalculatingBalance,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -6,12 +6,17 @@ import {colors} from "../../styles/global";
 
 const FormattedNumberWrapper = styled.span`
   color: ${props => props.isNegative ? colors.primary : colors.secondary};
-  font-weight: 600;
+  font-weight: ${props => props.fontWeight ? props.fontWeight : 600};
+  font-size: ${props => props.fontSize ? props.fontSize : 1}rem;
 `;
 
-const FormattedNumber = ({number, currencyCode, negative}) => {
+const FormattedNumber = ({number, fontSize, fontWeight, currencyCode, negative}) => {
     return (
-        <FormattedNumberWrapper isNegative={negative}>
+        <FormattedNumberWrapper
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+            isNegative={negative}
+        >
             <NumberFormat
                 value={parseFloat(number).toFixed(2)}
                 prefix={currencyCode ? getSymbolFromCurrency(currencyCode) : null}
