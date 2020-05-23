@@ -12,6 +12,11 @@ export const selectUserId = createSelector(
     userData => userData.id,
 );
 
+export const selectUserDisplayName = createSelector(
+    [selectUserData],
+    userData => userData.displayName,
+);
+
 export const selectDefaultCurrencyCode = createSelector(
     [selectUserData],
     userData => userData.defaultCurrencyCode,
