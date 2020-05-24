@@ -4,7 +4,7 @@ import Balance from "../../Balance";
 import {useMediaQuery} from "@material-ui/core";
 
 const DashboardHeaderBalance = () => {
-    const xlDevice = useMediaQuery(theme => theme.breakpoints.up('lg'));
+    const xlDevice = useMediaQuery(theme => theme.breakpoints.up('xl'));
 
     return (
         <DashboardHeaderBalanceContainer isDeviceXL={xlDevice}>
