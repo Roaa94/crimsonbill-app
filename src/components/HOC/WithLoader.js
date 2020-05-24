@@ -5,16 +5,16 @@ import styled from 'styled-components';
 
 const DefaultLoaderWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: ${props => props.fullHeight ? '100%' : 'auto'};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const WithLoader = (WrappedComponent, LoaderWrapper = DefaultLoaderWrapper) => ({loading = false, type, ...otherProps}) => {
+const WithLoader = (WrappedComponent, LoaderWrapper = DefaultLoaderWrapper) => ({loading = false, fullHeightLoader = true, type, ...otherProps}) => {
 
     return loading ? (
-        <LoaderWrapper>
+        <LoaderWrapper fullHeight={fullHeightLoader}>
             {
                 type === 'dots' ? <DotsLoader/> : <CircleLoader/>
             }
