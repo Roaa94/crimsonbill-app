@@ -21,11 +21,9 @@ const CurrencyListItem = ({currency, onClick, defaultCurrencyCode}) => {
                 </Grid>
                 <Grid item className='list-item-end'>
                     {
-                        defaultCurrencyCode === id ? (
-                            <CheckRoundedIcon color='secondary'/>
-                        ) : (
-                            <FormattedNumber number={rate} currencyCode={defaultCurrencyCode}/>
-                        )
+                        defaultCurrencyCode === id
+                            ? <CheckRoundedIcon color='secondary'/>
+                            : <FormattedNumber number={rate} currencyCode={defaultCurrencyCode}/>
                     }
                 </Grid>
             </Grid>
@@ -35,6 +33,6 @@ const CurrencyListItem = ({currency, onClick, defaultCurrencyCode}) => {
 
 const mapStateToProps = state => ({
     defaultCurrencyCode: selectDefaultCurrencyCode(state),
-})
+});
 
 export default connect(mapStateToProps)(CurrencyListItem);
