@@ -11,6 +11,7 @@ import DashboardTitle from "../../components/dashboard/DashboardTitle";
 import {createStructuredSelector} from "reselect";
 import {selectTransactionsDrawerOpen} from "../../redux/transactions/transactions.selectors";
 import {toggleTransactionsDrawer} from "../../redux/transactions/transactions.actions";
+import DashboardContent from "../../components/dashboard/dashboard-content/DashboardContent";
 
 const DashboardContentWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
@@ -39,6 +40,7 @@ const DashboardPage = (
                             <React.Fragment>
                                 <DashboardTitle/>
                                 <DashboardHeader/>
+                                <DashboardContent/>
                             </React.Fragment>
                         ) : <AddAccountView/>
                     }

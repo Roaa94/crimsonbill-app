@@ -10,7 +10,7 @@ export const DashboardHeaderBalanceContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 140px;
+  height: ${props => props.isDeviceXL ? '170px' : '120px'};
 `;
 
 export const BalanceLine = styled.div`
