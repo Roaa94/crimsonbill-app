@@ -31,3 +31,8 @@ export const fetchTransactionsStartAsync = (userId, {startDate}) => {
         }, error => dispatch(fetchTransactionsError(error.message)));
     }
 };
+
+export const toggleTransactionsDrawer = value => ({
+    type: TransactionsActionTypes.TOGGLE_TRANSACTIONS_DRAWER,
+    payload: value,
+})

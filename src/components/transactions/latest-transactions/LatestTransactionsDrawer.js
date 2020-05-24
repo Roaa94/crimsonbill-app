@@ -2,12 +2,17 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import {ReactComponent as FolderCabinetSVG} from '../../../assets/svg/folder-cabinet.svg';
-import {selectHasTransactions, selectIsFetchingTransactions} from "../../../redux/transactions/transactions.selectors";
+import {
+    selectHasTransactions,
+    selectIsFetchingTransactions,
+    selectTransactionsDrawerOpen
+} from "../../../redux/transactions/transactions.selectors";
 import {connect} from "react-redux";
 import WithLoader from "../../HOC/WithLoader";
 import Box from "@material-ui/core/Box";
 import {LatestTransactionsContainer} from "./LatestTransactions.styles";
 import LatestTransactionsList from "./LatestTransactionsList";
+import {createStructuredSelector} from "reselect";
 
 export const transactionDrawerWidth = 370;
 
@@ -29,14 +34,14 @@ const useStyles = makeStyles(() => ({
 
 const TransactionsDrawerWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
-const LatestTransactionsDrawer = ({open, hasTransactions, isFetchingTransactions}) => {
+const LatestTransactionsDrawer = ({transactionDrawerOpen, hasTransactions, isFetchingTransactions}) => {
     const classes = useStyles();
     return (
         <Drawer
             className={classes.drawer}
             variant="persistent"
             anchor="right"
-            open={open}
+            open={transactionDrawerOpen}
             classes={{
                 paper: classes.drawerPaper,
             }}
@@ -61,9 +66,10 @@ const LatestTransactionsDrawer = ({open, hasTransactions, isFetchingTransactions
     );
 };
 
-const mapStateToProps = state => ({
-    isFetchingTransactions: selectIsFetchingTransactions(state),
-    hasTransactions: selectHasTransactions(state),
+const mapStateToProps = createStructuredSelector({
+    isFetchingTransactions: selectIsFetchingTransactions,
+    hasTransactions: selectHasTransactions,
+    transactionDrawerOpen: selectTransactionsDrawerOpen,
 });
 
 export default connect(mapStateToProps)(LatestTransactionsDrawer);

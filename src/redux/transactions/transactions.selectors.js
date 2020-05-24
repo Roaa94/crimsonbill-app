@@ -36,3 +36,8 @@ export const selectTransactionsByType = type => createSelector(
     [selectTransactionsArray],
     transactionsArray => transactionsArray.filter(transaction => transaction.type === type),
 );
+
+export const selectTransactionsDrawerOpen = createSelector(
+    [selectTransactions],
+    transactions => transactions.transactionsDrawerOpen,
+)

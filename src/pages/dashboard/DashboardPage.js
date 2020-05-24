@@ -8,19 +8,31 @@ import {selectHasAccounts, selectIsFetchingAccounts} from "../../redux/accounts/
 import WithLoader from "../../components/HOC/WithLoader";
 import DashboardHeader from "../../components/dashboard/dashboard-header/DashboardHeader";
 import DashboardTitle from "../../components/dashboard/DashboardTitle";
+import {createStructuredSelector} from "reselect";
+import {selectTransactionsDrawerOpen} from "../../redux/transactions/transactions.selectors";
+import {toggleTransactionsDrawer} from "../../redux/transactions/transactions.actions";
 
 const DashboardContentWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
-const DashboardPage = ({hasAccounts, isFetchingAccounts}) => {
-    const [drawerOpen, setDrawerOpen] = React.useState(true);
+const DashboardPage = (
+    {
+        hasAccounts,
+        isFetchingAccounts,
+        transactionsDrawerOpen,
+        toggleTransactionsDrawer
+    }
+) => {
 
     return (
-        <DashboardPageWrapper drawerOpen={drawerOpen}>
-            <div className='open-drawer-icon-container' onClick={() => setDrawerOpen(!drawerOpen)}>
+        <DashboardPageWrapper drawerOpen={transactionsDrawerOpen}>
+            <div
+                className='open-drawer-icon-container'
+                onClick={() => toggleTransactionsDrawer(!transactionsDrawerOpen)}
+            >
                 <ArrowBackRoundedIcon/>
             </div>
-            <TransactionsDrawer open={drawerOpen}/>
-            <DashboardPageContent drawerOpen={drawerOpen}>
+            <TransactionsDrawer/>
+            <DashboardPageContent drawerOpen={transactionsDrawerOpen}>
                 <DashboardContentWithLoader loading={isFetchingAccounts}>
                     {
                         hasAccounts ? (
@@ -36,9 +48,14 @@ const DashboardPage = ({hasAccounts, isFetchingAccounts}) => {
     );
 }
 
-const mapStateToProps = state => ({
-    hasAccounts: selectHasAccounts(state),
-    isFetchingAccounts: selectIsFetchingAccounts(state),
+const mapStateToProps = createStructuredSelector({
+    hasAccounts: selectHasAccounts,
+    isFetchingAccounts: selectIsFetchingAccounts,
+    transactionsDrawerOpen: selectTransactionsDrawerOpen,
 });
 
-export default connect(mapStateToProps)(DashboardPage);
+const mapDispatchToProps = dispatch => ({
+    toggleTransactionsDrawer: value => dispatch(toggleTransactionsDrawer(value))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

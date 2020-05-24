@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     isFetchingTransactions: false,
     errorMessage: undefined,
     accountFormShow: false,
+    transactionsDrawerOpen: true,
 };
 
 const transactionsReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +27,11 @@ const transactionsReducer = (state = INITIAL_STATE, action) => {
                 isFetchingTransactions: false,
                 errorMessage: action.payload,
             };
+        case TransactionsActionTypes.TOGGLE_TRANSACTIONS_DRAWER:
+            return {
+                ...state,
+                transactionsDrawerOpen: action.payload,
+            }
         default:
             return state;
     }
