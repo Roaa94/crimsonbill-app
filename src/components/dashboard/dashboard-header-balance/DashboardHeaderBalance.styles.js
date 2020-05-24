@@ -6,7 +6,6 @@ export const DashboardHeaderBalanceContainer = styled.div`
   border-radius: ${borderRadius.m};
   background: linear-gradient(${colors.background}, ${colors.white});
   padding: 0 20px;
-  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;

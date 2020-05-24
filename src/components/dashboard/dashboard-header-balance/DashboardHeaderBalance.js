@@ -5,7 +5,7 @@ import Balance from "../../Balance";
 const DashboardHeaderBalance = () => {
     return (
         <DashboardHeaderBalanceContainer>
-            <Balance type='dots' fontSize='1.7'/>
+            <Balance type='dots' fontSize='1.7' fullHeightLoader={false}/>
             <BalanceLine />
             <BalanceText>
                 Total Available Balance
