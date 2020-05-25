@@ -88,7 +88,7 @@ class TransactionCard extends React.Component {
 
         let {transactionCardExpanded, showTransactionForm} = this.state;
 
-        let formattedDate = format(dateTime.seconds * 1000, 'dd.MMM');
+        let formattedDate = format(dateTime.seconds * 1000, 'dd/MM');
         let formattedTime = format(dateTime.seconds * 1000, 'hh:mm a');
 
         return (

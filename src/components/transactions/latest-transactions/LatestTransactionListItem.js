@@ -10,7 +10,7 @@ import Box from "@material-ui/core/Box";
 
 const LatestTransactionListItem = ({transaction, taxonomyValue}) => {
     let {type, title, currencyCode, amount, dateTime} = transaction;
-    let formattedDate = format(dateTime.seconds * 1000, 'dd.MMM');
+    let formattedDate = format(dateTime.seconds * 1000, 'dd/MM');
 
     return (
         <LatestTransactionsListItemContainer>
