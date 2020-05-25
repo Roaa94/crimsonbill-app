@@ -8,6 +8,8 @@ import {
 } from "./DashboardContent.styles";
 import Grid from "@material-ui/core/Grid";
 import {ReactComponent as SittingGirlSVG} from '../../../assets/svg/girl-sitting.svg';
+import CategoriesPieChart from "../../transactions/CategoriesPieChart";
+import ActivityAreaChart from "../../transactions/ActivityAreaChart";
 
 const DashboardContent = () => {
     return (
@@ -21,14 +23,14 @@ const DashboardContent = () => {
                     </Grid>
                     <Grid item xs={12} lg={8}>
                         <PieChartContainer>
-                            {/*  Transactions Taxonomies Pie Chart  */}
+                            <CategoriesPieChart/>
                         </PieChartContainer>
                     </Grid>
                 </Grid>
             </TopContent>
             <BottomContent>
                 <ActivityChartContainer>
-                    {/*  Activity Line Chart  */}
+                    <ActivityAreaChart/>
                 </ActivityChartContainer>
             </BottomContent>
         </DashboardContentContainer>

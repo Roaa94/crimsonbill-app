@@ -13,7 +13,6 @@ export const DashboardPageWrapper = styled.div`
            ${pageMargin + pagePadding}px 
            ${pagePadding}px;
   height: 100%;
-  overflow: hidden;
   
   ::before{
     content: '';
@@ -31,6 +30,7 @@ export const DashboardPageWrapper = styled.div`
    }
    
     .open-drawer-icon-container{
+      z-index: 100;
       position: fixed;
       top: 40px;
       right: 10px;
@@ -52,7 +52,7 @@ export const DashboardPageWrapper = styled.div`
         width: 30px;
         height: 30px;
         transition: transform .4s cubic-bezier(0, 0, 0.2, 1) 0ms;
-        transform: rotate(${props => props.drawerOpen ? '180deg' : '0'})
+        transform: rotate(${props => props.drawerOpen ? '180deg' : '0'});
       }
     }
 `;

@@ -47,5 +47,6 @@ export const SittingGirlSVGContainer = styled.div`
     bottom: -10px;
     max-height: 100%;
     overflow: visible;
+    z-index: 2;
   }
 `;
