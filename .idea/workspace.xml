@@ -19,17 +19,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="">
+    <list default="true" id="5eb13b1b-027c-4d1f-9118-de6ac20f1a88" name="Default Changelist" comment="added toggling later transactions drawer functionality to the redux state">
+      <change afterPath="$PROJECT_DIR$/src/redux/global/charts-data.selectors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/app.utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/roaa_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/roaa_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-card/AccountToAccountView.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dashboard/dashboard-header-rates/DashboardHeaderRates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/dashboard-header-rates/DashboardHeaderRates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/ActivityAreaChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/ActivityAreaChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/transactions/latest-transactions/LatestTransactionListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/latest-transactions/LatestTransactionListItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-card/TransactionCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-form/AccountToAccountForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionFormContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactions/transaction-form/TransactionFormContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/transactions.firebase-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/transactions.firebase-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/accounts/accounts.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/accounts/accounts.selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/balances/balances.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/balances/balances.selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/mui-theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/mui-theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/accounts/AccountsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/filters/filters.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/filters/filters.reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/filters/filters.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/filters/filters.selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/global.selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/global/misc.selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/charts/options.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/charts/options.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,16 +81,16 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="ts.external.directory.path" value="C:\Users\roaa-\Documents\React\tracker-app\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\app-data" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\taxonomies\taxonomy-card" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\transactions\transaction-card" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\ui\inputs\date-time-pickers" />
-      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\ui\inputs" />
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\redux\global" />
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\dashboard\dashboard-header-rates" />
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\dashboard\dashboard-header" />
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\transactions\latest-transactions" />
+      <recent name="C:\Users\roaa-\Documents\React\tracker-app\src\components\transactions" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -167,217 +171,14 @@
       <workItem from="1589460374722" duration="5799000" />
       <workItem from="1589850608150" duration="60000" />
       <workItem from="1589855818195" duration="3901000" />
-      <workItem from="1589891648100" duration="8458000" />
-    </task>
-    <task id="LOCAL-00198" summary="deleted total balance calculation selector and refactored others">
-      <created>1588622735182</created>
-      <option name="number" value="00198" />
-      <option name="presentableId" value="LOCAL-00198" />
-      <option name="project" value="LOCAL" />
-      <updated>1588622735182</updated>
-    </task>
-    <task id="LOCAL-00199" summary="testing with a balance calculation function called after each form submission (messy)">
-      <created>1588622795219</created>
-      <option name="number" value="00199" />
-      <option name="presentableId" value="LOCAL-00199" />
-      <option name="project" value="LOCAL" />
-      <updated>1588622795219</updated>
-    </task>
-    <task id="LOCAL-00200" summary="deleted messy total balance update function">
-      <created>1588622904350</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1588622904350</updated>
-    </task>
-    <task id="LOCAL-00201" summary="calculated total balances on asynchronous redux fetches - actions fire too many times">
-      <created>1588625908569</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1588625908569</updated>
-    </task>
-    <task id="LOCAL-00202" summary="deleted previous total balances calculation try code">
-      <created>1588626260447</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1588626260447</updated>
-    </task>
-    <task id="LOCAL-00203" summary="implemented balance calculation functionality using firebase functions (very slow)">
-      <created>1588628727942</created>
-      <option name="number" value="00203" />
-      <option name="presentableId" value="LOCAL-00203" />
-      <option name="project" value="LOCAL" />
-      <updated>1588628727942</updated>
-    </task>
-    <task id="LOCAL-00204" summary="minor fix">
-      <created>1588628736574</created>
-      <option name="number" value="00204" />
-      <option name="presentableId" value="LOCAL-00204" />
-      <option name="project" value="LOCAL" />
-      <updated>1588628736574</updated>
-    </task>
-    <task id="LOCAL-00205" summary="variable name changes">
-      <created>1588629032201</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1588629032201</updated>
-    </task>
-    <task id="LOCAL-00206" summary="[Account-to-Account Transactions CRUD - Read] retrieved account-to-account transactions data and created its view">
-      <created>1588633128712</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
-      <option name="project" value="LOCAL" />
-      <updated>1588633128712</updated>
-    </task>
-    <task id="LOCAL-00207" summary="changes on transaction card styling">
-      <created>1588641218034</created>
-      <option name="number" value="00207" />
-      <option name="presentableId" value="LOCAL-00207" />
-      <option name="project" value="LOCAL" />
-      <updated>1588641218034</updated>
-    </task>
-    <task id="LOCAL-00208" summary="syntax fix">
-      <created>1588696492042</created>
-      <option name="number" value="00208" />
-      <option name="presentableId" value="LOCAL-00208" />
-      <option name="project" value="LOCAL" />
-      <updated>1588696492042</updated>
-    </task>
-    <task id="LOCAL-00209" summary="changes on transaction card styles">
-      <created>1588696544841</created>
-      <option name="number" value="00209" />
-      <option name="presentableId" value="LOCAL-00209" />
-      <option name="project" value="LOCAL" />
-      <updated>1588696544841</updated>
-    </task>
-    <task id="LOCAL-00210" summary="disabled transaction card expansion in all transactions list">
-      <created>1588696565538</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
-      <option name="project" value="LOCAL" />
-      <updated>1588696565538</updated>
-    </task>
-    <task id="LOCAL-00211" summary="moved total balances calculation functionality from firebase functions to redux async functions">
-      <created>1588697030460</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
-      <option name="project" value="LOCAL" />
-      <updated>1588697030460</updated>
-    </task>
-    <task id="LOCAL-00212" summary="removed custom scrollbar plugins and customized app scrollbar globally">
-      <created>1588698293514</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
-      <option name="project" value="LOCAL" />
-      <updated>1588698293514</updated>
-    </task>
-    <task id="LOCAL-00213" summary="created user firebase utils file">
-      <created>1588706925256</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1588706925256</updated>
-    </task>
-    <task id="LOCAL-00214" summary="removed unused function">
-      <created>1588716567197</created>
-      <option name="number" value="00214" />
-      <option name="presentableId" value="LOCAL-00214" />
-      <option name="project" value="LOCAL" />
-      <updated>1588716567197</updated>
-    </task>
-    <task id="LOCAL-00215" summary="added taxonomies data and stored them in the database on user sign up">
-      <created>1588716655910</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
-      <option name="project" value="LOCAL" />
-      <updated>1588716655910</updated>
-    </task>
-    <task id="LOCAL-00216" summary="added settings reducer and fetched taxonomies and stored them in the state">
-      <created>1588716757266</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
-      <option name="project" value="LOCAL" />
-      <updated>1588716757266</updated>
-    </task>
-    <task id="LOCAL-00217" summary="minor change">
-      <created>1588722168464</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
-      <option name="project" value="LOCAL" />
-      <updated>1588722168464</updated>
-    </task>
-    <task id="LOCAL-00218" summary="minor fix">
-      <created>1588722179286</created>
-      <option name="number" value="00218" />
-      <option name="presentableId" value="LOCAL-00218" />
-      <option name="project" value="LOCAL" />
-      <updated>1588722179286</updated>
-    </task>
-    <task id="LOCAL-00219" summary="populated account type select component with account types taxonomies array in account form">
-      <created>1588722242742</created>
-      <option name="number" value="00219" />
-      <option name="presentableId" value="LOCAL-00219" />
-      <option name="project" value="LOCAL" />
-      <updated>1588722242742</updated>
-    </task>
-    <task id="LOCAL-00220" summary="deleted unnecessary account form reducer">
-      <created>1588722906529</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
-      <option name="project" value="LOCAL" />
-      <updated>1588722906529</updated>
-    </task>
-    <task id="LOCAL-00221" summary="added icons to account types taxonomies and displayed them in the form and in the card">
-      <created>1588732241393</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
-      <option name="project" value="LOCAL" />
-      <updated>1588732241393</updated>
-    </task>
-    <task id="LOCAL-00222" summary="added autocomplete component">
-      <created>1588817004063</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
-      <option name="project" value="LOCAL" />
-      <updated>1588817004064</updated>
-    </task>
-    <task id="LOCAL-00223" summary="refactored transaction form and added categories autocomplete component populated with the state categories taxonomies">
-      <created>1588817074344</created>
-      <option name="number" value="00223" />
-      <option name="presentableId" value="LOCAL-00223" />
-      <option name="project" value="LOCAL" />
-      <updated>1588817074344</updated>
-    </task>
-    <task id="LOCAL-00224" summary="styling fix">
-      <created>1588821997663</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
-      <option name="project" value="LOCAL" />
-      <updated>1588821997664</updated>
-    </task>
-    <task id="LOCAL-00225" summary="minor changes">
-      <created>1588970317143</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
-      <option name="project" value="LOCAL" />
-      <updated>1588970317143</updated>
-    </task>
-    <task id="LOCAL-00226" summary="worked on transaction income sources taxonomy and autocomplete component">
-      <created>1589401324680</created>
-      <option name="number" value="00226" />
-      <option name="presentableId" value="LOCAL-00226" />
-      <option name="project" value="LOCAL" />
-      <updated>1589401324680</updated>
-    </task>
-    <task id="LOCAL-00227" summary="worked on settings page taxonomies cards">
-      <created>1589409546450</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
-      <option name="project" value="LOCAL" />
-      <updated>1589409546450</updated>
+      <workItem from="1589891648100" duration="14950000" />
+      <workItem from="1589935729463" duration="599000" />
+      <workItem from="1589993764292" duration="24081000" />
+      <workItem from="1590078646063" duration="10800000" />
+      <workItem from="1590170539195" duration="4491000" />
+      <workItem from="1590238012925" duration="12442000" />
+      <workItem from="1590317981432" duration="25066000" />
+      <workItem from="1590403871477" duration="22183000" />
     </task>
     <task id="LOCAL-00228" summary="minor fix">
       <created>1589421503824</created>
@@ -512,7 +313,217 @@
       <option name="project" value="LOCAL" />
       <updated>1589914286796</updated>
     </task>
-    <option name="localTasksCounter" value="247" />
+    <task id="LOCAL-00247" summary="removed account-to-account transaction functionality">
+      <created>1589915218954</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1589915218954</updated>
+    </task>
+    <task id="LOCAL-00248" summary="converted dashboard page to functional component and made styling pages">
+      <created>1589995005560</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
+      <option name="project" value="LOCAL" />
+      <updated>1589995005561</updated>
+    </task>
+    <task id="LOCAL-00249" summary="minor fixes">
+      <created>1589995126875</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1589995126875</updated>
+    </task>
+    <task id="LOCAL-00250" summary="added loader and selectors to transactions drawer">
+      <created>1589995154692</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1589995154692</updated>
+    </task>
+    <task id="LOCAL-00251" summary="fixed currency rates update firebase function (hopefully?)">
+      <created>1590007532492</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1590007532493</updated>
+    </task>
+    <task id="LOCAL-00252" summary="added global selector for the fetching state of all accounts data (with balances and transactions)">
+      <created>1590007569455</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
+      <option name="project" value="LOCAL" />
+      <updated>1590007569455</updated>
+    </task>
+    <task id="LOCAL-00253" summary="limited transactions query to last 7 days">
+      <created>1590010149752</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1590010149752</updated>
+    </task>
+    <task id="LOCAL-00254" summary="changed some console logs">
+      <created>1590010950483</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1590010950483</updated>
+    </task>
+    <task id="LOCAL-00255" summary="added filters redux files and added startDate filter to transactions fetch action">
+      <created>1590015433780</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1590015433780</updated>
+    </task>
+    <task id="LOCAL-00256" summary="minor change">
+      <created>1590025768687</created>
+      <option name="number" value="00256" />
+      <option name="presentableId" value="LOCAL-00256" />
+      <option name="project" value="LOCAL" />
+      <updated>1590025768687</updated>
+    </task>
+    <task id="LOCAL-00257" summary="added currencyCode field to transactions">
+      <created>1590026394236</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1590026394236</updated>
+    </task>
+    <task id="LOCAL-00258" summary="added currencyCode field to transactions">
+      <created>1590026421823</created>
+      <option name="number" value="00258" />
+      <option name="presentableId" value="LOCAL-00258" />
+      <option name="project" value="LOCAL" />
+      <updated>1590026421823</updated>
+    </task>
+    <task id="LOCAL-00259" summary="fixed transaction currency and all transactions list">
+      <created>1590026451237</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1590026451237</updated>
+    </task>
+    <task id="LOCAL-00260" summary="optimized transaction type icon component">
+      <created>1590099346996</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1590099346996</updated>
+    </task>
+    <task id="LOCAL-00261" summary="optimized formatted number widget">
+      <created>1590099362949</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1590099362949</updated>
+    </task>
+    <task id="LOCAL-00262" summary="worked on dashboard transactions drawer">
+      <created>1590099397676</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1590099397676</updated>
+    </task>
+    <task id="LOCAL-00263" summary="added and optimized balance component">
+      <created>1590249288386</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
+      <option name="project" value="LOCAL" />
+      <updated>1590249288386</updated>
+    </task>
+    <task id="LOCAL-00264" summary="added global style value">
+      <created>1590249304430</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1590249304430</updated>
+    </task>
+    <task id="LOCAL-00265" summary="added user display name selector">
+      <created>1590249323476</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1590249323476</updated>
+    </task>
+    <task id="LOCAL-00266" summary="worked on dashboard pag title and header">
+      <created>1590249380693</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1590249380693</updated>
+    </task>
+    <task id="LOCAL-00267" summary="styling fixes on dashboard page header">
+      <created>1590250208954</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1590250208954</updated>
+    </task>
+    <task id="LOCAL-00268" summary="code reformat">
+      <created>1590324956494</created>
+      <option name="number" value="00268" />
+      <option name="presentableId" value="LOCAL-00268" />
+      <option name="project" value="LOCAL" />
+      <updated>1590324956495</updated>
+    </task>
+    <task id="LOCAL-00269" summary="optimized WithLoader HOC">
+      <created>1590324993957</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1590324993957</updated>
+    </task>
+    <task id="LOCAL-00270" summary="worked on dashboard page header styling and added currency rates">
+      <created>1590325021632</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1590325021632</updated>
+    </task>
+    <task id="LOCAL-00271" summary="added toggling later transactions drawer functionality to the redux state">
+      <created>1590326300942</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1590326300942</updated>
+    </task>
+    <task id="LOCAL-00272" summary="styling fixes on dashboard page and added dashboard content component">
+      <created>1590333228957</created>
+      <option name="number" value="00272" />
+      <option name="presentableId" value="LOCAL-00272" />
+      <option name="project" value="LOCAL" />
+      <updated>1590333228957</updated>
+    </task>
+    <task id="LOCAL-00273" summary="worked on dashboard page content layout">
+      <created>1590337179014</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1590337179014</updated>
+    </task>
+    <task id="LOCAL-00274" summary="added nivo line and pie charts packages">
+      <created>1590337299140</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1590337299140</updated>
+    </task>
+    <task id="LOCAL-00275" summary="installed react-apexcharts packages">
+      <created>1590358944513</created>
+      <option name="number" value="00275" />
+      <option name="presentableId" value="LOCAL-00275" />
+      <option name="project" value="LOCAL" />
+      <updated>1590358944513</updated>
+    </task>
+    <task id="LOCAL-00276" summary="set up dashboard activity chart with custom options and dummy data">
+      <created>1590417851687</created>
+      <option name="number" value="00276" />
+      <option name="presentableId" value="LOCAL-00276" />
+      <option name="project" value="LOCAL" />
+      <updated>1590417851687</updated>
+    </task>
+    <option name="localTasksCounter" value="277" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,7 +544,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="text">
+                    <value>
+                      <list>
+                        <option value="removed " />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -547,38 +570,46 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/material-sense" />
     </ignored-roots>
-    <MESSAGE value="deleted unnecessary account form reducer" />
-    <MESSAGE value="added icons to account types taxonomies and displayed them in the form and in the card" />
-    <MESSAGE value="added autocomplete component" />
-    <MESSAGE value="refactored transaction form and added categories autocomplete component populated with the state categories taxonomies" />
-    <MESSAGE value="styling fix" />
-    <MESSAGE value="minor changes" />
-    <MESSAGE value="worked on transaction income sources taxonomy and autocomplete component" />
-    <MESSAGE value="worked on settings page taxonomies cards" />
-    <MESSAGE value="[Taxonomies CRUD - Create] - worked on creating new taxonomies and refactored taxonomy card component" />
-    <MESSAGE value="changed food icon in default spending categories" />
-    <MESSAGE value="[Taxonomies CRUD - Delete] worked on deleting taxonomy" />
-    <MESSAGE value="minor styling fix" />
-    <MESSAGE value="changed settings files names to taxonomies to separate from currency logic" />
-    <MESSAGE value="added currency reducer files" />
-    <MESSAGE value="implemented writing app currencies to the database on user sign up" />
+    <MESSAGE value="fixed currency rates update firebase function (hopefully?)" />
+    <MESSAGE value="added global selector for the fetching state of all accounts data (with balances and transactions)" />
+    <MESSAGE value="limited transactions query to last 7 days" />
+    <MESSAGE value="changed some console logs" />
+    <MESSAGE value="added filters redux files and added startDate filter to transactions fetch action" />
     <MESSAGE value="minor change" />
-    <MESSAGE value="testing with another way to fetch accounts and their balances and transactions" />
-    <MESSAGE value="removed commented code from failed attempt :(" />
-    <MESSAGE value="[big] changed redux state and database structure" />
-    <MESSAGE value="fetched all loading states in account page" />
-    <MESSAGE value="worked on calculating transactions, balances, accounts and user total balances" />
-    <MESSAGE value="worked on account-to-account transactions form, view and CRUD" />
-    <MESSAGE value="minor fix" />
-    <MESSAGE value="worked on account-to-account transactions form" />
-    <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="added currencyCode field to transactions" />
+    <MESSAGE value="fixed transaction currency and all transactions list" />
+    <MESSAGE value="optimized transaction type icon component" />
+    <MESSAGE value="optimized formatted number widget" />
+    <MESSAGE value="worked on dashboard transactions drawer" />
+    <MESSAGE value="added and optimized balance component" />
+    <MESSAGE value="added global style value" />
+    <MESSAGE value="added user display name selector" />
+    <MESSAGE value="worked on dashboard pag title and header" />
+    <MESSAGE value="styling fixes on dashboard page header" />
+    <MESSAGE value="code reformat" />
+    <MESSAGE value="optimized WithLoader HOC" />
+    <MESSAGE value="worked on dashboard page header styling and added currency rates" />
+    <MESSAGE value="added toggling later transactions drawer functionality to the redux state" />
+    <MESSAGE value="styling fixes on dashboard page and added dashboard content component" />
+    <MESSAGE value="worked on dashboard page content layout" />
+    <MESSAGE value="added nivo line and pie charts packages" />
+    <MESSAGE value="installed react-apexcharts packages" />
+    <MESSAGE value="set up dashboard activity chart with custom options and dummy data" />
+    <option name="LAST_COMMIT_MESSAGE" value="set up dashboard activity chart with custom options and dummy data" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1147" y="600" key="#ESLint" timestamp="1589828330152">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1147" y="600" key="#ESLint/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589828330152" />
+    <state x="907" y="379" key="#Inspections" timestamp="1590328869752">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="907" y="379" key="#Inspections/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590328869752" />
+    <state x="892" y="0" key="#JavaScript" timestamp="1590243558549">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="892" y="0" key="#JavaScript/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590243558549" />
     <state x="1730" y="492" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588798489591">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -587,58 +618,62 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="961" y="438" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1583332506750" />
-    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589914506817">
+    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590094823122">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914506817" />
+    <state x="1701" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590094823122" />
     <state x="1025" y="536" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1588722673140">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1025" y="536" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588722673140" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1589914286028">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2" timestamp="1590417850679">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="749" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583401662365" />
-    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914286028" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1589914972622">
+    <state x="851" y="83" width="975" height="1083" key="CommitChangelistDialog2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590417850679" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog" timestamp="1590440191501">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="294" y="59" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583242422575" />
-    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914972622" />
+    <state x="151" y="101" width="2342" height="1200" key="DiffContextDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590440191501" />
     <state x="915" y="284" key="FileChooserDialogImpl" timestamp="1588446530757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583401638303" />
     <state x="915" y="284" key="FileChooserDialogImpl/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588446530757" />
-    <state width="2517" height="273" key="GridCell.Tab.0.bottom" timestamp="1589914266237">
+    <state width="2517" height="296" key="GridCell.Tab.0.bottom" timestamp="1590414430905">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="273" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914266237" />
-    <state width="2517" height="273" key="GridCell.Tab.0.center" timestamp="1589914266237">
+    <state width="2517" height="296" key="GridCell.Tab.0.bottom/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590414430905" />
+    <state width="2517" height="296" key="GridCell.Tab.0.center" timestamp="1590414430904">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="273" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914266237" />
-    <state width="2517" height="273" key="GridCell.Tab.0.left" timestamp="1589914266237">
+    <state width="2517" height="296" key="GridCell.Tab.0.center/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590414430904" />
+    <state width="2517" height="296" key="GridCell.Tab.0.left" timestamp="1590414430904">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="273" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914266237" />
-    <state width="2517" height="273" key="GridCell.Tab.0.right" timestamp="1589914266237">
+    <state width="2517" height="296" key="GridCell.Tab.0.left/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590414430904" />
+    <state width="2517" height="296" key="GridCell.Tab.0.right" timestamp="1590414430904">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583401846896" />
-    <state width="2517" height="273" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914266237" />
-    <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1589914143648">
+    <state width="2517" height="296" key="GridCell.Tab.0.right/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590414430904" />
+    <state x="861" y="436" key="IDE.errors.dialog" timestamp="1590358700730">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914143648" />
-    <state x="937" y="258" key="SettingsEditor" timestamp="1589312298204">
+    <state x="861" y="436" key="IDE.errors.dialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590358700730" />
+    <state x="1772" y="328" key="RollbackChangesDialog" timestamp="1590251099628">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1772" y="328" key="RollbackChangesDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590251099628" />
+    <state x="937" y="258" key="SettingsEditor" timestamp="1590427954668">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="555" y="110" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583401886693" />
-    <state x="937" y="258" key="SettingsEditor/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589312298204" />
+    <state x="937" y="258" key="SettingsEditor/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590427954668" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1583083087090">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -647,11 +682,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1101" y="323" key="VCS.ChangeListViewerDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1587205353399" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1589856561908">
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2" timestamp="1590337304969">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="722" y="254" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583401704491" />
-    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589856561908" />
+    <state x="1563" y="431" key="Vcs.Push.Dialog.v2/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590337304969" />
     <state x="985" y="353" key="VcsDiffUtil.ChangesDialog" timestamp="1587825550391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -660,22 +695,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="93" y="93" width="2375" height="1215" key="com.intellij.history.integration.ui.views.FileHistoryDialog/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1588090661449" />
-    <state x="681" y="172" width="961" height="644" key="find.popup" timestamp="1589914919457">
+    <state x="674" y="170" width="961" height="644" key="find.popup" timestamp="1590435044395">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="681" y="172" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914919457" />
-    <state width="600" height="440" key="javadoc.popup" timestamp="1589832050042">
+    <state x="674" y="170" width="961" height="644" key="find.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590435044395" />
+    <state width="600" height="440" key="javadoc.popup" timestamp="1590094004808">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="600" height="440" key="javadoc.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589832050042" />
-    <state x="937" y="331" key="run.anything.popup" timestamp="1589830518763">
+    <state width="600" height="440" key="javadoc.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590094004808" />
+    <state x="937" y="331" key="run.anything.popup" timestamp="1590030695570">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589830518763" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1589914627896">
+    <state x="937" y="331" key="run.anything.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590030695570" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1590434821656">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="982" y="188" width="672" height="400" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583232193644" />
-    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1589914627896" />
+    <state x="1637" y="320" width="672" height="678" key="search.everywhere.popup/3840.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1590434821656" />
   </component>
 </project>

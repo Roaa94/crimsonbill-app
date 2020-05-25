@@ -1,5 +1,5 @@
 import {CurrenciesActionTypes} from "./currencies.action-types";
-import {convertCollectionToArray, firestore} from "../../firebase/firebase.utils";
+import {convertCollectionToArray, firestore} from "../../utils/firebase/firebase.utils";
 
 export const fetchCurrenciesStart = () => ({
     type: CurrenciesActionTypes.FETCH_CURRENCIES_START,

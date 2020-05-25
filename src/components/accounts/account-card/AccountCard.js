@@ -1,5 +1,5 @@
 import React from 'react';
-import {deleteAccountDocument} from "../../../firebase/accounts.firebase-utils";
+import {deleteAccountDocument} from "../../../utils/firebase/accounts.firebase-utils";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {

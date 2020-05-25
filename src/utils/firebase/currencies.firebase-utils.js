@@ -1,5 +1,5 @@
 import {firestore} from "./firebase.utils";
-import {appCurrencies, currencyAPIHost} from "../app-data/currency";
+import {appCurrencies, currencyAPIHost} from "../../app-data/currency";
 import axios from 'axios';
 
 export const updateAppCurrenciesRates = async () => {

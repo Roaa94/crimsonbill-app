@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import {auth} from "./firebase/firebase.utils";
+import {auth} from "./utils/firebase/firebase.utils";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {setUser} from "./redux/user/user.actions";
 import {connect} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/home/HomePage";
 import {selectUserData} from "./redux/user/user.selectors";
-import {createUserProfileDocument} from "./firebase/user.firebase-utils";
+import {createUserProfileDocument} from "./utils/firebase/user.firebase-utils";
 import {fetchTaxonomiesStartAsync} from "./redux/taxonomies/taxonomies.actions";
 import {fetchCurrenciesStartAsync} from "./redux/currencies/currencies.actions";
 import {fetchAccountsStartAsync} from "./redux/accounts/accounts.actions";

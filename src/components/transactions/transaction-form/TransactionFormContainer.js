@@ -7,7 +7,7 @@ import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import {
     addTransactionDocument,
     updateTransactionDocument
-} from "../../../firebase/transactions.firebase-utils";
+} from "../../../utils/firebase/transactions.firebase-utils";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import TransactionForm from "./TransactionForm";

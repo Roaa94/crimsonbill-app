@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import MuiDrawer from '@material-ui/core/Drawer';
-import {auth} from "../../../firebase/firebase.utils";
+import {auth} from "../../../utils/firebase/firebase.utils";
 import {useHistory, useLocation} from 'react-router-dom';
 import LinkListItem from "../link-list-item/LinkListItem";
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';

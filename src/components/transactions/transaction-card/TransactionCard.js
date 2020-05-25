@@ -15,7 +15,7 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {deleteTransactionDocument} from "../../../firebase/transactions.firebase-utils";
+import {deleteTransactionDocument} from "../../../utils/firebase/transactions.firebase-utils";
 import FormattedNumber from "../../ui/FormattedNumber";
 import TransactionForm from "../transaction-form/TransactionFormContainer";
 import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";

@@ -8,7 +8,7 @@ import TaxonomyItem from "../TaxonomyItem";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
 import {connect} from "react-redux";
-import {addTaxonomy, deleteTaxonomy} from "../../../firebase/taxonomies.firebase-utils";
+import {addTaxonomy, deleteTaxonomy} from "../../../utils/firebase/taxonomies.firebase-utils";
 
 class TaxonomyCard extends React.Component {
     state = {

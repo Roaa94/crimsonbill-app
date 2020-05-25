@@ -1,5 +1,5 @@
 import {firestore} from "./firebase.utils";
-import {appTaxonomies} from "../app-data/taxonomies";
+import {appTaxonomies} from "../../app-data/taxonomies";
 
 export const initDefaultTaxonomies = async userId => {
     console.log('setting default taxonomies ...');

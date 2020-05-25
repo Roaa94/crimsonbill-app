@@ -1,4 +1,4 @@
-import {convertCollectionToArray, firestore} from "../../firebase/firebase.utils";
+import {convertCollectionToArray, firestore} from "../../utils/firebase/firebase.utils";
 import {TransactionsActionTypes} from "./transactions.action-types";
 
 export const fetchTransactionsStart = () => ({

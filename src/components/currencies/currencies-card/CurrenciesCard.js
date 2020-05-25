@@ -4,7 +4,7 @@ import {selectAppCurrencies} from "../../../redux/currencies/currencies.selector
 import {connect} from "react-redux";
 import CurrencyListItem from "../currency-list-item/CurrencyListItem";
 import {selectUserId} from "../../../redux/user/user.selectors";
-import {setDefaultCurrency} from "../../../firebase/user.firebase-utils";
+import {setDefaultCurrency} from "../../../utils/firebase/user.firebase-utils";
 
 const CurrenciesCard = ({appCurrencies, userId}) => {
 

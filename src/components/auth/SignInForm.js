@@ -4,7 +4,7 @@ import TextFieldOutlined from "../ui/inputs/TextFieldOutlined";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import ButtonOutlined from "../ui/buttons/ButtonOutlined";
-import {auth, signInWithGoogle} from "../../firebase/firebase.utils";
+import {auth, signInWithGoogle} from "../../utils/firebase/firebase.utils";
 
 class SignInForm extends React.Component {
     state = {

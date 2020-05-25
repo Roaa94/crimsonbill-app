@@ -12,7 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import {selectAccount} from "../../../redux/accounts/accounts.selectors";
 import {selectTaxonomyArray} from "../../../redux/taxonomies/taxonomies.selectors";
 import CurrencySelect from "../../ui/inputs/CurrencySelect";
-import {addAccountDocument, updateAccountDocument} from "../../../firebase/accounts.firebase-utils";
+import {addAccountDocument, updateAccountDocument} from "../../../utils/firebase/accounts.firebase-utils";
 
 class AccountForm extends Component {
     _isMounted = false;

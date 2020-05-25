@@ -1,6 +1,6 @@
 import React from 'react';
 import CurrencySelect from "../ui/inputs/CurrencySelect";
-import {setDefaultCurrency} from "../../firebase/user.firebase-utils";
+import {setDefaultCurrency} from "../../utils/firebase/user.firebase-utils";
 import {selectDefaultCurrencyCode, selectUserId} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import {setIsCalculatingBalance} from "../../redux/user/user.actions";

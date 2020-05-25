@@ -9,7 +9,7 @@ import Box from "@material-ui/core/Box";
 import FormattedNumber from "../../ui/FormattedNumber";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
-import {deleteBalanceDocument} from "../../../firebase/balances.firebase-utils";
+import {deleteBalanceDocument} from "../../../utils/firebase/balances.firebase-utils";
 import BalanceForm from "../BalanceForm";
 import TransactionsList from "../../transactions/transactions-list/TransactionsList";
 import getSymbolFromCurrency from 'currency-symbol-map';

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     addBalanceDocument,
     updateBalanceDocument
-} from "../../firebase/balances.firebase-utils";
+} from "../../utils/firebase/balances.firebase-utils";
 import {selectUserId} from "../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";

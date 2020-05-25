@@ -1,6 +1,6 @@
 import {TaxonomiesActionTypes} from "./taxonomies.action-types";
 import {appTaxonomies} from "../../app-data/taxonomies";
-import {convertCollectionToArray, firestore} from "../../firebase/firebase.utils";
+import {convertCollectionToArray, firestore} from "../../utils/firebase/firebase.utils";
 
 export const fetchTaxonomiesStart = () => ({
     type: TaxonomiesActionTypes.FETCH_TAXONOMIES_START,
