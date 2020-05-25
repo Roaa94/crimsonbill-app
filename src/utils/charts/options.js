@@ -2,7 +2,6 @@ export const getChartOptions = ({colors, categories, customTooltip}) => {
     return {
         chart: {
             fontFamily: 'Raleway, sans-serif',
-            stacked: true,
             height: '100%',
             type: 'area',
             toolbar: {
@@ -34,21 +33,14 @@ export const getChartOptions = ({colors, categories, customTooltip}) => {
             categories: categories,
             tooltip: {
                 enabled: false,
-            }
-        },
-        yaxis: {
-            crosshairs:{
-                enabled: true,
-            }
+            },
+            labels: {
+                format: 'dd/MM',
+                datetimeUTC: true,
+            },
+            tickPlacement: 'on',
         },
         tooltip: {
-            shared: false,
-            x: {
-                show: false,
-            },
-            marker: {
-                show: false,
-            },
             custom: customTooltip ? customTooltip : undefined,
         },
         legend: {
