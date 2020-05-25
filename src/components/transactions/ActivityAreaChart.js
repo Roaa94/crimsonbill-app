@@ -2,35 +2,29 @@ import React from 'react';
 import {colors} from "../../styles/global";
 import Chart from "react-apexcharts";
 import {getChartOptions} from "../../utils/charts/options";
-
+import {connect} from "react-redux";
+import {selectActivityChartData} from "../../redux/global/charts-data.selectors";
 
 const chartColors = [
     colors.secondary,
     colors.primary,
 ];
 
-const ActivityAreaChart = () => {
+const ActivityAreaChart = ({spendingsData, earningsData}) => {
+
     const series = [
         {
             name: 'Earnings',
-            data: [31, 40, 28, 51, 42, 109, 100]
+            data: earningsData.map(item => item.total)
         }, {
             name: 'Spendings',
-            data: [11, 32, 45, 32, 34, 52, 41]
+            data: spendingsData.map(item => item.total)
         }
     ];
 
-    const height = 350;
-
-    const tooltip = ({series, seriesIndex, dataPointIndex, w}) => {
-        return '<div>' +
-            '<span>' + series[seriesIndex][dataPointIndex] + '</span>' +
-            '</div>'
-    }
-
     const customOptions = {
         colors: chartColors,
-        customTooltip: tooltip,
+        categories: spendingsData.map(item => item.date),
     }
 
     const options = getChartOptions(customOptions);
@@ -45,4 +39,9 @@ const ActivityAreaChart = () => {
     );
 };
 
-export default ActivityAreaChart;
+const mapStateToProps = state => ({
+    spendingsData: selectActivityChartData('spending')(state),
+    earningsData: selectActivityChartData('earning')(state),
+});
+
+export default connect(mapStateToProps)(ActivityAreaChart);
