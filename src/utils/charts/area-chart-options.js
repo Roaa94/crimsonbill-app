@@ -1,4 +1,4 @@
-export const getChartOptions = ({colors, categories, customTooltip}) => {
+export const getAreaChartOptions = ({colors, categories, customTooltip}) => {
     return {
         chart: {
             fontFamily: 'Raleway, sans-serif',
