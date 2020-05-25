@@ -5,8 +5,3 @@ export const compareDaysByTimestamp = (d1Timestamp, d2Timestamp) => {
         && d1.getMonth() === d2.getMonth()
         && d1.getDate() === d2.getDate();
 };
-
-export const formatTimestamp = (timestamp) => {
-    const date = new Date(timestamp);
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-}
