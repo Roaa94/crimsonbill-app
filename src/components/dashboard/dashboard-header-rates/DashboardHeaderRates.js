@@ -10,7 +10,6 @@ import {selectDefaultCurrencyCode} from "../../../redux/user/user.selectors";
 
 const DashboardHeaderRates = ({appCurrencies, defaultCurrencyCode}) => {
     const otherAppCurrencies = appCurrencies.filter(currency => currency.code !== defaultCurrencyCode);
-    console.log(otherAppCurrencies)
     return (
         <DashboardHeaderRatesContainer>
             <DashboardHeaderRatesList>
