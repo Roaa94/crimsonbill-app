@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     transactionSourceId: '',
     transactionType: '',
     accountId: '',
-    startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+    startDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    endDate: new Date(),
 };
 
 const filtersReducer = (state = INITIAL_STATE, action) => {
