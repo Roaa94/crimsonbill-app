@@ -16,7 +16,7 @@ import {
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
 import Grid from "@material-ui/core/Grid";
 import DefaultCurrencySelect from "../../components/currencies/DefaultCurrencySelect";
-import {selectIsLoadingAllAccountsData} from "../../redux/global.selectors";
+import {selectIsLoadingAllAccountsData} from "../../redux/global/misc.selectors";
 import Balance from "../../components/Balance";
 
 const AccountsListWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
