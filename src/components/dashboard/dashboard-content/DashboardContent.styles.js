@@ -19,12 +19,6 @@ export const TopContent = styled.div`
   }
 `;
 
-export const PieChartContainer = styled.div`
-  background-color: ${colors.white};
-  border-radius: ${borderRadius.m};
-  height: 100%;
-`;
-
 export const BottomContent = styled.div`
   height: 60%;
 `;

@@ -2,14 +2,13 @@ import React from 'react';
 import {
     DashboardContentContainer,
     TopContent,
-    PieChartContainer,
     BottomContent,
     ActivityChartContainer, SittingGirlSVGContainer
 } from "./DashboardContent.styles";
 import Grid from "@material-ui/core/Grid";
 import {ReactComponent as SittingGirlSVG} from '../../../assets/svg/girl-sitting.svg';
-import CategoriesPieChart from "../../transactions/CategoriesPieChart";
-import ActivityAreaChart from "../../transactions/ActivityAreaChart";
+import ActivityAreaChart from "../../transactions/transactions-charts/ActivityAreaChart";
+import DashboardPieChartTabs from "../dashboard-pie-chart-tabs/DashboardPieChartTabs";
 
 const DashboardContent = () => {
     return (
@@ -22,9 +21,7 @@ const DashboardContent = () => {
                         </SittingGirlSVGContainer>
                     </Grid>
                     <Grid item xs={12} lg={8}>
-                        <PieChartContainer>
-                            <CategoriesPieChart/>
-                        </PieChartContainer>
+                        <DashboardPieChartTabs/>
                     </Grid>
                 </Grid>
             </TopContent>
