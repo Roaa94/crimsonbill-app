@@ -6,6 +6,8 @@ export const colors = {
     primaryLight: '#FBE8E8',
     secondaryLight: '#E1EDF6',
     white: '#FFFFFF',
+    white50: 'rgba(255, 255, 255, 0.5)',
+    white75: 'rgba(255, 255, 255, 0.75)',
     transparent: 'transparent',
     disabledBackground: '#E0E6EB',
 };
