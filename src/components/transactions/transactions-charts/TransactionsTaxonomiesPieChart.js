@@ -1,11 +1,13 @@
 import React from 'react';
 import Chart from "react-apexcharts";
 import {getPieChartOptions} from "../../../utils/charts/pie-chart-options";
+import {selectTransactionsTaxonomiesChartData} from "../../../redux/global/charts-data.selectors";
+import {connect} from "react-redux";
 
-const TransactionsTaxonomiesPieChart = () => {
+const TransactionsTaxonomiesPieChart = ({taxonomiesChartData}) => {
 
-    const series = [44, 55, 41, 17, 15];
-    const labels = ['A', 'B', 'C', 'D', 'E'];
+    const series = taxonomiesChartData.map(data => Number(data.total));
+    const labels = taxonomiesChartData.map(data => data.taxonomyName);
 
     const customOptions = {
         labels: labels,
@@ -22,4 +24,8 @@ const TransactionsTaxonomiesPieChart = () => {
     );
 };
 
-export default TransactionsTaxonomiesPieChart;
+const mapStateToProps = (state, ownProps) => ({
+    taxonomiesChartData: selectTransactionsTaxonomiesChartData(ownProps.type)(state),
+})
+
+export default connect(mapStateToProps)(TransactionsTaxonomiesPieChart);

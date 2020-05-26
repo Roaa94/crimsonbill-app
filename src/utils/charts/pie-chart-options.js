@@ -26,7 +26,7 @@ export const getPieChartOptions = ({colors, labels, customTooltip}) => {
                 expandOnClick: false,
                 donut: {
                     size: '20%',
-                }
+                },
             }
         },
         markers: {
@@ -44,6 +44,10 @@ export const getPieChartOptions = ({colors, labels, customTooltip}) => {
             position: 'left',
             height: '100%',
             horizontalAlign: 'center',
+            fontSize: '14px',
+            onItemClick: {
+                toggleDataSeries: false
+            },
         },
     };
 }

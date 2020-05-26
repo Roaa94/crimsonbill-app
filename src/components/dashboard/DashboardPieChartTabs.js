@@ -8,12 +8,12 @@ const DashboardPieChartTabs = () => {
         {
             index: 0,
             label: 'Spending Categories',
-            tabContent: <TransactionsTaxonomiesPieChart/>
+            tabContent: <TransactionsTaxonomiesPieChart type='spending'/>
         },
         {
             index: 1,
             label: 'Income Sources',
-            tabContent: <TransactionsTaxonomiesPieChart/>
+            tabContent: <TransactionsTaxonomiesPieChart type='earning'/>
         }
     ]
 
