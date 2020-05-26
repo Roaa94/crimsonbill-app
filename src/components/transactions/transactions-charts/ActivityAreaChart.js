@@ -1,9 +1,9 @@
 import React from 'react';
-import {colors} from "../../styles/global";
+import {colors} from "../../../styles/global";
 import Chart from "react-apexcharts";
-import {getAreaChartOptions} from "../../utils/charts/area-chart-options";
+import {getAreaChartOptions} from "../../../utils/charts/area-chart-options";
 import {connect} from "react-redux";
-import {selectActivityChartData} from "../../redux/global/charts-data.selectors";
+import {selectActivityChartData} from "../../../redux/global/charts-data.selectors";
 
 const chartColors = [
     colors.secondary,
