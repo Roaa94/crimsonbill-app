@@ -33,6 +33,6 @@ export const Tab = styled.div`
 `;
 
 export const TabContentContainer = styled.div`
-  padding: 15px;
+  padding-left: 15px;
   width: 80%;
 `;

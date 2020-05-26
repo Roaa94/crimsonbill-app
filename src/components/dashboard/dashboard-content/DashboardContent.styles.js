@@ -50,7 +50,7 @@ export const DashboardContentContainer = styled.div`
       z-index: 2;
       
       @media (min-width: 1920px) {
-        height: ${pieChartHeightXl + 30}pxpx;
+        height: ${pieChartHeightXl + 30}px;
       }
     }
   }
