@@ -29,7 +29,7 @@ export const Tab = styled.div`
   color: ${props => props.current ? colors.primary : 'inherit'};
   border-radius: ${borderRadius.m};
   transition: all .5s;
-  box-shadow: ${props => props.current ? boxShadows.main : 'none'};
+  box-shadow: ${props => props.current ? boxShadows.light : 'none'};
 `;
 
 export const TabContentContainer = styled.div`

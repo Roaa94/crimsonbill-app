@@ -14,6 +14,7 @@ export const colors = {
 
 export const boxShadows = {
     main: '0 5px 10px rgba(0,0,0,0.1)',
+    light: '0 7px 10px rgba(0,0,0,0.05)',
 };
 
 export const borderRadius = {

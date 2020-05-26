@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {borderRadius, colors} from "../../../styles/global";
+import {borderRadius, boxShadows, colors} from "../../../styles/global";
 
 const itemMargin = 20;
 const indicatorWidth = 6;
@@ -23,19 +23,21 @@ export const LinkListItemContainer = styled.div`
       padding: 10px;
       margin-right: 10px;
       color: ${props => props.color === 'secondary' ? colors.primary : colors.text};
-      background-color: ${props => props.active ? 'rgba(255, 255, 255, 0.75)' : 'transparent'};
+      background-color: ${props => props.active ? colors.white75 : 'transparent'};
       transition: all .3s;
+      box-shadow: ${props => props.active ? boxShadows.light : 'none'};
   }
   
   :hover {
     background-color: ${props => props.color === 'secondary' ? colors.primaryLight : colors.secondaryLight};
     
     .icon-container{
-      background-color: rgba(255, 255, 255, 0.75); 
+      background-color: ${colors.white75}; 
+      box-shadow: ${boxShadows.light};
     }
   }
   
-  :after{
+  ::after{
     transition: all .3s;
     opacity: ${props => props.active ? '1' : '0'};
     content: '';

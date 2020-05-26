@@ -51,13 +51,16 @@ export const theme = createMuiTheme({
             },
         },
         MuiFilledInput: {
+            input: {
+                borderRadius: borderRadius.m,
+            },
             root: {
                 backgroundColor: colors.background,
                 borderRadius: borderRadius.m,
                 '&:before': {
                     display: 'none',
                 },
-                '&:after': {
+                '&::after': {
                     display: 'none',
                 },
                 '&:hover': {
