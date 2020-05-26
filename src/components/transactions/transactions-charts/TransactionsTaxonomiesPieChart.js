@@ -9,11 +9,8 @@ const TransactionsTaxonomiesPieChart = ({taxonomiesChartData}) => {
     const series = taxonomiesChartData.map(data => Number(data.total));
     const labels = taxonomiesChartData.map(data => data.taxonomyName);
 
-    const customOptions = {
-        labels: labels,
-    }
+    const options = getPieChartOptions(labels);
 
-    const options = getPieChartOptions(customOptions);
     return (
         <Chart
             options={options}

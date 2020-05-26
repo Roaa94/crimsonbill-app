@@ -1,4 +1,6 @@
-export const getAreaChartOptions = ({colors, categories, customTooltip}) => {
+import {getChartColors} from "./charts.utils";
+
+export const getAreaChartOptions = (categories) => {
     return {
         chart: {
             fontFamily: 'Raleway, sans-serif',
@@ -27,7 +29,7 @@ export const getAreaChartOptions = ({colors, categories, customTooltip}) => {
                 size: 7,
             }
         },
-        colors: colors,
+        colors: getChartColors(categories.length),
         xaxis: {
             type: 'category',
             categories: categories,
@@ -39,9 +41,6 @@ export const getAreaChartOptions = ({colors, categories, customTooltip}) => {
                 datetimeUTC: true,
             },
             tickPlacement: 'on',
-        },
-        tooltip: {
-            custom: customTooltip ? customTooltip : undefined,
         },
         legend: {
             position: 'top',

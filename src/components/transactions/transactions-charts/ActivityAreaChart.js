@@ -1,14 +1,8 @@
 import React from 'react';
-import {colors} from "../../../styles/global";
 import Chart from "react-apexcharts";
 import {getAreaChartOptions} from "../../../utils/charts/area-chart-options";
 import {connect} from "react-redux";
 import {selectActivityChartData} from "../../../redux/global/charts-data.selectors";
-
-const chartColors = [
-    colors.secondary,
-    colors.primary,
-];
 
 const ActivityAreaChart = ({spendingsData, earningsData}) => {
 
@@ -22,12 +16,9 @@ const ActivityAreaChart = ({spendingsData, earningsData}) => {
         }
     ];
 
-    const customOptions = {
-        colors: chartColors,
-        categories: spendingsData.map(item => item.date),
-    }
+    const categories = spendingsData.map(item => item.date);
 
-    const options = getAreaChartOptions(customOptions);
+    const options = getAreaChartOptions(categories);
 
     return (
         <Chart

@@ -1,4 +1,7 @@
-export const getPieChartOptions = ({colors, labels, customTooltip}) => {
+import {getChartColors} from "./charts.utils";
+
+export const getPieChartOptions = (labels) => {
+
     return {
         chart: {
             fontFamily: 'Raleway, sans-serif',
@@ -35,10 +38,7 @@ export const getPieChartOptions = ({colors, labels, customTooltip}) => {
                 size: 7,
             }
         },
-        colors: colors ? colors : undefined,
-        tooltip: {
-            custom: customTooltip ? customTooltip : undefined,
-        },
+        colors: getChartColors(labels.length),
         labels: labels,
         legend: {
             position: 'left',
