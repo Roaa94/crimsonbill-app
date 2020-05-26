@@ -61,6 +61,4 @@ export const DashboardPageContent = styled.div`
   height: 100%;
   width: ${props => props.drawerOpen ? `calc(100% - ${transactionDrawerWidth}px)` : '100%'};
   transition: width .4s cubic-bezier(0, 0, 0.2, 1) 0ms;
-  display: flex;
-  flex-flow: column;
 `;

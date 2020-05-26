@@ -1,46 +1,57 @@
 import styled from 'styled-components';
 import {borderRadius, colors} from "../../../styles/global";
 
+const pieChartHeight = 200;
+const pieChartHeightXl = 350;
+
+const activityChartHeight = 350;
+const activityChartHeightXl = 550;
+
 export const DashboardContentContainer = styled.div`
   border-radius: ${borderRadius.l};
   margin-top: 20px;
   background-color: ${colors.secondaryLight};
-  flex-grow: 1;
-  padding: 10px;  
-`;
-
-export const TopContent = styled.div`
-  height: 40%;
-  position: relative;
-
-  .content-grid {
-    height: 100%;
-    padding-bottom: 10px;
-  }
-`;
-
-export const BottomContent = styled.div`
-  height: 60%;
-`;
-
-export const ActivityChartContainer = styled.div`
-  background-color: ${colors.white};
-  border-radius: ${borderRadius.m};
-  width: 100%;
-  height: 100%;
-`;
-
-export const SittingGirlSVGContainer = styled.div`
-  position: relative;
-  height: 100%;
+  padding: 10px;
   
-  svg {
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    max-height: 100%;
-    overflow: visible;
-    z-index: 2;
+  .chart-card{
+      background-color: ${colors.white};
+      border-radius: ${borderRadius.m};
+      width: 100%;
+      padding: 8px;
+      
+      &.pie-chart {
+        margin-bottom: 10px;
+        height: ${pieChartHeight}px;
+        
+        @media (min-width: 1920px) {
+          height: ${pieChartHeightXl}px;
+        }
+      }
+      
+      &.activity-chart{
+        height: ${activityChartHeight}px;
+        @media (min-width: 1920px) {
+          height: ${activityChartHeightXl}px;
+        }
+      }
+  }
+  
+  .girl-svg {
+    position: relative;
+    height: 100%;
+    
+    svg {
+      height: ${pieChartHeight + 30}px;
+      max-width: 110%;
+      display: inline-block;
+      overflow: visible;
+      position: absolute;
+      bottom: 0;
+      z-index: 2;
+      
+      @media (min-width: 1920px) {
+        height: ${pieChartHeightXl + 30}pxpx;
+      }
+    }
   }
 `;

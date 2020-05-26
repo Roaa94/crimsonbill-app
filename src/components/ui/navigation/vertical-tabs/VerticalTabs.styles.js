@@ -34,5 +34,5 @@ export const Tab = styled.div`
 
 export const TabContentContainer = styled.div`
   padding: 15px;
-  flex-grow: 1;
+  width: 80%;
 `;

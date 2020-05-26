@@ -3,17 +3,11 @@ import {Tab, TabContentContainer, TabsContainer, VerticalTabsContainer} from "./
 
 const TabContent = ({children, value, index}) => {
     return (
-        <div
+        <TabContentContainer
             hidden={value !== index}
         >
-            {
-                value === index && (
-                    <TabContentContainer>
-                        {children}
-                    </TabContentContainer>
-                )
-            }
-        </div>
+            {value === index && children}
+        </TabContentContainer>
     )
 }
 
