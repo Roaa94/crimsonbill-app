@@ -46,6 +46,13 @@ export const getAreaChartOptions = ({colors, categories, customTooltip}) => {
         legend: {
             position: 'top',
             horizontalAlign: 'center',
+            markers: {
+                width: 25,
+                height: 8,
+            },
+            onItemClick: {
+                toggleDataSeries: false
+            },
         },
     };
 }
