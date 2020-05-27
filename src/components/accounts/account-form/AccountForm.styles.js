@@ -8,7 +8,6 @@ export const AccountFormExpansionPanel = withStyles({
     root: {
         margin: '0',
         borderRadius: `${borderRadius.l} !important`,
-        boxShadow: 'none',
         borderBottom: '0 !important',
         transition: 'all .3s',
         '&:before': {

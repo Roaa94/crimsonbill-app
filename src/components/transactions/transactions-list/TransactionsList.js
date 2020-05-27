@@ -30,7 +30,7 @@ class TransactionsList extends React.Component {
     };
 
     controlTransactionForm = value => {
-        if(this._isMount) {
+        if (this._isMount) {
             this.setState({showTransactionForm: value});
         }
     }
@@ -42,17 +42,12 @@ class TransactionsList extends React.Component {
         return (
             <div>
                 <TransactionsListHeader>
-                    <Grid container alignItems='center'>
-                        Transactions
-                        <AddIconButton
-                            bgColor={colors.background}
-                            size='small'
-                            handleClick={() => this.controlTransactionForm(true)}
-                        />
-                    </Grid>
-                    <Grid container alignItems='center' justify='flex-end'>
-                        filters
-                    </Grid>
+                    Transactions
+                    <AddIconButton
+                        bgColor={colors.background}
+                        size='small'
+                        handleClick={() => this.controlTransactionForm(true)}
+                    />
                 </TransactionsListHeader>
                 {
                     showTransactionForm ? (

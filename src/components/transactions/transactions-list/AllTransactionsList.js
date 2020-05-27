@@ -1,6 +1,5 @@
 import React from 'react';
 import {TransactionCardsList, TransactionsListExpansionPanelSummary} from "./TransactionsList.styles";
-import Grid from "@material-ui/core/Grid";
 import {selectUserId} from "../../../redux/user/user.selectors";
 import {connect} from "react-redux";
 import TransactionCard from "../transaction-card/TransactionCard";
@@ -18,16 +17,9 @@ class AllTransactionsList extends React.Component {
         const {transactions, isFetchingTransactions, hasTransactions} = this.props;
 
         return (
-            <ExpansionPanel>
+            <ExpansionPanel defaultExpanded>
                 <TransactionsListExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                    <Grid container alignItems='center'>
-                        <Grid item xs container alignItems='center'>
-                            All Balances Transactions
-                        </Grid>
-                        <Grid item xs container alignItems='center' justify='flex-end'>
-                            filters
-                        </Grid>
-                    </Grid>
+                    All Balances Transactions
                 </TransactionsListExpansionPanelSummary>
                 {
                     !isFetchingTransactions && hasTransactions ? (

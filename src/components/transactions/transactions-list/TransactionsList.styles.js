@@ -17,7 +17,7 @@ export const TransactionsListHeader = styled.div`
 `;
 
 export const TransactionCardsList = styled.div`
-  max-height: 700px;
+  max-height: 400px;
   overflow-x: hidden;
   overflow-y: scroll;
   margin-right: -8px;
