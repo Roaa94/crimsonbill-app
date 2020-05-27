@@ -15,13 +15,15 @@ export const fetchTransactionsError = errorMessage => ({
     payload: errorMessage,
 });
 
-export const fetchTransactionsStartAsync = (userId, {startDate}) => {
+export const fetchTransactionsStartAsync = (userId, {startDate, endDate}) => {
     return async dispatch => {
         dispatch(fetchTransactionsStart());
         const queryStartDate = new Date(startDate);
+        const queryEndDate = new Date(endDate);
         const transactionsCollectionRef = firestore.collection(`users/${userId}/transactions`);
         const transactionsQuery = transactionsCollectionRef
             .where('dateTime', '>=', queryStartDate)
+            .where('dateTime', '<=', queryEndDate)
             .orderBy('dateTime', 'desc');
 
         transactionsQuery.onSnapshot(async transactionsCollectionSnapshot => {
