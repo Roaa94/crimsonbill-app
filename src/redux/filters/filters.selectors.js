@@ -20,3 +20,8 @@ export const selectDateRangeDays = createSelector(
         return days;
     }
 );
+
+export const selectAccountsPageFiltersCardExpanded = createSelector(
+    [selectFilters],
+    filters => filters.accountsPageFiltersCardExpanded,
+);

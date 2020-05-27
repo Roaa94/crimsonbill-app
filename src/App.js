@@ -89,7 +89,7 @@ const mapStateToProps = state => ({
     filters: selectFilters(state),
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
     setUser: user => dispatch(setUser(user)),
     fetchTaxonomiesStartAsync: userId => dispatch(fetchTaxonomiesStartAsync(userId)),
     fetchCurrenciesStartAsync: userId => dispatch(fetchCurrenciesStartAsync(userId)),

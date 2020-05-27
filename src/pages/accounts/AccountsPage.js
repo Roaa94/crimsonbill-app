@@ -18,6 +18,7 @@ import Grid from "@material-ui/core/Grid";
 import DefaultCurrencySelect from "../../components/currencies/DefaultCurrencySelect";
 import {selectIsLoadingAllAccountsData} from "../../redux/global/misc.selectors";
 import Balance from "../../components/Balance";
+import FiltersCard from "../../components/filters-card/FiltersCard";
 
 const AccountsListWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
@@ -63,9 +64,16 @@ const AccountsPage = (
                 <AccountFormContainer/>
                 {
                     hasAccounts
-                        ? accounts.map(({id, ...accountDetails}) => (
-                            <AccountCard id={id} {...accountDetails} key={id}/>
-                        )) : accountFormShow ? null : <AddAccountView/>
+                        ? (
+                            <React.Fragment>
+                                <FiltersCard/>
+                                {
+                                    accounts.map(({id, ...accountDetails}) => (
+                                        <AccountCard id={id} {...accountDetails} key={id}/>
+                                    ))
+                                }
+                            </React.Fragment>
+                        ) : accountFormShow ? null : <AddAccountView/>
                 }
             </AccountsListWithLoader>
         </PageWrapper>
