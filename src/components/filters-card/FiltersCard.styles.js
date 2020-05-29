@@ -6,11 +6,11 @@ import styled from 'styled-components';
 
 export const FiltersExpansionPanel = withStyles({
     root: {
-        margin: '30px 0',
+        margin: 0,
         borderRadius: `${borderRadius.l} !important`,
         transition: 'box-shadow .3s',
         '&$expanded': {
-            margin: '30px 0 !important',
+            margin: 0,
         },
         '&:hover': {
             boxShadow: boxShadows.main,

@@ -19,6 +19,7 @@ import DefaultCurrencySelect from "../../components/currencies/DefaultCurrencySe
 import {selectIsLoadingAllAccountsData} from "../../redux/global/misc.selectors";
 import Balance from "../../components/Balance";
 import FiltersCard from "../../components/filters-card/FiltersCard";
+import Box from "@material-ui/core/Box";
 
 const AccountsListWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
@@ -66,7 +67,9 @@ const AccountsPage = (
                     hasAccounts
                         ? (
                             <React.Fragment>
-                                <FiltersCard/>
+                                <Box mt={3}>
+                                    <FiltersCard/>
+                                </Box>
                                 {
                                     accounts.map(({id, ...accountDetails}) => (
                                         <AccountCard id={id} {...accountDetails} key={id}/>
