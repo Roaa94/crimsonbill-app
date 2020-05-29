@@ -48,6 +48,7 @@ class TaxonomyCard extends React.Component {
             listHeight,
             taxonomyList,
             noItemsText,
+            taxonomyCollectionName
         } = this.props;
 
         let {name} = this.state;
@@ -78,6 +79,10 @@ class TaxonomyCard extends React.Component {
                             <TextField
                                 label={textFieldLabel}
                                 value={name}
+                                id={taxonomyCollectionName}
+                                inputProps={{
+                                    autocomplete: 'new-password',
+                                }}
                                 name='name'
                                 onChange={this.handleFieldChange}
                                 type='text'
