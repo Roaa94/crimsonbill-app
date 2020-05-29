@@ -18,7 +18,7 @@ const LatestTransactionsList = ({transactions, type}) => {
                     }
                 </div>
             </LatestTransactionsListHeader>
-            <LatestTransactionsListContent>
+            <LatestTransactionsListContent isSpending={type === 'spending'}>
                 {
                     transactions.map(transaction => (
                         <LatestTransactionListItem

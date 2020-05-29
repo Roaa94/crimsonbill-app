@@ -24,3 +24,6 @@ export const borderRadius = {
     l: '15px',
     xl: '30px',
 };
+
+export const pagePadding = 20;
+export const pageMargin = 10;

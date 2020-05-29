@@ -1,5 +1,5 @@
 import React from 'react';
-import {DashboardPageContent, DashboardPageWrapper} from "./DashboardPage.styles";
+import {DashboardPageWrapper} from "./DashboardPage.styles";
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import TransactionsDrawer from "../../components/transactions/latest-transactions/LatestTransactionsDrawer";
 import {connect} from "react-redux";
@@ -33,7 +33,7 @@ const DashboardPage = (
                 <ArrowBackRoundedIcon/>
             </div>
             <TransactionsDrawer/>
-            <DashboardPageContent drawerOpen={transactionsDrawerOpen}>
+            <div className='content'>
                 <DashboardContentWithLoader loading={isFetchingAccounts}>
                     {
                         hasAccounts ? (
@@ -45,7 +45,7 @@ const DashboardPage = (
                         ) : <AddAccountView/>
                     }
                 </DashboardContentWithLoader>
-            </DashboardPageContent>
+            </div>
         </DashboardPageWrapper>
     );
 }

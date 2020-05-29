@@ -16,11 +16,22 @@ export const LatestTransactionsListContainer = styled.div`
 `;
 
 export const LatestTransactionsListContent = styled.div`
-  padding: 0 ${gutter}px;
+  padding: 0 ${gutter /2}px;
+  margin: 0 ${gutter /2}px;
   max-height: calc(100% - ${gutter * 2 + headerHeight}px);
   height: calc(100% - ${gutter * 2 + headerHeight}px);
   overflow-x: hidden;
   overflow-y: scroll;
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+      background-color: ${props => props.isSpending ? colors.primaryLight : colors.secondaryLight};
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+      background-color: ${props => props.isSpending ? colors.primary : colors.secondary};
+  }
 `;
 
 
