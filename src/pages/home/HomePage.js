@@ -7,7 +7,7 @@ import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import DescriptionRoundedIcon from "@material-ui/icons/DescriptionRounded";
 import PieChartRoundedIcon from "@material-ui/icons/PieChartRounded";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
-import StatisticsPage from "../StatisticsPage";
+import StatisticsPage from "../statistics/StatisticsPage";
 import SettingsPage from "../SettingsPage";
 import {PageContent, PageWrapper} from "./HomePage.styles";
 
