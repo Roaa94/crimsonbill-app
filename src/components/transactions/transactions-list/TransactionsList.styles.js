@@ -7,7 +7,6 @@ export const TransactionsListHeader = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 5px 15px;
   background-color: ${colors.background};
   border-radius: ${borderRadius.m};
