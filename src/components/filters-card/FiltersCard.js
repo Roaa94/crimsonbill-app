@@ -3,7 +3,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {FiltersCardContent, FiltersExpansionPanel, FiltersExpansionPanelSummary} from "./FiltersCard.styles";
 import DateTimePicker from "../ui/inputs/date-time-pickers/DateTimePicker";
 import {connect} from "react-redux";
-import {selectAccountsPageFiltersCardExpanded, selectFilters} from "../../redux/filters/filters.selectors";
+import {selectFiltersCardExpanded, selectFilters} from "../../redux/filters/filters.selectors";
 import Button from "../ui/buttons/Button";
 import {colors} from "../../styles/global";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
@@ -115,7 +115,7 @@ class FiltersCard extends React.Component {
 const mapStateToProps = createStructuredSelector({
     userId: selectUserId,
     filters: selectFilters,
-    filtersCardExpanded: selectAccountsPageFiltersCardExpanded,
+    filtersCardExpanded: selectFiltersCardExpanded,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -21,7 +21,7 @@ export const selectDateRangeDays = createSelector(
     }
 );
 
-export const selectAccountsPageFiltersCardExpanded = createSelector(
+export const selectFiltersCardExpanded = createSelector(
     [selectFilters],
-    filters => filters.accountsPageFiltersCardExpanded,
+    filters => filters.filtersCardExpanded,
 );

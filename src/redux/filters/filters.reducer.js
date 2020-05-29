@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     accountId: '',
     startDate: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
     endDate: new Date(),
-    accountsPageFiltersCardExpanded: false,
+    filtersCardExpanded: false,
 };
 
 const filtersReducer = (state = INITIAL_STATE, action) => {
@@ -23,7 +23,7 @@ const filtersReducer = (state = INITIAL_STATE, action) => {
         case FiltersActionTypes.TOGGLE_ACCOUNTS_PAGE_FILTERS_CARD:
             return {
                 ...state,
-                accountsPageFiltersCardExpanded: action.payload,
+                filtersCardExpanded: action.payload,
             }
         default:
             return state;
