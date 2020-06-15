@@ -5,3 +5,7 @@ export const compareDaysByTimestamp = (d1Timestamp, d2Timestamp) => {
         && d1.getMonth() === d2.getMonth()
         && d1.getDate() === d2.getDate();
 };
+
+export const sliceString = (value, length = 20) => {
+    return value.length > length ? `${value.slice(0, length)}...` : value;
+}

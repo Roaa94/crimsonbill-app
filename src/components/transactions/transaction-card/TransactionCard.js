@@ -20,6 +20,7 @@ import FormattedNumber from "../../ui/FormattedNumber";
 import TransactionForm from "../transaction-form/TransactionFormContainer";
 import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selectors";
 import Icon from "@material-ui/core/Icon";
+import {sliceString} from "../../../utils/app.utils";
 
 class TransactionCard extends React.Component {
     _isMount = false;
@@ -97,36 +98,34 @@ class TransactionCard extends React.Component {
                 onChange={this.handleExpansionPanelChange}
             >
                 <TransactionExpansionPanelSummary>
-                    <Grid container alignItems='center' spacing={2}>
-                        <Grid item alignItems='center' container xs spacing={1}>
-                            <Grid item>
-                                {
-                                    isSpending
-                                        ? <SpendingArrow><ArrowDown/></SpendingArrow>
-                                        : <SpendingArrow><ArrowUp/></SpendingArrow>
-                                }
-                            </Grid>
-                            <Grid item xs={4}>
-                                <FormattedNumber
-                                    number={amount}
-                                    negative={isSpending}
-                                    currencyCode={currencyCode}
-                                />
-                            </Grid>
-                            <Grid container alignItems='center' item xs>
-                                <Box mr={1}>
-                                    <Icon fontSize='small' color={isSpending ? 'primary' : 'secondary'}>
-                                        {isSpending ? spendingCategory.icon : incomeSource.icon}
-                                    </Icon>
-                                </Box>
-                                <Box fontWeight='600'>
-                                    {isSpending ? spendingCategory.name : incomeSource.name}
-                                </Box>
-                            </Grid>
+                    <Grid container alignItems='center' spacing={2} wrap='nowrap'>
+                        <Grid item>
+                            {
+                                isSpending
+                                    ? <SpendingArrow><ArrowDown/></SpendingArrow>
+                                    : <SpendingArrow><ArrowUp/></SpendingArrow>
+                            }
                         </Grid>
-                        <Grid item xs container justify='flex-end' spacing={1}>
+                        <Grid item xs={12} md={2}>
+                            <FormattedNumber
+                                number={amount}
+                                negative={isSpending}
+                                currencyCode={currencyCode}
+                            />
+                        </Grid>
+                        <Grid container alignItems='center' item xs wrap='nowrap'>
+                            <Box mr={1}>
+                                <Icon fontSize='small' color={isSpending ? 'primary' : 'secondary'}>
+                                    {isSpending ? spendingCategory.icon : incomeSource.icon}
+                                </Icon>
+                            </Box>
+                            <Box fontWeight='600'>
+                                {isSpending ? sliceString(spendingCategory.name) : sliceString(incomeSource.name)}
+                            </Box>
+                        </Grid>
+                        <Grid item xs>{sliceString(title)}</Grid>
+                        <Grid item xs={12} md={1} container justify='flex-end' spacing={1}>
                             <Grid item>{formattedDate}</Grid>
-                            <Grid item>{formattedTime}</Grid>
                         </Grid>
                         {
                             !readOnly ? (

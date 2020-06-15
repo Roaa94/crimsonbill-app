@@ -7,6 +7,7 @@ import {selectTaxonomyValue} from "../../../redux/taxonomies/taxonomies.selector
 import {connect} from "react-redux";
 import {LatestTransactionsListItemContainer} from "./LatestTransactions.styles";
 import Box from "@material-ui/core/Box";
+import {sliceString} from "../../../utils/app.utils";
 
 const LatestTransactionListItem = ({transaction, taxonomyValue}) => {
     let {type, title, currencyCode, amount, dateTime} = transaction;
@@ -38,9 +39,7 @@ const LatestTransactionListItem = ({transaction, taxonomyValue}) => {
                     </Grid>
                     <Grid item container alignItems='center' justify='space-between' xs={12} wrap='nowrap'>
                         <Grid item>
-                            {
-                                title.length > 20 ? `${title.slice(0, 20)}...` : title
-                            }
+                            {sliceString(title)}
                         </Grid>
                         <Grid item>
                             {formattedDate}
