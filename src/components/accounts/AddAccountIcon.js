@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {colors} from "../../styles/global";
 import {connect} from "react-redux";
 import {toggleAccountForm} from "../../redux/accounts/accounts.actions";
+import {useHistory} from "react-router-dom";
 
 const AddAccountIconWrapper = styled(AddAccountSvgIcon)`
   width: 100px;
@@ -28,7 +29,20 @@ const AddAccountIconWrapper = styled(AddAccountSvgIcon)`
   }
 `;
 
-const AddAccountIcon = ({toggleAccountForm}) => <AddAccountIconWrapper onClick={() => toggleAccountForm(true)}/>;
+const AddAccountIcon = ({toggleAccountForm}) => {
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push('/home/accounts');
+        toggleAccountForm(true);
+    }
+
+    return (
+        <AddAccountIconWrapper
+            onClick={handleClick}
+        />
+    );
+};
 
 const mapDispatchToProps = dispatch => ({
     toggleAccountForm: value => dispatch(toggleAccountForm(value)),
