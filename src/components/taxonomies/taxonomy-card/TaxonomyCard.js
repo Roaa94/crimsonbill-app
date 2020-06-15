@@ -81,7 +81,7 @@ class TaxonomyCard extends React.Component {
                                 value={name}
                                 id={taxonomyCollectionName}
                                 inputProps={{
-                                    autocomplete: 'new-password',
+                                    autoComplete: 'new-password',
                                 }}
                                 name='name'
                                 onChange={this.handleFieldChange}
