@@ -12,69 +12,46 @@ import {
     selectIsFetchingTransactions
 } from "../../../redux/transactions/transactions.selectors";
 
-class TransactionsList extends React.Component {
+const TransactionsList = ({accountId, balanceId, transactions, isFetchingTransactions, balanceHasTransactions}) => {
 
-    _isMount = false;
+    const [showTransactionForm, setTransactionForm] = React.useState(false);
 
-    componentDidMount() {
-        this._isMount = true;
-    }
-
-    componentWillUnmount() {
-        this._isMount = false;
-    }
-
-    state = {
-        showTransactionForm: false,
-    };
-
-    controlTransactionForm = value => {
-        if (this._isMount) {
-            this.setState({showTransactionForm: value});
-        }
-    }
-
-    render() {
-        const {showTransactionForm} = this.state;
-        const {accountId, balanceId, transactions, isFetchingTransactions, balanceHasTransactions} = this.props;
-
-        return (
-            <div>
-                <TransactionsListHeader>
-                    Transactions
-                    <AddIconButton
-                        bgColor={colors.background}
-                        size='small'
-                        handleClick={() => this.controlTransactionForm(true)}
+    return (
+        <React.Fragment>
+            <TransactionsListHeader>
+                Transactions
+                <AddIconButton
+                    bgColor={colors.background}
+                    size='small'
+                    handleClick={() => setTransactionForm(true)}
+                />
+            </TransactionsListHeader>
+            {
+                showTransactionForm ? (
+                    <TransactionFormContainer
+                        handleFormCancel={() => setTransactionForm(false)}
+                        accountId={accountId}
+                        balanceId={balanceId}
                     />
-                </TransactionsListHeader>
-                {
-                    showTransactionForm ? (
-                        <TransactionFormContainer
-                            handleFormCancel={() => this.controlTransactionForm(false)}
-                            accountId={accountId}
-                            balanceId={balanceId}
-                        />
-                    ) : null
-                }
-                {
-                    !isFetchingTransactions && balanceHasTransactions ? (
-                        <TransactionCardsList>
-                            {
-                                transactions.map((transaction) => (
-                                    <TransactionCard
-                                        key={transaction.id}
-                                        balanceId={balanceId}
-                                        transaction={transaction}
-                                    />
-                                ))
-                            }
-                        </TransactionCardsList>
-                    ) : null
-                }
-            </div>
-        );
-    }
+                ) : null
+            }
+            {
+                !isFetchingTransactions && balanceHasTransactions ? (
+                    <TransactionCardsList>
+                        {
+                            transactions.map((transaction) => (
+                                <TransactionCard
+                                    key={transaction.id}
+                                    balanceId={balanceId}
+                                    transaction={transaction}
+                                />
+                            ))
+                        }
+                    </TransactionCardsList>
+                ) : null
+            }
+        </React.Fragment>
+    );
 }
 
 const mapStateToProps = (state, ownProps) => ({
