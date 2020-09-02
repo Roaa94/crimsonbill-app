@@ -71,13 +71,13 @@ class App extends React.Component {
         return (
             <Switch>
                 <Route exact path='/' render={
-                    () => user ? <Redirect to='/home'/> : <AuthPage/>
+                    () => user && user.id ? <Redirect to='/home'/> : <AuthPage/>
                 }/>
                 <Route exact path='/sign-up' render={
-                    () => user ? <Redirect to='/home'/> : <AuthPage/>
+                    () => user && user.id ? <Redirect to='/home'/> : <AuthPage/>
                 }/>
                 <Route path='/home' render={
-                    () => user ? <HomePage path='/home'/> : <Redirect to='/'/>
+                    () => user && user.id ? <HomePage path='/home'/> : <Redirect to='/'/>
                 }/>
             </Switch>
         );
