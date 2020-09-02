@@ -13,6 +13,7 @@ import Box from "@material-ui/core/Box";
 import {LatestTransactionsContainer} from "./LatestTransactions.styles";
 import LatestTransactionsList from "./LatestTransactionsList";
 import {createStructuredSelector} from "reselect";
+import {selectIsLoadingAllAccountsData} from "../../../redux/global/misc.selectors";
 
 export const transactionDrawerWidth = 370;
 
@@ -34,7 +35,7 @@ const useStyles = makeStyles(() => ({
 
 const TransactionsDrawerWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
-const LatestTransactionsDrawer = ({transactionDrawerOpen, hasTransactions, isFetchingTransactions}) => {
+const LatestTransactionsDrawer = ({transactionDrawerOpen, hasTransactions, isLoadingAllAccountsData}) => {
     const classes = useStyles();
     return (
         <Drawer
@@ -46,7 +47,7 @@ const LatestTransactionsDrawer = ({transactionDrawerOpen, hasTransactions, isFet
                 paper: classes.drawerPaper,
             }}
         >
-            <TransactionsDrawerWithLoader loading={isFetchingTransactions}>
+            <TransactionsDrawerWithLoader loading={isLoadingAllAccountsData}>
                 {
                     hasTransactions ? (
                         <LatestTransactionsContainer>
@@ -67,7 +68,7 @@ const LatestTransactionsDrawer = ({transactionDrawerOpen, hasTransactions, isFet
 };
 
 const mapStateToProps = createStructuredSelector({
-    isFetchingTransactions: selectIsFetchingTransactions,
+    isLoadingAllAccountsData: selectIsLoadingAllAccountsData,
     hasTransactions: selectHasTransactions,
     transactionDrawerOpen: selectTransactionsDrawerOpen,
 });

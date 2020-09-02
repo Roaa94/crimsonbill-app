@@ -4,7 +4,7 @@ import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import TransactionsDrawer from "../../components/transactions/latest-transactions/LatestTransactionsDrawer";
 import {connect} from "react-redux";
 import AddAccountView from "../../components/accounts/AddAccountView";
-import {selectHasAccounts, selectIsFetchingAccounts} from "../../redux/accounts/accounts.selectors";
+import {selectHasAccounts} from "../../redux/accounts/accounts.selectors";
 import WithLoader from "../../components/HOC/WithLoader";
 import DashboardHeader from "../../components/dashboard/dashboard-header/DashboardHeader";
 import DashboardTitle from "../../components/dashboard/DashboardTitle";
@@ -12,13 +12,14 @@ import {createStructuredSelector} from "reselect";
 import {selectTransactionsDrawerOpen} from "../../redux/transactions/transactions.selectors";
 import {toggleTransactionsDrawer} from "../../redux/transactions/transactions.actions";
 import DashboardContent from "../../components/dashboard/dashboard-content/DashboardContent";
+import {selectIsLoadingAllAccountsData} from "../../redux/global/misc.selectors";
 
 const DashboardContentWithLoader = WithLoader(({children}) => <React.Fragment>{children}</React.Fragment>);
 
 const DashboardPage = (
     {
         hasAccounts,
-        isFetchingAccounts,
+        isLoadingAllAccountsData,
         transactionsDrawerOpen,
         toggleTransactionsDrawer
     }
@@ -34,7 +35,7 @@ const DashboardPage = (
             </div>
             <TransactionsDrawer/>
             <div className='content'>
-                <DashboardContentWithLoader loading={isFetchingAccounts}>
+                <DashboardContentWithLoader loading={isLoadingAllAccountsData}>
                     {
                         hasAccounts ? (
                             <React.Fragment>
@@ -52,7 +53,7 @@ const DashboardPage = (
 
 const mapStateToProps = createStructuredSelector({
     hasAccounts: selectHasAccounts,
-    isFetchingAccounts: selectIsFetchingAccounts,
+    isLoadingAllAccountsData: selectIsLoadingAllAccountsData,
     transactionsDrawerOpen: selectTransactionsDrawerOpen,
 });
 
