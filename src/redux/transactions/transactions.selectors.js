@@ -4,7 +4,7 @@ const selectTransactions = state => state.transactions;
 
 export const selectTransactionsArray = createSelector(
     [selectTransactions],
-    transactions => transactions.transactionsArray,
+    transactions => transactions.transactionsArray ? transactions.transactionsArray : [],
 );
 
 export const selectBalanceTransactions = balanceId => createSelector(
