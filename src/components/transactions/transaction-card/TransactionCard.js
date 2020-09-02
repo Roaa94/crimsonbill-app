@@ -163,7 +163,6 @@ class TransactionCard extends React.Component {
                     </Grid>
                 </TransactionExpansionPanelSummary>
                 <Box p={2}>
-
                     {
                         showTransactionForm && !readOnly ? (
                             <TransactionForm
@@ -174,7 +173,7 @@ class TransactionCard extends React.Component {
                             />
                         ) : null
                     }
-                    <Box pb={2} fontWeight='600'>
+                    <Box py={2} fontWeight='600'>
                         {title}
                     </Box>
                     {
